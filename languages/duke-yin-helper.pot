@@ -1,0 +1,343 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Duke Yin Helper\n"
+"POT-Creation-Date: 2019-07-05 11:28+0800\n"
+"PO-Revision-Date: 2019-07-05 11:28+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: duke-yin-helper.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/post-type.php:11
+msgctxt "post type general name"
+msgid "Portfolios"
+msgstr ""
+
+#: includes/post-type.php:12
+msgctxt "post type singular name"
+msgid "Work"
+msgstr ""
+
+#: includes/post-type.php:13
+msgctxt "String for the submenu"
+msgid "All Portfolios"
+msgstr ""
+
+#: includes/post-type.php:14
+msgctxt "portfolio"
+msgid "Add New"
+msgstr ""
+
+#: includes/post-type.php:15
+msgid "Add new"
+msgstr ""
+
+#: includes/post-type.php:16
+msgid "Edit work"
+msgstr ""
+
+#: includes/post-type.php:17
+msgid "New work"
+msgstr ""
+
+#: includes/post-type.php:18
+msgid "View this work"
+msgstr ""
+
+#: includes/post-type.php:19 includes/post-type.php:89
+#: includes/post-type.php:127 includes/post-type.php:192
+#: includes/post-type.php:258 includes/post-type.php:326
+msgid "Search for"
+msgstr ""
+
+#: includes/post-type.php:20 includes/post-type.php:90
+#: includes/post-type.php:259
+msgid "Not found"
+msgstr ""
+
+#: includes/post-type.php:21 includes/post-type.php:91
+#: includes/post-type.php:129 includes/post-type.php:194
+#: includes/post-type.php:260 includes/post-type.php:328
+msgid "Not found in trash"
+msgstr ""
+
+#: includes/post-type.php:48 includes/post-type.php:153
+#: includes/post-type.php:219 includes/post-type.php:286
+#: includes/post-type.php:352
+msgctxt "taxonomy general name"
+msgid "Categories"
+msgstr ""
+
+#: includes/post-type.php:49 includes/post-type.php:154
+#: includes/post-type.php:220 includes/post-type.php:287
+#: includes/post-type.php:353
+msgctxt "taxonomy singular name"
+msgid "Category"
+msgstr ""
+
+#: includes/post-type.php:50 includes/post-type.php:155
+#: includes/post-type.php:221 includes/post-type.php:288
+#: includes/post-type.php:354
+msgid "Search Categories"
+msgstr ""
+
+#: includes/post-type.php:51 includes/post-type.php:156
+#: includes/post-type.php:222 includes/post-type.php:289
+#: includes/post-type.php:355
+msgid "All Categories"
+msgstr ""
+
+#: includes/post-type.php:52 includes/post-type.php:157
+#: includes/post-type.php:223 includes/post-type.php:290
+#: includes/post-type.php:356
+msgid "Parent Category"
+msgstr ""
+
+#: includes/post-type.php:53 includes/post-type.php:158
+#: includes/post-type.php:224 includes/post-type.php:291
+#: includes/post-type.php:357
+msgid "Parent Category:"
+msgstr ""
+
+#: includes/post-type.php:54 includes/post-type.php:159
+#: includes/post-type.php:225 includes/post-type.php:292
+#: includes/post-type.php:358
+msgid "Edit Category"
+msgstr ""
+
+#: includes/post-type.php:55 includes/post-type.php:160
+#: includes/post-type.php:226 includes/post-type.php:293
+#: includes/post-type.php:359
+msgid "Update Category"
+msgstr ""
+
+#: includes/post-type.php:56 includes/post-type.php:161
+#: includes/post-type.php:227 includes/post-type.php:294
+#: includes/post-type.php:360
+msgid "Add New Category"
+msgstr ""
+
+#: includes/post-type.php:57 includes/post-type.php:162
+#: includes/post-type.php:228 includes/post-type.php:295
+#: includes/post-type.php:361
+msgid "New Category Name"
+msgstr ""
+
+#: includes/post-type.php:58 includes/post-type.php:163
+#: includes/post-type.php:229 includes/post-type.php:296
+#: includes/post-type.php:362
+msgid "Categories"
+msgstr ""
+
+#: includes/post-type.php:81
+msgctxt "post type general name"
+msgid "Slidshow"
+msgstr ""
+
+#: includes/post-type.php:82
+msgctxt "post type singular name"
+msgid "Slidshow post"
+msgstr ""
+
+#: includes/post-type.php:83
+msgctxt "String for the submenu"
+msgid "All Slidshows"
+msgstr ""
+
+#: includes/post-type.php:84
+msgctxt "slideshow"
+msgid "Add new"
+msgstr ""
+
+#: includes/post-type.php:85
+msgid "Add New slider"
+msgstr ""
+
+#: includes/post-type.php:86 includes/post-type.php:255
+msgid "Edit"
+msgstr ""
+
+#: includes/post-type.php:87
+msgid "New Slider"
+msgstr ""
+
+#: includes/post-type.php:88
+msgid "View this slider"
+msgstr ""
+
+#: includes/post-type.php:119
+msgctxt "post type general name"
+msgid "Photography"
+msgstr ""
+
+#: includes/post-type.php:120
+msgctxt "post type singular name"
+msgid "Photo post"
+msgstr ""
+
+#: includes/post-type.php:121
+msgctxt "String for the submenu"
+msgid "All photos"
+msgstr ""
+
+#: includes/post-type.php:122
+msgctxt "photo"
+msgid "Add New"
+msgstr ""
+
+#: includes/post-type.php:123
+msgid "Add Photo"
+msgstr ""
+
+#: includes/post-type.php:124 includes/post-type.php:189
+#: includes/post-type.php:323
+msgid "Edit post"
+msgstr ""
+
+#: includes/post-type.php:125
+msgid "New Photo"
+msgstr ""
+
+#: includes/post-type.php:126
+msgid "View this Photo"
+msgstr ""
+
+#: includes/post-type.php:128
+msgid "No photo found"
+msgstr ""
+
+#: includes/post-type.php:184
+msgctxt "post type general name"
+msgid "Selfie"
+msgstr ""
+
+#: includes/post-type.php:185
+msgctxt "post type singular name"
+msgid "Selfie post"
+msgstr ""
+
+#: includes/post-type.php:186
+msgctxt "String for the submenu"
+msgid "All Selfies"
+msgstr ""
+
+#: includes/post-type.php:187
+msgctxt "selfie"
+msgid "Add new"
+msgstr ""
+
+#: includes/post-type.php:188
+msgid "Add selfie"
+msgstr ""
+
+#: includes/post-type.php:190
+msgid "New selfie"
+msgstr ""
+
+#: includes/post-type.php:191
+msgid "View this selfie"
+msgstr ""
+
+#: includes/post-type.php:193
+msgid "Selfie not found"
+msgstr ""
+
+#: includes/post-type.php:250
+msgctxt "post type general name"
+msgid "Products"
+msgstr ""
+
+#: includes/post-type.php:251
+msgctxt "post type singular name"
+msgid "Porduct"
+msgstr ""
+
+#: includes/post-type.php:252
+msgctxt "String for the submenu"
+msgid "All Products"
+msgstr ""
+
+#: includes/post-type.php:253
+msgctxt "product"
+msgid "Add new"
+msgstr ""
+
+#: includes/post-type.php:254
+msgid "Add a product for sale"
+msgstr ""
+
+#: includes/post-type.php:256
+msgid "New porduct"
+msgstr ""
+
+#: includes/post-type.php:257
+msgid "View this product"
+msgstr ""
+
+#: includes/post-type.php:318
+msgctxt "post type general name"
+msgid "Reviews"
+msgstr ""
+
+#: includes/post-type.php:319
+msgctxt "post type singular name"
+msgid "Review post"
+msgstr ""
+
+#: includes/post-type.php:320
+msgctxt "String for the submenu"
+msgid "All review"
+msgstr ""
+
+#: includes/post-type.php:321
+msgctxt "review"
+msgid "Add New"
+msgstr ""
+
+#: includes/post-type.php:322
+msgid "Add review"
+msgstr ""
+
+#: includes/post-type.php:324
+msgid "New review"
+msgstr ""
+
+#: includes/post-type.php:325
+msgid "View this review"
+msgstr ""
+
+#: includes/post-type.php:327
+msgid "No review found"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Duke Yin Helper"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://www.dukeyin.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"For supporting the wordpress theme dukeyin, add more post types and "
+"shortcodes."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Duke Yin"
+msgstr ""
