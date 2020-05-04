@@ -16,7 +16,7 @@
  * Plugin Name:       Duke Yin Helper
  * Plugin URI:        https://www.dukeyin.com
  * Description:       For supporting the wordpress theme dukeyin, add more post types and shortcodes.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Duke Yin
  * Author URI:        https://www.dukeyin.com
  * License:           GPL-2.0+
@@ -65,6 +65,18 @@ register_deactivation_hook( __FILE__, 'deactivate_duke_yin_helper' );
 require plugin_dir_path( __FILE__ ) . 'includes/class-duke-yin-helper.php';
 require plugin_dir_path( __FILE__ ) . 'includes/post-type.php';
 require plugin_dir_path( __FILE__ ) . 'includes/helpers.php';
+
+/**
+* updater
+*/
+require plugin_dir_path( __FILE__ ) . 'includes//plugin-update-checker/plugin-update-checker.php';
+$MyUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'https://update.dukeyin.com/?action=get_metadata&slug=duke-yin-helper', //Metadata URL.
+	__FILE__, //Full path to the main plugin file.
+	'duke-yin-helper' //Plugin slug. Usually it's the same as the name of the directory.
+);
+
+
 /**
  * Short codes only work with DukeYin theme.
  */
