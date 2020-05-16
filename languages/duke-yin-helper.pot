@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2019-07-05 11:28+0800\n"
-"PO-Revision-Date: 2019-07-05 11:28+0800\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2020-05-17 04:04+0800\n"
+"PO-Revision-Date: 2020-05-17 04:03+0800\n"
+"Last-Translator: Duke Yin <duke@dukeyin.com>\n"
+"Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: duke-yin-helper.php\n"
@@ -20,6 +20,46 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:54
+msgid "View details"
+msgstr ""
+
+#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:77
+#, php-format
+msgid "More information about %s"
+msgstr ""
+
+#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:128
+msgid "Check for updates"
+msgstr ""
+
+#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:213
+#, php-format
+msgctxt "the plugin title"
+msgid "The %s plugin is up to date."
+msgstr ""
+
+#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:215
+#, php-format
+msgctxt "the plugin title"
+msgid "A new version of the %s plugin is available."
+msgstr ""
+
+#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:217
+#, php-format
+msgctxt "the plugin title"
+msgid "Could not determine if updates are available for %s."
+msgstr ""
+
+#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:223
+#, php-format
+msgid "Unknown update checker status \"%s\""
+msgstr ""
+
+#: includes/plugin-update-checker/Puc/v4p9/Vcs/PluginUpdateChecker.php:98
+msgid "There is no changelog available."
+msgstr ""
 
 #: includes/post-type.php:11
 msgctxt "post type general name"
@@ -60,6 +100,7 @@ msgstr ""
 #: includes/post-type.php:19 includes/post-type.php:89
 #: includes/post-type.php:127 includes/post-type.php:192
 #: includes/post-type.php:258 includes/post-type.php:326
+#: includes/post-type.php:392
 msgid "Search for"
 msgstr ""
 
@@ -71,74 +112,75 @@ msgstr ""
 #: includes/post-type.php:21 includes/post-type.php:91
 #: includes/post-type.php:129 includes/post-type.php:194
 #: includes/post-type.php:260 includes/post-type.php:328
+#: includes/post-type.php:394
 msgid "Not found in trash"
 msgstr ""
 
 #: includes/post-type.php:48 includes/post-type.php:153
 #: includes/post-type.php:219 includes/post-type.php:286
-#: includes/post-type.php:352
+#: includes/post-type.php:353
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr ""
 
 #: includes/post-type.php:49 includes/post-type.php:154
 #: includes/post-type.php:220 includes/post-type.php:287
-#: includes/post-type.php:353
+#: includes/post-type.php:354
 msgctxt "taxonomy singular name"
 msgid "Category"
 msgstr ""
 
 #: includes/post-type.php:50 includes/post-type.php:155
 #: includes/post-type.php:221 includes/post-type.php:288
-#: includes/post-type.php:354
+#: includes/post-type.php:355
 msgid "Search Categories"
 msgstr ""
 
 #: includes/post-type.php:51 includes/post-type.php:156
 #: includes/post-type.php:222 includes/post-type.php:289
-#: includes/post-type.php:355
+#: includes/post-type.php:356
 msgid "All Categories"
 msgstr ""
 
 #: includes/post-type.php:52 includes/post-type.php:157
 #: includes/post-type.php:223 includes/post-type.php:290
-#: includes/post-type.php:356
+#: includes/post-type.php:357
 msgid "Parent Category"
 msgstr ""
 
 #: includes/post-type.php:53 includes/post-type.php:158
 #: includes/post-type.php:224 includes/post-type.php:291
-#: includes/post-type.php:357
+#: includes/post-type.php:358
 msgid "Parent Category:"
 msgstr ""
 
 #: includes/post-type.php:54 includes/post-type.php:159
 #: includes/post-type.php:225 includes/post-type.php:292
-#: includes/post-type.php:358
+#: includes/post-type.php:359
 msgid "Edit Category"
 msgstr ""
 
 #: includes/post-type.php:55 includes/post-type.php:160
 #: includes/post-type.php:226 includes/post-type.php:293
-#: includes/post-type.php:359
+#: includes/post-type.php:360
 msgid "Update Category"
 msgstr ""
 
 #: includes/post-type.php:56 includes/post-type.php:161
 #: includes/post-type.php:227 includes/post-type.php:294
-#: includes/post-type.php:360
+#: includes/post-type.php:361
 msgid "Add New Category"
 msgstr ""
 
 #: includes/post-type.php:57 includes/post-type.php:162
 #: includes/post-type.php:228 includes/post-type.php:295
-#: includes/post-type.php:361
+#: includes/post-type.php:362
 msgid "New Category Name"
 msgstr ""
 
 #: includes/post-type.php:58 includes/post-type.php:163
 #: includes/post-type.php:229 includes/post-type.php:296
-#: includes/post-type.php:362
+#: includes/post-type.php:363
 msgid "Categories"
 msgstr ""
 
@@ -203,7 +245,6 @@ msgid "Add Photo"
 msgstr ""
 
 #: includes/post-type.php:124 includes/post-type.php:189
-#: includes/post-type.php:323
 msgid "Edit post"
 msgstr ""
 
@@ -311,6 +352,10 @@ msgstr ""
 msgid "Add review"
 msgstr ""
 
+#: includes/post-type.php:323
+msgid "Edit review"
+msgstr ""
+
 #: includes/post-type.php:324
 msgid "New review"
 msgstr ""
@@ -321,6 +366,46 @@ msgstr ""
 
 #: includes/post-type.php:327
 msgid "No review found"
+msgstr ""
+
+#: includes/post-type.php:384
+msgctxt "post type general name"
+msgid "Testimonials"
+msgstr ""
+
+#: includes/post-type.php:385
+msgctxt "post type singular name"
+msgid "Testimonial post"
+msgstr ""
+
+#: includes/post-type.php:386
+msgctxt "String for the submenu"
+msgid "All testimonials"
+msgstr ""
+
+#: includes/post-type.php:387
+msgctxt "testimonial"
+msgid "Add New"
+msgstr ""
+
+#: includes/post-type.php:388
+msgid "Add Testimonial"
+msgstr ""
+
+#: includes/post-type.php:389
+msgid "Edit Testimonial"
+msgstr ""
+
+#: includes/post-type.php:390
+msgid "New Testimonial"
+msgstr ""
+
+#: includes/post-type.php:391
+msgid "View this Testimonials"
+msgstr ""
+
+#: includes/post-type.php:393
+msgid "No testimonial found"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

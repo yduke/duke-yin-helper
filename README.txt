@@ -4,7 +4,7 @@ Donate link: https://www.dukeyin.com/donate/
 Tags: shortcode, posttype
 Requires at least: 3.0.1
 Tested up to: 6.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,17 +33,11 @@ Yes and no. Yes this plugin is free to donload, but DukeYin theme is not free, a
 
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
+= 1.0.2 =
+bug fix
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
+= 1.0.1 =
+bug fix
 
-== Upgrade Notice ==
-
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
+= 1.0.0 =
+initial release
