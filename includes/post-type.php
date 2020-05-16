@@ -376,3 +376,69 @@ function create_review_taxonomies() {
 }
 add_action('init', 'review_register');
 add_action( 'init', 'create_review_taxonomies', 0 );
+
+/* testimonial */
+
+	function testimonial_register() {
+		  $labels = array(
+		    'name' => _x('Testimonials', 'post type general name','duke-yin-helper'),
+		    'singular_name' => _x('Testimonial post', 'post type singular name','duke-yin-helper'),
+			'all_items'=> _x('All testimonial', 'String for the submenu','duke-yin-helper'),
+		    'add_new' => _x('Add New', 'testimonial','duke-yin-helper'),
+		    'add_new_item' => __('Add Testimonial','duke-yin-helper'),
+		    'edit_item' => __('Edit Testimonial','duke-yin-helper'),
+		    'new_item' => __('New Testimonial','duke-yin-helper'),
+		    'view_item' => __('View this Testimonials','duke-yin-helper'),
+		    'search_items' => __('Search for','duke-yin-helper'),
+		    'not_found' =>  __('No testimonial found','duke-yin-helper'),
+		    'not_found_in_trash' => __('Not found in trash','duke-yin-helper'), 
+		    'parent_item_colon' => ''
+		  );
+		$slugRule = 'testimonial';
+    	$args = array(
+        	'labels' => $labels,
+        	'public' => true,
+        	'show_ui' => true,
+			'show_in_rest'=> true,
+        	'capability_type' => 'post',
+        	'hierarchical' => false,
+        	'rewrite' => true,
+			'rewrite' => array('slug' => 'testimonial','with_front' => true),
+        	'query_var' => true,
+        	'show_in_nav_menus'=> false,
+        	'menu_position' => 9,
+			'menu_icon' => 'dashicons-format-status',
+        	'supports' => array('title','author','thumbnail','excerpt','editor','comments','custom-fields'),
+			'taxonomies' => array('post_tag',)
+        );
+    	register_post_type( 'testimonial' , $args );
+	}
+	
+function create_testimonial_taxonomies() {
+    $labels = array(
+        'name'              => _x( 'Categories', 'taxonomy general name','duke-yin-helper'),
+        'singular_name'     => _x( 'Category', 'taxonomy singular name','duke-yin-helper'),
+        'search_items'      => __( 'Search Categories','duke-yin-helper'),
+        'all_items'         => __( 'All Categories' ,'duke-yin-helper'),
+        'parent_item'       => __( 'Parent Category' ,'duke-yin-helper'),
+        'parent_item_colon' => __( 'Parent Category:' ,'duke-yin-helper'),
+        'edit_item'         => __( 'Edit Category' ,'duke-yin-helper'),
+        'update_item'       => __( 'Update Category' ,'duke-yin-helper'),
+        'add_new_item'      => __( 'Add New Category' ,'duke-yin-helper'),
+        'new_item_name'     => __( 'New Category Name' ,'duke-yin-helper'),
+        'menu_name'         => __( 'Categories' ,'duke-yin-helper'),
+    );
+
+    $args = array(
+        'hierarchical'      => true, // Set this to 'false' for non-hierarchical taxonomy (like tags)
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'testimonials' ),
+    );
+
+    register_taxonomy( 'testimonial_categories', array( 'testimonial' ), $args );
+}
+add_action('init', 'testimonial_register');
+add_action( 'init', 'create_testimonial_taxonomies', 0 );
