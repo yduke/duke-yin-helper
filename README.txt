@@ -4,7 +4,7 @@ Donate link: https://www.dukeyin.com/donate/
 Tags: shortcode, posttype
 Requires at least: 3.0.1
 Tested up to: 6.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,9 @@ Yes and no. Yes this plugin is free to donload, but DukeYin theme is not free, a
 
 
 == Changelog ==
+
+= 1.0.3 =
+We are now NOT recommend to use 'Now' theme as mobile theme, but if you really like it, you can still use it by installing 'Any mobile theme switcher' plugin.
 
 = 1.0.2 =
 bug fix

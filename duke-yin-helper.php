@@ -16,7 +16,7 @@
  * Plugin Name:       Duke Yin Helper
  * Plugin URI:        https://www.dukeyin.com
  * Description:       For supporting the wordpress theme dukeyin, add more post types and shortcodes.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Author:            Duke Yin
  * Author URI:        https://www.dukeyin.com
  * License:           GPL-2.0+
@@ -80,7 +80,7 @@ $MyUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 /**
  * Short codes only work with DukeYin theme.
  */
-if ( wp_get_theme()->get( 'Name' ) != 'Now' ) {
+if ( trim(amts_checkMobile()['amts_mobile_browser'] ) != 'Now' ) {
 	require plugin_dir_path( __FILE__ ) . 'includes/short-code.php';
 }
 
