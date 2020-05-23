@@ -80,7 +80,7 @@ $MyUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 /**
  * Short codes only work with DukeYin theme.
  */
-if ( trim(amts_checkMobile()['amts_mobile_browser'] ) != 'Now' ) {
+if( function_exists('amts_checkMobile') AND amts_checkMobile()['amts_mobile_browser'] == 'Now' ){}else{
 	require plugin_dir_path( __FILE__ ) . 'includes/short-code.php';
 }
 
