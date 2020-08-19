@@ -21,14 +21,18 @@ return (is_tax('review_categories')) ? 1 : $value;
 }
 
 //Indicator
+
+
+if (!function_exists('dukeyin_theme_dashboard_widgets')) {
 add_action('wp_dashboard_setup', 'dukeyin_theme_dashboard_widgets');
-  
 function dukeyin_theme_dashboard_widgets() {
 global $wp_meta_boxes;
  
 wp_add_dashboard_widget('dukeyin_help_widget', __('Duke Yin Theme Support','duke-yin-helper'), 'dukeyin_dashboard_help');
 }
- 
+}
+
+if (!function_exists('dukeyin_dashboard_help')) {
 function dukeyin_dashboard_help() {
 $theme = wp_get_theme('dukeyin');
 echo '<div><p><span>';
@@ -66,4 +70,5 @@ jQuery.ajax({
 });
 </script>
 ETO;
+}
 }
