@@ -416,3 +416,44 @@ add_action( 'init', 'create_review_taxonomies', 0 );
 	}
 	
 add_action('init', 'testimonial_register');
+
+
+/* Service type */
+
+	function service_type_register() {
+		  $labels = array(
+		    'name' => _x('Service type', 'post type general name','duke-yin-helper'),
+		    'singular_name' => _x('Service type post', 'post type singular name','duke-yin-helper'),
+			'all_items'=> _x('All service type', 'String for the submenu','duke-yin-helper'),
+		    'add_new' => _x('Add New', 'service-type','duke-yin-helper'),
+		    'add_new_item' => __('Add Service type','duke-yin-helper'),
+		    'edit_item' => __('Edit Service type','duke-yin-helper'),
+		    'new_item' => __('New Service type','duke-yin-helper'),
+		    'view_item' => __('View this service type','duke-yin-helper'),
+		    'search_items' => __('Search for','duke-yin-helper'),
+		    'not_found' =>  __('No service type found','duke-yin-helper'),
+		    'not_found_in_trash' => __('Not found in trash','duke-yin-helper'), 
+		    'parent_item_colon' => ''
+		  );
+		$slugRule = 'service-type';
+    	$args = array(
+        	'labels' => $labels,
+        	'public' => true,
+        	'show_ui' => true,
+			'show_in_rest'=> true,
+        	'capability_type' => 'post',
+        	'hierarchical' => false,
+        	'rewrite' => true,
+			'rewrite' => array('slug' => 'service-type','with_front' => true),
+        	'query_var' => true,
+        	'show_in_nav_menus'=> false,
+        	'menu_position' => 9,
+			'menu_icon' => 'dashicons-coffee',
+        	'supports' => array('title','thumbnail','excerpt','custom-fields'),
+			'exclude_from_search'   => true,
+
+        );
+    	register_post_type( 'service-type' , $args );
+	}
+	
+add_action('init', 'service_type_register');

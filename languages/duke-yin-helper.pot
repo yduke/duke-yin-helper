@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2020-05-17 04:04+0800\n"
-"PO-Revision-Date: 2020-05-17 04:03+0800\n"
+"POT-Creation-Date: 2020-08-19 16:23+0800\n"
+"PO-Revision-Date: 2020-08-19 16:23+0800\n"
 "Last-Translator: Duke Yin <duke@dukeyin.com>\n"
 "Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,34 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/helpers.php:29
+msgid "Duke Yin Theme Support"
+msgstr ""
+
+#: includes/helpers.php:35
+msgid "Theme Name: "
+msgstr ""
+
+#: includes/helpers.php:39
+msgid "Installed Version: "
+msgstr ""
+
+#: includes/helpers.php:43
+msgid "Current Version: "
+msgstr ""
+
+#: includes/helpers.php:45
+msgid "Last Update: "
+msgstr ""
+
+#: includes/helpers.php:47
+msgid "Change log: "
+msgstr ""
+
+#: includes/helpers.php:49
+msgid "View detail"
+msgstr ""
 
 #: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:54
 msgid "View details"
@@ -100,7 +128,7 @@ msgstr ""
 #: includes/post-type.php:19 includes/post-type.php:89
 #: includes/post-type.php:127 includes/post-type.php:192
 #: includes/post-type.php:258 includes/post-type.php:326
-#: includes/post-type.php:392
+#: includes/post-type.php:392 includes/post-type.php:433
 msgid "Search for"
 msgstr ""
 
@@ -112,7 +140,7 @@ msgstr ""
 #: includes/post-type.php:21 includes/post-type.php:91
 #: includes/post-type.php:129 includes/post-type.php:194
 #: includes/post-type.php:260 includes/post-type.php:328
-#: includes/post-type.php:394
+#: includes/post-type.php:394 includes/post-type.php:435
 msgid "Not found in trash"
 msgstr ""
 
@@ -406,6 +434,46 @@ msgstr ""
 
 #: includes/post-type.php:393
 msgid "No testimonial found"
+msgstr ""
+
+#: includes/post-type.php:425
+msgctxt "post type general name"
+msgid "Service type"
+msgstr ""
+
+#: includes/post-type.php:426
+msgctxt "post type singular name"
+msgid "Service type post"
+msgstr ""
+
+#: includes/post-type.php:427
+msgctxt "String for the submenu"
+msgid "All service type"
+msgstr ""
+
+#: includes/post-type.php:428
+msgctxt "service-type"
+msgid "Add New"
+msgstr ""
+
+#: includes/post-type.php:429
+msgid "Add Service type"
+msgstr ""
+
+#: includes/post-type.php:430
+msgid "Edit Service type"
+msgstr ""
+
+#: includes/post-type.php:431
+msgid "New Service type"
+msgstr ""
+
+#: includes/post-type.php:432
+msgid "View this service type"
+msgstr ""
+
+#: includes/post-type.php:434
+msgid "No service type found"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
