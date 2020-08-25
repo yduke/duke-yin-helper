@@ -142,7 +142,7 @@ add_shortcode('dropcap3', 'dukeyin_sc_dropcaps');
 function dukeyin_sc_dropcaps($atts, $content=null, $shortcodename ="")
 {
 	// add divs to the content
-	$return .= '<span class="'.$shortcodename.'">';
+	$return = '<span class="'.$shortcodename.'">';
 	$return .= do_shortcode($content);
 	$return .= '</span>';
 return $return;}
