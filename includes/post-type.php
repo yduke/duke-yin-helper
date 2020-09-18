@@ -399,7 +399,7 @@ add_action( 'init', 'create_review_taxonomies', 0 );
         	'labels' => $labels,
         	'public' => true,
         	'show_ui' => true,
-			'show_in_rest'=> true,
+			'show_in_rest'=> false,
         	'capability_type' => 'post',
         	'hierarchical' => false,
         	'rewrite' => true,
@@ -440,14 +440,14 @@ add_action('init', 'testimonial_register');
         	'labels' => $labels,
         	'public' => true,
         	'show_ui' => true,
-			'show_in_rest'=> true,
+			'show_in_rest'=> false,
         	'capability_type' => 'post',
         	'hierarchical' => false,
         	'rewrite' => true,
 			'rewrite' => array('slug' => 'service-type','with_front' => true),
         	'query_var' => true,
         	'show_in_nav_menus'=> false,
-        	'menu_position' => 9,
+        	'menu_position' => 10,
 			'menu_icon' => 'dashicons-coffee',
         	'supports' => array('title','thumbnail','excerpt','custom-fields'),
 			'exclude_from_search'   => true,
@@ -457,3 +457,42 @@ add_action('init', 'testimonial_register');
 	}
 	
 add_action('init', 'service_type_register');
+
+/* Music type */
+
+	function music_type_register() {
+		  $labels = array(
+		    'name' => _x('Music', 'post type general name','duke-yin-helper'),
+		    'singular_name' => _x('Music post', 'post type singular name','duke-yin-helper'),
+			'all_items'=> _x('All music', 'String for the submenu','duke-yin-helper'),
+		    'add_new' => _x('Add New', 'music','duke-yin-helper'),
+		    'add_new_item' => __('Add Music','duke-yin-helper'),
+		    'edit_item' => __('Edit Music','duke-yin-helper'),
+		    'new_item' => __('New Music','duke-yin-helper'),
+		    'view_item' => __('View this music type','duke-yin-helper'),
+		    'search_items' => __('Search for','duke-yin-helper'),
+		    'not_found' =>  __('No music found','duke-yin-helper'),
+		    'not_found_in_trash' => __('Not found in trash','duke-yin-helper'), 
+		    'parent_item_colon' => ''
+		  );
+		$slugRule = 'music';
+    	$args = array(
+        	'labels' => $labels,
+        	'public' => true,
+        	'show_ui' => true,
+			'show_in_rest'=> false,
+        	'capability_type' => 'post',
+        	'hierarchical' => false,
+        	'rewrite' => true,
+			'rewrite' => array('slug' => 'music','with_front' => true,'feeds' => false),
+        	'query_var' => true,
+        	'show_in_nav_menus'=> false,
+        	'menu_position' => 11,
+			'menu_icon' => 'dashicons-format-audio',
+        	'supports' => array('title','thumbnail','excerpt','custom-fields'),
+			'exclude_from_search'   => true,
+        );
+    	register_post_type( 'music' , $args );
+	}
+add_action('init', 'music_type_register');
+
