@@ -47,6 +47,7 @@ function music_metaboxes() {
 		'type' => 'file',
 		'query_args' => array(
 		'type' => array('image/gif','image/jpeg','image/png',),
+		'preview_size' => 'small',
 		),
 	) );
 
