@@ -65,6 +65,7 @@ register_deactivation_hook( __FILE__, 'deactivate_duke_yin_helper' );
 require plugin_dir_path( __FILE__ ) . 'includes/class-duke-yin-helper.php';
 require plugin_dir_path( __FILE__ ) . 'includes/post-type.php';
 require plugin_dir_path( __FILE__ ) . 'includes/helpers.php';
+require plugin_dir_path( __FILE__ ) . 'includes/meta-field.php';
 
 /**
 * updater

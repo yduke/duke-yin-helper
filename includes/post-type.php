@@ -489,7 +489,7 @@ add_action('init', 'service_type_register');
         	'show_in_nav_menus'=> false,
         	'menu_position' => 11,
 			'menu_icon' => 'dashicons-format-audio',
-        	'supports' => array('title','thumbnail','excerpt','custom-fields'),
+        	'supports' => array('title',),
 			'exclude_from_search'   => true,
         );
     	register_post_type( 'music' , $args );
