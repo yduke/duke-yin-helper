@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2020-09-20 01:00+0800\n"
-"PO-Revision-Date: 2020-09-20 01:05+0800\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2020-09-20 23:04+0800\n"
+"PO-Revision-Date: 2020-09-20 23:06+0800\n"
+"Last-Translator: Duke Yin <duke@dukeyin.com>\n"
+"Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,8 +16,8 @@ msgstr ""
 "X-Poedit-WPHeader: duke-yin-helper.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
@@ -58,8 +58,12 @@ msgid "Music file"
 msgstr "音乐文件"
 
 #: includes/meta-field.php:18
-msgid "The music file or url of the song."
-msgstr "此音乐的文件地址。外联容易出现跨域问题不能自动获取歌曲信息。"
+msgid ""
+"The music file or URL for the song, if the URL is external for your website, "
+"obtaining information from file may fail due to the CORS policy."
+msgstr ""
+"音乐文件或URL地址，如果是外部链接的话，获取音乐文件信息可能会因为CORS策略失"
+"败。"
 
 #: includes/meta-field.php:21
 msgid "Get info from file"
@@ -570,6 +574,52 @@ msgstr "查看音乐"
 msgid "No music found"
 msgstr "音乐未找到"
 
+#: includes/post-type.php:501
+msgctxt "taxonomy general name"
+msgid "Music lists"
+msgstr "歌单"
+
+#: includes/post-type.php:502
+msgctxt "taxonomy singular name"
+msgid "Music list"
+msgstr "歌单"
+
+#: includes/post-type.php:503
+msgid "Search Music lists"
+msgstr "选择歌单"
+
+#: includes/post-type.php:504
+msgid "All Music lists"
+msgstr "所有歌单"
+
+#: includes/post-type.php:505
+msgid "Parent List"
+msgstr "父级列表"
+
+#: includes/post-type.php:506
+msgid "Parent List:"
+msgstr "父级列表："
+
+#: includes/post-type.php:507
+msgid "Edit List"
+msgstr "编辑列表"
+
+#: includes/post-type.php:508
+msgid "Update List"
+msgstr "更新列表"
+
+#: includes/post-type.php:509
+msgid "Add New List"
+msgstr "添加列表"
+
+#: includes/post-type.php:510
+msgid "New List Name"
+msgstr "新列表名"
+
+#: includes/post-type.php:511
+msgid "Music lists"
+msgstr "歌单"
+
 #. Plugin Name of the plugin/theme
 msgid "Duke Yin Helper"
 msgstr "Duke Yin 辅助"
@@ -589,6 +639,9 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "Duke Yin"
 msgstr "Duke Yin"
+
+#~ msgid "The music file or url of the song."
+#~ msgstr "此音乐的文件地址。外联容易出现跨域问题不能自动获取歌曲信息。"
 
 #~ msgctxt "portfolio"
 #~ msgid "Add"

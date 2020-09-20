@@ -478,12 +478,12 @@ add_action('init', 'service_type_register');
 		$slugRule = 'music';
     	$args = array(
         	'labels' => $labels,
-        	'public' => true,
+        	'public' => false,
         	'show_ui' => true,
 			'show_in_rest'=> false,
         	'capability_type' => 'post',
         	'hierarchical' => false,
-        	'rewrite' => true,
+        	'rewrite' => false,
 			'rewrite' => array('slug' => 'music','with_front' => true,'feeds' => false),
         	'query_var' => true,
         	'show_in_nav_menus'=> false,
@@ -496,3 +496,30 @@ add_action('init', 'service_type_register');
 	}
 add_action('init', 'music_type_register');
 
+function create_music_taxonomies() {
+    $labels = array(
+        'name'              => _x( 'Music lists', 'taxonomy general name','duke-yin-helper'),
+        'singular_name'     => _x( 'Music list', 'taxonomy singular name','duke-yin-helper'),
+        'search_items'      => __( 'Search Music lists','duke-yin-helper'),
+        'all_items'         => __( 'All Music lists' ,'duke-yin-helper'),
+        'parent_item'       => __( 'Parent List' ,'duke-yin-helper'),
+        'parent_item_colon' => __( 'Parent List:' ,'duke-yin-helper'),
+        'edit_item'         => __( 'Edit List' ,'duke-yin-helper'),
+        'update_item'       => __( 'Update List' ,'duke-yin-helper'),
+        'add_new_item'      => __( 'Add New List' ,'duke-yin-helper'),
+        'new_item_name'     => __( 'New List Name' ,'duke-yin-helper'),
+        'menu_name'         => __( 'Music lists' ,'duke-yin-helper'),
+    );
+
+    $args = array(
+        'hierarchical'      => false, // Set this to 'false' for non-hierarchical taxonomy (like tags)
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'muisic-lists' ),
+    );
+
+    register_taxonomy( 'music_taxonomies', array( 'music' ), $args );
+}
+add_action( 'init', 'create_music_taxonomies', 0 );

@@ -3,10 +3,10 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2020-09-20 01:00+0800\n"
-"PO-Revision-Date: 2020-09-20 01:00+0800\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2020-09-20 23:09+0800\n"
+"PO-Revision-Date: 2020-09-20 23:09+0800\n"
+"Last-Translator: Duke Yin <duke@dukeyin.com>\n"
+"Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -58,7 +58,9 @@ msgid "Music file"
 msgstr ""
 
 #: includes/meta-field.php:18
-msgid "The music file or url of the song."
+msgid ""
+"The music file or URL for the song, if the URL is external for your website, "
+"obtaining information from file may fail due to the CORS policy."
 msgstr ""
 
 #: includes/meta-field.php:21
@@ -568,6 +570,52 @@ msgstr ""
 
 #: includes/post-type.php:474
 msgid "No music found"
+msgstr ""
+
+#: includes/post-type.php:501
+msgctxt "taxonomy general name"
+msgid "Music lists"
+msgstr ""
+
+#: includes/post-type.php:502
+msgctxt "taxonomy singular name"
+msgid "Music list"
+msgstr ""
+
+#: includes/post-type.php:503
+msgid "Search Music lists"
+msgstr ""
+
+#: includes/post-type.php:504
+msgid "All Music lists"
+msgstr ""
+
+#: includes/post-type.php:505
+msgid "Parent List"
+msgstr ""
+
+#: includes/post-type.php:506
+msgid "Parent List:"
+msgstr ""
+
+#: includes/post-type.php:507
+msgid "Edit List"
+msgstr ""
+
+#: includes/post-type.php:508
+msgid "Update List"
+msgstr ""
+
+#: includes/post-type.php:509
+msgid "Add New List"
+msgstr ""
+
+#: includes/post-type.php:510
+msgid "New List Name"
+msgstr ""
+
+#: includes/post-type.php:511
+msgid "Music lists"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

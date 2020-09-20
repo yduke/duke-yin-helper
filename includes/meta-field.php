@@ -15,7 +15,7 @@ function music_metaboxes() {
 
 	$cmb->add_field( array(
 		'name' => esc_html__( 'Music file', 'duke-yin-helper' ),
-		'desc' => esc_html__( 'The music file or url of the song.' ),
+		'desc' => esc_html__( 'The music file or URL for the song, if the URL is external for your website, obtaining information from file may fail due to the CORS policy.', 'duke-yin-helper' ),
 		'id'   => '_music_file',
 		'type' => 'file',
 		'after_field' => '<a id="getid3" class="button button-primary button-large">'.esc_html__( 'Get info from file', 'duke-yin-helper' ).'</a><span class="spinner"></span>',
@@ -28,7 +28,7 @@ function music_metaboxes() {
 
 	$cmb->add_field( array(
 		'name' => esc_html__( 'Contributing Artists', 'duke-yin-helper' ),
-		'desc' => esc_html__( 'The artist(s) who made contributes to this song.' ),
+		'desc' => esc_html__( 'The artist(s) who made contributes to this song.', 'duke-yin-helper' ),
 		'id'   => '_artists',
 		'type' => 'text',
 	) );
