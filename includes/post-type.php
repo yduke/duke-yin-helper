@@ -502,22 +502,22 @@ function create_music_taxonomies() {
         'singular_name'     => _x( 'Music list', 'taxonomy singular name','duke-yin-helper'),
         'search_items'      => __( 'Search Music lists','duke-yin-helper'),
         'all_items'         => __( 'All Music lists' ,'duke-yin-helper'),
-        'parent_item'       => __( 'Parent List' ,'duke-yin-helper'),
-        'parent_item_colon' => __( 'Parent List:' ,'duke-yin-helper'),
-        'edit_item'         => __( 'Edit List' ,'duke-yin-helper'),
-        'update_item'       => __( 'Update List' ,'duke-yin-helper'),
-        'add_new_item'      => __( 'Add New List' ,'duke-yin-helper'),
-        'new_item_name'     => __( 'New List Name' ,'duke-yin-helper'),
+        'parent_item'       => __( 'Parent Music List' ,'duke-yin-helper'),
+        'parent_item_colon' => __( 'Parent Music List:' ,'duke-yin-helper'),
+        'edit_item'         => __( 'Edit Music List' ,'duke-yin-helper'),
+        'update_item'       => __( 'Update Music List' ,'duke-yin-helper'),
+        'add_new_item'      => __( 'Add New Music List' ,'duke-yin-helper'),
+        'new_item_name'     => __( 'New Music List Name' ,'duke-yin-helper'),
         'menu_name'         => __( 'Music lists' ,'duke-yin-helper'),
     );
 
     $args = array(
-        'hierarchical'      => false, // Set this to 'false' for non-hierarchical taxonomy (like tags)
+        'hierarchical'      => true, // Set this to 'false' for non-hierarchical taxonomy (like tags)
         'labels'            => $labels,
         'show_ui'           => true,
         'show_admin_column' => true,
         'query_var'         => true,
-        'rewrite'           => array( 'slug' => 'muisic-lists' ),
+        'rewrite'           => array( 'slug' => 'music-lists' ),
     );
 
     register_taxonomy( 'music_taxonomies', array( 'music' ), $args );

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2020-09-20 23:04+0800\n"
-"PO-Revision-Date: 2020-09-20 23:06+0800\n"
+"POT-Creation-Date: 2020-09-21 22:56+0800\n"
+"PO-Revision-Date: 2020-09-21 22:57+0800\n"
 "Last-Translator: Duke Yin <duke@dukeyin.com>\n"
 "Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "Language: zh_CN\n"
@@ -103,7 +103,7 @@ msgstr "年代"
 
 #: includes/meta-field.php:63
 msgid "The year this music was created."
-msgstr "此音乐创建时的年代"
+msgstr "此音乐创建时的年代。"
 
 #: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:54
 msgid "View details"
@@ -593,28 +593,28 @@ msgid "All Music lists"
 msgstr "所有歌单"
 
 #: includes/post-type.php:505
-msgid "Parent List"
-msgstr "父级列表"
+msgid "Parent Music List"
+msgstr "父级歌单"
 
 #: includes/post-type.php:506
-msgid "Parent List:"
-msgstr "父级列表："
+msgid "Parent Music List:"
+msgstr "父级歌单："
 
 #: includes/post-type.php:507
-msgid "Edit List"
-msgstr "编辑列表"
+msgid "Edit Music List"
+msgstr "编辑歌单"
 
 #: includes/post-type.php:508
-msgid "Update List"
-msgstr "更新列表"
+msgid "Update Music List"
+msgstr "更新歌单"
 
 #: includes/post-type.php:509
-msgid "Add New List"
-msgstr "添加列表"
+msgid "Add New Music List"
+msgstr "添加歌单"
 
 #: includes/post-type.php:510
-msgid "New List Name"
-msgstr "新列表名"
+msgid "New Music List Name"
+msgstr "新歌单名"
 
 #: includes/post-type.php:511
 msgid "Music lists"
@@ -639,6 +639,9 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "Duke Yin"
 msgstr "Duke Yin"
+
+#~ msgid "Edit List"
+#~ msgstr "编辑列表"
 
 #~ msgid "The music file or url of the song."
 #~ msgstr "此音乐的文件地址。外联容易出现跨域问题不能自动获取歌曲信息。"
