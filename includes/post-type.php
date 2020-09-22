@@ -523,3 +523,9 @@ function create_music_taxonomies() {
     register_taxonomy( 'music_taxonomies', array( 'music' ), $args );
 }
 add_action( 'init', 'create_music_taxonomies', 0 );
+
+//allow category has html tags
+remove_filter( 'pre_term_description', 'wp_filter_kses' );
+remove_filter( 'pre_link_description', 'wp_filter_kses' );
+remove_filter( 'pre_link_notes', 'wp_filter_kses' );
+remove_filter( 'term_description', 'wp_kses_data' );
