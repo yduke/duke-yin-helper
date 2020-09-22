@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2020-09-21 22:56+0800\n"
-"PO-Revision-Date: 2020-09-21 22:57+0800\n"
+"POT-Creation-Date: 2020-09-22 09:53+0800\n"
+"PO-Revision-Date: 2020-09-22 09:53+0800\n"
 "Last-Translator: Duke Yin <duke@dukeyin.com>\n"
 "Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "Language: zh_CN\n"
@@ -104,6 +104,14 @@ msgstr "年代"
 #: includes/meta-field.php:63
 msgid "The year this music was created."
 msgstr "此音乐创建时的年代。"
+
+#: includes/meta-field.php:69
+msgid "Lyrics"
+msgstr "歌词"
+
+#: includes/meta-field.php:70
+msgid "The lyrics file url of this song, accept .lrc file."
+msgstr "歌词文件的地址，接受.lrc格式文件。"
 
 #: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:54
 msgid "View details"
@@ -642,9 +650,6 @@ msgstr "Duke Yin"
 
 #~ msgid "Edit List"
 #~ msgstr "编辑列表"
-
-#~ msgid "The music file or url of the song."
-#~ msgstr "此音乐的文件地址。外联容易出现跨域问题不能自动获取歌曲信息。"
 
 #~ msgctxt "portfolio"
 #~ msgid "Add"

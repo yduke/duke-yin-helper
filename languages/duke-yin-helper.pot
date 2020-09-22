@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2020-09-21 22:57+0800\n"
-"PO-Revision-Date: 2020-09-21 22:57+0800\n"
+"POT-Creation-Date: 2020-09-22 09:55+0800\n"
+"PO-Revision-Date: 2020-09-22 09:55+0800\n"
 "Last-Translator: Duke Yin <duke@dukeyin.com>\n"
 "Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "MIME-Version: 1.0\n"
@@ -101,6 +101,14 @@ msgstr ""
 
 #: includes/meta-field.php:63
 msgid "The year this music was created."
+msgstr ""
+
+#: includes/meta-field.php:69
+msgid "Lyrics"
+msgstr ""
+
+#: includes/meta-field.php:70
+msgid "The lyrics file url of this song, accept .lrc file."
 msgstr ""
 
 #: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:54

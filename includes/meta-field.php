@@ -64,5 +64,12 @@ function music_metaboxes() {
 		'id'   => '_year',
 		'type' => 'text',
 	) );
+	
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Lyrics', 'duke-yin-helper' ),
+		'desc' => esc_html__( 'The lyrics file url of this song, accept .lrc file.', 'duke-yin-helper' ),
+		'id'   => '_lrc',
+		'type' => 'file',
+	) );
 
 }
