@@ -529,3 +529,49 @@ remove_filter( 'pre_term_description', 'wp_filter_kses' );
 remove_filter( 'pre_link_description', 'wp_filter_kses' );
 remove_filter( 'pre_link_notes', 'wp_filter_kses' );
 remove_filter( 'term_description', 'wp_kses_data' );
+
+//Music categories image
+add_action('music_taxonomies_add_form_fields', 'add_term_image', 10, 2);
+function add_term_image($taxonomy){
+    ?>
+    <div class="form-field term-image-wrap">
+        <label for=""><?php _e('Music List Cover','duke-yin-helper') ?></label>
+        <input type="text" name="txt_upload_image" id="txt_upload_image" value="" style="width: 80%">
+        <input type="button" id="upload_image_btn" class="button" value="<?php _e('Upload an Image','duke-yin-helper') ?>" />
+		<p><?php _e('The cover image of this music list, similar as "featured image" but for music list.','duke-yin-helper') ?></p>
+    </div>
+    <?php
+}
+
+add_action('created_music_taxonomies', 'save_term_image', 10, 2);
+function save_term_image($term_id, $tt_id) {
+    if (isset($_POST['txt_upload_image']) && '' !== $_POST['txt_upload_image']){
+        $group = esc_url($_POST['txt_upload_image']);
+        add_term_meta($term_id, 'term_image', $group, true);
+    }
+}
+
+add_action('music_taxonomies_edit_form_fields', 'edit_image_upload', 10, 2);
+function edit_image_upload($term, $taxonomy) {
+    // get current group
+    $txt_upload_image = get_term_meta($term->term_id, 'term_image', true);
+?>
+    <table class="form-table" role="presentation"><tbody><tr class="form-field term-image-wrap">
+        <th scope="row"><label for=""><?php _e('Music List Cover','duke-yin-helper') ?></label></th>
+        <td>
+		<img src="<?php echo esc_url($txt_upload_image) ?>" style="max-width:150px"><br>
+		<input type="text" name="txt_upload_image" id="txt_upload_image" value="<?php echo esc_url($txt_upload_image) ?>" style="width: 60%">
+        <input type="button" id="upload_image_btn" class="button" value="<?php _e('Upload an Image','duke-yin-helper') ?>" />
+		<p><?php _e('The cover image of this music list, similar as "featured image" but for music list.','duke-yin-helper') ?></p></td>
+    </tr></tbody></table>
+	
+<?php
+}
+
+add_action('edited_music_taxonomies', 'update_image_upload', 10, 2);
+function update_image_upload($term_id, $tt_id) {
+    if (isset($_POST['txt_upload_image']) && '' !== $_POST['txt_upload_image']){
+        $group = esc_url($_POST['txt_upload_image']);
+        update_term_meta($term_id, 'term_image', $group);
+    }
+}

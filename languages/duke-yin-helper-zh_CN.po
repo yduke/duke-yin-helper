@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2020-09-22 09:53+0800\n"
-"PO-Revision-Date: 2020-09-22 09:53+0800\n"
-"Last-Translator: Duke Yin <duke@dukeyin.com>\n"
-"Language-Team: Duke Yin <duke@dukeyin.com>\n"
+"POT-Creation-Date: 2020-10-05 05:46+0800\n"
+"PO-Revision-Date: 2020-10-05 05:47+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -627,6 +627,20 @@ msgstr "新歌单名"
 #: includes/post-type.php:511
 msgid "Music lists"
 msgstr "歌单"
+
+#: includes/post-type.php:538 includes/post-type.php:560
+msgid "Music List Cover"
+msgstr "歌单封面"
+
+#: includes/post-type.php:540 includes/post-type.php:564
+msgid "Upload an Image"
+msgstr "上传图片"
+
+#: includes/post-type.php:541 includes/post-type.php:565
+msgid ""
+"The cover image of this music list, similar as \"featured image\" but for "
+"music list."
+msgstr "歌单的封面图片，可认为是此歌单的“特色图像”。"
 
 #. Plugin Name of the plugin/theme
 msgid "Duke Yin Helper"

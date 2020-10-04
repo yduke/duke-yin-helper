@@ -97,6 +97,20 @@ class Duke_Yin_Helper_Admin {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/duke-yin-helper-admin.js', array( 'jquery' ), $this->version, false );
+		
+	global $typenow;
+    if( ($typenow == 'music') ) {
+        wp_enqueue_media();
+
+        wp_register_script( 'meta-image', plugin_dir_url( __FILE__ ) . '/js/media-uploader.js', array( 'jquery' ) );
+        wp_localize_script( 'meta-image', 'meta_image',
+            array(
+                'title' => 'Upload an Image',
+                'button' => 'Use this Image',
+            )
+        );
+        wp_enqueue_script( 'meta-image' );
+    }
 
 	}
 
