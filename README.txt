@@ -33,6 +33,9 @@ Yes and no. Yes this plugin is free to donload, but DukeYin theme is not free, a
 
 == Changelog ==
 
+= 1.0.7 =
+Music post type and music list;
+
 = 1.0.6 =
 Music post type and music list;
 
