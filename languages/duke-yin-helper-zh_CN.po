@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2021-06-02 11:02+0800\n"
-"PO-Revision-Date: 2021-06-02 11:07+0800\n"
+"POT-Creation-Date: 2021-06-02 17:09+0800\n"
+"PO-Revision-Date: 2021-06-02 17:10+0800\n"
 "Last-Translator: Duke Yin <duke@dukeyin.com>\n"
 "Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "Language: zh_CN\n"
@@ -594,7 +594,7 @@ msgstr "艺术家"
 
 #: includes/post-type.php:504
 msgid "Search Artists"
-msgstr "选择艺术家"
+msgstr "搜索艺术家"
 
 #: includes/post-type.php:505
 msgid "All Artists"
@@ -702,7 +702,7 @@ msgstr "歌单"
 
 #: includes/post-type.php:566
 msgid "Search Music lists"
-msgstr "选择歌单"
+msgstr "搜索歌单"
 
 #: includes/post-type.php:567
 msgid "All Music lists"
