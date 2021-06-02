@@ -62,7 +62,8 @@ function music_metaboxes() {
 		'name' => esc_html__( 'Year', 'duke-yin-helper' ),
 		'desc' => esc_html__( 'The year this music was created.', 'duke-yin-helper' ),
 		'id'   => '_year',
-		'type' => 'text',
+		'type' => 'text_date_timestamp',
+		'date_format' => 'Y',
 	) );
 	
 	$cmb->add_field( array(

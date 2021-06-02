@@ -3,10 +3,10 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2020-10-05 05:46+0800\n"
-"PO-Revision-Date: 2020-10-05 05:46+0800\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2021-06-02 11:01+0800\n"
+"PO-Revision-Date: 2021-06-02 11:01+0800\n"
+"Last-Translator: Duke Yin <duke@dukeyin.com>\n"
+"Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -103,11 +103,11 @@ msgstr ""
 msgid "The year this music was created."
 msgstr ""
 
-#: includes/meta-field.php:69
+#: includes/meta-field.php:70
 msgid "Lyrics"
 msgstr ""
 
-#: includes/meta-field.php:70
+#: includes/meta-field.php:71
 msgid "The lyrics file url of this song, accept .lrc file."
 msgstr ""
 
@@ -580,64 +580,172 @@ msgstr ""
 msgid "No music found"
 msgstr ""
 
-#: includes/post-type.php:501
+#: includes/post-type.php:502
+msgctxt "taxonomy general name"
+msgid "Artists"
+msgstr ""
+
+#: includes/post-type.php:503
+msgctxt "taxonomy singular name"
+msgid "Artist"
+msgstr ""
+
+#: includes/post-type.php:504
+msgid "Search Artists"
+msgstr ""
+
+#: includes/post-type.php:505
+msgid "All Artists"
+msgstr ""
+
+#: includes/post-type.php:506
+msgid "Popular Artists"
+msgstr ""
+
+#: includes/post-type.php:509
+msgid "Edit Artist"
+msgstr ""
+
+#: includes/post-type.php:510
+msgid "Update Artist"
+msgstr ""
+
+#: includes/post-type.php:511
+msgid "Add New Artist"
+msgstr ""
+
+#: includes/post-type.php:512
+msgid "New Artist Name"
+msgstr ""
+
+#: includes/post-type.php:513
+msgid "Separate artists with commas."
+msgstr ""
+
+#: includes/post-type.php:514
+msgid "Add or remove artists"
+msgstr ""
+
+#: includes/post-type.php:515
+msgid "Choose from popular artists"
+msgstr ""
+
+#: includes/post-type.php:516
+msgid "Artists"
+msgstr ""
+
+#: includes/post-type.php:533
+msgctxt "taxonomy general name"
+msgid "Genres"
+msgstr ""
+
+#: includes/post-type.php:534
+msgctxt "taxonomy singular name"
+msgid "Genre"
+msgstr ""
+
+#: includes/post-type.php:535
+msgid "Search Genres"
+msgstr ""
+
+#: includes/post-type.php:536
+msgid "All Genres"
+msgstr ""
+
+#: includes/post-type.php:537
+msgid "Popular Genres"
+msgstr ""
+
+#: includes/post-type.php:540
+msgid "Edit Genre"
+msgstr ""
+
+#: includes/post-type.php:541
+msgid "Update Genre"
+msgstr ""
+
+#: includes/post-type.php:542
+msgid "Add New Genre"
+msgstr ""
+
+#: includes/post-type.php:543
+msgid "New Genre Name"
+msgstr ""
+
+#: includes/post-type.php:544
+msgid "Separate genres with commas."
+msgstr ""
+
+#: includes/post-type.php:545
+msgid "Add or remove genres"
+msgstr ""
+
+#: includes/post-type.php:546
+msgid "Choose from popular genres"
+msgstr ""
+
+#: includes/post-type.php:547
+msgid "Genres"
+msgstr ""
+
+#: includes/post-type.php:564
 msgctxt "taxonomy general name"
 msgid "Music lists"
 msgstr ""
 
-#: includes/post-type.php:502
+#: includes/post-type.php:565
 msgctxt "taxonomy singular name"
 msgid "Music list"
 msgstr ""
 
-#: includes/post-type.php:503
+#: includes/post-type.php:566
 msgid "Search Music lists"
 msgstr ""
 
-#: includes/post-type.php:504
+#: includes/post-type.php:567
 msgid "All Music lists"
 msgstr ""
 
-#: includes/post-type.php:505
+#: includes/post-type.php:568
 msgid "Parent Music List"
 msgstr ""
 
-#: includes/post-type.php:506
+#: includes/post-type.php:569
 msgid "Parent Music List:"
 msgstr ""
 
-#: includes/post-type.php:507
+#: includes/post-type.php:570
 msgid "Edit Music List"
 msgstr ""
 
-#: includes/post-type.php:508
+#: includes/post-type.php:571
 msgid "Update Music List"
 msgstr ""
 
-#: includes/post-type.php:509
+#: includes/post-type.php:572
 msgid "Add New Music List"
 msgstr ""
 
-#: includes/post-type.php:510
+#: includes/post-type.php:573
 msgid "New Music List Name"
 msgstr ""
 
-#: includes/post-type.php:511
+#: includes/post-type.php:574
 msgid "Music lists"
 msgstr ""
 
-#: includes/post-type.php:538 includes/post-type.php:560
-msgid "Music List Cover"
+#: includes/post-type.php:605 includes/post-type.php:631
+msgid "Cover Image"
 msgstr ""
 
-#: includes/post-type.php:540 includes/post-type.php:564
+#: includes/post-type.php:607 includes/post-type.php:635
 msgid "Upload an Image"
 msgstr ""
 
-#: includes/post-type.php:541 includes/post-type.php:565
+#: includes/post-type.php:608 includes/post-type.php:636
 msgid ""
-"The cover image of this music list, similar as \"featured image\" but for "
-"music list."
+"The cover image similar as \"featured image\" but for a music list, a genre "
+"or an artist."
 msgstr ""
 
 #. Plugin Name of the plugin/theme

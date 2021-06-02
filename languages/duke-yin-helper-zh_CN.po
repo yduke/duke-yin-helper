@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2021-05-18 11:48+0800\n"
-"PO-Revision-Date: 2021-05-18 11:52+0800\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2021-06-02 11:02+0800\n"
+"PO-Revision-Date: 2021-06-02 11:07+0800\n"
+"Last-Translator: Duke Yin <duke@dukeyin.com>\n"
+"Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -105,11 +105,11 @@ msgstr "年代"
 msgid "The year this music was created."
 msgstr "此音乐创建时的年代。"
 
-#: includes/meta-field.php:69
+#: includes/meta-field.php:70
 msgid "Lyrics"
 msgstr "歌词"
 
-#: includes/meta-field.php:70
+#: includes/meta-field.php:71
 msgid "The lyrics file url of this song, accept .lrc file."
 msgstr "歌词文件的地址，接受.lrc格式文件。"
 
@@ -582,65 +582,173 @@ msgstr "查看音乐"
 msgid "No music found"
 msgstr "音乐未找到"
 
-#: includes/post-type.php:501
+#: includes/post-type.php:502
+msgctxt "taxonomy general name"
+msgid "Artists"
+msgstr "艺术家"
+
+#: includes/post-type.php:503
+msgctxt "taxonomy singular name"
+msgid "Artist"
+msgstr "艺术家"
+
+#: includes/post-type.php:504
+msgid "Search Artists"
+msgstr "选择艺术家"
+
+#: includes/post-type.php:505
+msgid "All Artists"
+msgstr "所有艺术家"
+
+#: includes/post-type.php:506
+msgid "Popular Artists"
+msgstr "常出现的艺术家"
+
+#: includes/post-type.php:509
+msgid "Edit Artist"
+msgstr "编辑艺术家"
+
+#: includes/post-type.php:510
+msgid "Update Artist"
+msgstr "更新艺术家"
+
+#: includes/post-type.php:511
+msgid "Add New Artist"
+msgstr "添加艺术家"
+
+#: includes/post-type.php:512
+msgid "New Artist Name"
+msgstr "新艺术家名称"
+
+#: includes/post-type.php:513
+msgid "Separate artists with commas."
+msgstr "用英文逗号隔开不同的艺术家。"
+
+#: includes/post-type.php:514
+msgid "Add or remove artists"
+msgstr "添加或移除艺术家"
+
+#: includes/post-type.php:515
+msgid "Choose from popular artists"
+msgstr "从常出现的艺术家中选择"
+
+#: includes/post-type.php:516
+msgid "Artists"
+msgstr "艺术家"
+
+#: includes/post-type.php:533
+msgctxt "taxonomy general name"
+msgid "Genres"
+msgstr "风格"
+
+#: includes/post-type.php:534
+msgctxt "taxonomy singular name"
+msgid "Genre"
+msgstr "风格"
+
+#: includes/post-type.php:535
+msgid "Search Genres"
+msgstr "搜索风格"
+
+#: includes/post-type.php:536
+msgid "All Genres"
+msgstr "所有风格"
+
+#: includes/post-type.php:537
+msgid "Popular Genres"
+msgstr "常见风格"
+
+#: includes/post-type.php:540
+msgid "Edit Genre"
+msgstr "编辑风格"
+
+#: includes/post-type.php:541
+msgid "Update Genre"
+msgstr "更新风格"
+
+#: includes/post-type.php:542
+msgid "Add New Genre"
+msgstr "添加新风格"
+
+#: includes/post-type.php:543
+msgid "New Genre Name"
+msgstr "新风格名称"
+
+#: includes/post-type.php:544
+msgid "Separate genres with commas."
+msgstr "用英文逗号隔开不同风格。"
+
+#: includes/post-type.php:545
+msgid "Add or remove genres"
+msgstr "添加或移除风格"
+
+#: includes/post-type.php:546
+msgid "Choose from popular genres"
+msgstr "从常见风格中选择"
+
+#: includes/post-type.php:547
+msgid "Genres"
+msgstr "风格"
+
+#: includes/post-type.php:564
 msgctxt "taxonomy general name"
 msgid "Music lists"
 msgstr "歌单"
 
-#: includes/post-type.php:502
+#: includes/post-type.php:565
 msgctxt "taxonomy singular name"
 msgid "Music list"
 msgstr "歌单"
 
-#: includes/post-type.php:503
+#: includes/post-type.php:566
 msgid "Search Music lists"
 msgstr "选择歌单"
 
-#: includes/post-type.php:504
+#: includes/post-type.php:567
 msgid "All Music lists"
 msgstr "所有歌单"
 
-#: includes/post-type.php:505
+#: includes/post-type.php:568
 msgid "Parent Music List"
 msgstr "父级歌单"
 
-#: includes/post-type.php:506
+#: includes/post-type.php:569
 msgid "Parent Music List:"
 msgstr "父级歌单："
 
-#: includes/post-type.php:507
+#: includes/post-type.php:570
 msgid "Edit Music List"
 msgstr "编辑歌单"
 
-#: includes/post-type.php:508
+#: includes/post-type.php:571
 msgid "Update Music List"
 msgstr "更新歌单"
 
-#: includes/post-type.php:509
+#: includes/post-type.php:572
 msgid "Add New Music List"
 msgstr "添加歌单"
 
-#: includes/post-type.php:510
+#: includes/post-type.php:573
 msgid "New Music List Name"
 msgstr "新歌单名"
 
-#: includes/post-type.php:511
+#: includes/post-type.php:574
 msgid "Music lists"
 msgstr "歌单"
 
-#: includes/post-type.php:538 includes/post-type.php:560
-msgid "Music List Cover"
-msgstr "歌单封面"
+#: includes/post-type.php:605 includes/post-type.php:631
+msgid "Cover Image"
+msgstr "封面图像"
 
-#: includes/post-type.php:540 includes/post-type.php:564
+#: includes/post-type.php:607 includes/post-type.php:635
 msgid "Upload an Image"
 msgstr "上传图片"
 
-#: includes/post-type.php:541 includes/post-type.php:565
+#: includes/post-type.php:608 includes/post-type.php:636
 msgid ""
-"The cover image of this music list, similar as \"featured image\" but for "
-"music list."
-msgstr "歌单的封面图片，可认为是此歌单的“特色图像”。"
+"The cover image similar as \"featured image\" but for a music list, a genre "
+"or an artist."
+msgstr "类似“特色图像”，将作为歌单、风格或者艺术家页面的封面图片。"
 
 #. Plugin Name of the plugin/theme
 msgid "Duke Yin Helper"
@@ -662,8 +770,8 @@ msgstr ""
 msgid "Duke Yin"
 msgstr "Duke Yin"
 
-#~ msgid "Edit List"
-#~ msgstr "编辑列表"
+#~ msgid "Music List Cover"
+#~ msgstr "歌单封面"
 
 #~ msgctxt "portfolio"
 #~ msgid "Add"

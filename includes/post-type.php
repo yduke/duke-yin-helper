@@ -489,14 +489,77 @@ add_action('init', 'service_type_register');
         	'show_in_nav_menus'=> false,
         	'menu_position' => 11,
 			'menu_icon' => 'dashicons-format-audio',
-        	'supports' => array('title',),
-			'exclude_from_search'   => true,
+        	'supports' => array('title'),
+			'exclude_from_search'   => true
         );
     	register_post_type( 'music' , $args );
 	}
 add_action('init', 'music_type_register');
 
 function create_music_taxonomies() {
+//Create Artists "tags"
+	$labelst = array(
+	'name'              => _x( 'Artists', 'taxonomy general name','duke-yin-helper'),
+	'singular_name'     => _x( 'Artist', 'taxonomy singular name','duke-yin-helper'),
+	'search_items'      => __( 'Search Artists','duke-yin-helper'),
+	'all_items'         => __( 'All Artists' ,'duke-yin-helper'),
+	'popular_items' 	=> __( 'Popular Artists','duke-yin-helper' ),
+	'parent_item' 		=> null,
+    'parent_item_colon' => null,
+	'edit_item'         => __( 'Edit Artist' ,'duke-yin-helper'),
+	'update_item'       => __( 'Update Artist' ,'duke-yin-helper'),
+	'add_new_item'      => __( 'Add New Artist' ,'duke-yin-helper'),
+	'new_item_name'     => __( 'New Artist Name' ,'duke-yin-helper'),
+	'separate_items_with_commas' => __( 'Separate artists with commas.','duke-yin-helper' ),
+	'add_or_remove_items' => __( 'Add or remove artists','duke-yin-helper' ),
+	'choose_from_most_used' => __( 'Choose from popular artists','duke-yin-helper' ),
+	'menu_name'         => __( 'Artists' ,'duke-yin-helper'),
+    );
+	
+	$argst = array(
+	'hierarchical'      => false, 
+	'labels'            => $labelst,
+	'show_ui'           => true,
+	'show_admin_column' => true,
+	'update_count_callback' => '_update_post_term_count',
+	'query_var'         => true,
+	'rewrite'           => array( 'slug' => 'music-artist' ),
+    );
+
+    register_taxonomy( 'music_artists', array( 'music' ), $argst );
+	
+//Create Genre "tags"
+	$labelsg = array(
+	'name'              => _x( 'Genres', 'taxonomy general name','duke-yin-helper'),
+	'singular_name'     => _x( 'Genre', 'taxonomy singular name','duke-yin-helper'),
+	'search_items'      => __( 'Search Genres','duke-yin-helper'),
+	'all_items'         => __( 'All Genres' ,'duke-yin-helper'),
+	'popular_items' 	=> __( 'Popular Genres','duke-yin-helper' ),
+	'parent_item' 		=> null,
+    'parent_item_colon' => null,
+	'edit_item'         => __( 'Edit Genre' ,'duke-yin-helper'),
+	'update_item'       => __( 'Update Genre' ,'duke-yin-helper'),
+	'add_new_item'      => __( 'Add New Genre' ,'duke-yin-helper'),
+	'new_item_name'     => __( 'New Genre Name' ,'duke-yin-helper'),
+	'separate_items_with_commas' => __( 'Separate genres with commas.','duke-yin-helper' ),
+	'add_or_remove_items' => __( 'Add or remove genres','duke-yin-helper' ),
+	'choose_from_most_used' => __( 'Choose from popular genres','duke-yin-helper' ),
+	'menu_name'         => __( 'Genres' ,'duke-yin-helper'),
+    );
+	
+	$argsg = array(
+	'hierarchical'      => false, 
+	'labels'            => $labelsg,
+	'show_ui'           => true,
+	'show_admin_column' => true,
+	'update_count_callback' => '_update_post_term_count',
+	'query_var'         => true,
+	'rewrite'           => array( 'slug' => 'music-genres' ),
+    );
+
+    register_taxonomy( 'music_genres', array( 'music' ), $argsg );
+	
+//Create Music lists "Categories"
     $labels = array(
         'name'              => _x( 'Music lists', 'taxonomy general name','duke-yin-helper'),
         'singular_name'     => _x( 'Music list', 'taxonomy singular name','duke-yin-helper'),
@@ -512,15 +575,17 @@ function create_music_taxonomies() {
     );
 
     $args = array(
-        'hierarchical'      => true, // Set this to 'false' for non-hierarchical taxonomy (like tags)
+        'hierarchical'      => true, 
         'labels'            => $labels,
         'show_ui'           => true,
         'show_admin_column' => true,
         'query_var'         => true,
         'rewrite'           => array( 'slug' => 'music-lists' ),
     );
+	register_taxonomy( 'music_taxonomies', array( 'music' ), $args );
 
-    register_taxonomy( 'music_taxonomies', array( 'music' ), $args );
+
+
 }
 add_action( 'init', 'create_music_taxonomies', 0 );
 
@@ -532,18 +597,22 @@ remove_filter( 'term_description', 'wp_kses_data' );
 
 //Music categories image
 add_action('music_taxonomies_add_form_fields', 'add_term_image', 10, 2);
+add_action('music_artists_add_form_fields', 'add_term_image', 10, 2);
+add_action('music_genres_add_form_fields', 'add_term_image', 10, 2);
 function add_term_image($taxonomy){
     ?>
     <div class="form-field term-image-wrap">
-        <label for=""><?php _e('Music List Cover','duke-yin-helper') ?></label>
-        <input type="text" name="txt_upload_image" id="txt_upload_image" value="" style="width: 80%">
+        <label for=""><?php _e('Cover Image','duke-yin-helper') ?></label>
+        <input type="text" name="txt_upload_image" id="txt_upload_image" value="">
         <input type="button" id="upload_image_btn" class="button" value="<?php _e('Upload an Image','duke-yin-helper') ?>" />
-		<p><?php _e('The cover image of this music list, similar as "featured image" but for music list.','duke-yin-helper') ?></p>
+		<p><?php _e('The cover image similar as "featured image" but for a music list, a genre or an artist.','duke-yin-helper') ?></p>
     </div>
     <?php
 }
 
 add_action('created_music_taxonomies', 'save_term_image', 10, 2);
+add_action('created_music_artists', 'save_term_image', 10, 2);
+add_action('created_music_genres', 'save_term_image', 10, 2);
 function save_term_image($term_id, $tt_id) {
     if (isset($_POST['txt_upload_image']) && '' !== $_POST['txt_upload_image']){
         $group = esc_url($_POST['txt_upload_image']);
@@ -552,23 +621,27 @@ function save_term_image($term_id, $tt_id) {
 }
 
 add_action('music_taxonomies_edit_form_fields', 'edit_image_upload', 10, 2);
+add_action('music_artists_edit_form_fields', 'edit_image_upload', 10, 2);
+add_action('music_genres_edit_form_fields', 'edit_image_upload', 10, 2);
 function edit_image_upload($term, $taxonomy) {
     // get current group
     $txt_upload_image = get_term_meta($term->term_id, 'term_image', true);
 ?>
     <table class="form-table" role="presentation"><tbody><tr class="form-field term-image-wrap">
-        <th scope="row"><label for=""><?php _e('Music List Cover','duke-yin-helper') ?></label></th>
+        <th scope="row"><label for=""><?php _e('Cover Image','duke-yin-helper') ?></label></th>
         <td>
 		<img src="<?php echo esc_url($txt_upload_image) ?>" style="max-width:150px"><br>
 		<input type="text" name="txt_upload_image" id="txt_upload_image" value="<?php echo esc_url($txt_upload_image) ?>" style="width: 60%">
         <input type="button" id="upload_image_btn" class="button" value="<?php _e('Upload an Image','duke-yin-helper') ?>" />
-		<p><?php _e('The cover image of this music list, similar as "featured image" but for music list.','duke-yin-helper') ?></p></td>
+		<p><?php _e('The cover image similar as "featured image" but for a music list, a genre or an artist.','duke-yin-helper') ?></p></td>
     </tr></tbody></table>
 	
 <?php
 }
 
 add_action('edited_music_taxonomies', 'update_image_upload', 10, 2);
+add_action('edited_music_artists', 'update_image_upload', 10, 2);
+add_action('edited_music_genres', 'update_image_upload', 10, 2);
 function update_image_upload($term_id, $tt_id) {
     if (isset($_POST['txt_upload_image']) && '' !== $_POST['txt_upload_image']){
         $group = esc_url($_POST['txt_upload_image']);
