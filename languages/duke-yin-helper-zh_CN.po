@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2021-06-02 17:09+0800\n"
-"PO-Revision-Date: 2021-06-02 17:10+0800\n"
-"Last-Translator: Duke Yin <duke@dukeyin.com>\n"
-"Language-Team: Duke Yin <duke@dukeyin.com>\n"
+"POT-Creation-Date: 2021-06-06 16:28+0800\n"
+"PO-Revision-Date: 2021-06-06 16:28+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,11 +53,11 @@ msgstr "查看详情"
 msgid "Music"
 msgstr "音乐"
 
-#: includes/meta-field.php:17
+#: includes/meta-field.php:16
 msgid "Music file"
 msgstr "音乐文件"
 
-#: includes/meta-field.php:18
+#: includes/meta-field.php:17
 msgid ""
 "The music file or URL for the song, if the URL is external for your website, "
 "obtaining information from file may fail due to the CORS policy."
@@ -65,53 +65,49 @@ msgstr ""
 "音乐文件或URL地址，如果是外部链接的话，获取音乐文件信息可能会因为CORS策略失"
 "败。"
 
+#: includes/meta-field.php:20 includes/meta-field.php:42
+msgid "Upload file"
+msgstr "上传文件"
+
 #: includes/meta-field.php:21
 msgid "Get info from file"
 msgstr "从文件获取信息"
 
-#: includes/meta-field.php:30
-msgid "Contributing Artists"
-msgstr "艺术家"
-
 #: includes/meta-field.php:31
-msgid "The artist(s) who made contributes to this song."
-msgstr "为此音乐做出贡献的艺术家名称。"
-
-#: includes/meta-field.php:37
 msgid "Album"
 msgstr "专辑"
 
-#: includes/meta-field.php:38 includes/meta-field.php:45
+#: includes/meta-field.php:32
 msgid "The album name that this music belong to."
 msgstr "此音乐所属的专辑名称。"
 
-#: includes/meta-field.php:44
+#: includes/meta-field.php:38
 msgid "Album Art"
 msgstr "专辑封面"
 
-#: includes/meta-field.php:55
-msgid "Genre"
-msgstr "风格"
+#: includes/meta-field.php:39
+msgid "The album artwork."
+msgstr "专辑封面图片"
 
-#: includes/meta-field.php:56
-msgid "The genre name(s) that this music belong to."
-msgstr "此音乐所属的风格。"
-
-#: includes/meta-field.php:62
+#: includes/meta-field.php:50
 msgid "Year"
 msgstr "年代"
 
-#: includes/meta-field.php:63
-msgid "The year this music was created."
-msgstr "此音乐创建时的年代。"
+#: includes/meta-field.php:51
+msgid "The year this music was released."
+msgstr "此音乐发行时的年代。"
 
-#: includes/meta-field.php:70
+#: includes/meta-field.php:63
 msgid "Lyrics"
 msgstr "歌词"
 
-#: includes/meta-field.php:71
+#: includes/meta-field.php:64
 msgid "The lyrics file url of this song, accept .lrc file."
 msgstr "歌词文件的地址，接受.lrc格式文件。"
+
+#: includes/meta-field.php:67
+msgid "Add file"
+msgstr "添加文件"
 
 #: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:54
 msgid "View details"
@@ -769,6 +765,18 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "Duke Yin"
 msgstr "Duke Yin"
+
+#~ msgid "Contributing Artists"
+#~ msgstr "艺术家"
+
+#~ msgid "The artist(s) who made contributes to this song."
+#~ msgstr "为此音乐做出贡献的艺术家名称。"
+
+#~ msgid "Genre"
+#~ msgstr "风格"
+
+#~ msgid "The genre name(s) that this music belong to."
+#~ msgstr "此音乐所属的风格。"
 
 #~ msgid "Music List Cover"
 #~ msgstr "歌单封面"

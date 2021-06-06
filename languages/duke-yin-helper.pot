@@ -3,10 +3,10 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2021-06-02 11:01+0800\n"
-"PO-Revision-Date: 2021-06-02 11:01+0800\n"
-"Last-Translator: Duke Yin <duke@dukeyin.com>\n"
-"Language-Team: Duke Yin <duke@dukeyin.com>\n"
+"POT-Creation-Date: 2021-06-06 16:28+0800\n"
+"PO-Revision-Date: 2021-06-06 16:27+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,62 +53,58 @@ msgstr ""
 msgid "Music"
 msgstr ""
 
-#: includes/meta-field.php:17
+#: includes/meta-field.php:16
 msgid "Music file"
 msgstr ""
 
-#: includes/meta-field.php:18
+#: includes/meta-field.php:17
 msgid ""
 "The music file or URL for the song, if the URL is external for your website, "
 "obtaining information from file may fail due to the CORS policy."
+msgstr ""
+
+#: includes/meta-field.php:20 includes/meta-field.php:42
+msgid "Upload file"
 msgstr ""
 
 #: includes/meta-field.php:21
 msgid "Get info from file"
 msgstr ""
 
-#: includes/meta-field.php:30
-msgid "Contributing Artists"
-msgstr ""
-
 #: includes/meta-field.php:31
-msgid "The artist(s) who made contributes to this song."
-msgstr ""
-
-#: includes/meta-field.php:37
 msgid "Album"
 msgstr ""
 
-#: includes/meta-field.php:38 includes/meta-field.php:45
+#: includes/meta-field.php:32
 msgid "The album name that this music belong to."
 msgstr ""
 
-#: includes/meta-field.php:44
+#: includes/meta-field.php:38
 msgid "Album Art"
 msgstr ""
 
-#: includes/meta-field.php:55
-msgid "Genre"
+#: includes/meta-field.php:39
+msgid "The album artwork."
 msgstr ""
 
-#: includes/meta-field.php:56
-msgid "The genre name(s) that this music belong to."
-msgstr ""
-
-#: includes/meta-field.php:62
+#: includes/meta-field.php:50
 msgid "Year"
 msgstr ""
 
-#: includes/meta-field.php:63
-msgid "The year this music was created."
+#: includes/meta-field.php:51
+msgid "The year this music was released."
 msgstr ""
 
-#: includes/meta-field.php:70
+#: includes/meta-field.php:63
 msgid "Lyrics"
 msgstr ""
 
-#: includes/meta-field.php:71
+#: includes/meta-field.php:64
 msgid "The lyrics file url of this song, accept .lrc file."
+msgstr ""
+
+#: includes/meta-field.php:67
+msgid "Add file"
 msgstr ""
 
 #: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:54
