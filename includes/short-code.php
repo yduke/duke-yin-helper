@@ -72,7 +72,7 @@ add_shortcode('slide', 'dukeyin_sc_slide');
 function dukeyin_sc_slideshow($atts, $content=null, $shortcodename ="")
 {	
 	$return  = '<div class="row"><div class="slider" data-animation="fade" data-arrows="true" data-paging="true" data-timing="3000">';
-	$return .= '<ul class="slides">';
+	$return .= '<ul class="slides owl-carousel">';
 	$return .= do_shortcode(strip_tags($content));
 	$return .= '</ul>';
 	$return .= '</div></div>';
