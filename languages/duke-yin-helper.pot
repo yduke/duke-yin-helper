@@ -3,10 +3,10 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2021-06-06 16:28+0800\n"
-"PO-Revision-Date: 2021-06-06 16:27+0800\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2021-06-23 21:56+0800\n"
+"PO-Revision-Date: 2021-06-23 21:56+0800\n"
+"Last-Translator: Duke Yin <duke@dukeyin.com>\n"
+"Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -187,12 +187,12 @@ msgstr ""
 #: includes/post-type.php:127 includes/post-type.php:192
 #: includes/post-type.php:258 includes/post-type.php:326
 #: includes/post-type.php:392 includes/post-type.php:433
-#: includes/post-type.php:473
+#: includes/post-type.php:473 includes/post-type.php:664
 msgid "Search for"
 msgstr ""
 
 #: includes/post-type.php:20 includes/post-type.php:90
-#: includes/post-type.php:259
+#: includes/post-type.php:259 includes/post-type.php:665
 msgid "Not found"
 msgstr ""
 
@@ -200,75 +200,75 @@ msgstr ""
 #: includes/post-type.php:129 includes/post-type.php:194
 #: includes/post-type.php:260 includes/post-type.php:328
 #: includes/post-type.php:394 includes/post-type.php:435
-#: includes/post-type.php:475
+#: includes/post-type.php:475 includes/post-type.php:666
 msgid "Not found in trash"
 msgstr ""
 
 #: includes/post-type.php:48 includes/post-type.php:153
 #: includes/post-type.php:219 includes/post-type.php:286
-#: includes/post-type.php:353
+#: includes/post-type.php:353 includes/post-type.php:693
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr ""
 
 #: includes/post-type.php:49 includes/post-type.php:154
 #: includes/post-type.php:220 includes/post-type.php:287
-#: includes/post-type.php:354
+#: includes/post-type.php:354 includes/post-type.php:694
 msgctxt "taxonomy singular name"
 msgid "Category"
 msgstr ""
 
 #: includes/post-type.php:50 includes/post-type.php:155
 #: includes/post-type.php:221 includes/post-type.php:288
-#: includes/post-type.php:355
+#: includes/post-type.php:355 includes/post-type.php:695
 msgid "Search Categories"
 msgstr ""
 
 #: includes/post-type.php:51 includes/post-type.php:156
 #: includes/post-type.php:222 includes/post-type.php:289
-#: includes/post-type.php:356
+#: includes/post-type.php:356 includes/post-type.php:696
 msgid "All Categories"
 msgstr ""
 
 #: includes/post-type.php:52 includes/post-type.php:157
 #: includes/post-type.php:223 includes/post-type.php:290
-#: includes/post-type.php:357
+#: includes/post-type.php:357 includes/post-type.php:697
 msgid "Parent Category"
 msgstr ""
 
 #: includes/post-type.php:53 includes/post-type.php:158
 #: includes/post-type.php:224 includes/post-type.php:291
-#: includes/post-type.php:358
+#: includes/post-type.php:358 includes/post-type.php:698
 msgid "Parent Category:"
 msgstr ""
 
 #: includes/post-type.php:54 includes/post-type.php:159
 #: includes/post-type.php:225 includes/post-type.php:292
-#: includes/post-type.php:359
+#: includes/post-type.php:359 includes/post-type.php:699
 msgid "Edit Category"
 msgstr ""
 
 #: includes/post-type.php:55 includes/post-type.php:160
 #: includes/post-type.php:226 includes/post-type.php:293
-#: includes/post-type.php:360
+#: includes/post-type.php:360 includes/post-type.php:700
 msgid "Update Category"
 msgstr ""
 
 #: includes/post-type.php:56 includes/post-type.php:161
 #: includes/post-type.php:227 includes/post-type.php:294
-#: includes/post-type.php:361
+#: includes/post-type.php:361 includes/post-type.php:701
 msgid "Add New Category"
 msgstr ""
 
 #: includes/post-type.php:57 includes/post-type.php:162
 #: includes/post-type.php:228 includes/post-type.php:295
-#: includes/post-type.php:362
+#: includes/post-type.php:362 includes/post-type.php:702
 msgid "New Category Name"
 msgstr ""
 
 #: includes/post-type.php:58 includes/post-type.php:163
 #: includes/post-type.php:229 includes/post-type.php:296
-#: includes/post-type.php:363
+#: includes/post-type.php:363 includes/post-type.php:703
 msgid "Categories"
 msgstr ""
 
@@ -742,6 +742,42 @@ msgstr ""
 msgid ""
 "The cover image similar as \"featured image\" but for a music list, a genre "
 "or an artist."
+msgstr ""
+
+#: includes/post-type.php:656
+msgctxt "post type general name"
+msgid "Videos"
+msgstr ""
+
+#: includes/post-type.php:657
+msgctxt "post type singular name"
+msgid "Video Post"
+msgstr ""
+
+#: includes/post-type.php:658
+msgctxt "String for the submenu"
+msgid "All Videos"
+msgstr ""
+
+#: includes/post-type.php:659
+msgctxt "video"
+msgid "Add New"
+msgstr ""
+
+#: includes/post-type.php:660
+msgid "Add new Video"
+msgstr ""
+
+#: includes/post-type.php:661
+msgid "Edit video"
+msgstr ""
+
+#: includes/post-type.php:662
+msgid "New video"
+msgstr ""
+
+#: includes/post-type.php:663
+msgid "View this video"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
