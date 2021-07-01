@@ -84,3 +84,6 @@ function replace_core_jquery() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'replace_core_jquery' );
+
+// Enable link manager
+add_filter( 'pre_option_link_manager_enabled', '__return_true' );

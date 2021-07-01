@@ -149,20 +149,28 @@ return $return;}
 /**
  * Links.
  */
-function post_inner_link($catid='') {
+function post_inner_link() {
 $post_link = wp_list_bookmarks(
 array(
 'orderby'=>'name',
-'category'=>$catid,
+'category'=>'',
+'category_orderby'=>'name',
+'category_name'=>'',
+'categorize'=>1,
+'hide_invisible'=>1,
+'show_description'=>0,
 'echo' =>0,
-'show_updated' => 1,
+'show_updated' =>0,
 'show_name' => 1,
-'title_li'=>0,
+'title_li'=>__( 'Bookmarks','duke-yin-helper' ),
+'title_before'     => '<h3>',
+'title_after'      => '</h3>',
 'class'=> 'linkcat',
 'before'=> '<div class="col-md-4 col-sm-6 link">',
 'after'=> '</div>',
 'link_before'=>'<p>',
 'link_after'=>'</p>',
+'echo'=>1,
 ));
 return $post_link;
 }
