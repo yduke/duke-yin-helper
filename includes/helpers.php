@@ -22,7 +22,6 @@ return (is_tax('review_categories')) ? 1 : $value;
 
 //Indicator
 
-
 if (!function_exists('dukeyin_theme_dashboard_widgets')) {
 add_action('wp_dashboard_setup', 'dukeyin_theme_dashboard_widgets');
 function dukeyin_theme_dashboard_widgets() {
@@ -72,3 +71,16 @@ jQuery.ajax({
 ETO;
 }
 }
+
+//replace jQuery to cdn
+function replace_core_jquery() {
+	$dukeyin_options=get_site_option( 'options-page', true, false);
+	$dukeyin_options['jquery-cdn'] = ($dukeyin_options['jquery-cdn'] ?? 'off');
+	if($dukeyin_options['jquery-cdn'] === 'on'){
+		wp_deregister_script( 'jquery-core' );
+		wp_register_script( 'jquery-core', "https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js", array(), '3.5.1' );
+		wp_deregister_script( 'jquery-migrate' );
+		wp_register_script( 'jquery-migrate', "https://cdn.staticfile.org/jquery-migrate/3.3.2/jquery-migrate.min.js", array(), '3.3.2' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'replace_core_jquery' );
