@@ -96,9 +96,9 @@ function dukeyin_sc_toggles($atts, $content=null, $shortcodename =""){
 	$content = remove_tags($content, array('p'));
 	$one='';
 	if(isset($atts['one'])) {$one = "accordion--oneopen";} 
-	$return  = '<ul class="accordion '.$one.'">'."\n";
- 	$return .= do_shortcode($content)."\n";
-	$return .= '</ul>'."\n";
+	$return  = '<ul class="accordion '.$one.'">';
+ 	$return .= do_shortcode($content);
+	$return .= '</ul>';
 	return $return;
 }
 
@@ -107,10 +107,10 @@ function dukeyin_sc_toggle($atts, $content=null, $shortcodename ="")
 	$content = remove_tags($content, array('p'));
 	$active[0] = $active[1] = '';
 	if(isset($atts[0]) && $atts[0] == 'active') {$active[0] = 'active'; $active[1] = 'activetoggle open';}
-	$return  = '<li class="'.$active[0].'"><div class="accordion__title"><span class="h5">'.$atts['title'].'</span></div>'."\n";
-	$return .= '<div class="accordion__content">'."\n";
-	$return .= do_shortcode(wpautop($content))."\n";
-	$return .= '</div></li>'."\n";
+	$return  = '<li class="'.$active[0].'"><div class="accordion__title"><span class="h5">'.$atts['title'].'</span></div>';
+	$return .= '<div class="accordion__content">';
+	$return .= do_shortcode(wpautop($content));
+	$return .= '</div></li>';
 	return $return;
 }
 
@@ -118,19 +118,19 @@ function dukeyin_sc_toggle($atts, $content=null, $shortcodename ="")
 function dukeyin_sc_tabs($atts, $content=null, $shortcodename ="")
 {	
 	$content = remove_tags($content, array('p'));
-	$return  = '<section class="tabs-container tabs-5 text-center"><ul class="tabs">'."\n";
- 	$return .= do_shortcode($content)."\n";
-	$return .= '</ul></section>'."\n";
+	$return  = '<section class="tabs-container tabs-5 text-center"><ul class="tabs">';
+ 	$return .= do_shortcode($content);
+	$return .= '</ul></section>';
 	return $return;
 }
 function dukeyin_sc_tab_single($atts, $content=null, $shortcodename ="")
 {		
 	$active = '';
 	if(isset($atts[0]) && $atts[0] == 'active') $active = 'active';
-	$return  = '<li class="'.$active.'"><div class="tab__title"><h6>'.$atts['title'].'</h6></div>'."\n";
-	$return .= '<div class="tab__content"><div class="row"><div class="col-sm-8 col-sm-offset-2">'."\n";
-	$return .= do_shortcode(wpautop($content))."\n";
-	$return .= '</div></div></li>'."\n";
+	$return  = '<li class="'.$active.'"><div class="tab__title"><h6>'.$atts['title'].'</h6></div>';
+	$return .= '<div class="tab__content"><div class="row"><div class="col-sm-8 col-sm-offset-2">';
+	$return .= do_shortcode(wpautop($content));
+	$return .= '</div></div></li>';
 	return $return;
 }
 /**
@@ -170,7 +170,7 @@ array(
 'after'=> '</div>',
 'link_before'=>'<p>',
 'link_after'=>'</p>',
-'echo'=>1,
+// 'echo'=>1,
 ));
 return $post_link;
 }
