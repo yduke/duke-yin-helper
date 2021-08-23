@@ -2,3 +2,5 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+#menu-links{margin-bottom: 10px!important;}
+#toplevel_page_edit-post_type-film_review ul.wp-submenu-wrap li:nth-of-type(6){border-bottom:3px solid #1d2327}
