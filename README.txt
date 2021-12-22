@@ -1,14 +1,14 @@
 === Duke Yin Helper ===
 Contributors: freeduke
 Donate link: https://www.dukeyin.com/donate/
-Tags: shortcode, posttype
+Tags: shortcode, post-type
 Requires at least: 3.0.1
-Tested up to: 6.4
-Stable tag: 1.0.6
+Tested up to: 5.8.2
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin powers up DukeYin wordpress theme.
+This plugin powers up DukeYin Wordpress theme.
 
 == Description ==
 
