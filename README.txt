@@ -4,7 +4,7 @@ Donate link: https://www.dukeyin.com/donate/
 Tags: shortcode, post-type
 Requires at least: 3.0.1
 Tested up to: 5.8.2
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,8 @@ Yes and no. Yes this plugin is free to donload, but DukeYin theme is not free, a
 
 
 == Changelog ==
+= 1.1.1 =
+Game review score calculate;
 
 = 1.0.7 =
 Music post type and music list;
