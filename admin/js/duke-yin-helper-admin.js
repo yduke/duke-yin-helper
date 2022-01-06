@@ -17,13 +17,13 @@ $('input').on('blur',function(){
 		$audios == 0?$audios_w = 0:$audios_w = 0.05;
 	var $narrative = $('#narrative-score').val();
 		var $narrative_w;
-		$narrative == 0?$narrative_w = 0:$narrative_w = 0.3;
+		$narrative == 0?$narrative_w = 0:$narrative_w = 0.25;
 	var $technical = $('#technical-score').val();
 		var $technical_w;
 		$technical == 0?$technical_w = 0:$technical_w = 0.1;
 	var $gameplay = $('#gameplay-score').val();
 		var $gameplay_w;
-		$gameplay == 0?$gameplay_w = 0:$gameplay_w = 0.35;
+		$gameplay == 0?$gameplay_w = 0:$gameplay_w = 0.4;
 	var score = 0;
 	score = (parseInt($graphic)*$graphic_w + parseInt($audios)*$audios_w + parseInt($narrative)*$narrative_w + parseInt($technical)*$technical_w + parseInt($gameplay)*$gameplay_w)/($graphic_w+$audios_w+$narrative_w+$technical_w+$gameplay_w);
 	$('#ranking-score').val(score.toFixed(1));
