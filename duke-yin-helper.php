@@ -66,11 +66,12 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-duke-yin-helper.php';
 require plugin_dir_path( __FILE__ ) . 'includes/post-type.php';
 require plugin_dir_path( __FILE__ ) . 'includes/helpers.php';
 require plugin_dir_path( __FILE__ ) . 'includes/meta-field.php';
+require plugin_dir_path( __FILE__ ) . 'includes/meta-block.php';
 
 /**
 * updater
 */
-require plugin_dir_path( __FILE__ ) . 'includes//plugin-update-checker/plugin-update-checker.php';
+require plugin_dir_path( __FILE__ ) . 'includes/plugin-update-checker/plugin-update-checker.php';
 $MyUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	'https://update.dukeyin.com/?action=get_metadata&slug=duke-yin-helper', //Metadata URL.
 	__FILE__, //Full path to the main plugin file.
