@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2022-02-07 21:16+0800\n"
-"PO-Revision-Date: 2022-02-07 21:16+0800\n"
+"POT-Creation-Date: 2022-02-14 11:29+0800\n"
+"PO-Revision-Date: 2022-02-14 11:32+0800\n"
 "Last-Translator: Duke Yin <duke@dukeyin.com>\n"
 "Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "Language: zh_CN\n"
@@ -27,23 +27,23 @@ msgstr "Duke Yin 辅助"
 
 #: includes/helpers.php:38
 msgid "Theme Name: "
-msgstr "主题名称："
+msgstr "主题名称： "
 
 #: includes/helpers.php:42
 msgid "Installed Version: "
-msgstr "已安装版本："
+msgstr "已安装版本： "
 
 #: includes/helpers.php:46
 msgid "Current Version: "
-msgstr "最新版本："
+msgstr "最新版本： "
 
 #: includes/helpers.php:48
 msgid "Last Update: "
-msgstr "发布日期："
+msgstr "发布日期： "
 
 #: includes/helpers.php:50
 msgid "Change log: "
-msgstr "更新记录："
+msgstr "更新记录： "
 
 #: includes/helpers.php:52
 msgid "View detail"
@@ -51,7 +51,7 @@ msgstr "查看详情"
 
 #: includes/meta-block.php:29
 msgid "Subtitle of posts."
-msgstr "文章的副标题"
+msgstr "文章的副标题。"
 
 #: includes/meta-field.php:8
 msgid "Music"
@@ -120,7 +120,7 @@ msgstr "查看详情"
 #: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:77
 #, php-format
 msgid "More information about %s"
-msgstr "有关%s的更多信息"
+msgstr "%s的更多信息"
 
 #: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:128
 msgid "Check for updates"
@@ -136,22 +136,22 @@ msgstr "%s 插件已是最新版。"
 #, php-format
 msgctxt "the plugin title"
 msgid "A new version of the %s plugin is available."
-msgstr "一个更新的 %s 可用。"
+msgstr "有新版的%s插件可用。"
 
 #: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:217
 #, php-format
 msgctxt "the plugin title"
 msgid "Could not determine if updates are available for %s."
-msgstr "无法确认是否存在%s插件的更新。"
+msgstr "未能确定%s是否有更新。"
 
 #: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:223
 #, php-format
 msgid "Unknown update checker status \"%s\""
-msgstr "无法确认 \"%s\"更新检查的结果"
+msgstr "未知的更新检查状态“%s”"
 
 #: includes/plugin-update-checker/Puc/v4p9/Vcs/PluginUpdateChecker.php:98
 msgid "There is no changelog available."
-msgstr "没有更新记录可用。"
+msgstr "更新记录不可用。"
 
 #: includes/post-type.php:13
 msgctxt "post type general name"
@@ -202,7 +202,7 @@ msgstr "搜索"
 #: includes/post-type.php:22 includes/post-type.php:57
 #: includes/post-type.php:255 includes/post-type.php:932
 msgid "Not found"
-msgstr "未找到"
+msgstr "没找到"
 
 #: includes/post-type.php:23 includes/post-type.php:58
 #: includes/post-type.php:126 includes/post-type.php:191
@@ -236,7 +236,7 @@ msgstr "添加作品"
 
 #: includes/post-type.php:52
 msgid "Add new"
-msgstr "添加作品"
+msgstr "添加幻灯"
 
 #: includes/post-type.php:53
 msgid "Edit work"
@@ -336,7 +336,7 @@ msgstr "所有摄影"
 #: includes/post-type.php:119
 msgctxt "photo"
 msgid "Add New"
-msgstr "添加摄影"
+msgstr "添加作品"
 
 #: includes/post-type.php:120
 msgid "Add Photo"
@@ -376,7 +376,7 @@ msgstr "所有自拍"
 #: includes/post-type.php:184
 msgctxt "selfie"
 msgid "Add new"
-msgstr "添加自拍"
+msgstr "添加幻灯"
 
 #: includes/post-type.php:185
 msgid "Add selfie"
@@ -412,7 +412,7 @@ msgstr "所有商品"
 #: includes/post-type.php:249
 msgctxt "product"
 msgid "Add new"
-msgstr "添加商品"
+msgstr "添加幻灯"
 
 #: includes/post-type.php:250
 msgid "Add a product for sale"
@@ -450,7 +450,7 @@ msgstr "所有影评"
 #: includes/post-type.php:582
 msgctxt "review"
 msgid "Add New"
-msgstr "添加评单"
+msgstr "添加作品"
 
 #: includes/post-type.php:326
 msgid "Add film review"
@@ -524,7 +524,7 @@ msgstr "电影评单"
 
 #: includes/post-type.php:388
 msgid "All Film Reviews"
-msgstr "所有影评"
+msgstr "所以影评"
 
 #: includes/post-type.php:389
 msgid "Film&TV categories"
@@ -838,7 +838,7 @@ msgstr "所有赠言"
 #: includes/post-type.php:655
 msgctxt "testimonial"
 msgid "Add New"
-msgstr "添加新赠言"
+msgstr "添加作品"
 
 #: includes/post-type.php:656
 msgid "Add Testimonial"
@@ -878,7 +878,7 @@ msgstr "所有服务"
 #: includes/post-type.php:695
 msgctxt "service-type"
 msgid "Add New"
-msgstr "添加服务"
+msgstr "添加作品"
 
 #: includes/post-type.php:696
 msgid "Add Service type"
@@ -918,7 +918,7 @@ msgstr "所有音乐"
 #: includes/post-type.php:735
 msgctxt "music"
 msgid "Add New"
-msgstr "添加"
+msgstr "添加作品"
 
 #: includes/post-type.php:736
 msgid "Add Music"
@@ -1126,7 +1126,7 @@ msgstr "所有视频"
 #: includes/post-type.php:926
 msgctxt "video"
 msgid "Add New"
-msgstr "添加视频"
+msgstr "添加作品"
 
 #: includes/post-type.php:927
 msgid "Add new Video"
@@ -1168,115 +1168,8 @@ msgstr ""
 msgid "Duke Yin"
 msgstr "Duke Yin"
 
-#~ msgctxt "post type singular name"
-#~ msgid "Porduct"
-#~ msgstr "商品"
+#~ msgid "Subtitle"
+#~ msgstr "副标题"
 
-#~ msgctxt "post type singular name"
-#~ msgid "Review post"
-#~ msgstr "评单文章"
-
-#~ msgctxt "String for the submenu"
-#~ msgid "All reviews"
-#~ msgstr "所有评单"
-
-#~ msgid "Add review"
-#~ msgstr "添加评单"
-
-#~ msgid "Edit review"
-#~ msgstr "编辑评单"
-
-#~ msgid "New review"
-#~ msgstr "新增评单"
-
-#~ msgid "View this review"
-#~ msgstr "查看评单"
-
-#~ msgid "No review found"
-#~ msgstr "未找到评单"
-
-#~ msgctxt "taxonomy general name"
-#~ msgid "TV review categories"
-#~ msgstr "剧集评单分类"
-
-#~ msgctxt "taxonomy singular name"
-#~ msgid "TV review category"
-#~ msgstr "剧集评单分类"
-
-#~ msgid "Search TV review categories"
-#~ msgstr "搜索剧集评单分类"
-
-#~ msgid "All tv review categories"
-#~ msgstr "所有剧集评单分类"
-
-#~ msgid "Parent TV review category"
-#~ msgstr "父级剧集评单分类"
-
-#~ msgid "Parent TV review category:"
-#~ msgstr "父级剧集评单分类："
-
-#~ msgid "Edit TV review category"
-#~ msgstr "编辑剧集评单分类"
-
-#~ msgid "Update TV review category"
-#~ msgstr "更新剧集评单分类"
-
-#~ msgid "Add New TV review category"
-#~ msgstr "新增剧集评单分类"
-
-#~ msgid "New TV review category name"
-#~ msgstr "新剧集评单分类名"
-
-#~ msgid "TV review categories"
-#~ msgstr "剧集评单分类"
-
-#, fuzzy
-#~| msgid "All Categories"
-#~ msgid "Book review  categories"
-#~ msgstr "所有分类"
-
-#, fuzzy
-#~| msgid "Film review categories"
-#~ msgid "Game review  categories"
-#~ msgstr "电影影评分类"
-
-#, fuzzy
-#~| msgid "All Categories"
-#~ msgid "TV review  categories"
-#~ msgstr "所有分类"
-
-#, fuzzy
-#~| msgid "Search Categories"
-#~ msgid "Product review  categories"
-#~ msgstr "搜索分类"
-
-#, fuzzy
-#~| msgctxt "taxonomy general name"
-#~| msgid "Categories"
-#~ msgctxt "taxonomy general name"
-#~ msgid "Review categories"
-#~ msgstr "分类目录"
-
-#, fuzzy
-#~| msgid "Categories"
-#~ msgid "Review categories"
-#~ msgstr "分类目录"
-
-#~ msgid "Contributing Artists"
-#~ msgstr "艺术家"
-
-#~ msgid "The artist(s) who made contributes to this song."
-#~ msgstr "为此音乐做出贡献的艺术家名称。"
-
-#~ msgid "Genre"
-#~ msgstr "风格"
-
-#~ msgid "The genre name(s) that this music belong to."
-#~ msgstr "此音乐所属的风格。"
-
-#~ msgid "Music List Cover"
-#~ msgstr "歌单封面"
-
-#~ msgctxt "portfolio"
-#~ msgid "Add"
-#~ msgstr "添加"
+#~ msgid "Subtitle."
+#~ msgstr "副标题。"
