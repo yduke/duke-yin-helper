@@ -8,11 +8,34 @@ function image_alt_tag($content){
     return $content;
 }
 add_filter('the_content', 'image_alt_tag', 99999);
+
 // gravatar to qiniu CDN
-function replace_gravatar($avatar) {
-$avatar = str_replace(array("//gravatar.com/", "//secure.gravatar.com/", "//www.gravatar.com/", "//0.gravatar.com/", "//1.gravatar.com/", "//2.gravatar.com/", "//cn.gravatar.com/"), "//dn-qiniu-avatar.qbox.me/", $avatar);
-return $avatar;}
-add_filter( 'get_avatar', 'replace_gravatar' );
+
+function dk_replace_gravatar($avatar)
+{
+$dukeyin_options = get_site_option( 'options-page', true, false);
+$dukeyin_options['gravatar-cdn'] = ($dukeyin_options['gravatar-cdn'] ?? '0');
+ if ($dukeyin_options['gravatar-cdn'] == '0') {
+return $avatar;
+ }
+
+ if ($dukeyin_options['gravatar-cdn'] == '1') {
+  $avatar = str_replace(array("//gravatar.com/", "//www.gravatar.com/", "//0.gravatar.com/", "//1.gravatar.com/", "//2.gravatar.com/", "//cn.gravatar.com/"), "//secure.gravatar.com/", $avatar);}
+
+ if ($dukeyin_options['gravatar-cdn'] == '2') {
+  $avatar = str_replace(array("//gravatar.com/", "//secure.gravatar.com/", "//www.gravatar.com/", "//0.gravatar.com/", "//1.gravatar.com/", "//2.gravatar.com/", "//cn.gravatar.com/"), "//dn-qiniu-avatar.qbox.me/", $avatar);}
+
+ if ($dukeyin_options['gravatar-cdn'] == '4') {
+  $avatar = str_replace(array("//gravatar.com/", "//secure.gravatar.com/", "//www.gravatar.com/", "//0.gravatar.com/", "//1.gravatar.com/", "//2.gravatar.com/", "//cn.gravatar.com/"), "//gravatar.inwao.com/", $avatar);}
+
+ if ($dukeyin_options['gravatar-cdn'] == '3') {
+  $avatar = str_replace(array("//gravatar.com/", "//secure.gravatar.com/", "//www.gravatar.com/", "//0.gravatar.com/", "//1.gravatar.com/", "//2.gravatar.com/", "//cn.gravatar.com/"), "//gravatar.wp-china-yes.net/", $avatar);}
+
+ if ($dukeyin_options['gravatar-cdn'] == '5') {
+  $avatar = str_replace(array("//gravatar.com/", "//secure.gravatar.com/", "//www.gravatar.com/", "//0.gravatar.com/", "//1.gravatar.com/", "//2.gravatar.com/", "//cn.gravatar.com/"), "//gravatar.loli.net/", $avatar);}
+
+ return $avatar;}
+add_filter('get_avatar', 'dk_replace_gravatar');
 
 //let the custom taxonomy review_categories pagination work
 add_filter( 'option_posts_per_page', 'duke_tax_filter_posts_per_page' );
