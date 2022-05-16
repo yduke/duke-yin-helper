@@ -14,24 +14,24 @@ add_filter('the_content', 'image_alt_tag', 99999);
 function dk_replace_gravatar($avatar)
 {
 $dukeyin_options = get_site_option( 'options-page', true, false);
-$dukeyin_options['gravatar-cdn'] = ($dukeyin_options['gravatar-cdn'] ?? '0');
- if ($dukeyin_options['gravatar-cdn'] == '0') {
+$dk_gravatar_cdn = ($dukeyin_options['gravatar-cdn'] ?? '0');
+ if ($dk_gravatar_cdn == '0') {
 return $avatar;
  }
 
- if ($dukeyin_options['gravatar-cdn'] == '1') {
+ if ($dk_gravatar_cdn == '1') {
   $avatar = str_replace(array("//gravatar.com/", "//www.gravatar.com/", "//0.gravatar.com/", "//1.gravatar.com/", "//2.gravatar.com/", "//cn.gravatar.com/"), "//secure.gravatar.com/", $avatar);}
 
- if ($dukeyin_options['gravatar-cdn'] == '2') {
+ if ($dk_gravatar_cdn == '2') {
   $avatar = str_replace(array("//gravatar.com/", "//secure.gravatar.com/", "//www.gravatar.com/", "//0.gravatar.com/", "//1.gravatar.com/", "//2.gravatar.com/", "//cn.gravatar.com/"), "//dn-qiniu-avatar.qbox.me/", $avatar);}
 
- if ($dukeyin_options['gravatar-cdn'] == '4') {
+ if ($dk_gravatar_cdn == '4') {
   $avatar = str_replace(array("//gravatar.com/", "//secure.gravatar.com/", "//www.gravatar.com/", "//0.gravatar.com/", "//1.gravatar.com/", "//2.gravatar.com/", "//cn.gravatar.com/"), "//gravatar.inwao.com/", $avatar);}
 
- if ($dukeyin_options['gravatar-cdn'] == '3') {
+ if ($dk_gravatar_cdn == '3') {
   $avatar = str_replace(array("//gravatar.com/", "//secure.gravatar.com/", "//www.gravatar.com/", "//0.gravatar.com/", "//1.gravatar.com/", "//2.gravatar.com/", "//cn.gravatar.com/"), "//gravatar.wp-china-yes.net/", $avatar);}
 
- if ($dukeyin_options['gravatar-cdn'] == '5') {
+ if ($dk_gravatar_cdn == '5') {
   $avatar = str_replace(array("//gravatar.com/", "//secure.gravatar.com/", "//www.gravatar.com/", "//0.gravatar.com/", "//1.gravatar.com/", "//2.gravatar.com/", "//cn.gravatar.com/"), "//gravatar.loli.net/", $avatar);}
 
  return $avatar;}
@@ -98,8 +98,8 @@ ETO;
 //replace jQuery to cdn
 function replace_core_jquery() {
 	$dukeyin_options=get_site_option( 'options-page', true, false);
-	$dukeyin_options['jquery-cdn'] = ($dukeyin_options['jquery-cdn'] ?? 'off');
-	if($dukeyin_options['jquery-cdn'] === 'on'){
+	$dk_jquery_cdn = ($dukeyin_options['jquery-cdn'] ?? 'off');
+	if($dk_jquery_cdn === 'on'){
 		wp_deregister_script( 'jquery-core' );
 		wp_register_script( 'jquery-core', "//cdn.staticfile.org/jquery/3.6.0/jquery.min.js", array(), '3.6.0' );
 		wp_deregister_script( 'jquery-migrate' );
