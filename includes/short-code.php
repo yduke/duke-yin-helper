@@ -198,7 +198,7 @@ function alert_func($atts, $content){
 	), $atts)); 
 
 	if ($close == '1') {
-		$close = '<a href="#" class="close"><i class="iconfont closebt ico-modal-close-cross"></i></a>';
+		$close = '<a href="#" class="close"><i class="iconfont closebt ico-cross"></i></a>';
 	}
 
 	return do_shortcode("<div data-alert=\"\" class=\"alert-box text-center {$type}\">{$content}{$close}</div>");
