@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2022-06-13 21:40+0800\n"
-"PO-Revision-Date: 2022-06-13 21:41+0800\n"
+"POT-Creation-Date: 2022-08-24 16:56+0800\n"
+"PO-Revision-Date: 2022-08-24 16:58+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -171,7 +171,7 @@ msgstr "所有幻灯片"
 #: includes/post-type.php:16
 msgctxt "slideshow"
 msgid "Add new"
-msgstr "添加幻灯"
+msgstr "添加"
 
 #: includes/post-type.php:17
 msgid "Add New slider"
@@ -232,11 +232,11 @@ msgstr "所有作品"
 #: includes/post-type.php:51
 msgctxt "portfolio"
 msgid "Add New"
-msgstr "添加作品"
+msgstr "添加"
 
 #: includes/post-type.php:52
 msgid "Add new"
-msgstr "添加幻灯"
+msgstr "添加"
 
 #: includes/post-type.php:53
 msgid "Edit work"
@@ -336,7 +336,7 @@ msgstr "所有摄影"
 #: includes/post-type.php:119
 msgctxt "photo"
 msgid "Add New"
-msgstr "添加作品"
+msgstr "添加"
 
 #: includes/post-type.php:120
 msgid "Add Photo"
@@ -376,7 +376,7 @@ msgstr "所有自拍"
 #: includes/post-type.php:184
 msgctxt "selfie"
 msgid "Add new"
-msgstr "添加幻灯"
+msgstr "添加"
 
 #: includes/post-type.php:185
 msgid "Add selfie"
@@ -412,7 +412,7 @@ msgstr "所有商品"
 #: includes/post-type.php:249
 msgctxt "product"
 msgid "Add new"
-msgstr "添加幻灯"
+msgstr "添加"
 
 #: includes/post-type.php:250
 msgid "Add a product for sale"
@@ -450,7 +450,7 @@ msgstr "所有影评"
 #: includes/post-type.php:582
 msgctxt "review"
 msgid "Add New"
-msgstr "添加作品"
+msgstr "添加"
 
 #: includes/post-type.php:326
 msgid "Add film review"
@@ -838,7 +838,7 @@ msgstr "所有赠言"
 #: includes/post-type.php:655
 msgctxt "testimonial"
 msgid "Add New"
-msgstr "添加作品"
+msgstr "添加"
 
 #: includes/post-type.php:656
 msgid "Add Testimonial"
@@ -878,7 +878,7 @@ msgstr "所有服务"
 #: includes/post-type.php:695
 msgctxt "service-type"
 msgid "Add New"
-msgstr "添加作品"
+msgstr "添加"
 
 #: includes/post-type.php:696
 msgid "Add Service type"
@@ -918,7 +918,7 @@ msgstr "所有音乐"
 #: includes/post-type.php:735
 msgctxt "music"
 msgid "Add New"
-msgstr "添加作品"
+msgstr "添加"
 
 #: includes/post-type.php:736
 msgid "Add Music"
@@ -1126,7 +1126,7 @@ msgstr "所有视频"
 #: includes/post-type.php:926
 msgctxt "video"
 msgid "Add New"
-msgstr "添加作品"
+msgstr "添加"
 
 #: includes/post-type.php:927
 msgid "Add new Video"
