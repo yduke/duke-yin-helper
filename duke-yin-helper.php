@@ -86,6 +86,11 @@ if( function_exists('amts_checkMobile') AND amts_checkMobile()['amts_mobile_brow
 	require plugin_dir_path( __FILE__ ) . 'includes/short-code.php';
 }
 
+$dukeyin_options=get_site_option( 'options-page', true, false);
+$tmdb_helper = ($dukeyin_options['tmdb-helper'] ?? 'off');
+if($tmdb_helper =='on' ){
+	require plugin_dir_path( __FILE__ ) . 'includes/wp-movies/movies.php';
+}
 /**
  * Begins execution of the plugin.
  *
