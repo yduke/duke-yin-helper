@@ -3,7 +3,7 @@
 //must check that the user has the required capability 
 if (!current_user_can('manage_options'))
 {
-  wp_die( __('You do not have sufficient permissions to access this page.') );
+  wp_die( __('You do not have sufficient permissions to access this page.','duke-yin-helper') );
 }
 
 // variables for the field and option names 
@@ -27,12 +27,12 @@ foreach(array_keys($opts) as $opt_name) {
 if( $settings_updated ) {
 ?>
 <div class="updated">
-    <p><strong><?php _e('Your settings have been saved.', 'menu-test' ); ?></strong></p>
+    <p><strong><?php _e('Your settings have been saved.', 'duke-yin-helper' ); ?></strong></p>
 </div>
 <?php } ?>
 
 <div class="wrap">
-    <h2><?php _e( 'Movies Plugin Settings', 'menu-test' ) ?></h2>
+    <h2><?php _e( 'Movies Plugin Settings', 'duke-yin-helper' ) ?></h2>
     <form method="post" action="">
 <?php foreach($opts as $opt_name => $opt) { ?>
         <p>
@@ -43,7 +43,7 @@ if( $settings_updated ) {
         <hr />
 <?php } ?>
         <p class="submit">
-            <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
+            <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes','duke-yin-helper') ?>" />
         </p>
     </form>
 </div>

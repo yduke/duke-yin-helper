@@ -34,19 +34,19 @@ if( isset($_POST['operation']) ) {
 
 if ( $operation_error ) { ?>
 <div class="updated">
-    <p><strong><?php _e("There was an error. $error_msg", 'menu-test' ); ?></strong></p>
+    <p><strong><?php _e("There was an error. $error_msg", 'duke-yin-helper' ); ?></strong></p>
 </div>
 <? } else if( $operation_completed ) { ?>
 <div class="updated">
-    <p><strong><?php _e('The operation was completed.', 'menu-test' ); ?></strong></p>
+    <p><strong><?php _e('The operation was completed.', 'duke-yin-helper' ); ?></strong></p>
 </div>
 <?php } ?>
 
 <div class="wrap">
-    <h2><?php _e( 'Movies Plugin Tools', 'menu-test' ) ?></h2>
+    <h2><?php _e( 'Movies Plugin Tools', 'duke-yin-helper' ) ?></h2>
     <form method="post" action="" onsubmit="if(!confirm('Are you sure you want to do this?')){ return false; }">
         <p>
-            <?php _e("Operation:"); ?> 
+            <?php _e("Operation:","duke-yin-helper"); ?> 
             <select name="operation">
                 <option selected></option>
                 <option value="clear_for_post_id">Clear movie data for a specific post ID</option>
@@ -62,7 +62,7 @@ if ( $operation_error ) { ?>
         </p>
         <hr />
         <p class="submit">
-            <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Finish') ?>" />
+            <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Finish',"duke-yin-helper") ?>" />
         </p>
     </form>
 </div>

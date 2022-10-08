@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2022-08-24 16:56+0800\n"
-"PO-Revision-Date: 2022-08-24 16:58+0800\n"
+"POT-Creation-Date: 2022-10-08 14:48+0800\n"
+"PO-Revision-Date: 2022-10-08 14:50+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -1147,6 +1147,63 @@ msgstr "查看此视频"
 #: includes/short-code.php:165
 msgid "Bookmarks"
 msgstr "书签"
+
+#: includes/wp-movies/templates/admin/import.php:40
+msgid "Your import was completed."
+msgstr "导入已完成。"
+
+#: includes/wp-movies/templates/admin/import.php:44
+msgid "Movie Import Tool"
+msgstr "影片导入工具"
+
+#: includes/wp-movies/templates/admin/import.php:161
+msgid "Import Movie Data"
+msgstr "导入影片数据"
+
+#: includes/wp-movies/templates/admin/import.save.php:31
+msgid "Importing... Please do not navigate away from this page."
+msgstr "正在导入……请不要关闭或离开刺页面。"
+
+#: includes/wp-movies/templates/admin/settings.php:6
+#: includes/wp-movies/templates/admin/tools.php:6
+msgid "You do not have sufficient permissions to access this page."
+msgstr "你没有访问此页面的权限。"
+
+#: includes/wp-movies/templates/admin/settings.php:30
+msgid "Your settings have been saved."
+msgstr "设置已保存。"
+
+#: includes/wp-movies/templates/admin/settings.php:35
+msgid "Movies Plugin Settings"
+msgstr "影片插件设置"
+
+#: includes/wp-movies/templates/admin/settings.php:39
+msgid ":"
+msgstr ""
+
+#: includes/wp-movies/templates/admin/settings.php:46
+msgid "Save Changes"
+msgstr "保存更改"
+
+#: includes/wp-movies/templates/admin/tools.php:41
+msgid "The operation was completed."
+msgstr "行动已完成。"
+
+#: includes/wp-movies/templates/admin/tools.php:46
+msgid "Movies Plugin Tools"
+msgstr "影片插件工具"
+
+#: includes/wp-movies/templates/admin/tools.php:49
+msgid "Operation:"
+msgstr "行动："
+
+#: includes/wp-movies/templates/admin/tools.php:59
+msgid "ID:"
+msgstr "ID："
+
+#: includes/wp-movies/templates/admin/tools.php:65
+msgid "Finish"
+msgstr "完成"
 
 #. Plugin Name of the plugin/theme
 msgid "Duke Yin Helper"

@@ -37,11 +37,11 @@ if( $posts_without_movies ) {
 #importing-message { display:none; }
 </style>
 <div class="updated">
-    <p><strong><?php _e('Your import was completed.', 'menu-test' ); ?></strong></p>
+    <p><strong><?php _e('Your import was completed.', 'duke-yin-helper' ); ?></strong></p>
 </div>
 <?php } ?>
 <div class="wrap">
-    <h2><?php echo _e( 'Movie Import Tool', 'movie-import-tool' ) ?></h2>
+    <h2><?php echo _e( 'Movie Import Tool', 'duke-yin-helper' ) ?></h2>
 <?php if( !Movies::is_configured() ) { ?>
     <p>You cannot use the import tool until the plugin has been configured. Please go to Settings in the Movies menu to configure the plugin.</p>
 <?php } else if(empty($posts)) { ?>
@@ -158,7 +158,7 @@ foreach($search['results'] as $result) {
     </tbody>
     </table>
     <p class="submit">
-        <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Import Movie Data') ?>" />
+        <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Import Movie Data','duke-yin-helper') ?>" />
     </p>
 </form>
 <?php } ?>
