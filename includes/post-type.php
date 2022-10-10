@@ -380,33 +380,214 @@ function create_film_review_taxonomies() {
     );
 
     register_taxonomy( 'film_review_categories', array('film_review','tvshow_review'), $args );
+	
+// CAST
+	$label_cast = array(
+	'name'              => _x( 'Cast', 'taxonomy general name','duke-yin-helper'),
+	'singular_name'     => _x( 'Cast', 'taxonomy singular name','duke-yin-helper'),
+	'search_items'      => __( 'Search Cast','duke-yin-helper'),
+	'all_items'         => __( 'All Cast' ,'duke-yin-helper'),
+	'popular_items' 	=> __( 'Popular Cast','duke-yin-helper' ),
+	'parent_item' 		=> null,
+    'parent_item_colon' => null,
+	'edit_item'         => __( 'Edit Cast' ,'duke-yin-helper'),
+	'update_item'       => __( 'Update Cast' ,'duke-yin-helper'),
+	'add_new_item'      => __( 'Add New Cast' ,'duke-yin-helper'),
+	'new_item_name'     => __( 'New Cast Name' ,'duke-yin-helper'),
+	'separate_items_with_commas' => __( 'Separate cast with commas.','duke-yin-helper' ),
+	'add_or_remove_items' => __( 'Add or remove cast','duke-yin-helper' ),
+	'choose_from_most_used' => __( 'Choose from popular cast','duke-yin-helper' ),
+	'menu_name'         => __( 'Cast' ,'duke-yin-helper'),
+    );
+	
+	$arr_cast = array(
+	'hierarchical'      => false, 
+	'labels'            => $label_cast,
+	'show_ui'           => true,
+	'show_admin_column' => true,
+	'show_in_rest' => true,
+	'update_count_callback' => '_update_post_term_count',
+	'query_var'         => true,
+	'rewrite'           => array( 'slug' => 'cast' ),
+    );
+
+    register_taxonomy( 'cast', array( 'film_review','tvshow_review' ), $arr_cast );
+
+//Director
+	$label_dir = array(
+	'name'              => _x( 'Directors', 'taxonomy general name','duke-yin-helper'),
+	'singular_name'     => _x( 'Director', 'taxonomy singular name','duke-yin-helper'),
+	'search_items'      => __( 'Search director','duke-yin-helper'),
+	'all_items'         => __( 'All director' ,'duke-yin-helper'),
+	'popular_items' 	=> __( 'Popular director','duke-yin-helper' ),
+	'parent_item' 		=> null,
+    'parent_item_colon' => null,
+	'edit_item'         => __( 'Edit director' ,'duke-yin-helper'),
+	'update_item'       => __( 'Update director' ,'duke-yin-helper'),
+	'add_new_item'      => __( 'Add New Director' ,'duke-yin-helper'),
+	'new_item_name'     => __( 'New Director Name' ,'duke-yin-helper'),
+	'separate_items_with_commas' => __( 'Separate director with commas.','duke-yin-helper' ),
+	'add_or_remove_items' => __( 'Add or remove director','duke-yin-helper' ),
+	'choose_from_most_used' => __( 'Choose from popular director','duke-yin-helper' ),
+	'menu_name'         => __( 'Director' ,'duke-yin-helper'),
+    );
+	
+	$arr_dir = array(
+	'hierarchical'      => false, 
+	'labels'            => $label_dir,
+	'show_ui'           => true,
+	'show_admin_column' => true,
+	'show_in_rest' => true,
+	'update_count_callback' => '_update_post_term_count',
+	'query_var'         => true,
+	'rewrite'           => array( 'slug' => 'directors' ),
+    );
+
+    register_taxonomy( 'directors', array( 'film_review','tvshow_review' ), $arr_dir );
+	
+//Screenplay Writer
+	$label_writer = array(
+	'name'              => _x( 'Screenplay', 'taxonomy general name','duke-yin-helper'),
+	'singular_name'     => _x( 'Screenplay', 'taxonomy singular name','duke-yin-helper'),
+	'search_items'      => __( 'Search screenplay','duke-yin-helper'),
+	'all_items'         => __( 'All screenplay' ,'duke-yin-helper'),
+	'popular_items' 	=> __( 'Popular screenplay','duke-yin-helper' ),
+	'parent_item' 		=> null,
+    'parent_item_colon' => null,
+	'edit_item'         => __( 'Edit screenplay' ,'duke-yin-helper'),
+	'update_item'       => __( 'Update screenplay' ,'duke-yin-helper'),
+	'add_new_item'      => __( 'Add New Screenplay' ,'duke-yin-helper'),
+	'new_item_name'     => __( 'New Screenplay Name' ,'duke-yin-helper'),
+	'separate_items_with_commas' => __( 'Separate screenplay with commas.','duke-yin-helper' ),
+	'add_or_remove_items' => __( 'Add or remove screenplay','duke-yin-helper' ),
+	'choose_from_most_used' => __( 'Choose from popular screenplay','duke-yin-helper' ),
+	'menu_name'         => __( 'Screenplay' ,'duke-yin-helper'),
+    );
+	
+	$arr_writer = array(
+	'hierarchical'      => false, 
+	'labels'            => $label_writer,
+	'show_ui'           => true,
+	'show_admin_column' => true,
+	'show_in_rest' => true,
+	'update_count_callback' => '_update_post_term_count',
+	'query_var'         => true,
+	'rewrite'           => array( 'slug' => 'screenplay' ),
+    );
+
+    register_taxonomy( 'screenplay', array( 'film_review','tvshow_review' ), $arr_writer );
+//
 }
 add_action( 'init', 'create_film_review_taxonomies', 0 );
 
 
 function film_review_admin_menu() {
-	add_submenu_page( 'edit.php?post_type=film_review', __( 'Film reviews','duke-yin-helper'), __( 'All Film Reviews','duke-yin-helper'),'manage_options', 'edit.php?post_type=film_review', NULL );
-    add_submenu_page('edit.php?post_type=film_review',null, __( 'Film&TV categories','duke-yin-helper'), 'manage_options', 'edit-tags.php?taxonomy=film_review_categories&post_type=film_review');
+	add_submenu_page( 
+		'edit.php?post_type=film_review',
+		NULL,
+		__( 'All Film Reviews','duke-yin-helper'),
+		'manage_options',
+		'edit.php?post_type=film_review',
+		NULL,
+		0
+	);
+	
+
+
+
+
+
+	
+    add_submenu_page(
+		'edit.php?post_type=film_review',
+		NULL,
+		__( 'Film&TV categories','duke-yin-helper'),
+		'manage_options',
+		'edit-tags.php?taxonomy=film_review_categories&post_type=film_review',
+		NULL,
+		7
+	);
+	
+	add_submenu_page(
+		'edit.php?post_type=film_review',
+		null, __( 'Game categories','duke-yin-helper'),
+		'manage_options',
+		'edit-tags.php?taxonomy=game_review_categories&post_type=film_review',
+		null,
+		8
+	);
+	
+	add_submenu_page(
+		'edit.php?post_type=film_review',
+		null,
+		__( 'Book categories', 'duke-yin-helper'),
+		'manage_options',
+		'edit-tags.php?taxonomy=book_review_categories&post_type=film_review',
+		null,
+		9
+	);
+	
+	add_submenu_page(
+		'edit.php?post_type=film_review',
+		null, __( 'Product categories','duke-yin-helper'),
+		'manage_options',
+		'edit-tags.php?taxonomy=product_review_categories&post_type=film_review',
+		null,
+		10
+	);
+	
+	add_submenu_page(
+		'edit.php?post_type=film_review',
+		NULL,
+		__( 'Cast','duke-yin-helper'),
+		'manage_options',
+		'edit-tags.php?taxonomy=cast&post_type=film_review',
+		NULL,
+		11
+	);
+
+	add_submenu_page(
+		'edit.php?post_type=film_review',
+		NULL,
+		__( 'Directors','duke-yin-helper'),
+		'manage_options',
+		'edit-tags.php?taxonomy=directors&post_type=film_review',
+		NULL,
+		12
+	);
+	
+	add_submenu_page(
+		'edit.php?post_type=film_review',
+		NULL,
+		__( 'Screenplay','duke-yin-helper'),
+		'manage_options',
+		'edit-tags.php?taxonomy=screenplay&post_type=film_review',
+		NULL,
+		13
+	);
+	
 }
 add_action('admin_menu', 'film_review_admin_menu'); 
 
-/** Reviews - Books */
-	function book_review_register() {
+
+
+/** Reviews - TVshows */
+	function tvshow_review_register() {
 		  $labels = array(
-		    'name' => _x('Book Reviews', 'post type general name','duke-yin-helper'),
-		    'singular_name' => _x('Book Review Post', 'post type singular name','duke-yin-helper'),
-			'all_items'=> _x('All book reviews', 'String for the submenu','duke-yin-helper'),
+		    'name' => _x('TVshow Reviews', 'post type general name','duke-yin-helper'),
+		    'singular_name' => _x('TVshow Review Post', 'post type singular name','duke-yin-helper'),
+			'all_items'=> _x('All TVshow reviews', 'String for the submenu','duke-yin-helper'),
 		    'add_new' => _x('Add New', 'review','duke-yin-helper'),
-		    'add_new_item' => __('Add book review','duke-yin-helper'),
-		    'edit_item' => __('Edit book review','duke-yin-helper'),
-		    'new_item' => __('New book review','duke-yin-helper'),
-		    'view_item' => __('View this book review','duke-yin-helper'),
+		    'add_new_item' => __('Add TVshow review','duke-yin-helper'),
+		    'edit_item' => __('Edit TVshow review','duke-yin-helper'),
+		    'new_item' => __('New TVshow review','duke-yin-helper'),
+		    'view_item' => __('View this TVshow review','duke-yin-helper'),
 		    'search_items' => __('Search for','duke-yin-helper'),
-		    'not_found' =>  __('No book review found','duke-yin-helper'),
+		    'not_found' =>  __('No TVshow review found','duke-yin-helper'),
 		    'not_found_in_trash' => __('Not found in trash','duke-yin-helper'), 
 		    'parent_item_colon' => ''
 		  );
-		$slugRule = 'book_review';
+		$slugRule = 'tvshow_review';
     	$args = array(
         	'labels' => $labels,
         	'public' => true,
@@ -415,53 +596,19 @@ add_action('admin_menu', 'film_review_admin_menu');
         	'capability_type' => 'post',
         	'hierarchical' => false,
         	'rewrite' => true,
-			'rewrite' => array('slug' => 'book_review','with_front' => true),
+			'rewrite' => array('slug' => 'tvshow_review','with_front' => true),
         	'query_var' => true,
 			'show_in_menu' => 'edit.php?post_type=film_review',
+			// 'menu_position' => 40,
         	'show_in_nav_menus'=> false,
-        	// 'menu_position' => 7,
-			'menu_icon' => 'dashicons-book',
+			'menu_icon' => 'dashicons-cover-image',
         	'supports' => array('title','author','thumbnail','excerpt','editor','comments','custom-fields'),
 			'taxonomies' => array('post_tag')
         );
-    	register_post_type( 'book_review' , $args );
+    	register_post_type( 'tvshow_review' , $args );
 	}
-add_action('init', 'book_review_register');
+add_action('init', 'tvshow_review_register');
 
-function create_book_review_taxonomies() {
-    $labels = array(
-        'name'              => _x( 'Book review categories', 'taxonomy general name','duke-yin-helper'),
-        'singular_name'     => _x( 'Book review category', 'taxonomy singular name','duke-yin-helper'),
-        'search_items'      => __( 'Search book review categories','duke-yin-helper'),
-        'all_items'         => __( 'All book review categories' ,'duke-yin-helper'),
-        'parent_item'       => __( 'Parent book review category' ,'duke-yin-helper'),
-        'parent_item_colon' => __( 'Parent book review category:' ,'duke-yin-helper'),
-        'edit_item'         => __( 'Edit book review category' ,'duke-yin-helper'),
-        'update_item'       => __( 'Update book review category' ,'duke-yin-helper'),
-        'add_new_item'      => __( 'Add New book review category' ,'duke-yin-helper'),
-        'new_item_name'     => __( 'New book review category name' ,'duke-yin-helper'),
-        'menu_name'         => __( 'Book review categories' ,'duke-yin-helper'),
-    );
-
-    $args = array(
-        'hierarchical'      => true, // Set this to 'false' for non-hierarchical taxonomy (like tags)
-        'labels'            => $labels,
-        'show_ui'           => true,
-        'show_tagcloud'		=> false,
-        'show_admin_column' => true,
-        'query_var'         => true,
-        'meta_box_cb'		=> true,
-        'rewrite'           => array( 'slug' => 'book_review_categories' ),
-    );
-
-    register_taxonomy( 'book_review_categories', array('book_review'), $args );
-}
-add_action( 'init', 'create_book_review_taxonomies', 0 );
-
-function book_review_admin_menu() { 
-    add_submenu_page('edit.php?post_type=film_review', null, __( 'Book categories','duke-yin-helper'), 'manage_options', 'edit-tags.php?taxonomy=book_review_categories&post_type=film_review');
-}
-add_action('admin_menu', 'book_review_admin_menu'); 
 
 /** Reviews - Games */
 	function game_review_register() {
@@ -491,6 +638,7 @@ add_action('admin_menu', 'book_review_admin_menu');
 			'rewrite' => array('slug' => 'game_review','with_front' => true),
         	'query_var' => true,
 			'show_in_menu' => 'edit.php?post_type=film_review',
+			// 'menu_position' => 80,
         	'show_in_nav_menus'=> false,
 			'menu_icon' => 'dashicons-games',
         	'supports' => array('title','author','thumbnail','excerpt','editor','comments','custom-fields'),
@@ -531,27 +679,29 @@ function create_game_review_taxonomies() {
 add_action( 'init', 'create_game_review_taxonomies', 0 );
 
 function game_review_admin_menu() { 
-    add_submenu_page('edit.php?post_type=film_review', null, __( 'Game categories','duke-yin-helper'), 'manage_options', 'edit-tags.php?taxonomy=game_review_categories&post_type=film_review');
+
 }
 add_action('admin_menu', 'game_review_admin_menu'); 
 
-/** Reviews - TVshows */
-	function tvshow_review_register() {
+
+
+/** Reviews - Books */
+	function book_review_register() {
 		  $labels = array(
-		    'name' => _x('TVshow Reviews', 'post type general name','duke-yin-helper'),
-		    'singular_name' => _x('TVshow Review Post', 'post type singular name','duke-yin-helper'),
-			'all_items'=> _x('All TVshow reviews', 'String for the submenu','duke-yin-helper'),
+		    'name' => _x('Book Reviews', 'post type general name','duke-yin-helper'),
+		    'singular_name' => _x('Book Review Post', 'post type singular name','duke-yin-helper'),
+			'all_items'=> _x('All book reviews', 'String for the submenu','duke-yin-helper'),
 		    'add_new' => _x('Add New', 'review','duke-yin-helper'),
-		    'add_new_item' => __('Add TVshow review','duke-yin-helper'),
-		    'edit_item' => __('Edit TVshow review','duke-yin-helper'),
-		    'new_item' => __('New TVshow review','duke-yin-helper'),
-		    'view_item' => __('View this TVshow review','duke-yin-helper'),
+		    'add_new_item' => __('Add book review','duke-yin-helper'),
+		    'edit_item' => __('Edit book review','duke-yin-helper'),
+		    'new_item' => __('New book review','duke-yin-helper'),
+		    'view_item' => __('View this book review','duke-yin-helper'),
 		    'search_items' => __('Search for','duke-yin-helper'),
-		    'not_found' =>  __('No TVshow review found','duke-yin-helper'),
+		    'not_found' =>  __('No book review found','duke-yin-helper'),
 		    'not_found_in_trash' => __('Not found in trash','duke-yin-helper'), 
 		    'parent_item_colon' => ''
 		  );
-		$slugRule = 'tvshow_review';
+		$slugRule = 'book_review';
     	$args = array(
         	'labels' => $labels,
         	'public' => true,
@@ -560,18 +710,53 @@ add_action('admin_menu', 'game_review_admin_menu');
         	'capability_type' => 'post',
         	'hierarchical' => false,
         	'rewrite' => true,
-			'rewrite' => array('slug' => 'tvshow_review','with_front' => true),
+			'rewrite' => array('slug' => 'book_review','with_front' => true),
         	'query_var' => true,
 			'show_in_menu' => 'edit.php?post_type=film_review',
         	'show_in_nav_menus'=> false,
-			'menu_icon' => 'dashicons-cover-image',
+        	'menu_position' => 20,
+			'menu_icon' => 'dashicons-book',
         	'supports' => array('title','author','thumbnail','excerpt','editor','comments','custom-fields'),
 			'taxonomies' => array('post_tag')
         );
-    	register_post_type( 'tvshow_review' , $args );
+    	register_post_type( 'book_review' , $args );
 	}
-add_action('init', 'tvshow_review_register');
+add_action('init', 'book_review_register');
 
+function create_book_review_taxonomies() {
+    $labels = array(
+        'name'              => _x( 'Book review categories', 'taxonomy general name','duke-yin-helper'),
+        'singular_name'     => _x( 'Book review category', 'taxonomy singular name','duke-yin-helper'),
+        'search_items'      => __( 'Search book review categories','duke-yin-helper'),
+        'all_items'         => __( 'All book review categories' ,'duke-yin-helper'),
+        'parent_item'       => __( 'Parent book review category' ,'duke-yin-helper'),
+        'parent_item_colon' => __( 'Parent book review category:' ,'duke-yin-helper'),
+        'edit_item'         => __( 'Edit book review category' ,'duke-yin-helper'),
+        'update_item'       => __( 'Update book review category' ,'duke-yin-helper'),
+        'add_new_item'      => __( 'Add New book review category' ,'duke-yin-helper'),
+        'new_item_name'     => __( 'New book review category name' ,'duke-yin-helper'),
+        'menu_name'         => __( 'Book review categories' ,'duke-yin-helper'),
+    );
+
+    $args = array(
+        'hierarchical'      => true, // Set this to 'false' for non-hierarchical taxonomy (like tags)
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_tagcloud'		=> false,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'meta_box_cb'		=> true,
+        'rewrite'           => array( 'slug' => 'book_review_categories' ),
+    );
+
+    register_taxonomy( 'book_review_categories', array('book_review'), $args );
+}
+add_action( 'init', 'create_book_review_taxonomies', 0 );
+
+function book_review_admin_menu() { 
+
+}
+add_action('admin_menu', 'book_review_admin_menu'); 
 
 /** Reviews - Product */
 	function product_review_register() {
@@ -601,6 +786,7 @@ add_action('init', 'tvshow_review_register');
 			'rewrite' => array('slug' => 'product_review','with_front' => true),
         	'query_var' => true,
 			'show_in_menu' => 'edit.php?post_type=film_review',
+			// 'menu_position' => 50,
         	'show_in_nav_menus'=> false,
 			'menu_icon' => 'dashicons-products',
         	'supports' => array('title','author','thumbnail','excerpt','editor','comments','custom-fields'),
@@ -641,7 +827,7 @@ function create_product_review_taxonomies() {
 add_action( 'init', 'create_product_review_taxonomies', 0 );
 
 function product_review_admin_menu() { 
-    add_submenu_page('edit.php?post_type=film_review', null, __( 'Product categories','duke-yin-helper'), 'manage_options', 'edit-tags.php?taxonomy=product_review_categories&post_type=film_review');
+
 }
 add_action('admin_menu', 'product_review_admin_menu'); 
 

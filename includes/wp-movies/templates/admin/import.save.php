@@ -52,27 +52,52 @@ if( isset($_POST['posts']) ) { ?>
         $json = $movie->json($copy_images=true);
         add_or_update_post_meta( $post_id, '_zmovies_json', $json );
         $date = strtotime($movie->date);
-        add_or_update_post_meta( $post_id, '_r_rdate', $date );
-
-        $title = $movie->title;
-        $slug = sanitize_title($title);
-        wp_update_post(array ('ID'=> $post_id,'post_title' => $title, 'post_name' => $slug));
+        update_post_meta( $post_id, '_r_rdate', $date );
 
         $original_title = $movie->original_title;
-        add_or_update_post_meta( $post_id, '_r_f_original_title', $original_title );
+        $slug = sanitize_title($original_title);
+        wp_update_post(array ('ID'=> $post_id,'post_title' => $original_title, 'post_name' => $slug));
+        if($original_title !== $movie->title){
+            update_post_meta( $post_id, '_r_f_original_title', $original_title );
+        }
+
+        $title = $movie->title;
+        update_post_meta( $post_id, '_headline', $title );
 
         $year = $movie->year;
-        add_or_update_post_meta( $post_id, '_r_f_year', $year );
+        update_post_meta( $post_id, '_r_f_year', $year );
 
         $imdbid = $movie-> imdb_id;
-        add_or_update_post_meta( $post_id, '_r_f_imdb_id', $imdbid );
+        update_post_meta( $post_id, '_r_f_imdb_id', $imdbid );
 
         $language = $movie-> languages[0];
-        add_or_update_post_meta( $post_id, '_r_f_language', $language );
+        update_post_meta( $post_id, '_r_f_language', $language );
+
+        $runtime = $movie-> runtime;
+        update_post_meta($post_id,'_r_f_runtime',$runtime);
 
         $overview = $movie-> overview;
-        add_or_update_post_meta( $post_id, '_r_f_overview', $overview );
+        update_post_meta( $post_id, '_r_f_overview', $overview );
         
+        $directors = Movies::$TMDB->movieDirector($tmdb_id);
+        if($directors){
+            $directorp = '';
+            foreach($directors as $director){
+                $directorp .= $director.' / ';
+            }
+            update_post_meta( $post_id, '_r_f_dir', $directorp );
+        }
+
+        $writers = Movies::$TMDB->movieWriter($tmdb_id);
+        if($writers){
+            $writerp = '';
+            foreach($writers as $writer){
+                $writerp .= $writer.' / ';
+            }
+            update_post_meta( $post_id, '_r_f_writer', $writerp );
+        }
+
+
 
         $genres = $movie->genres;
         foreach($genres as $genre){

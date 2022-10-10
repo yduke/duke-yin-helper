@@ -90,7 +90,7 @@ class TMDBv3{
 	* @param string apikey
 	* @param string language default is english
 	*/
-		public function  __construct($apikey,$lang='en') {
+		public function  __construct($apikey,$lang='zh-CN') {
 			//Assign Api Key
 			$this->setApikey($apikey);
 		
@@ -127,7 +127,7 @@ class TMDBv3{
 	 * @param string $lang
 	 * @return void
 	 **/
-		public function setLang($lang="en") {
+		public function setLang($lang="zh-CN") {
 			$this->_lang = $lang;
 		}//end of setLang
 
@@ -163,11 +163,43 @@ class TMDBv3{
 	*/
 		public function movieTitles($idMovie) {
 			$titleTmp = $this->movieInfo($idMovie,"alternative_titles",false);
-			foreach ($titleTmp['titles'] as $titleArr){
+			foreach (array_slice($titleTmp['titles'],0,5) as $titleArr){
 				$title[]=$titleArr['title']." - ".$titleArr['iso_3166_1'];
 			}
 			return $title;
 		}//end of movieTitles
+
+	/**
+	* movie director
+	* http://api.themoviedb.org/3/movie/$id/credits
+	* @param array  director
+	*/
+		public function movieDirector($idMovie) {
+			$directorTmp = $this->movieInfo($idMovie,"credits",false);
+			foreach($directorTmp['crew'] as $crew ){
+				if(array_search('Director',$crew,true)){
+					$director  = [];
+					array_push($director ,$crew['name']);
+				}
+			}
+			return $director;
+		}//end of director
+
+	/**
+	* movie writer
+	* http://api.themoviedb.org/3/movie/$id/credits
+	* @param array  writer
+	*/
+		public function movieWriter($idMovie) {
+			$writerTmp = $this->movieInfo($idMovie,"credits",false);
+			$writer  = [];
+			foreach($writerTmp['crew'] as $crew ){
+				if( $crew['job']=='Writer' ||  $crew['job']=='Screenplay' ){
+					array_push($writer ,$crew['name']);
+				}
+			}
+			return $writer;
+		}//end of writer
 
 	/**
 	* movie translations
