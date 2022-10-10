@@ -54,6 +54,26 @@ if( isset($_POST['posts']) ) { ?>
         $date = strtotime($movie->date);
         add_or_update_post_meta( $post_id, '_r_rdate', $date );
 
+        $title = $movie->title;
+        $slug = sanitize_title($title);
+        wp_update_post(array ('ID'=> $post_id,'post_title' => $title, 'post_name' => $slug));
+
+        $original_title = $movie->original_title;
+        add_or_update_post_meta( $post_id, '_r_f_original_title', $original_title );
+
+        $year = $movie->year;
+        add_or_update_post_meta( $post_id, '_r_f_year', $year );
+
+        $imdbid = $movie-> imdb_id;
+        add_or_update_post_meta( $post_id, '_r_f_imdb_id', $imdbid );
+
+        $language = $movie-> languages[0];
+        add_or_update_post_meta( $post_id, '_r_f_language', $language );
+
+        $overview = $movie-> overview;
+        add_or_update_post_meta( $post_id, '_r_f_overview', $overview );
+        
+
         $genres = $movie->genres;
         foreach($genres as $genre){
             $term_id = term_exists( $genre, 'film_review_categories' );

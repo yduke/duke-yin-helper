@@ -93,6 +93,7 @@ class Movies {
                 'backdrop_path' => $result['backdrop_path'],
                 'poster_path' => $result['poster_path'],
                 'title' => $result['title'],
+                'original_title' => $result['original_title'],
                 'genres' => array(),
                 'imdb_id' => false,
                 'runtime' => false,
@@ -105,7 +106,7 @@ class Movies {
                         $data['genres'][] = $genre['name'];
                     }
                 }
-                if(isset($result['spoken_languages'])) {
+            if(isset($result['spoken_languages'])) {
                     foreach($result['spoken_languages'] as $language) {
                         $data['languages'][] = $language['name'];
                     }
