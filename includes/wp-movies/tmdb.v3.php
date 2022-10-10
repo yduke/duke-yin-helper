@@ -99,7 +99,9 @@ class TMDBv3{
 
 			//Get Configuration
 			$conf = $this->getConfig();
-			if (empty($conf)){echo "Unable to read configuration, verify that the API key is valid";exit;}
+			if (empty($conf) && is_admin() ){
+				echo '<div class="notice notice-warning is-dismissible"><p>' . __('<h4>Warning</h4>Unable to read configuration, verify that the API key is valid', 'duke-yin-helper') . '</p></div>';
+			}
 
 			//set Images URL contain in config
 			$this->setImageURL($conf);

@@ -24,7 +24,7 @@ class Movies_Admin {
 
 	public static function display_notices() {
 	    $context = array(
-	        'notice' => 'The Movies plugin has not been configured.'
+	        'notice' => __('The Movies plugin has not been configured.','duke-yin-helper')
 	    );
 	    Movies::render_template('admin/notice.php', $context);
 	}

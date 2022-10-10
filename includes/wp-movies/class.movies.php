@@ -83,11 +83,13 @@ class Movies {
 	            $release_year = false;
 	        } else {
 	            $release_year = substr($result['release_date'], 0, 4);
+	            $release_date = $result['release_date'];
 	        }
 	    }
 	    $data = array(
                 'tmdb_id' => $result['id'],
                 'year' => $release_year,
+                'date' => $release_date,
                 'backdrop_path' => $result['backdrop_path'],
                 'poster_path' => $result['poster_path'],
                 'title' => $result['title'],

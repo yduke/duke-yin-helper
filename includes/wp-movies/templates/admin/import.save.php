@@ -42,6 +42,7 @@ if( isset($_POST['posts']) ) { ?>
         $parts = explode("|", $post);
         $post_id = $parts[0];
         $tmdb_id = $parts[1];
+
         
         // Store TMDb ID
         add_or_update_post_meta( $post_id, 'tmdb_id', $tmdb_id );
@@ -50,7 +51,28 @@ if( isset($_POST['posts']) ) { ?>
         $movie = Movies::TMDb($tmdb_id);
         $json = $movie->json($copy_images=true);
         add_or_update_post_meta( $post_id, '_zmovies_json', $json );
-        
+        $date = strtotime($movie->date);
+        add_or_update_post_meta( $post_id, '_r_rdate', $date );
+
+        $genres = $movie->genres;
+        foreach($genres as $genre){
+            $term_id = term_exists( $genre, 'film_review_categories' );
+            if($term_id){
+                wp_set_post_terms( $post_id, array( $term_id['term_id'] ), 'film_review_categories', true );
+            }else{
+                wp_insert_term(
+                $genre,
+                'film_review_categories',
+                array(
+                    'description' => '',
+                    'slug'        => $genre,
+                    'parent'      => '',
+                ));
+                $term_id = term_exists( $genre, 'film_review_categories' );
+                wp_set_post_terms( $post_id, array( $term_id['term_id'] ), 'film_review_categories', true );
+            }
+        }
+
         // Fetch movie data back from WP
         $movie = new Movie( $post_id );
         
