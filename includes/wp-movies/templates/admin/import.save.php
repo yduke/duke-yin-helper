@@ -79,25 +79,67 @@ if( isset($_POST['posts']) ) { ?>
         $overview = $movie-> overview;
         update_post_meta( $post_id, '_r_f_overview', $overview );
         
-        $directors = Movies::$TMDB->movieDirector($tmdb_id);
-        if($directors){
-            $directorp = '';
-            foreach($directors as $director){
-                $directorp .= $director.' / ';
-            }
-            update_post_meta( $post_id, '_r_f_dir', $directorp );
-        }
 
+//Directors
+$directors = Movies::$TMDB->movieDirector($tmdb_id);
+foreach($directors as $director){
+    $term_id = term_exists( $director, 'directors' );
+    if($term_id){
+        wp_set_object_terms( $post_id, $director, 'directors', true );
+    }else{
+        wp_insert_term(
+            $director,
+        'directors',
+        array(
+            'description' => '',
+            'slug'        => $director,
+            'parent'      => '',
+        ));
+        $term_id = term_exists( $director, 'directors' );
+        wp_set_object_terms( $post_id, $director, 'directors', true );
+    }
+}
+
+
+//Screenplay
         $writers = Movies::$TMDB->movieWriter($tmdb_id);
-        if($writers){
-            $writerp = '';
-            foreach($writers as $writer){
-                $writerp .= $writer.' / ';
+        foreach($writers as $writer){
+            $term_id = term_exists( $writer, 'screenplay' );
+            if($term_id){
+                wp_set_object_terms( $post_id, $writer, 'screenplay', true );
+            }else{
+                wp_insert_term(
+                    $writer,
+                'screenplay',
+                array(
+                    'description' => '',
+                    'slug'        => $writer,
+                    'parent'      => '',
+                ));
+                $term_id = term_exists( $writer, 'screenplay' );
+                wp_set_object_terms( $post_id, $writer, 'screenplay', true );
             }
-            update_post_meta( $post_id, '_r_f_writer', $writerp );
         }
 
-
+//CAST
+        $cast = Movies::$TMDB->movieCast($tmdb_id);
+        foreach($cast as $cas){
+            $term_id = term_exists( $cas, 'cast' );
+            if($term_id){
+                wp_set_object_terms( $post_id, $cas, 'cast', true );
+            }else{
+                wp_insert_term(
+                    $cas,
+                'cast',
+                array(
+                    'description' => '',
+                    'slug'        => $cas,
+                    'parent'      => '',
+                ));
+                $term_id = term_exists( $cas, 'cast' );
+                wp_set_object_terms( $post_id, $cas, 'cast', true );
+            }
+        }
 
         $genres = $movie->genres;
         foreach($genres as $genre){
@@ -131,11 +173,14 @@ if( isset($_POST['posts']) ) { ?>
             if($movie->poster_path) {
                 $attach_id = attach_media_to_post( $post_id, $movie->poster_path, is_featured_image('poster', $movie), $movie->title );
                 $attach_ids[] = $attach_id;
+                update_post_meta( $post_id, '_r_f_poster',  $movie->poster_path );
             }
             add_or_update_post_meta( $post_id, '_zmovies_attach_ids', implode(",", $attach_ids) );
         }
 
     }
+
+    
 
     $data_saved = true;
 

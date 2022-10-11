@@ -45,24 +45,28 @@ if ( $operation_error ) { ?>
 <div class="wrap">
     <h2><?php _e( 'Movies Plugin Tools', 'duke-yin-helper' ) ?></h2>
     <form method="post" action="" onsubmit="if(!confirm('Are you sure you want to do this?')){ return false; }">
-        <p>
-            <?php _e("Operation:","duke-yin-helper"); ?> 
-            <select name="operation">
+    <table class="form-table" role="presentation">
+<tbody>
+        <tr>
+            <th><?php _e("Operation:","duke-yin-helper"); ?></th>
+            <td><select name="operation">
                 <option selected></option>
-                <option value="clear_for_post_id">Clear movie data for a specific post ID</option>
-                <option value="clear_for_tmdb_id">Clear movie data for a specific TMDb ID</option>
-                <option value="clear_all_movie_data">Clear all movie data for all posts</option>
-                <option value="restore_defaults">Restore plugin settings to default (except for TMDB API key)</option>
-            </select>
-        </p>
-        <p>
-            <?php _e("ID:"); ?> 
-            <input type="text" name="val" value="" size="20"><br />
-            <small>enter an ID when applicable; if not, leave blank</small>
-        </p>
-        <hr />
+                <option value="clear_for_post_id"><?php _e('Clear movie data for a specific post ID','duke-yin-helper') ?></option>
+                <option value="clear_for_tmdb_id"><?php _e('Clear movie data for a specific TMDb ID','duke-yin-helper') ?></option>
+                <option value="clear_all_movie_data"><?php _e('Clear all movie data for all posts','duke-yin-helper') ?></option>
+                <option value="restore_defaults"><?php _e('Restore plugin settings to default (except for TMDB API key)','duke-yin-helper') ?></option>
+            </select></td>
+</tr>
+        <tr>
+        <th><?php _e("ID:"); ?> </th>
+        <td><input type="text" name="val" value="" size="20"><br />
+            <small><?php _e('enter an ID when applicable; if not, leave blank','duke-yin-helper') ?></small>
+</td>
+</tr>
+</tbody>
+    </table>
         <p class="submit">
-            <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Finish',"duke-yin-helper") ?>" />
+            <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Proceed',"duke-yin-helper") ?>" />
         </p>
     </form>
 </div>

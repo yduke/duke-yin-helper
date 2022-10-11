@@ -128,7 +128,7 @@ foreach($search['results'] as $result) {
                     <option
                         value="<?php echo $post->ID ?>|<?php echo $movie->tmdb_id ?>"
                         <?php if($movie->poster_path) { ?>
-                        data-poster="<?php echo Movies::$TMDB->getImageURL('w300') . $movie->poster_path ?>"
+                        data-poster="<?php echo Movies::$TMDB->getImageURL('w500') . $movie->poster_path ?>"
                         <?php } ?>
                         <?php if($movie->backdrop_path) { ?>
                         data-backdrop="<?php echo Movies::$TMDB->getImageURL() . $movie->backdrop_path ?>"

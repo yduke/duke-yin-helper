@@ -185,7 +185,7 @@ class Movies {
             );
             return get_posts( $args );
 	}
-
+    
     public static $settings = array(
         'zmovies_tmdb_key' => array(
             'default' => '',
@@ -193,14 +193,14 @@ class Movies {
             'description' => 'Your TMDb API key'
         ),
         'zmovies_poster_width' => array(
-            'default' => 'w300',
+            'default' => 'w500',
             'label' => 'Default poster width',
-            'description' => 'e.g. `original` or `w300`. Must be supported by TMDb.'
+            'description' => 'e.g. `original` `w780` `w500` `w342` `w185`. Must be supported by TMDb.'
         ),
         'zmovies_backdrop_width' => array(
-            'default' => 'original',
+            'default' => 'w1280',
             'label' => 'Default backdrop width',
-            'description' => 'e.g. `original` or `w300`. Must be supported by TMDb.'
+            'description' => 'e.g. `original` `w1280` `w780` `w300`. Must be supported by TMDb.'
         ),
         'zmovies_post_type' => array(
             'default' => '',

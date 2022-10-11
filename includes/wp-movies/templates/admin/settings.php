@@ -34,16 +34,18 @@ if( $settings_updated ) {
 <div class="wrap">
     <h2><?php _e( 'Movies Plugin Settings', 'duke-yin-helper' ) ?></h2>
     <form method="post" action="">
-<?php foreach($opts as $opt_name => $opt) { ?>
-        <p>
-            <?php _e($opt['label'] . ":", $opt_name ); ?> 
-            <input type="text" name="<?php echo $opt_name; ?>" value="<?php echo $opt['value']; ?>" size="35"><br />
-            <small><?php echo $opt['description'] ?></small>
-        </p>
-        <hr />
-<?php } ?>
+        <table class="form-table" role="presentation">
+            <?php foreach($opts as $opt_name => $opt) { ?>
+                    <tr>
+                    <th> <?php _e($opt['label'] . ":", $opt_name ); ?> </th>
+                    <td><input type="text" name="<?php echo $opt_name; ?>" value="<?php echo $opt['value']; ?>" size="35"><br />
+                        <small><?php echo $opt['description'] ?></small></td>
+            </tr>
+            <?php } ?>
+        </table>
         <p class="submit">
             <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes','duke-yin-helper') ?>" />
         </p>
+
     </form>
 </div>

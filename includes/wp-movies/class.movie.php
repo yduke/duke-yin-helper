@@ -59,7 +59,7 @@ class Movie {
             'imdb_id' => $this->imdb_id,
             'runtime' => $this->runtime,
             'languages' => $this->languages,
-            'overview' => $this->overview
+            // 'overview' => $this->overview
         );
         if($copy_images) {
             $data['backdrop_path'] = self::backdrop();

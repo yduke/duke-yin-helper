@@ -258,9 +258,10 @@ class TMDBv3{
 		{
 			$castingTmp = $this->movieInfo($idMovie,"casts",false);
 			foreach ($castingTmp['cast'] as $castArr){
-				$casting[]=$castArr['name']." - ".$castArr['character'];
+				$casting[]=$castArr['name'];
+				// $character[]=$castArr['character'];
 			}
-			return $casting;
+			return array_slice($casting,0,10);
 		}//end of movieCast
 
 	/**

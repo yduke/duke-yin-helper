@@ -11,7 +11,7 @@ class Movies_Admin {
 	}
 
 	public static function menu() {
-        add_menu_page('Movies Import Tool', 'Movies', 'publish_posts', 'movies', array( 'Movies_Admin', 'import_page' ) );
+        add_menu_page('Movies Import Tool', 'Movies', 'publish_posts', 'movies', array( 'Movies_Admin', 'import_page' ),'dashicons-editor-video',9 );
         add_submenu_page('movies', 'Movies Import Tool', 'Import', 'publish_posts', 'movies', array( 'Movies_Admin', 'import_page' ) );
 	    $hook_suffix = add_submenu_page('movies', 'Movies Plugin Configuration', 'Settings', 'manage_options', 'movies-settings', array( 'Movies_Admin', 'settings_page' ) );
         add_action( 'load-' . $hook_suffix , array( 'Movies_Admin', 'override_display_notices' ) );
