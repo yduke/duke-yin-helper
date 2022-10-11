@@ -65,7 +65,6 @@ Titulos Alternativos 	http://api.themoviedb.org/3/movie/11/alternative_titles
 
 */
 
-
 ###########################
 class TMDBv3{
      #<CONSTANTS>
@@ -95,7 +94,7 @@ class TMDBv3{
 			$this->setApikey($apikey);
 		
 			//Setting Language
-			$this->setLang($lang);
+			$this->setLang(get_option('zmovies_language'));
 
 			//Get Configuration
 			$conf = $this->getConfig();

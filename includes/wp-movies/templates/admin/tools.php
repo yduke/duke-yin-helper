@@ -26,7 +26,10 @@ if( isset($_POST['operation']) ) {
     } else if( $_POST['operation'] == 'clear_all_movie_data' ) {
         Movies::clear_all_data();
         $operation_completed = true;
-    } else if( $_POST['operation'] == 'restore_defaults' ) {
+    } else if( $_POST['operation'] == 'clear_zero' ) {
+        Movies::clear_zero();
+        $operation_completed = true;
+    }else if( $_POST['operation'] == 'restore_defaults' ) {
         Movies::restore_defaults();
         $operation_completed = true;
     }
@@ -53,6 +56,7 @@ if ( $operation_error ) { ?>
                 <option selected></option>
                 <option value="clear_for_post_id"><?php _e('Clear movie data for a specific post ID','duke-yin-helper') ?></option>
                 <option value="clear_for_tmdb_id"><?php _e('Clear movie data for a specific TMDb ID','duke-yin-helper') ?></option>
+                <option value="clear_zero"><?php _e('Clear cast crew languages and categories with zero posts.','duke-yin-helper') ?></option>
                 <option value="clear_all_movie_data"><?php _e('Clear all movie data for all posts','duke-yin-helper') ?></option>
                 <option value="restore_defaults"><?php _e('Restore plugin settings to default (except for TMDB API key)','duke-yin-helper') ?></option>
             </select></td>

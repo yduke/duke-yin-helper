@@ -11,11 +11,11 @@ class Movies_Admin {
 	}
 
 	public static function menu() {
-        add_menu_page('Movies Import Tool', 'Movies', 'publish_posts', 'movies', array( 'Movies_Admin', 'import_page' ),'dashicons-editor-video',9 );
-        add_submenu_page('movies', 'Movies Import Tool', 'Import', 'publish_posts', 'movies', array( 'Movies_Admin', 'import_page' ) );
-	    $hook_suffix = add_submenu_page('movies', 'Movies Plugin Configuration', 'Settings', 'manage_options', 'movies-settings', array( 'Movies_Admin', 'settings_page' ) );
+        add_menu_page(__('Movies Import Tool','duke-yin-helper'), __('Movies Tool','duke-yin-helper') , 'publish_posts', 'movies', array( 'Movies_Admin', 'import_page' ),'dashicons-editor-video',9 );
+        add_submenu_page('movies', 'Movies Import Tool',__( 'Import','duke-yin-helper'), 'publish_posts', 'movies', array( 'Movies_Admin', 'import_page' ) );
+	    $hook_suffix = add_submenu_page('movies', 'Movies Plugin Configuration', __('Settings','duke-yin-helper'), 'manage_options', 'movies-settings', array( 'Movies_Admin', 'settings_page' ) );
         add_action( 'load-' . $hook_suffix , array( 'Movies_Admin', 'override_display_notices' ) );
-        add_submenu_page('movies', 'Movies Plugin Tools', 'Tools', 'publish_posts', 'movies-tools', array( 'Movies_Admin', 'tools_page' ) );
+        add_submenu_page('movies', 'Movies Plugin Tools', __('Tools','duke-yin-helper'), 'publish_posts', 'movies-tools', array( 'Movies_Admin', 'tools_page' ) );
 	}
 
 	public static function override_display_notices() {

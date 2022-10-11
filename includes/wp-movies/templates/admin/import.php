@@ -43,9 +43,9 @@ if( $posts_without_movies ) {
 <div class="wrap">
     <h2><?php echo _e( 'Movie Import Tool', 'duke-yin-helper' ) ?></h2>
 <?php if( !Movies::is_configured() ) { ?>
-    <p>You cannot use the import tool until the plugin has been configured. Please go to Settings in the Movies menu to configure the plugin.</p>
+    <p><?php _e('You cannot use the import tool until the plugin has been configured. Please go to Settings in the Movies Tool menu to configure the plugin.','duke-yin-helper') ?></p>
 <?php } else if(empty($posts)) { ?>
-    <p>There were no events found without movie data attached to them.</p>
+    <p><?php _e('There were no posts found without movie data attached to them.','duke-yin-helper') ?></p>
 <?php } else { ?>
 <br />
 <style>

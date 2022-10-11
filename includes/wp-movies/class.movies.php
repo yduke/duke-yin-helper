@@ -41,16 +41,50 @@ class Movies {
 	    }
 	    return true;
 	}
-	
+
+    public static function webpImage($source, $quality = 75, $removeOld = false)
+    {
+        $dir = pathinfo($source, PATHINFO_DIRNAME);
+        $name = pathinfo($source, PATHINFO_FILENAME);
+        $destination = $dir . DIRECTORY_SEPARATOR . $name . '.webp';
+        $info = getimagesize($source);
+        $isAlpha = false;
+        if ($info['mime'] == 'image/jpeg')
+            $image = imagecreatefromjpeg($source);
+        elseif ($isAlpha = $info['mime'] == 'image/gif') {
+            $image = imagecreatefromgif($source);
+        } elseif ($isAlpha = $info['mime'] == 'image/png') {
+            $image = imagecreatefrompng($source);
+        } else {
+            return $source;
+        }
+        if ($isAlpha) {
+            imagepalettetotruecolor($image);
+            imagealphablending($image, true);
+            imagesavealpha($image, true);
+        }
+        imagewebp($image, $destination, $quality);
+
+        if ($removeOld)
+            unlink($source);
+
+        return $destination;
+    }
+
 	public static function tmdb_image( $file_path, &$size='original', $force_copy=false ) {
 	    if($size == 'poster') { $size = Movie::POSTER_WIDTH; }
 	    if($size == 'backdrop') { $size = Movie::BACKDROP_WIDTH; }
         $wp_upload_dir = wp_upload_dir();
+        
         $file_destination = '/tmdb/' . $size . $file_path;
         if( !file_exists($wp_upload_dir['basedir'] . $file_destination) || $force_copy ) {
             self::copy_tmdb_image( $file_path, $size ); 
         }
-        $image_url = $wp_upload_dir['baseurl'] . $file_destination;
+        $img_path = $wp_upload_dir['basedir'] . '/tmdb/' . $size . $file_path;
+
+        // $image_url = $wp_upload_dir['baseurl'] . $file_destination;
+        $webp_url = self:: webpImage( $img_path, 75, true );
+        $image_url = $wp_upload_dir['baseurl']  . '/tmdb/' . $size .'/'. basename($webp_url);
         return $image_url;
 	}
 	
@@ -140,6 +174,27 @@ class Movies {
 	        self::clear_data_for_post( $post->ID );
 	    }
 	}
+    public static function clear_zero(){
+        self::clear_zero_tax('cast');
+        self::clear_zero_tax('screenplay');
+        self::clear_zero_tax('languages');
+        self::clear_zero_tax('directors');
+        self::clear_zero_tax('film_review_categories');
+    }
+
+    public static function clear_zero_tax( $tax ){
+        $terms = get_terms( [
+            'taxonomy'                  => $tax,
+            'hide_empty'                => false,
+            'update_term_meta_cache'    => false,
+            'hierarchical'              => false,
+        ] );
+        foreach ( $terms as $term ) {
+            if ( 0 === $term->count ) {
+                wp_delete_term( $term->term_id, $tax );
+            }
+        }
+    }
 	
 	public static function clear_data_for_tmdb_id( $tmdb_id ) {
 	    $posts = self::posts_with_tmdb_id( $tmdb_id );
@@ -152,6 +207,16 @@ class Movies {
 	    $tmdb_id = get_post_meta( $post_id, 'tmdb_id', true ); 
 	    delete_post_meta( $post_id, 'tmdb_id' );
 	    delete_post_meta( $post_id, '_zmovies_json' );
+	    delete_post_meta( $post_id, '_r_rdate' );
+	    delete_post_meta( $post_id, '_r_f_original_title' );
+	    delete_post_meta( $post_id, '_headline' );
+	    delete_post_meta( $post_id, '_r_f_year' );
+	    delete_post_meta( $post_id, '_r_f_imdb_id' );
+	    delete_post_meta( $post_id, '_r_f_runtime' );
+	    delete_post_meta( $post_id, '_r_f_overview' );
+	    delete_post_meta( $post_id, '_r_f_poster' );
+
+
 	    /* Delete imported media if it's not attached to other posts.
 	    TODO: Remove attachment metadata from this post without
 	    deleting image file (unless image file isn't needed anymore). */
@@ -192,6 +257,11 @@ class Movies {
             'label' => 'TMDB API Key',
             'description' => 'Your TMDb API key'
         ),
+        'zmovies_language' => array(
+            'default' => 'en-US',
+            'label' => 'Language to download',
+            'description' => 'e.g. `zh-CN` `en-US`.'
+        ),
         'zmovies_poster_width' => array(
             'default' => 'w500',
             'label' => 'Default poster width',
@@ -203,9 +273,9 @@ class Movies {
             'description' => 'e.g. `original` `w1280` `w780` `w300`. Must be supported by TMDb.'
         ),
         'zmovies_post_type' => array(
-            'default' => '',
+            'default' => 'film_review',
             'label' => 'Post type (optional)',
-            'description' => 'set to custom post type if needed (e.g. `tribe_events` for use with Events Calendar Pro plugin)'
+            'description' => 'set to custom post type if needed'
         ),
         'zmovies_attach_media' => array(
             'default' => 'y',

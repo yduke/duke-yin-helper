@@ -476,6 +476,39 @@ function create_film_review_taxonomies() {
     );
 
     register_taxonomy( 'screenplay', array( 'film_review','tvshow_review' ), $arr_writer );
+	
+//
+//Language
+	$label_language = array(
+	'name'              => _x( 'Languages', 'taxonomy general name','duke-yin-helper'),
+	'singular_name'     => _x( 'Languages', 'taxonomy singular name','duke-yin-helper'),
+	'search_items'      => __( 'Search Language','duke-yin-helper'),
+	'all_items'         => __( 'All languages' ,'duke-yin-helper'),
+	'popular_items' 	=> __( 'Popular languages','duke-yin-helper' ),
+	'parent_item' 		=> null,
+    'parent_item_colon' => null,
+	'edit_item'         => __( 'Edit language' ,'duke-yin-helper'),
+	'update_item'       => __( 'Update language' ,'duke-yin-helper'),
+	'add_new_item'      => __( 'Add New Language' ,'duke-yin-helper'),
+	'new_item_name'     => __( 'New Language Name' ,'duke-yin-helper'),
+	'separate_items_with_commas' => __( 'Separate languages with commas.','duke-yin-helper' ),
+	'add_or_remove_items' => __( 'Add or remove Language','duke-yin-helper' ),
+	'choose_from_most_used' => __( 'Choose from popular Language','duke-yin-helper' ),
+	'menu_name'         => __( 'Languages' ,'duke-yin-helper'),
+    );
+	
+	$arr_language = array(
+	'hierarchical'      => false, 
+	'labels'            => $label_language,
+	'show_ui'           => true,
+	'show_admin_column' => true,
+	'show_in_rest' => true,
+	'update_count_callback' => '_update_post_term_count',
+	'query_var'         => true,
+	'rewrite'           => array( 'slug' => 'languages' ),
+    );
+
+    register_taxonomy( 'languages', array( 'film_review','tvshow_review' ), $arr_language );
 //
 }
 add_action( 'init', 'create_film_review_taxonomies', 0 );
@@ -492,11 +525,6 @@ function film_review_admin_menu() {
 		0
 	);
 	
-
-
-
-
-
 	
     add_submenu_page(
 		'edit.php?post_type=film_review',
@@ -564,6 +592,16 @@ function film_review_admin_menu() {
 		'edit-tags.php?taxonomy=screenplay&post_type=film_review',
 		NULL,
 		13
+	);
+
+	add_submenu_page(
+		'edit.php?post_type=film_review',
+		NULL,
+		__( 'Languages','duke-yin-helper'),
+		'manage_options',
+		'edit-tags.php?taxonomy=languages&post_type=film_review',
+		NULL,
+		14
 	);
 	
 }

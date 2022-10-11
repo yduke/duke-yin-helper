@@ -49,7 +49,14 @@ if( isset($_POST['posts']) ) { ?>
         
         // Copy images and store JSON
         $movie = Movies::TMDb($tmdb_id);
-        $json = $movie->json($copy_images=true);
+
+        if(has_post_thumbnail($post_id)){ //if has thumbnail, then don't import images from tmdb
+            $json = $movie->json($copy_images=false,$copy_poster=true);
+        }else{
+            $json = $movie->json($copy_images=true,$copy_poster=true);
+
+        }
+        
         add_or_update_post_meta( $post_id, '_zmovies_json', $json );
         $date = strtotime($movie->date);
         update_post_meta( $post_id, '_r_rdate', $date );
@@ -70,8 +77,8 @@ if( isset($_POST['posts']) ) { ?>
         $imdbid = $movie-> imdb_id;
         update_post_meta( $post_id, '_r_f_imdb_id', $imdbid );
 
-        $language = $movie-> languages[0];
-        update_post_meta( $post_id, '_r_f_language', $language );
+        // $language = $movie-> languages[0];
+        // update_post_meta( $post_id, '_r_f_language', $language );
 
         $runtime = $movie-> runtime;
         update_post_meta($post_id,'_r_f_runtime',$runtime);
@@ -141,6 +148,27 @@ foreach($directors as $director){
             }
         }
 
+//Languages
+        $languages = $movie-> languages;
+        foreach($languages as $language){
+            $term_id = term_exists( $language, 'languages' );
+            if($term_id){
+                wp_set_object_terms( $post_id, $language, 'languages', true );
+            }else{
+                wp_insert_term(
+                    $language,
+                'languages',
+                array(
+                    'description' => '',
+                    'slug'        => $language,
+                    'parent'      => '',
+                ));
+                $term_id = term_exists( $language, 'languages' );
+                wp_set_object_terms( $post_id, $language, 'languages', true );
+            }
+        }
+
+//Genres
         $genres = $movie->genres;
         foreach($genres as $genre){
             $term_id = term_exists( $genre, 'film_review_categories' );
@@ -171,7 +199,7 @@ foreach($directors as $director){
                 $attach_ids[] = $attach_id;
             }
             if($movie->poster_path) {
-                $attach_id = attach_media_to_post( $post_id, $movie->poster_path, is_featured_image('poster', $movie), $movie->title );
+                $attach_id = attach_media_to_post( $post_id, $movie->poster_path, false, $movie->title );
                 $attach_ids[] = $attach_id;
                 update_post_meta( $post_id, '_r_f_poster',  $movie->poster_path );
             }

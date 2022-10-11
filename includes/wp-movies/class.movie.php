@@ -48,7 +48,7 @@ class Movie {
         return Movies::tmdb_image($this->backdrop_path, $size, $force_copy);
     }
     
-    public function json($copy_images=false) {
+    public function json($copy_images=false, $copy_poster=false) {
         $data = array(
             'tmdb_id' => $this->tmdb_id,
             'title' => $this->title,
@@ -63,6 +63,8 @@ class Movie {
         );
         if($copy_images) {
             $data['backdrop_path'] = self::backdrop();
+        }
+        if($copy_poster) {
             $data['poster_path'] = self::poster();
         }
         return base64_encode(json_encode($data));
