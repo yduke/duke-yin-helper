@@ -1,6 +1,6 @@
 <?php
 
-class Movie {
+class Moviee {
     
     public $tmdb_id;
     public $title;

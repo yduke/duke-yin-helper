@@ -15,8 +15,8 @@ class Movies {
 
     public static function connect_to_tmdb() {
         if(self::$TMDB_API_KEY) {
-		    require("tmdb.v3.php");
-		    self::$TMDB = new TMDBv3(self::$TMDB_API_KEY);
+		    require("tmdb-api.php");
+		    self::$TMDB =new TMDB();
 		}
     }
 
@@ -25,7 +25,7 @@ class Movies {
             array('id' => $tmdb_id),
             $get_detail=true
         );
-        return new Movie($data);
+        return new Moviee($data);
     }
 
 	public static function render_template( $template_name, $context ) {
@@ -72,8 +72,8 @@ class Movies {
     }
 
 	public static function tmdb_image( $file_path, &$size='original', $force_copy=false ) {
-	    if($size == 'poster') { $size = Movie::POSTER_WIDTH; }
-	    if($size == 'backdrop') { $size = Movie::BACKDROP_WIDTH; }
+	    if($size == 'poster') { $size = Moviee::POSTER_WIDTH; }
+	    if($size == 'backdrop') { $size = Moviee::BACKDROP_WIDTH; }
         $wp_upload_dir = wp_upload_dir();
         
         $file_destination = '/tmdb/' . $size . $file_path;
@@ -89,8 +89,8 @@ class Movies {
 	}
 	
 	public static function copy_tmdb_image( $file_path, &$size='original' ) {
-	    if($size == 'poster') { $size = Movie::POSTER_WIDTH; }
-	    if($size == 'backdrop') { $size = Movie::BACKDROP_WIDTH; }
+	    if($size == 'poster') { $size = Moviee::POSTER_WIDTH; }
+	    if($size == 'backdrop') { $size = Moviee::BACKDROP_WIDTH; }
 	    $image_url = self::$TMDB->getImageURL($size) . $file_path;
 	    $image_to_upload = file_get_contents( $image_url );
             $wp_upload_dir = wp_upload_dir();
@@ -110,24 +110,24 @@ class Movies {
 
 	public static function data_from_tmdb_basic_search( $result, $get_detail=false ) {
 	    if($get_detail) {
-	        $result = self::$TMDB->movieDetail($result['id']);
+	        $result = self::$TMDB->getMovie($result['id'],true);
 	    }
-	    if($result['release_date']) {
-	        if(strlen($result['release_date']) < 4) {
+	    if($result->get($item = 'release_date')) {
+	        if(strlen($result->get($item = 'release_date')) < 4) {
 	            $release_year = false;
 	        } else {
-	            $release_year = substr($result['release_date'], 0, 4);
-	            $release_date = $result['release_date'];
+	            $release_year = substr($result->get($item = 'release_date'), 0, 4);
+	            $release_date = $result->get($item = 'release_date');
 	        }
 	    }
 	    $data = array(
-                'tmdb_id' => $result['id'],
+                'tmdb_id' => $result->get($item = 'id'),
                 'year' => $release_year,
                 'date' => $release_date,
-                'backdrop_path' => $result['backdrop_path'],
-                'poster_path' => $result['poster_path'],
-                'title' => $result['title'],
-                'original_title' => $result['original_title'],
+                'backdrop_path' => $result->get($item = 'backdrop_path'),
+                'poster_path' => $result->get($item = 'poster_path'),
+                'title' => $result->get($item = 'title'),
+                'original_title' => $result->get($item = 'original_title'),
                 'genres' => array(),
                 'imdb_id' => false,
                 'runtime' => false,
@@ -135,19 +135,21 @@ class Movies {
                 'overview' => false
             );
 	    if($get_detail) {
-	        if(isset($result['genres'])) {
-                    foreach($result['genres'] as $genre) {
+            $ge = $result->get($item = 'genres');
+	        if(isset($ge)) {
+                    foreach($ge as $genre) {
                         $data['genres'][] = $genre['name'];
                     }
                 }
-            if(isset($result['spoken_languages'])) {
-                    foreach($result['spoken_languages'] as $language) {
+            $spl = $result->get($item = 'spoken_languages');
+            if(isset($spl )) {
+                    foreach($spl as $language) {
                         $data['languages'][] = $language['name'];
                     }
                 }
-	        $data['imdb_id'] = $result['imdb_id'];
-	        $data['runtime'] = $result['runtime'];
-	        $data['overview'] = $result['overview'];
+	        $data['imdb_id'] = $result->get($item = 'imdb_id');
+	        $data['runtime'] = $result->get($item = 'runtime');
+	        $data['overview'] = $result->get($item = 'overview');
 	    }
 	    return $data;
 	}

@@ -32,7 +32,7 @@
 		// ===================================
 		/* Start WP-Movies metadata display */
 		// ===================================
-		$movie = new Movie( get_the_ID() );
+		$movie = new Moviee( get_the_ID() );
 		if( $movie->tmdb_id ):
 		?>
 		<div id="movie-info">

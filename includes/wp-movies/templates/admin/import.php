@@ -97,9 +97,9 @@ function update_preview_links(post_id) {
     <table id="zmovies-import" class="wp-list-table widefat fixed posts">
     <thead>
         <tr>
-            <th class="title">Movie or Event Title</th>
-            <th class="tmdb">Best TMDb Match(es)</th>
-            <th colspan="2" class="images">Images</th>
+            <th class="title"><?php _e('Movie or Event Title','duke-yin-helper'); ?></th>
+            <th class="tmdb"><?php _e('Best TMDb Match(es)','duke-yin-helper'); ?></th>
+            <th colspan="2" class="images"><?php _e('Images','duke-yin-helper'); ?></th>
         </tr>
     </thead>
     <tbody>
@@ -111,7 +111,7 @@ function update_preview_links(post_id) {
                         onchange="update_preview_links(<?php echo $post->ID ?>);">
 <?php
 $search = Movies::$TMDB->searchMovie($post->post_title,'cl');
-if( count($search['results']) < 1 && preg_match("@:@", $post->post_title) ) {
+if( count($search) < 1 && preg_match("@:@", $post->post_title) ) {
     $parts = explode(":", $post->post_title, 2);
     if( count($parts) > 1 )
     {
@@ -119,29 +119,25 @@ if( count($search['results']) < 1 && preg_match("@:@", $post->post_title) ) {
         $search = Movies::$TMDB->searchMovie($title,'cl');
     }
 }
-foreach($search['results'] as $result) {
-
-    $data = Movies::data_from_tmdb_basic_search($result);
-    $movie = new Movie($data);
-
+foreach($search as $movie) {
 ?>
                     <option
-                        value="<?php echo $post->ID ?>|<?php echo $movie->tmdb_id ?>"
-                        <?php if($movie->poster_path) { ?>
-                        data-poster="<?php echo Movies::$TMDB->getImageURL('w500') . $movie->poster_path ?>"
+                        value="<?php echo $post->ID ?>|<?php echo $movie->getID() ?>"
+                        <?php if($movie->getPoster()) { ?>
+                        data-poster="<?php echo Movies::$TMDB->getImageURL($size = "w500").$movie->getPoster() ?>"
                         <?php } ?>
-                        <?php if($movie->backdrop_path) { ?>
-                        data-backdrop="<?php echo Movies::$TMDB->getImageURL() . $movie->backdrop_path ?>"
+                        <?php if($movie->getBackdrop()) { ?>
+                        data-backdrop="<?php echo Movies::$TMDB->getImageURL($size = "w1280").$movie->getBackdrop() ?>"
                         <?php } ?>
                     >
-                        <?php echo $movie->title ?>
-                        <?php if($movie->year) { ?>
-                            (<?php echo $movie->year ?>)
+                        <?php echo $movie->getTitle() ?>
+                        <?php if($movie->getYear()) { ?>
+                            (<?php echo $movie->getYear() ?>)
                         <?php } ?>
                     </option>
 <?php } ?>
-                    <option value="" class="enter-id">Enter a TMDb ID</option>
-                    <option value="">None (Leave Blank)</option>
+                    <option value="" class="enter-id"><?php _e('Enter a TMDb ID','duke-yin-helper');?></option>
+                    <option value=""><?php _e('None (Leave Blank)','duke-yin-helper');?></option>
                 </select>
             </td>
             <td class="poster">

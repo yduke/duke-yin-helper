@@ -28,6 +28,9 @@
 *   public function setImageURL($config) 
 *   public function getImageURL($size="original") 
 *   public function movieTitles($idMovie) 
+*	public function movieDirector($idMovie)
+*	public function movieWriter($idMovie)
+*	public function movieWriter($idMovie)
 *   public function movieTrans($idMovie)
 *   public function movieTrailer($idMovie,$source="") 
 *   public function movieDetail($idMovie)
@@ -249,6 +252,16 @@ class TMDBv3{
 		}//end of 
 
 	/**
+	* movie Images
+	* https://api.themoviedb.org/3/movie/1893/images?api_key={}}&language=zh-CN
+	* @param array  moviePoster
+	*/
+		public function movieImagess($idMovie)
+		{
+
+		}//end of 
+
+	/**
 	* movie Casting
 	* http://api.themoviedb.org/3/movie/$id/casts
 	* @param array  movieCast
@@ -302,7 +315,7 @@ class TMDBv3{
 	* @return array
 	*/
 		public function latestMovie() {
-			return $this->_call('latest/movie','');
+			return $this->_call('movie/latest','');
 		}
 	/**
 	* Now Playing Movies
@@ -310,7 +323,7 @@ class TMDBv3{
 	* @param integer $page
 	*/
 	public function nowPlayingMovies($page=1) {
-		return $this->_call('movie/now-playing', 'page='.$page);
+		return $this->_call('movie/now_playing','page='.$page);
 	}
 
 	/**
@@ -338,8 +351,10 @@ class TMDBv3{
 			$error_message = curl_error($ch);
 
 			curl_close($ch);
+
 			// header('Content-Type: text/html; charset=iso-8859-1');
-			//echo"<pre>";print_r(($results));echo"</pre>";
+			//  print_r(($results)) ;
+
 			$results = json_decode(($results),true);
 			return (array) $results;
 		}//end of _call

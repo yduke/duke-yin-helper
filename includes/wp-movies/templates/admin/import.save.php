@@ -88,7 +88,10 @@ if( isset($_POST['posts']) ) { ?>
         
 
 //Directors
-$directors = Movies::$TMDB->movieDirector($tmdb_id);
+// $directors = Movies::$TMDB->movieDirector($tmdb_id);
+$move_data = Movies::$TMDB->getMovie($tmdb_id);
+
+$directors = $move_data->getDirectorNames();
 foreach($directors as $director){
     $term_id = term_exists( $director, 'directors' );
     if($term_id){
@@ -109,7 +112,7 @@ foreach($directors as $director){
 
 
 //Screenplay
-        $writers = Movies::$TMDB->movieWriter($tmdb_id);
+        $writers = $move_data->getScreenplayNames();
         foreach($writers as $writer){
             $term_id = term_exists( $writer, 'screenplay' );
             if($term_id){
@@ -129,7 +132,7 @@ foreach($directors as $director){
         }
 
 //CAST
-        $cast = Movies::$TMDB->movieCast($tmdb_id);
+        $cast = $move_data->getCastNames();
         foreach($cast as $cas){
             $term_id = term_exists( $cas, 'cast' );
             if($term_id){
@@ -149,50 +152,50 @@ foreach($directors as $director){
         }
 
 //Languages
-        $languages = $movie-> languages;
+        $languages = $move_data->get($item ='spoken_languages');
         foreach($languages as $language){
-            $term_id = term_exists( $language, 'languages' );
+            $term_id = term_exists( $language['name'], 'languages' );
             if($term_id){
-                wp_set_object_terms( $post_id, $language, 'languages', true );
+                wp_set_object_terms( $post_id, $language['name'], 'languages', true );
             }else{
                 wp_insert_term(
-                    $language,
+                    $language['name'],
                 'languages',
                 array(
                     'description' => '',
-                    'slug'        => $language,
+                    'slug'        => $language['name'],
                     'parent'      => '',
                 ));
-                $term_id = term_exists( $language, 'languages' );
-                wp_set_object_terms( $post_id, $language, 'languages', true );
+                $term_id = term_exists( $language['name'], 'languages' );
+                wp_set_object_terms( $post_id, $language['name'], 'languages', true );
             }
         }
 
 //Genres
-        $genres = $movie->genres;
+        $genres = $move_data->getGenresName();
         foreach($genres as $genre){
-            $term_id = term_exists( $genre, 'film_review_categories' );
+            $term_id = term_exists( $genre['name'], 'film_review_categories' );
             if($term_id){
                 wp_set_post_terms( $post_id, array( $term_id['term_id'] ), 'film_review_categories', true );
             }else{
                 wp_insert_term(
-                $genre,
+                $genre['name'],
                 'film_review_categories',
                 array(
                     'description' => '',
-                    'slug'        => $genre,
+                    'slug'        => $genre['name'],
                     'parent'      => '',
                 ));
-                $term_id = term_exists( $genre, 'film_review_categories' );
+                $term_id = term_exists( $genre['name'], 'film_review_categories' );
                 wp_set_post_terms( $post_id, array( $term_id['term_id'] ), 'film_review_categories', true );
             }
         }
 
         // Fetch movie data back from WP
-        $movie = new Movie( $post_id );
+        $movie = new Moviee( $post_id );
         
         // Attach media
-        if( trim(get_option('zmovies_attach_media')) == 'y' ) {
+        // if( trim(get_option('zmovies_attach_media')) == 'y' ) {
             $attach_ids = get_attach_ids_for_post( $post_id );
             if($movie->backdrop_path) {
                 $attach_id = attach_media_to_post( $post_id, $movie->backdrop_path, is_featured_image('backdrop', $movie), $movie->title );
@@ -204,12 +207,9 @@ foreach($directors as $director){
                 update_post_meta( $post_id, '_r_f_poster',  $movie->poster_path );
             }
             add_or_update_post_meta( $post_id, '_zmovies_attach_ids', implode(",", $attach_ids) );
-        }
+        // }
 
     }
-
-    
-
     $data_saved = true;
 
 }
