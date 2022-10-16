@@ -2,10 +2,9 @@
 
 require("import.save.php");
 
-$post_type = get_option('zmovies_post_type');
 
 // Find posts without a meta entry for the fruit custom field
-$posts_without_movies = posts_without_meta( '_zmovies_json', $post_type, 'ids' );
+$posts_without_movies = posts_without_meta( '_zmovies_json', 'film_review', 'ids' );
 
 $posts = array();
 
@@ -22,7 +21,7 @@ if( $posts_without_movies ) {
         'exclude'          => '',
         'meta_key'         => '',
         'meta_value'       => '',
-        'post_type'        => get_option('zmovies_post_type'),
+        'post_type'        => 'film_review',
         'post_mime_type'   => '',
         'post_parent'      => '',
         'post_status'      => '',
@@ -43,7 +42,7 @@ if( $posts_without_movies ) {
 <div class="wrap">
     <h2><?php echo _e( 'Movie Import Tool', 'duke-yin-helper' ) ?></h2>
 <?php if( !Movies::is_configured() ) { ?>
-    <p><?php _e('You cannot use the import tool until the plugin has been configured. Please go to Settings in the Movies Tool menu to configure the plugin.','duke-yin-helper') ?></p>
+    <p><?php _e('You cannot use the import tool without an API key. Please go to Functions in the DukeYin Options and enter your TMDB API key.','duke-yin-helper') ?></p>
 <?php } else if(empty($posts)) { ?>
     <p><?php _e('There were no posts found without movie data attached to them.','duke-yin-helper') ?></p>
 <?php } else { ?>
@@ -97,7 +96,7 @@ function update_preview_links(post_id) {
     <table id="zmovies-import" class="wp-list-table widefat fixed posts">
     <thead>
         <tr>
-            <th class="title"><?php _e('Movie or Event Title','duke-yin-helper'); ?></th>
+            <th class="title"><?php _e('Movie Title','duke-yin-helper'); ?></th>
             <th class="tmdb"><?php _e('Best TMDb Match(es)','duke-yin-helper'); ?></th>
             <th colspan="2" class="images"><?php _e('Images','duke-yin-helper'); ?></th>
         </tr>

@@ -13,8 +13,8 @@ class Movies_Admin {
 	public static function menu() {
         add_menu_page(__('Movies Import Tool','duke-yin-helper'), __('Movies Tool','duke-yin-helper') , 'publish_posts', 'movies', array( 'Movies_Admin', 'import_page' ),'dashicons-editor-video',9 );
         add_submenu_page('movies', 'Movies Import Tool',__( 'Import','duke-yin-helper'), 'publish_posts', 'movies', array( 'Movies_Admin', 'import_page' ) );
-	    $hook_suffix = add_submenu_page('movies', 'Movies Plugin Configuration', __('Settings','duke-yin-helper'), 'manage_options', 'movies-settings', array( 'Movies_Admin', 'settings_page' ) );
-        add_action( 'load-' . $hook_suffix , array( 'Movies_Admin', 'override_display_notices' ) );
+	    // $hook_suffix = add_submenu_page('movies', 'Movies Plugin Configuration', __('Settings','duke-yin-helper'), 'manage_options', 'movies-settings', array( 'Movies_Admin', 'settings_page' ) );
+        // add_action( 'load-' . $hook_suffix , array( 'Movies_Admin', 'override_display_notices' ) );
         add_submenu_page('movies', 'Movies Plugin Tools', __('Tools','duke-yin-helper'), 'publish_posts', 'movies-tools', array( 'Movies_Admin', 'tools_page' ) );
 	}
 
@@ -24,7 +24,7 @@ class Movies_Admin {
 
 	public static function display_notices() {
 	    $context = array(
-	        'notice' => __('The Movies plugin has not been configured.','duke-yin-helper')
+	        'notice' => __('The Movies plugin has not been configured, enter your API key in Appearance, DukeYin theme options.','duke-yin-helper')
 	    );
 	    Movies::render_template('admin/notice.php', $context);
 	}

@@ -59,7 +59,7 @@ class ApiBaseObject
      * 	@return string
      */
     public function getPoster() {
-        return $this->_data['poster_path'];
+            return $this->_data['poster_path'];
     }
 
     /**

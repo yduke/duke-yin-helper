@@ -9,20 +9,20 @@ function add_or_update_post_meta( $post_id, $key, $value ) {
 }
 
 function is_featured_image( $poster_or_backdrop, $movie ) {
-    $setting = get_option('zmovies_featured_image');
-    if($setting == 'backdrop then poster') {
+    // $setting = get_option('zmovies_featured_image');
+    // if($setting == 'backdrop then poster') {
         if(($poster_or_backdrop=='backdrop' && $movie->backdrop_path) || ($poster_or_backdrop=='poster' && !$movie->backdrop_path)) {
             return true;
         }
         return false;
-    } else if($setting == 'poster then backdrop') {
-        if(($poster_or_backdrop=='poster' && $movie->poster_path) || ($poster_or_backdrop=='backdrop' && !$movie->poster_path)) {
-            return true;
-        }
-        return false;
-    } else {
-        return false;
-    }
+    // } else if($setting == 'poster then backdrop') {
+    //     if(($poster_or_backdrop=='poster' && $movie->poster_path) || ($poster_or_backdrop=='backdrop' && !$movie->poster_path)) {
+    //         return true;
+    //     }
+    //     return false;
+    // } else {
+    //     return false;
+    // }
 }
 
 if( isset($_POST['posts']) ) { ?>
@@ -195,7 +195,6 @@ foreach($directors as $director){
         $movie = new Moviee( $post_id );
         
         // Attach media
-        // if( trim(get_option('zmovies_attach_media')) == 'y' ) {
             $attach_ids = get_attach_ids_for_post( $post_id );
             if($movie->backdrop_path) {
                 $attach_id = attach_media_to_post( $post_id, $movie->backdrop_path, is_featured_image('backdrop', $movie), $movie->title );
@@ -207,7 +206,7 @@ foreach($directors as $director){
                 update_post_meta( $post_id, '_r_f_poster',  $movie->poster_path );
             }
             add_or_update_post_meta( $post_id, '_zmovies_attach_ids', implode(",", $attach_ids) );
-        // }
+
 
     }
     $data_saved = true;

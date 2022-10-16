@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2022-10-13 01:14+0800\n"
-"PO-Revision-Date: 2022-10-13 01:14+0800\n"
+"POT-Creation-Date: 2022-10-17 00:13+0800\n"
+"PO-Revision-Date: 2022-10-17 00:14+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -1366,69 +1366,68 @@ msgstr "书签"
 
 #: includes/wp-movies/class.movies-admin.php:14
 msgid "Movies Import Tool"
-msgstr "影片导入工具"
+msgstr "电影导入工具"
 
 #: includes/wp-movies/class.movies-admin.php:14
 msgid "Movies Tool"
-msgstr "影片工具"
+msgstr "电影工具"
 
 #: includes/wp-movies/class.movies-admin.php:15
 msgid "Import"
 msgstr "导入"
-
-#: includes/wp-movies/class.movies-admin.php:16
-msgid "Settings"
-msgstr "设置"
 
 #: includes/wp-movies/class.movies-admin.php:18
 msgid "Tools"
 msgstr "工具"
 
 #: includes/wp-movies/class.movies-admin.php:27
-msgid "The Movies plugin has not been configured."
-msgstr "电影插件未设置。"
+msgid ""
+"The Movies plugin has not been configured, enter your API key in Appearance, "
+"DukeYin theme options."
+msgstr "电影工具未正确设置，请在外观，DukeYin主题选项中输入你的API密钥。"
 
-#: includes/wp-movies/templates/admin/import.php:40
+#: includes/wp-movies/templates/admin/import.php:39
 msgid "Your import was completed."
 msgstr "导入已完成。"
 
-#: includes/wp-movies/templates/admin/import.php:44
+#: includes/wp-movies/templates/admin/import.php:43
 msgid "Movie Import Tool"
-msgstr "影片导入工具"
+msgstr "电影导入工具"
 
-#: includes/wp-movies/templates/admin/import.php:46
+#: includes/wp-movies/templates/admin/import.php:45
 msgid ""
-"You cannot use the import tool until the plugin has been configured. Please "
-"go to Settings in the Movies Tool menu to configure the plugin."
-msgstr "需要完成设置以使用电影导入工具，至影片工具下的设置菜单进行设置。"
+"You cannot use the import tool without an API key. Please go to Functions in "
+"the DukeYin Options and enter your TMDB API key."
+msgstr ""
+"需要完成设置以使用电影导入工具。请在DukeYin选项，功能中输入你的TMDB API密钥。"
 
-#: includes/wp-movies/templates/admin/import.php:48
+#: includes/wp-movies/templates/admin/import.php:47
 msgid "There were no posts found without movie data attached to them."
 msgstr "未找到缺失电影信息的文章。"
 
-#: includes/wp-movies/templates/admin/import.php:100
-msgid "Movie or Event Title"
-msgstr "影片标题"
+#: includes/wp-movies/templates/admin/import.php:99
+msgid "Movie Title"
+msgstr "电影标题"
 
-#: includes/wp-movies/templates/admin/import.php:101
+#: includes/wp-movies/templates/admin/import.php:100
 msgid "Best TMDb Match(es)"
 msgstr "最佳匹配"
 
-#: includes/wp-movies/templates/admin/import.php:102
+#: includes/wp-movies/templates/admin/import.php:101
 msgid "Images"
 msgstr "图像"
 
-#: includes/wp-movies/templates/admin/import.php:139
+#: includes/wp-movies/templates/admin/import.php:138
 msgid "Enter a TMDb ID"
 msgstr "输入TMDb ID"
 
-#: includes/wp-movies/templates/admin/import.php:140
+#: includes/wp-movies/templates/admin/import.php:139
 msgid "None (Leave Blank)"
 msgstr "无（不处理）"
 
-#: includes/wp-movies/templates/admin/import.php:157
+#: includes/wp-movies/templates/admin/import.php:156
 msgid "Import Movie Data"
-msgstr "导入影片数据"
+msgstr "导入电影数据"
 
 #: includes/wp-movies/templates/admin/import.save.php:31
 msgid "Importing... Please do not navigate away from this page."
@@ -1445,7 +1444,7 @@ msgstr "设置已保存。"
 
 #: includes/wp-movies/templates/admin/settings.php:35
 msgid "Movies Plugin Settings"
-msgstr "影片插件设置"
+msgstr "电影插件设置"
 
 #: includes/wp-movies/templates/admin/settings.php:40
 msgid ":"
@@ -1455,47 +1454,43 @@ msgstr ""
 msgid "Save Changes"
 msgstr "保存更改"
 
-#: includes/wp-movies/templates/admin/tools.php:44
+#: includes/wp-movies/templates/admin/tools.php:41
 msgid "The operation was completed."
 msgstr "行动已完成。"
 
-#: includes/wp-movies/templates/admin/tools.php:49
+#: includes/wp-movies/templates/admin/tools.php:46
 msgid "Movies Plugin Tools"
-msgstr "影片插件工具"
+msgstr "电影插件工具"
 
-#: includes/wp-movies/templates/admin/tools.php:54
+#: includes/wp-movies/templates/admin/tools.php:51
 msgid "Operation:"
 msgstr "行动："
 
-#: includes/wp-movies/templates/admin/tools.php:57
+#: includes/wp-movies/templates/admin/tools.php:54
 msgid "Clear movie data for a specific post ID"
 msgstr "指定Post ID清除电影数据"
 
-#: includes/wp-movies/templates/admin/tools.php:58
+#: includes/wp-movies/templates/admin/tools.php:55
 msgid "Clear movie data for a specific TMDb ID"
 msgstr "指定TMDb ID清除电影数据"
 
-#: includes/wp-movies/templates/admin/tools.php:59
+#: includes/wp-movies/templates/admin/tools.php:56
 msgid "Clear cast crew languages and categories with zero posts."
 msgstr "清除0附加文章的演员、导演、语言和分类。"
 
-#: includes/wp-movies/templates/admin/tools.php:60
+#: includes/wp-movies/templates/admin/tools.php:57
 msgid "Clear all movie data for all posts"
 msgstr "清除本站所有电影数据"
 
 #: includes/wp-movies/templates/admin/tools.php:61
-msgid "Restore plugin settings to default (except for TMDB API key)"
-msgstr "重置电影设置到初始值（TMDB API密钥不会清除）"
-
-#: includes/wp-movies/templates/admin/tools.php:65
 msgid "ID:"
 msgstr "ID："
 
-#: includes/wp-movies/templates/admin/tools.php:67
+#: includes/wp-movies/templates/admin/tools.php:63
 msgid "enter an ID when applicable; if not, leave blank"
 msgstr "在需要时输入ID，否则请留空"
 
-#: includes/wp-movies/templates/admin/tools.php:73
+#: includes/wp-movies/templates/admin/tools.php:69
 msgid "Proceed"
 msgstr "执行"
 
@@ -1525,6 +1520,18 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "Duke Yin"
 msgstr "Duke Yin"
+
+#~ msgid "Settings"
+#~ msgstr "设置"
+
+#~ msgid "The Movies plugin has not been configured."
+#~ msgstr "电影插件未设置。"
+
+#~ msgid "Movie or Event Title"
+#~ msgstr "影片标题"
+
+#~ msgid "Restore plugin settings to default (except for TMDB API key)"
+#~ msgstr "重置电影设置到初始值（TMDB API密钥不会清除）"
 
 #, fuzzy
 #~| msgid ""

@@ -5,7 +5,6 @@ require "class.movie.php";
 class Movies {
     
     public static $TMDB = false;
-    private static $TMDB_API_KEY = false;
 
 	public static function init() {
 		if(Movies::is_configured()) {
@@ -14,7 +13,7 @@ class Movies {
 	}
 
     public static function connect_to_tmdb() {
-        if(self::$TMDB_API_KEY) {
+        if(Movies::is_configured()) {
 		    require("tmdb-api.php");
 		    self::$TMDB =new TMDB();
 		}
@@ -35,8 +34,9 @@ class Movies {
 	}
 
 	public static function is_configured() {
-	    self::$TMDB_API_KEY = get_option('zmovies_tmdb_key');
-	    if(!self::$TMDB_API_KEY) {
+        $dukeyin_options = get_site_option( 'options-page', true, true);
+        $key = $dukeyin_options['tmdb-key'];
+	    if(!isset($key)) {
 	        return false;
 	    }
 	    return true;
@@ -110,7 +110,7 @@ class Movies {
 
 	public static function data_from_tmdb_basic_search( $result, $get_detail=false ) {
 	    if($get_detail) {
-	        $result = self::$TMDB->getMovie($result['id'],true);
+	        $result = self::$TMDB->getMovie($result['id'],'images');
 	    }
 	    if($result->get($item = 'release_date')) {
 	        if(strlen($result->get($item = 'release_date')) < 4) {
@@ -126,6 +126,8 @@ class Movies {
                 'date' => $release_date,
                 'backdrop_path' => $result->get($item = 'backdrop_path'),
                 'poster_path' => $result->get($item = 'poster_path'),
+                'logo_path' => $result->get($item = 'images')['logos'][0]['file_path'],
+                'poster_path_alt' => $result->get($item = 'images')['posters'][0]['file_path'],
                 'title' => $result->get($item = 'title'),
                 'original_title' => $result->get($item = 'original_title'),
                 'genres' => array(),
@@ -163,11 +165,11 @@ class Movies {
 	}
 	
 	public static function restore_defaults($exclude=array('zmovies_tmdb_key')) {
-	    foreach(self::$settings as $opt_name => $opt) {
-	        if(!in_array($opt_name, $exclude)) {
-	            update_option( $opt_name, $opt['default'] );
-	        }
-	    }
+	    // foreach(self::$settings as $opt_name => $opt) {
+	    //     if(!in_array($opt_name, $exclude)) {
+	    //         update_option( $opt_name, $opt['default'] );
+	    //     }
+	    // }
 	}
 	
 	public static function clear_all_data() {
@@ -207,6 +209,7 @@ class Movies {
 	
 	public static function clear_data_for_post( $post_id ) {
 	    $tmdb_id = get_post_meta( $post_id, 'tmdb_id', true ); 
+//remove post meta
 	    delete_post_meta( $post_id, 'tmdb_id' );
 	    delete_post_meta( $post_id, '_zmovies_json' );
 	    delete_post_meta( $post_id, '_r_rdate' );
@@ -217,7 +220,13 @@ class Movies {
 	    delete_post_meta( $post_id, '_r_f_runtime' );
 	    delete_post_meta( $post_id, '_r_f_overview' );
 	    delete_post_meta( $post_id, '_r_f_poster' );
-
+//remove terms
+        dk_remove_all_terms($post_id, 'directors' );
+        dk_remove_all_terms($post_id, 'screenplay' );
+        dk_remove_all_terms($post_id, 'screenplay' );
+        dk_remove_all_terms($post_id, 'cast' );
+        dk_remove_all_terms($post_id, 'languages' );
+        dk_remove_all_terms($post_id, 'film_review_categories' );
 
 	    /* Delete imported media if it's not attached to other posts.
 	    TODO: Remove attachment metadata from this post without
@@ -237,7 +246,7 @@ class Movies {
 	    'posts_per_page' => 9999,
             'meta_key'         => 'tmdb_id',
             'meta_value'       => $tmdb_id,
-            'post_type'        => get_option('zmovies_post_type'),
+            'post_type'        => 'film_review',
             'suppress_filters' => true
         );
         return get_posts( $args );
@@ -247,7 +256,7 @@ class Movies {
 	    $args = array(
 	        'posts_per_page' => 9999,
                 'meta_key'         => 'tmdb_id',
-                'post_type'        => get_option('zmovies_post_type'),
+                'post_type'        => 'film_review',
                 'suppress_filters' => true
             );
             return get_posts( $args );

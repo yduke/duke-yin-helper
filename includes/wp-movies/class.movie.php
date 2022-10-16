@@ -18,8 +18,8 @@ class Moviee {
     private static $BACKDROP_WIDTH;
     
     function __construct($data) {
-        self::$POSTER_WIDTH = get_option('zmovies_poster_width');
-        self::$BACKDROP_WIDTH = get_option('zmovies_backdrop_width');
+        self::$POSTER_WIDTH = 'w500';
+        self::$BACKDROP_WIDTH = 'w1280';
 
         if ( is_numeric($data) ) { // post ID *not* a TMDb ID
             $data = get_post_meta( $data, '_zmovies_json', true );
@@ -37,9 +37,16 @@ class Moviee {
     }
 
     public function poster( $size=false, $force_copy=false ) {
-        if(!$this->poster_path) return false;
-        if(!$size) $size = self::$POSTER_WIDTH;
-        return Movies::tmdb_image($this->poster_path, $size, $force_copy);
+        $dukeyin_options = get_site_option( 'options-page', true, true);
+        if($dukeyin_options['tmdb-en-poster']){
+            if(!$this->poster_path_alt) return false;
+            if(!$size) $size = self::$POSTER_WIDTH;
+            return Movies::tmdb_image($this->poster_path_alt, $size, $force_copy);
+        }else{
+            if(!$this->poster_path) return false;
+            if(!$size) $size = self::$POSTER_WIDTH;
+            return Movies::tmdb_image($this->poster_path, $size, $force_copy);
+        }
     }
     
     public function backdrop( $size=false, $force_copy=false ) {

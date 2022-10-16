@@ -5,7 +5,8 @@
 //------------------------------------------------------------------------------
 
 // Global Configuration
-$cnf['apikey'] = '5f79ae05094203b27572578ef3ece8b8';
+
+$cnf['apikey'] = '';
 $cnf['lang'] = 'en-US';
 $cnf['timezone'] = 'Asia/China';
 $cnf['adult'] = false;

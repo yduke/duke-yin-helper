@@ -80,7 +80,7 @@
  *		private function _loadConfig()
  *   	private function setConfig($config)
  *   	private function getConfig()
- *   	private function _call($action, $appendToResponse = '')
+ *   	private function _call($action, $appendToResponse = '', $lang)
  *
  *
  * 	URL LIST:
@@ -600,9 +600,12 @@ class TMDB {
 	 * 	@param string $appendToResponse	The extra append of the request
 	 * 	@return string
 	 */
-	private function _call($action, $appendToResponse = '') {
+	private function _call($action, $appendToResponse = '', $lang='', $lang2='en') {
+		if($lang==''){
+			$lang = $this->getConfig()->getLang();
+		}
 
-		$url = self::_API_URL_.$action .'?api_key='. $this->getConfig()->getAPIKey() .'&language='. $this->getConfig()->getLang() .'&append_to_response='. implode(',', (array) $appendToResponse) .'&include_adult='. $this->getConfig()->getAdult();
+		$url = self::_API_URL_.$action .'?api_key='. $this->getConfig()->getAPIKey() .'&language='. $lang .'&append_to_response='. implode(',', (array) $appendToResponse) .'&include_adult='. $this->getConfig()->getAdult().'&include_image_language='.$lang2;
 
 		if ($this->getConfig()->getDebug()) {
 			echo '<script>console.log("' . $url . '")</script>>';
@@ -636,6 +639,19 @@ class TMDB {
 		$appendToResponse = (isset($appendToResponse)) ? $appendToResponse : $this->getConfig()->getAppender('movie');
 
 		return new Movie($this->_call('movie/' . $idMovie, $appendToResponse));
+	}
+
+
+	/**
+	 * 	Get Movie images
+	 *
+	 * 	@param int $idMovie The Movie id
+	 * 	@param array $appendToResponse The extra append of the request
+	 * 	@return Movie
+	 */
+	public function getMovieImages($idMovie, $appendToResponse = null, $lang) {
+
+		return new Movie($this->_call('movie/' . $idMovie, ['images'], $lang));
 	}
 
 	/**

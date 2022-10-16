@@ -124,4 +124,11 @@ function posts_without_meta( $meta_key = '', $post_type = 'post', $fields = 'all
 	return $result;
 }
 
+
+function dk_remove_all_terms($post_id, $taxonomy ) {
+	//An empty array to set 
+	$new_terms = array();
+	return wp_set_object_terms( $post_id, $new_terms, $taxonomy );
+}
+
 ?>
