@@ -153,7 +153,7 @@ foreach($search as $movie) {
     </tbody>
     </table>
     <p class="submit">
-        <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Import Movie Data','duke-yin-helper') ?>" />
+        <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Import Data','duke-yin-helper') ?>" />
     </p>
 </form>
 <?php } ?>

@@ -63,7 +63,7 @@ class TV {
             'backdrop_path' => false,
             'poster_path' => false,
             'genres' => $this->genres,
-            'imdb_id' => $this->imdb_id,
+            // 'imdb_id' => $this->imdb_id,
             'runtime' => $this->runtime,
             'languages' => $this->languages,
             // 'overview' => $this->overview
@@ -168,7 +168,7 @@ class Tvs {
 	public static function copy_tmdb_image( $file_path, &$size='original' ) {
 	    if($size == 'poster') { $size = TV::POSTER_WIDTH; }
 	    if($size == 'backdrop') { $size = TV::BACKDROP_WIDTH; }
-	    $image_url = self::$TMDB->getImageURL($size) . $file_path;
+	    $image_url = Movies::$TMDB->getImageURL($size) . $file_path;
 	    $image_to_upload = file_get_contents( $image_url );
             $wp_upload_dir = wp_upload_dir();
             $tmdb_upload_dir = $wp_upload_dir['basedir'] . '/tmdb';
@@ -187,7 +187,7 @@ class Tvs {
 
 	public static function data_from_tmdb_basic_search( $result, $get_detail=false ) {
 	    if($get_detail) {
-	        $result = self::$TMDB->getTVShow($result['id'],'images');
+	        $result = Movies::$TMDB->getTVShow($result['id'],'images');
 	    }
 	    if($result->get($item = 'first_air_date')) {
 	        if(strlen($result->get($item = 'first_air_date')) < 4) {
@@ -211,7 +211,9 @@ class Tvs {
                 'imdb_id' => false,
                 'runtime' => false,
                 'languages' => array(),
-                'overview' => false
+                'overview' => false,
+                'seasons' => $result->get($item = 'seasons'),
+                'number_seasons' => $result->get($item = 'number_of_seasons'),
             );
 	    if($get_detail) {
             $ge = $result->get($item = 'genres');

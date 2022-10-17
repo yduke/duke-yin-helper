@@ -220,6 +220,8 @@ class Movies {
 	    delete_post_meta( $post_id, '_r_f_runtime' );
 	    delete_post_meta( $post_id, '_r_f_overview' );
 	    delete_post_meta( $post_id, '_r_f_poster' );
+	    delete_post_meta( $post_id, '_r_t_number_seasons' );
+	    delete_post_meta( $post_id, '_r_t_seasons' );
 //remove terms
         dk_remove_all_terms($post_id, 'directors' );
         dk_remove_all_terms($post_id, 'screenplay' );

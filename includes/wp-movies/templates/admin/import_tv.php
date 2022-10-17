@@ -40,7 +40,7 @@ if( $posts_without_movies ) {
 </div>
 <?php } ?>
 <div class="wrap">
-    <h2><?php echo _e( 'Movie Import Tool', 'duke-yin-helper' ) ?></h2>
+    <h2><?php echo _e( 'TV Show Import Tool', 'duke-yin-helper' ) ?></h2>
 <?php if( !Movies::is_configured() ) { ?>
     <p><?php _e('You cannot use the import tool without an API key. Please go to Functions in the DukeYin Options and enter your TMDB API key.','duke-yin-helper') ?></p>
 <?php } else if(empty($posts)) { ?>
@@ -96,7 +96,7 @@ function update_preview_links(post_id) {
     <table id="zmovies-import" class="wp-list-table widefat fixed posts">
     <thead>
         <tr>
-            <th class="title"><?php _e('Movie Title','duke-yin-helper'); ?></th>
+            <th class="title"><?php _e('TV show Title','duke-yin-helper'); ?></th>
             <th class="tmdb"><?php _e('Best TMDb Match(es)','duke-yin-helper'); ?></th>
             <th colspan="2" class="images"><?php _e('Images','duke-yin-helper'); ?></th>
         </tr>
@@ -153,7 +153,7 @@ foreach($search as $movie) {
     </tbody>
     </table>
     <p class="submit">
-        <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Import Movie Data','duke-yin-helper') ?>" />
+        <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Import Data','duke-yin-helper') ?>" />
     </p>
 </form>
 <?php } ?>

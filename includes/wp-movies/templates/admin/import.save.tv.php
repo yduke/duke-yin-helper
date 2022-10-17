@@ -26,7 +26,7 @@ if( isset($_POST['posts']) ) { ?>
         update_post_meta( $post_id, 'tmdb_id', $tmdb_id );
         
         // Copy images and store JSON
-        $movie = Movies::TMDb($tmdb_id);
+        $movie = Tvs::TMDb($tmdb_id);
 
         if(has_post_thumbnail($post_id)){ //if has thumbnail, then don't import images from tmdb
             $json = $movie->json($copy_images=false,$copy_poster=true);
@@ -38,6 +38,11 @@ if( isset($_POST['posts']) ) { ?>
         update_post_meta( $post_id, '_zmovies_json', $json );
         $date = strtotime($movie->date);
         update_post_meta( $post_id, '_r_rdate', $date );
+		
+		update_post_meta( $post_id, '_r_t_number_seasons', $movie -> number_seasons );  //save seasons count data
+        if($movie->seasons){
+            update_post_meta( $post_id, '_r_t_seasons', $movie->seasons);  //save seasons data
+        }
 
         $original_title = $movie->original_title;
         $slug = sanitize_title($original_title);
@@ -58,74 +63,53 @@ if( isset($_POST['posts']) ) { ?>
         // $language = $movie-> languages[0];
         // update_post_meta( $post_id, '_r_f_language', $language );
 
-        $runtime = $movie-> runtime;
+        $runtime = $movie-> runtime[0];
         update_post_meta($post_id,'_r_f_runtime',$runtime);
 
         $overview = $movie-> overview;
         update_post_meta( $post_id, '_r_f_overview', $overview );
         
 
-//Directors
-// $directors = Movies::$TMDB->movieDirector($tmdb_id);
-$move_data = Movies::$TMDB->getMovie($tmdb_id);
+//Creators
+$move_data = Movies::$TMDB->getTVShow($tmdb_id);
 
-$directors = $move_data->getDirectorNames();
-foreach($directors as $director){
-    $term_id = term_exists( $director, 'directors' );
+$creators = $move_data->get($item = 'created_by');
+foreach($creators as $creator){
+    $term_id = term_exists( $creator['name'], 'creators' );
     if($term_id){
-        wp_set_object_terms( $post_id, $director, 'directors', true );
+        wp_set_object_terms( $post_id, $creator['name'], 'creators', true );
     }else{
         wp_insert_term(
-            $director,
-        'directors',
+            $creators,
+        'creators',
         array(
             'description' => '',
-            'slug'        => $director,
+            'slug'        => $creators,
             'parent'      => '',
         ));
-        $term_id = term_exists( $director, 'directors' );
-        wp_set_object_terms( $post_id, $director, 'directors', true );
+        $term_id = term_exists( $creator['name'], 'creators' );
+        wp_set_object_terms( $post_id, $creator['name'], 'creators', true );
     }
 }
 
 
-//Screenplay
-        $writers = $move_data->getScreenplayNames();
-        foreach($writers as $writer){
-            $term_id = term_exists( $writer, 'screenplay' );
-            if($term_id){
-                wp_set_object_terms( $post_id, $writer, 'screenplay', true );
-            }else{
-                wp_insert_term(
-                    $writer,
-                'screenplay',
-                array(
-                    'description' => '',
-                    'slug'        => $writer,
-                    'parent'      => '',
-                ));
-                $term_id = term_exists( $writer, 'screenplay' );
-                wp_set_object_terms( $post_id, $writer, 'screenplay', true );
-            }
-        }
-
 //CAST
-        $cast = $move_data->getCastNames();
+        $cast = $move_data->get($item = 'credits')['cast'];
         foreach($cast as $cas){
-            $term_id = term_exists( $cas, 'cast' );
+            $term_id = term_exists( $cas['name'], 'cast' );
             if($term_id){
-                wp_set_object_terms( $post_id, $cas, 'cast', true );
+                wp_set_object_terms( $post_id, $cas['name'], 'cast', true );
             }else{
                 wp_insert_term(
-                    $cas,
+                    $cas['name'],
                 'cast',
                 array(
                     'description' => '',
-                    'slug'        => $cas,
+                    'slug'        => $cas['name'],
                     'parent'      => '',
                 ));
-                $term_id = term_exists( $cas, 'cast' );
-                wp_set_object_terms( $post_id, $cas, 'cast', true );
+                $term_id = term_exists( $cas['name'], 'cast' );
+                wp_set_object_terms( $post_id, $cas['name'], 'cast', true );
             }
         }
 
@@ -171,11 +155,13 @@ foreach($directors as $director){
 
         // Fetch movie data back from WP
         $movie = new Moviee( $post_id );
+
         
+
         // Attach media
             $attach_ids = get_attach_ids_for_post( $post_id );
             if($movie->backdrop_path) {
-                $attach_id = attach_media_to_post( $post_id, $movie->backdrop_path, is_featured_image('backdrop', $movie), $movie->title );
+                $attach_id = attach_media_to_post( $post_id, $movie->backdrop_path, true, $movie->title );
                 $attach_ids[] = $attach_id;
             }
             if($movie->poster_path) {

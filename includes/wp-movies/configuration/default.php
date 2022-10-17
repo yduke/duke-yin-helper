@@ -14,10 +14,10 @@ $cnf['adult'] = false;
 $cnf['debug'] = false;
 
 // Data Return Configuration - Manipulate if you want to tune your results
-$cnf['appender']['movie'] = array( 'images', 'credits', 'translations', 'reviews');
-$cnf['appender']['tvshow'] = array('trailers', 'videos', 'images', 'credits', 'translations', 'keywords');
-$cnf['appender']['season'] = array('trailers', 'images', 'credits', 'translations');
-$cnf['appender']['episode'] = array('trailers', 'images', 'credits', 'translations');
+$cnf['appender']['movie'] = array( 'images', 'credits');
+$cnf['appender']['tvshow'] = array( 'images', 'credits');
+$cnf['appender']['season'] = array( 'images', 'credits');
+$cnf['appender']['episode'] = array( 'images', 'credits');
 $cnf['appender']['person'] = array('movie_credits', 'tv_credits', 'images');
 $cnf['appender']['collection'] = array('images');
 $cnf['appender']['company'] = array('movies');

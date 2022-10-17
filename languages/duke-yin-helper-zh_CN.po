@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2022-10-17 00:13+0800\n"
-"PO-Revision-Date: 2022-10-17 00:14+0800\n"
+"POT-Creation-Date: 2022-10-17 21:22+0800\n"
+"PO-Revision-Date: 2022-10-17 21:23+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -1373,20 +1373,25 @@ msgid "Movies Tool"
 msgstr "电影工具"
 
 #: includes/wp-movies/class.movies-admin.php:15
-msgid "Import"
-msgstr "导入"
+msgid "Import Movies"
+msgstr "导入电影"
 
-#: includes/wp-movies/class.movies-admin.php:18
+#: includes/wp-movies/class.movies-admin.php:16
+msgid "Import TV Shows"
+msgstr "导入剧集"
+
+#: includes/wp-movies/class.movies-admin.php:19
 msgid "Tools"
 msgstr "工具"
 
-#: includes/wp-movies/class.movies-admin.php:27
+#: includes/wp-movies/class.movies-admin.php:28
 msgid ""
 "The Movies plugin has not been configured, enter your API key in Appearance, "
 "DukeYin theme options."
 msgstr "电影工具未正确设置，请在外观，DukeYin主题选项中输入你的API密钥。"
 
 #: includes/wp-movies/templates/admin/import.php:39
+#: includes/wp-movies/templates/admin/import_tv.php:39
 msgid "Your import was completed."
 msgstr "导入已完成。"
 
@@ -1395,6 +1400,7 @@ msgid "Movie Import Tool"
 msgstr "电影导入工具"
 
 #: includes/wp-movies/templates/admin/import.php:45
+#: includes/wp-movies/templates/admin/import_tv.php:45
 msgid ""
 "You cannot use the import tool without an API key. Please go to Functions in "
 "the DukeYin Options and enter your TMDB API key."
@@ -1402,6 +1408,7 @@ msgstr ""
 "需要完成设置以使用电影导入工具。请在DukeYin选项，功能中输入你的TMDB API密钥。"
 
 #: includes/wp-movies/templates/admin/import.php:47
+#: includes/wp-movies/templates/admin/import_tv.php:47
 msgid "There were no posts found without movie data attached to them."
 msgstr "未找到缺失电影信息的文章。"
 
@@ -1410,28 +1417,42 @@ msgid "Movie Title"
 msgstr "电影标题"
 
 #: includes/wp-movies/templates/admin/import.php:100
+#: includes/wp-movies/templates/admin/import_tv.php:100
 msgid "Best TMDb Match(es)"
 msgstr "最佳匹配"
 
 #: includes/wp-movies/templates/admin/import.php:101
+#: includes/wp-movies/templates/admin/import_tv.php:101
 msgid "Images"
 msgstr "图像"
 
 #: includes/wp-movies/templates/admin/import.php:138
+#: includes/wp-movies/templates/admin/import_tv.php:138
 msgid "Enter a TMDb ID"
 msgstr "输入TMDb ID"
 
 #: includes/wp-movies/templates/admin/import.php:139
+#: includes/wp-movies/templates/admin/import_tv.php:139
 msgid "None (Leave Blank)"
 msgstr "无（不处理）"
 
 #: includes/wp-movies/templates/admin/import.php:156
-msgid "Import Movie Data"
-msgstr "导入电影数据"
+#: includes/wp-movies/templates/admin/import_tv.php:156
+msgid "Import Data"
+msgstr "导入数据"
 
 #: includes/wp-movies/templates/admin/import.save.php:31
+#: includes/wp-movies/templates/admin/import.save.tv.php:9
 msgid "Importing... Please do not navigate away from this page."
 msgstr "正在导入……请不要关闭或离开刺页面。"
+
+#: includes/wp-movies/templates/admin/import_tv.php:43
+msgid "TV Show Import Tool"
+msgstr "剧集导入工具"
+
+#: includes/wp-movies/templates/admin/import_tv.php:99
+msgid "TV show Title"
+msgstr "剧集标题"
 
 #: includes/wp-movies/templates/admin/settings.php:6
 #: includes/wp-movies/templates/admin/tools.php:6
@@ -1520,6 +1541,9 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "Duke Yin"
 msgstr "Duke Yin"
+
+#~ msgid "Import"
+#~ msgstr "导入"
 
 #~ msgid "Settings"
 #~ msgstr "设置"
