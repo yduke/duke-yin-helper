@@ -80,6 +80,10 @@ class ApiBaseObject
         return substr($this->_data['release_date'],0,4);
     }
 
+    public function getTvYear() {
+        return substr($this->_data['first_air_date'],0,4);
+    }
+
     /**
      * 	Get the ApiObjects vote average
      *

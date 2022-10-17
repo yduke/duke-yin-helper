@@ -23,6 +23,7 @@ define( 'MOVIES__PLUGIN_DIR', plugin_dir_path( __FILE__ )  );
 
 require_once( MOVIES__PLUGIN_DIR . 'functions.php' );
 require_once( MOVIES__PLUGIN_DIR . 'class.movies.php' );
+require_once( MOVIES__PLUGIN_DIR . 'class.tvs.php' );
 
 register_activation_hook( __FILE__, array( 'Movies', 'plugin_activation' ) );
 register_deactivation_hook( __FILE__, array( 'Movies', 'plugin_deactivation' ) );
