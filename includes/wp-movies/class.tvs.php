@@ -48,6 +48,12 @@ class TV {
             return Tvs::tmdb_image($this->poster_path, $size, $force_copy);
         }
     }
+
+    public function logo( $size=false, $force_copy=false ) {
+        if(!$this->logo_path) return false;
+        if(!$size) $size = 'original';
+        return Tvs::tmdb_image($this->logo_path, $size, $force_copy);
+    }
     
     public function backdrop( $size=false, $force_copy=false ) {
         if(!$this->backdrop_path) return false;
@@ -62,6 +68,7 @@ class TV {
             'year' => $this->year,
             'backdrop_path' => false,
             'poster_path' => false,
+            'logo_path' => false,
             'genres' => $this->genres,
             // 'imdb_id' => $this->imdb_id,
             'runtime' => $this->runtime,
@@ -70,6 +77,7 @@ class TV {
         );
         if($copy_images) {
             $data['backdrop_path'] = self::backdrop();
+            $data['logo_path'] = self::logo();
         }
         if($copy_poster) {
             $data['poster_path'] = self::poster();
@@ -203,7 +211,7 @@ class Tvs {
                 'date' => $release_date,
                 'backdrop_path' => $result->get($item = 'backdrop_path'),
                 'poster_path' => $result->get($item = 'poster_path'),
-                'logo_path' => $result->get($item = 'images')['logos'][0]['file_path'],
+                'logo_path' => false,
                 'poster_path_alt' => $result->get($item = 'images')['posters'][0]['file_path'],
                 'title' => $result->get($item = 'name'),
                 'original_title' => $result->get($item = 'original_name'),
@@ -228,6 +236,10 @@ class Tvs {
                         $data['languages'][] = $language['name'];
                     }
                 }
+            $logo = $result->get($item = 'images')['logos'][0]['file_path'];
+            if($logo) {
+                $data['logo_path'] = $logo;
+            }
 	        $data['imdb_id'] = $result->get($item = 'imdb_id');
 	        $data['runtime'] = $result->get($item = 'episode_run_time');
 	        $data['overview'] = $result->get($item = 'overview');

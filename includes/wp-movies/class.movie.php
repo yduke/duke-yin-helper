@@ -48,7 +48,13 @@ class Moviee {
             return Movies::tmdb_image($this->poster_path, $size, $force_copy);
         }
     }
-    
+
+    public function logo( $size=false, $force_copy=false ) {
+        if(!$this->logo_path) return false;
+        if(!$size) $size = 'original';
+        return Movies::tmdb_image($this->logo_path, $size, $force_copy);
+    }
+
     public function backdrop( $size=false, $force_copy=false ) {
         if(!$this->backdrop_path) return false;
         if(!$size) $size = self::$BACKDROP_WIDTH;
@@ -62,6 +68,7 @@ class Moviee {
             'year' => $this->year,
             'backdrop_path' => false,
             'poster_path' => false,
+            'logo_path' => false,
             'genres' => $this->genres,
             'imdb_id' => $this->imdb_id,
             'runtime' => $this->runtime,
@@ -70,6 +77,7 @@ class Moviee {
         );
         if($copy_images) {
             $data['backdrop_path'] = self::backdrop();
+            $data['logo_path'] = self::logo();
         }
         if($copy_poster) {
             $data['poster_path'] = self::poster();

@@ -205,6 +205,11 @@ foreach($directors as $director){
                 $attach_ids[] = $attach_id;
                 update_post_meta( $post_id, '_r_f_poster',  $movie->poster_path );
             }
+            if($movie->logo_path) {
+                $attach_id = attach_media_to_post( $post_id, $movie->logo_path, false, $movie->title );
+                $attach_ids[] = $attach_id;
+                update_post_meta( $post_id, '_r_f_logo',  $movie->logo_path );
+            }
             add_or_update_post_meta( $post_id, '_zmovies_attach_ids', implode(",", $attach_ids) );
 
 

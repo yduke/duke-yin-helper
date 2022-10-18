@@ -126,7 +126,7 @@ class Movies {
                 'date' => $release_date,
                 'backdrop_path' => $result->get($item = 'backdrop_path'),
                 'poster_path' => $result->get($item = 'poster_path'),
-                'logo_path' => $result->get($item = 'images')['logos'][0]['file_path'],
+                'logo_path' => false,
                 'poster_path_alt' => $result->get($item = 'images')['posters'][0]['file_path'],
                 'title' => $result->get($item = 'title'),
                 'original_title' => $result->get($item = 'original_title'),
@@ -149,6 +149,10 @@ class Movies {
                         $data['languages'][] = $language['name'];
                     }
                 }
+            $logo = $result->get($item = 'images')['logos'][0]['file_path'];
+            if($logo) {
+                $data['logo_path'] = $logo;
+            }
 	        $data['imdb_id'] = $result->get($item = 'imdb_id');
 	        $data['runtime'] = $result->get($item = 'runtime');
 	        $data['overview'] = $result->get($item = 'overview');
