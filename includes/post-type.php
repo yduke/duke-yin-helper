@@ -1208,3 +1208,71 @@ function update_image_upload($term_id, $tt_id) {
 }
 add_action('init', 'videos_register');
 add_action( 'init', 'create_video_taxonomies', 0 );
+
+
+/** links */
+function link_register() {
+	$labels = array(
+	  'name' => _x('Links Manager', 'post type general name','duke-yin-helper'),
+	  'singular_name' => _x('Link', 'post type singular name','duke-yin-helper'),
+	  'all_items'=> _x('All links', 'String for the submenu','duke-yin-helper'),
+	  'add_new' => _x('Add New', 'portfolio','duke-yin-helper'),
+	  'add_new_item' => __('Add new','duke-yin-helper'),
+	  'edit_item' => __('Edit link','duke-yin-helper'),
+	  'new_item' => __('New link','duke-yin-helper'),
+	  'view_item' => __('View this link','duke-yin-helper'),
+	  'search_items' => __('Search for','duke-yin-helper'),
+	  'not_found' =>  __('Not found','duke-yin-helper'),
+	  'not_found_in_trash' => __('Not found in trash','duke-yin-helper'), 
+	  'parent_item_colon' => ''
+	);
+
+  $slugRule = 'links';
+  
+  $args = array(
+	  'labels' => $labels,
+	  'public' => true,
+	  'show_ui' => true,
+	  'show_in_rest'=> false,
+	  'capability_type' => 'post',
+	  'hierarchical' => false,
+	  'rewrite' => array('slug' => 'links','with_front' => true),
+	  'query_var' => true,
+	  'show_in_nav_menus'=> false,
+	  'menu_position' => 13,
+	  'menu_icon' => 'dashicons-editor-unlink',
+	  'supports' => array('title','author','excerpt')
+  );
+
+  register_post_type( 'links' , $args ); 
+}
+
+function create_link_taxonomies() {
+$labels = array(
+  'name'              => _x( 'Categories', 'taxonomy general name','duke-yin-helper' ),
+  'singular_name'     => _x( 'Category', 'taxonomy singular name','duke-yin-helper'),
+  'search_items'      => __( 'Search Categories','duke-yin-helper' ),
+  'all_items'         => __( 'All Categories', 'duke-yin-helper'),
+  'parent_item'       => __( 'Parent Category','duke-yin-helper'),
+  'parent_item_colon' => __( 'Parent Category:','duke-yin-helper' ),
+  'edit_item'         => __( 'Edit Category','duke-yin-helper' ),
+  'update_item'       => __( 'Update Category','duke-yin-helper' ),
+  'add_new_item'      => __( 'Add New Category','duke-yin-helper' ),
+  'new_item_name'     => __( 'New Category Name','duke-yin-helper' ),
+  'menu_name'         => __( 'Categories','duke-yin-helper' ),
+);
+
+$args = array(
+  'hierarchical'      => true, // Set this to 'false' for non-hierarchical taxonomy (like tags)
+  'labels'            => $labels,
+  'show_ui'           => true,
+  'show_admin_column' => true,
+  'query_var'         => true,
+  'rewrite'           => array( 'slug' => 'categories' ),
+);
+
+register_taxonomy( 'link_categories', array( 'links' ), $args );
+
+}
+add_action('init', 'link_register');
+add_action( 'init', 'create_link_taxonomies', 0 );

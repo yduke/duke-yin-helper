@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2022-10-19 13:39+0800\n"
-"PO-Revision-Date: 2022-10-19 13:39+0800\n"
+"POT-Creation-Date: 2022-10-19 23:05+0800\n"
+"PO-Revision-Date: 2022-10-19 23:05+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -196,11 +196,13 @@ msgstr "查看此幻灯"
 #: includes/post-type.php:737 includes/post-type.php:810
 #: includes/post-type.php:884 includes/post-type.php:924
 #: includes/post-type.php:964 includes/post-type.php:1155
+#: includes/post-type.php:1224
 msgid "Search for"
 msgstr "搜索"
 
 #: includes/post-type.php:22 includes/post-type.php:57
 #: includes/post-type.php:255 includes/post-type.php:1156
+#: includes/post-type.php:1225
 msgid "Not found"
 msgstr "没找到"
 
@@ -211,6 +213,7 @@ msgstr "没找到"
 #: includes/post-type.php:739 includes/post-type.php:812
 #: includes/post-type.php:886 includes/post-type.php:926
 #: includes/post-type.php:966 includes/post-type.php:1157
+#: includes/post-type.php:1226
 msgid "Not found in trash"
 msgstr "回收站中未找到"
 
@@ -229,12 +232,12 @@ msgctxt "String for the submenu"
 msgid "All Portfolios"
 msgstr "所有作品"
 
-#: includes/post-type.php:51
+#: includes/post-type.php:51 includes/post-type.php:1219
 msgctxt "portfolio"
 msgid "Add New"
 msgstr "添加"
 
-#: includes/post-type.php:52
+#: includes/post-type.php:52 includes/post-type.php:1220
 msgid "Add new"
 msgstr "添加"
 
@@ -252,69 +255,69 @@ msgstr "查看此作品"
 
 #: includes/post-type.php:85 includes/post-type.php:150
 #: includes/post-type.php:216 includes/post-type.php:282
-#: includes/post-type.php:1184
+#: includes/post-type.php:1184 includes/post-type.php:1252
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr "分类目录"
 
 #: includes/post-type.php:86 includes/post-type.php:151
 #: includes/post-type.php:217 includes/post-type.php:283
-#: includes/post-type.php:1185
+#: includes/post-type.php:1185 includes/post-type.php:1253
 msgctxt "taxonomy singular name"
 msgid "Category"
 msgstr "分类"
 
 #: includes/post-type.php:87 includes/post-type.php:152
 #: includes/post-type.php:218 includes/post-type.php:284
-#: includes/post-type.php:1186
+#: includes/post-type.php:1186 includes/post-type.php:1254
 msgid "Search Categories"
 msgstr "搜索分类"
 
 #: includes/post-type.php:88 includes/post-type.php:153
 #: includes/post-type.php:219 includes/post-type.php:285
-#: includes/post-type.php:1187
+#: includes/post-type.php:1187 includes/post-type.php:1255
 msgid "All Categories"
 msgstr "所有分类"
 
 #: includes/post-type.php:89 includes/post-type.php:154
 #: includes/post-type.php:220 includes/post-type.php:286
-#: includes/post-type.php:1188
+#: includes/post-type.php:1188 includes/post-type.php:1256
 msgid "Parent Category"
 msgstr "父级分类"
 
 #: includes/post-type.php:90 includes/post-type.php:155
 #: includes/post-type.php:221 includes/post-type.php:287
-#: includes/post-type.php:1189
+#: includes/post-type.php:1189 includes/post-type.php:1257
 msgid "Parent Category:"
 msgstr "父级分类："
 
 #: includes/post-type.php:91 includes/post-type.php:156
 #: includes/post-type.php:222 includes/post-type.php:288
-#: includes/post-type.php:1190
+#: includes/post-type.php:1190 includes/post-type.php:1258
 msgid "Edit Category"
 msgstr "编辑分类"
 
 #: includes/post-type.php:92 includes/post-type.php:157
 #: includes/post-type.php:223 includes/post-type.php:289
-#: includes/post-type.php:1191
+#: includes/post-type.php:1191 includes/post-type.php:1259
 msgid "Update Category"
 msgstr "更新分类"
 
 #: includes/post-type.php:93 includes/post-type.php:158
 #: includes/post-type.php:224 includes/post-type.php:290
-#: includes/post-type.php:1192
+#: includes/post-type.php:1192 includes/post-type.php:1260
 msgid "Add New Category"
 msgstr "新增分类"
 
 #: includes/post-type.php:94 includes/post-type.php:159
 #: includes/post-type.php:225 includes/post-type.php:291
-#: includes/post-type.php:1193
+#: includes/post-type.php:1193 includes/post-type.php:1261
 msgid "New Category Name"
 msgstr "新分类名"
 
 #: includes/post-type.php:95 includes/post-type.php:160
 #: includes/post-type.php:226 includes/post-type.php:292
-#: includes/post-type.php:1194
+#: includes/post-type.php:1194 includes/post-type.php:1262
 msgid "Categories"
 msgstr "分类目录"
 
@@ -1359,6 +1362,33 @@ msgstr "新增视频"
 #: includes/post-type.php:1154
 msgid "View this video"
 msgstr "查看此视频"
+
+#: includes/post-type.php:1216
+msgctxt "post type general name"
+msgid "Links Manager"
+msgstr "链接管理"
+
+#: includes/post-type.php:1217
+msgctxt "post type singular name"
+msgid "Link"
+msgstr "链接"
+
+#: includes/post-type.php:1218
+msgctxt "String for the submenu"
+msgid "All links"
+msgstr "所有链接"
+
+#: includes/post-type.php:1221
+msgid "Edit link"
+msgstr "编辑链接"
+
+#: includes/post-type.php:1222
+msgid "New link"
+msgstr "新增链接"
+
+#: includes/post-type.php:1223
+msgid "View this link"
+msgstr "查看链接"
 
 #: includes/short-code.php:165
 msgid "Bookmarks"
