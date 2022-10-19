@@ -53,7 +53,7 @@ class TV {
     public function logo( $size=false, $force_copy=false ) {
         $tmdb_id = (int)$this->tmdb_id;
         if(!$this->logo_path) return false;
-        if(!$size) $size = 'original';
+        if(!$size) $size = 'w500';
         return Tvs::tmdb_image($this->logo_path, $size, $force_copy, $tmdb_id);
     }
     
