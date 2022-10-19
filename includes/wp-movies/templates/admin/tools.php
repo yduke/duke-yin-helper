@@ -51,10 +51,10 @@ if ( $operation_error ) { ?>
             <th><?php _e("Operation:","duke-yin-helper"); ?></th>
             <td><select name="operation">
                 <option selected></option>
-                <option value="clear_for_post_id"><?php _e('Clear movie data for a specific post ID','duke-yin-helper') ?></option>
-                <option value="clear_for_tmdb_id"><?php _e('Clear movie data for a specific TMDb ID','duke-yin-helper') ?></option>
+                <option value="clear_for_post_id"><?php _e('Clear movie or tv-show data for a specific post ID','duke-yin-helper') ?></option>
+                <option value="clear_for_tmdb_id"><?php _e('Clear movie or tv-show  data for a specific TMDb ID','duke-yin-helper') ?></option>
                 <option value="clear_zero"><?php _e('Clear cast crew languages and categories with zero posts.','duke-yin-helper') ?></option>
-                <option value="clear_all_movie_data"><?php _e('Clear all movie data for all posts','duke-yin-helper') ?></option>
+                <option value="clear_all_movie_data"><?php _e('Clear all movies and tv-shows data for all posts','duke-yin-helper') ?></option>
             </select></td>
 </tr>
         <tr>

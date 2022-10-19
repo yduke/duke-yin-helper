@@ -37,28 +37,31 @@ class Moviee {
     }
 
     public function poster( $size=false, $force_copy=false ) {
+        $tmdb_id = (int)$this->tmdb_id;
         $dukeyin_options = get_site_option( 'options-page', true, true);
         if($dukeyin_options['tmdb-en-poster']){
             if(!$this->poster_path_alt) return false;
             if(!$size) $size = self::$POSTER_WIDTH;
-            return Movies::tmdb_image($this->poster_path_alt, $size, $force_copy);
+            return Movies::tmdb_image($this->poster_path_alt, $size, $force_copy,$tmdb_id);
         }else{
             if(!$this->poster_path) return false;
             if(!$size) $size = self::$POSTER_WIDTH;
-            return Movies::tmdb_image($this->poster_path, $size, $force_copy);
+            return Movies::tmdb_image($this->poster_path, $size, $force_copy,$tmdb_id);
         }
     }
 
     public function logo( $size=false, $force_copy=false ) {
+        $tmdb_id = (int)$this->tmdb_id;
         if(!$this->logo_path) return false;
         if(!$size) $size = 'original';
-        return Movies::tmdb_image($this->logo_path, $size, $force_copy);
+        return Movies::tmdb_image($this->logo_path, $size, $force_copy,$tmdb_id);
     }
 
     public function backdrop( $size=false, $force_copy=false ) {
+        $tmdb_id = (int)$this->tmdb_id;
         if(!$this->backdrop_path) return false;
         if(!$size) $size = self::$BACKDROP_WIDTH;
-        return Movies::tmdb_image($this->backdrop_path, $size, $force_copy);
+        return Movies::tmdb_image($this->backdrop_path, $size, $force_copy, $tmdb_id);
     }
     
     public function json($copy_images=false, $copy_poster=false) {

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2022-10-18 19:50+0800\n"
-"PO-Revision-Date: 2022-10-18 19:51+0800\n"
+"POT-Creation-Date: 2022-10-19 13:39+0800\n"
+"PO-Revision-Date: 2022-10-19 13:39+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -1488,20 +1488,20 @@ msgid "Operation:"
 msgstr "行动："
 
 #: includes/wp-movies/templates/admin/tools.php:54
-msgid "Clear movie data for a specific post ID"
-msgstr "指定Post ID清除电影数据"
+msgid "Clear movie or tv-show data for a specific post ID"
+msgstr "指定Post ID清除电影或剧集数据"
 
 #: includes/wp-movies/templates/admin/tools.php:55
-msgid "Clear movie data for a specific TMDb ID"
-msgstr "指定TMDb ID清除电影数据"
+msgid "Clear movie or tv-show  data for a specific TMDb ID"
+msgstr "指定TMDb ID清除电影或剧集数据"
 
 #: includes/wp-movies/templates/admin/tools.php:56
 msgid "Clear cast crew languages and categories with zero posts."
 msgstr "清除0附加文章的演员、导演、语言和分类。"
 
 #: includes/wp-movies/templates/admin/tools.php:57
-msgid "Clear all movie data for all posts"
-msgstr "清除本站所有电影数据"
+msgid "Clear all movies and tv-shows data for all posts"
+msgstr "清除本站所有电影和剧集数据"
 
 #: includes/wp-movies/templates/admin/tools.php:61
 msgid "ID:"

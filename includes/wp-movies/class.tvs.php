@@ -37,28 +37,31 @@ class TV {
     }
 
     public function poster( $size=false, $force_copy=false ) {
+        $tmdb_id = (int)$this->tmdb_id;
         $dukeyin_options = get_site_option( 'options-page', true, true);
         if($dukeyin_options['tmdb-en-poster']){
             if(!$this->poster_path_alt) return false;
             if(!$size) $size = self::$POSTER_WIDTH;
-            return Tvs::tmdb_image($this->poster_path_alt, $size, $force_copy);
+            return Tvs::tmdb_image($this->poster_path_alt, $size, $force_copy, $tmdb_id);
         }else{
             if(!$this->poster_path) return false;
             if(!$size) $size = self::$POSTER_WIDTH;
-            return Tvs::tmdb_image($this->poster_path, $size, $force_copy);
+            return Tvs::tmdb_image($this->poster_path, $size, $force_copy, $tmdb_id);
         }
     }
 
     public function logo( $size=false, $force_copy=false ) {
+        $tmdb_id = (int)$this->tmdb_id;
         if(!$this->logo_path) return false;
         if(!$size) $size = 'original';
-        return Tvs::tmdb_image($this->logo_path, $size, $force_copy);
+        return Tvs::tmdb_image($this->logo_path, $size, $force_copy, $tmdb_id);
     }
     
     public function backdrop( $size=false, $force_copy=false ) {
+        $tmdb_id = (int)$this->tmdb_id;
         if(!$this->backdrop_path) return false;
         if(!$size) $size = self::$BACKDROP_WIDTH;
-        return Tvs::tmdb_image($this->backdrop_path, $size, $force_copy);
+        return Tvs::tmdb_image($this->backdrop_path, $size, $force_copy, $tmdb_id);
     }
     
     public function json($copy_images=false, $copy_poster=false) {
@@ -156,24 +159,24 @@ class Tvs {
         return $destination;
     }
 
-	public static function tmdb_image( $file_path, &$size='original', $force_copy=false ) {
+	public static function tmdb_image( $file_path, &$size='original', $force_copy=false, $tmdb_id ) {
 	    if($size == 'poster') { $size = TV::POSTER_WIDTH; }
 	    if($size == 'backdrop') { $size = TV::BACKDROP_WIDTH; }
         $wp_upload_dir = wp_upload_dir();
         
-        $file_destination = '/tmdb/' . $size . $file_path;
+        $file_destination = '/tmdb/' .$tmdb_id. $size . $file_path;
         if( !file_exists($wp_upload_dir['basedir'] . $file_destination) || $force_copy ) {
-            self::copy_tmdb_image( $file_path, $size ); 
+            self::copy_tmdb_image( $file_path, $size, $tmdb_id ); 
         }
-        $img_path = $wp_upload_dir['basedir'] . '/tmdb/' . $size . $file_path;
+        $img_path = $wp_upload_dir['basedir'] . '/tmdb/' .$tmdb_id.'/'. $size . $file_path;
 
         // $image_url = $wp_upload_dir['baseurl'] . $file_destination;
         $webp_url = self:: webpImage( $img_path, 75, true );
-        $image_url = $wp_upload_dir['baseurl']  . '/tmdb/' . $size .'/'. basename($webp_url);
+        $image_url = $wp_upload_dir['baseurl']  . '/tmdb/' .$tmdb_id.'/'. $size .'/'. basename($webp_url);
         return $image_url;
 	}
 	
-	public static function copy_tmdb_image( $file_path, &$size='original' ) {
+	public static function copy_tmdb_image( $file_path, &$size='original', $tmdb_id ) {
 	    if($size == 'poster') { $size = TV::POSTER_WIDTH; }
 	    if($size == 'backdrop') { $size = TV::BACKDROP_WIDTH; }
 	    $image_url = Movies::$TMDB->getImageURL($size) . $file_path;
@@ -183,7 +186,11 @@ class Tvs {
             if( !file_exists( $tmdb_upload_dir ) ) {
                 mkdir( $tmdb_upload_dir );
             }
-            $size_upload_dir = $tmdb_upload_dir . '/' . $size;
+            $tmdbid_upload_dir = $tmdb_upload_dir . '/' .$tmdb_id;
+            if( !file_exists( $tmdbid_upload_dir ) ) {
+                mkdir( $tmdbid_upload_dir );
+            }
+            $size_upload_dir = $tmdbid_upload_dir .'/'. $size;
             if( !file_exists( $size_upload_dir ) ) {
                 mkdir( $size_upload_dir );
             }

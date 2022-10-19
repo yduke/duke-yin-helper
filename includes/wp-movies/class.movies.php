@@ -71,24 +71,24 @@ class Movies {
         return $destination;
     }
 
-	public static function tmdb_image( $file_path, &$size='original', $force_copy=false ) {
+	public static function tmdb_image( $file_path, &$size='original', $force_copy=false, $tmdb_id ) {
 	    if($size == 'poster') { $size = Moviee::POSTER_WIDTH; }
 	    if($size == 'backdrop') { $size = Moviee::BACKDROP_WIDTH; }
         $wp_upload_dir = wp_upload_dir();
         
-        $file_destination = '/tmdb/' . $size . $file_path;
+        $file_destination = '/tmdb/' .$tmdb_id. $size . $file_path;
         if( !file_exists($wp_upload_dir['basedir'] . $file_destination) || $force_copy ) {
-            self::copy_tmdb_image( $file_path, $size ); 
+            self::copy_tmdb_image( $file_path, $size, $tmdb_id ); 
         }
-        $img_path = $wp_upload_dir['basedir'] . '/tmdb/' . $size . $file_path;
+        $img_path = $wp_upload_dir['basedir'] . '/tmdb/' .$tmdb_id.'/'. $size . $file_path;
 
         // $image_url = $wp_upload_dir['baseurl'] . $file_destination;
         $webp_url = self:: webpImage( $img_path, 75, true );
-        $image_url = $wp_upload_dir['baseurl']  . '/tmdb/' . $size .'/'. basename($webp_url);
+        $image_url = $wp_upload_dir['baseurl']  . '/tmdb/' .$tmdb_id.'/'. $size .'/'. basename($webp_url);
         return $image_url;
 	}
 	
-	public static function copy_tmdb_image( $file_path, &$size='original' ) {
+	public static function copy_tmdb_image( $file_path, &$size='original' , $tmdb_id) {
 	    if($size == 'poster') { $size = Moviee::POSTER_WIDTH; }
 	    if($size == 'backdrop') { $size = Moviee::BACKDROP_WIDTH; }
 	    $image_url = self::$TMDB->getImageURL($size) . $file_path;
@@ -98,7 +98,11 @@ class Movies {
             if( !file_exists( $tmdb_upload_dir ) ) {
                 mkdir( $tmdb_upload_dir );
             }
-            $size_upload_dir = $tmdb_upload_dir . '/' . $size;
+            $tmdbid_upload_dir = $tmdb_upload_dir . '/' .$tmdb_id;
+            if( !file_exists( $tmdbid_upload_dir ) ) {
+                mkdir( $tmdbid_upload_dir );
+            }
+            $size_upload_dir = $tmdbid_upload_dir .'/'. $size;
             if( !file_exists( $size_upload_dir ) ) {
                 mkdir( $size_upload_dir );
             }
@@ -245,6 +249,12 @@ class Movies {
             }
             delete_post_meta( $post_id, '_zmovies_attach_ids' );
         }
+        /*delete the folder with $tmdb_id name*/
+        require_once ( ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php' );
+        require_once ( ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php' );
+        $fileSystemDirect = new WP_Filesystem_Direct(false);
+        $folder_path = wp_upload_dir()['basedir'] .'/tmdb/'.$tmdb_id;
+        $fileSystemDirect->rmdir( $folder_path,true, 'd' );
 	}
 
     public static function posts_with_tmdb_id( $tmdb_id ) {
@@ -252,7 +262,7 @@ class Movies {
 	    'posts_per_page' => 9999,
             'meta_key'         => 'tmdb_id',
             'meta_value'       => $tmdb_id,
-            'post_type'        => 'film_review',
+            'post_type'        => array('film_review','tvshow_review'),
             'suppress_filters' => true
         );
         return get_posts( $args );
@@ -262,7 +272,7 @@ class Movies {
 	    $args = array(
 	        'posts_per_page' => 9999,
                 'meta_key'         => 'tmdb_id',
-                'post_type'        => 'film_review',
+                'post_type'        => array('film_review','tvshow_review'),
                 'suppress_filters' => true
             );
             return get_posts( $args );
