@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2022-10-19 23:05+0800\n"
-"PO-Revision-Date: 2022-10-19 23:05+0800\n"
+"POT-Creation-Date: 2022-10-30 20:22+0800\n"
+"PO-Revision-Date: 2022-10-30 20:23+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -232,7 +232,7 @@ msgctxt "String for the submenu"
 msgid "All Portfolios"
 msgstr "所有作品"
 
-#: includes/post-type.php:51 includes/post-type.php:1219
+#: includes/post-type.php:51
 msgctxt "portfolio"
 msgid "Add New"
 msgstr "添加"
@@ -1365,8 +1365,8 @@ msgstr "查看此视频"
 
 #: includes/post-type.php:1216
 msgctxt "post type general name"
-msgid "Links Manager"
-msgstr "链接管理"
+msgid "Magnet Links"
+msgstr "磁力链接"
 
 #: includes/post-type.php:1217
 msgctxt "post type singular name"
@@ -1375,12 +1375,17 @@ msgstr "链接"
 
 #: includes/post-type.php:1218
 msgctxt "String for the submenu"
-msgid "All links"
-msgstr "所有链接"
+msgid "All Magnet Links"
+msgstr "所有磁链"
+
+#: includes/post-type.php:1219
+msgctxt "links"
+msgid "Add New"
+msgstr "添加"
 
 #: includes/post-type.php:1221
-msgid "Edit link"
-msgstr "编辑链接"
+msgid "Edit Magnet link"
+msgstr "编辑磁接"
 
 #: includes/post-type.php:1222
 msgid "New link"
@@ -1571,6 +1576,10 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "Duke Yin"
 msgstr "Duke Yin"
+
+#~ msgctxt "post type general name"
+#~ msgid "Links Manager"
+#~ msgstr "链接管理"
 
 #~ msgid "Import"
 #~ msgstr "导入"

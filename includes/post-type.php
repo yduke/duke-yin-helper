@@ -1210,15 +1210,15 @@ add_action('init', 'videos_register');
 add_action( 'init', 'create_video_taxonomies', 0 );
 
 
-/** links */
+/** Magnet links */
 function link_register() {
 	$labels = array(
-	  'name' => _x('Links Manager', 'post type general name','duke-yin-helper'),
+	  'name' => _x('Magnet Links', 'post type general name','duke-yin-helper'),
 	  'singular_name' => _x('Link', 'post type singular name','duke-yin-helper'),
-	  'all_items'=> _x('All links', 'String for the submenu','duke-yin-helper'),
-	  'add_new' => _x('Add New', 'portfolio','duke-yin-helper'),
+	  'all_items'=> _x('All Magnet Links', 'String for the submenu','duke-yin-helper'),
+	  'add_new' => _x('Add New', 'links','duke-yin-helper'),
 	  'add_new_item' => __('Add new','duke-yin-helper'),
-	  'edit_item' => __('Edit link','duke-yin-helper'),
+	  'edit_item' => __('Edit Magnet link','duke-yin-helper'),
 	  'new_item' => __('New link','duke-yin-helper'),
 	  'view_item' => __('View this link','duke-yin-helper'),
 	  'search_items' => __('Search for','duke-yin-helper'),
@@ -1240,8 +1240,8 @@ function link_register() {
 	  'query_var' => true,
 	  'show_in_nav_menus'=> false,
 	  'menu_position' => 13,
-	  'menu_icon' => 'dashicons-editor-unlink',
-	  'supports' => array('title','author','excerpt')
+	  'menu_icon' => 'dashicons-download',
+	  'supports' => array('title','author')
   );
 
   register_post_type( 'links' , $args ); 
