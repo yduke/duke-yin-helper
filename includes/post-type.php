@@ -969,7 +969,7 @@ add_action('init', 'service_type_register');
 		$slugRule = 'music';
     	$args = array(
         	'labels' => $labels,
-        	'public' => false,
+        	'public' => true,
         	'show_ui' => true,
 			'show_in_rest'=> false,
         	'capability_type' => 'post',
