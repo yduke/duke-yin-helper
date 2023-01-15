@@ -110,3 +110,36 @@ add_action( 'wp_enqueue_scripts', 'replace_core_jquery' );
 
 // Enable link manager
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );
+
+//covert image to webp
+// add_filter( 'wp_handle_upload', 'create_webp' );
+
+function create_webp($file) {
+
+    if ($file['type'] === "image/png") {
+     // Create and save
+        $img = imagecreatefrompng($file['file']);
+        imagepalettetotruecolor($img);  
+        imagealphablending($img, true);
+        imagesavealpha($img, true);
+        imagewebp($img, str_replace(".png" ,".webp", $file['file']), 75);
+        imagedestroy($img);
+   
+    }elseif($file['type'] === "image/jpg" || $file['type'] === "image/jpeg"){
+        $img = imagecreatefromjpeg($file['file']); 
+        imagepalettetotruecolor($img);  
+        imagealphablending($img, true);
+        imagesavealpha($img, true);
+        if($file['type'] === "image/jpg"){
+            imagewebp($img, str_replace(".jpg" ,".webp", $file['file']), 100);
+        }
+        else{
+            imagewebp($img, str_replace(".jpeg" ,".webp", $file['file']), 100);
+        }
+        imagedestroy($img);
+      
+    }
+    return $file;
+}
+
+add_filter( 'wp_delete_file', 'delete_webp' );
