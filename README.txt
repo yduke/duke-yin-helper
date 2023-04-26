@@ -4,8 +4,8 @@ Donate link: https://www.dukeyin.com/donate/
 Tags: shortcode, post-type
 Requires at least: 3.0.1
 Tested up to: 5.9
-Stable tag: 1.1.13.1
-License: GPLv2 or later
+Stable tag: 1.1.13.2
+License: End-User License Agreement (EULA) of duke yin helper Wordpress Plugin
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 This plugin powers up DukeYin Wordpress theme.
