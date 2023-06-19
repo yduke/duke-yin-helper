@@ -91,6 +91,7 @@ $dukeyin_options=get_site_option( 'options-page', true, false);
 $tmdb_helper = ($dukeyin_options['tmdb-helper'] ?? 'off');
 if($tmdb_helper =='on' ){
 	require plugin_dir_path( __FILE__ ) . 'includes/wp-movies/movies.php';
+	require plugin_dir_path( __FILE__ ) . 'includes/dk-games/games.php';
 }
 /**
  * Begins execution of the plugin.
