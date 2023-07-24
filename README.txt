@@ -3,8 +3,8 @@ Contributors: freeduke
 Donate link: https://www.dukeyin.com/donate/
 Tags: shortcode, post-type
 Requires at least: 3.0.1
-Tested up to: 5.9
-Stable tag: 1.1.13.2
+Tested up to: 6.3
+Stable tag: 1.1.13.3
 License: End-User License Agreement (EULA) of duke yin helper Wordpress Plugin
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2022-10-30 20:22+0800\n"
-"PO-Revision-Date: 2022-10-30 20:23+0800\n"
+"POT-Creation-Date: 2023-07-24 23:43+0800\n"
+"PO-Revision-Date: 2023-07-24 23:43+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -20,6 +20,29 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/dk-games/class.games-admin.php:26
+msgid "Games Import Tool"
+msgstr "游戏导入工具"
+
+#: includes/dk-games/class.games-admin.php:26
+msgid "Games Tool"
+msgstr "游戏工具"
+
+#: includes/dk-games/class.games-admin.php:27
+msgid "Import Games"
+msgstr "导入游戏"
+
+#: includes/dk-games/class.games-admin.php:28
+#: includes/wp-movies/class.movies-admin.php:19
+msgid "Tools"
+msgstr "工具"
+
+#: includes/dk-games/class.games-admin.php:37
+msgid ""
+"The Games plugin has not been configured, enter your API key in Appearance, "
+"DukeYin theme options."
+msgstr "游戏工具未正确设置，请在外观，DukeYin主题选项中输入你的API密钥。"
 
 #: includes/helpers.php:53
 msgid "Duke Yin Theme Support"
@@ -113,43 +136,43 @@ msgstr "歌词文件的地址，接受.lrc格式文件。"
 msgid "Add file"
 msgstr "添加文件"
 
-#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:54
+#: includes/plugin-update-checker/Puc/v5p0/Plugin/Ui.php:56
 msgid "View details"
 msgstr "查看详情"
 
-#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:77
+#: includes/plugin-update-checker/Puc/v5p0/Plugin/Ui.php:79
 #, php-format
 msgid "More information about %s"
 msgstr "%s的更多信息"
 
-#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:128
+#: includes/plugin-update-checker/Puc/v5p0/Plugin/Ui.php:130
 msgid "Check for updates"
 msgstr "检查更新"
 
-#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:213
+#: includes/plugin-update-checker/Puc/v5p0/Plugin/Ui.php:217
 #, php-format
 msgctxt "the plugin title"
 msgid "The %s plugin is up to date."
 msgstr "%s 插件已是最新版。"
 
-#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:215
+#: includes/plugin-update-checker/Puc/v5p0/Plugin/Ui.php:219
 #, php-format
 msgctxt "the plugin title"
 msgid "A new version of the %s plugin is available."
 msgstr "有新版的%s插件可用。"
 
-#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:217
+#: includes/plugin-update-checker/Puc/v5p0/Plugin/Ui.php:221
 #, php-format
 msgctxt "the plugin title"
 msgid "Could not determine if updates are available for %s."
 msgstr "未能确定%s是否有更新。"
 
-#: includes/plugin-update-checker/Puc/v4p9/Plugin/Ui.php:223
+#: includes/plugin-update-checker/Puc/v5p0/Plugin/Ui.php:227
 #, php-format
 msgid "Unknown update checker status \"%s\""
 msgstr "未知的更新检查状态“%s”"
 
-#: includes/plugin-update-checker/Puc/v4p9/Vcs/PluginUpdateChecker.php:98
+#: includes/plugin-update-checker/Puc/v5p0/Vcs/PluginUpdateChecker.php:98
 msgid "There is no changelog available."
 msgstr "更新记录不可用。"
 
@@ -1395,6 +1418,143 @@ msgstr "新增链接"
 msgid "View this link"
 msgstr "查看链接"
 
+#: includes/rest-api.php:63
+msgid "Added a poem"
+msgstr "写了一首诗"
+
+#: includes/rest-api.php:65
+msgid "Added a blog post"
+msgstr "写了一篇博客"
+
+#: includes/rest-api.php:69
+msgid "Added a cover post"
+msgstr "添加了一张封面"
+
+#: includes/rest-api.php:72
+msgid "Added a portfolio"
+msgstr "添加了一个作品"
+
+#: includes/rest-api.php:75
+msgid "Added a selfie"
+msgstr "添加了一张自拍"
+
+#: includes/rest-api.php:78
+msgid "Added a product"
+msgstr "添加了一个商品"
+
+#: includes/rest-api.php:81
+msgid "Added a film review"
+msgstr "添加了一个影评"
+
+#: includes/rest-api.php:84 includes/rest-api.php:99 includes/rest-api.php:107
+#: includes/rest-api.php:122
+msgid "Watched"
+msgstr "看过"
+
+#: includes/rest-api.php:87 includes/rest-api.php:110
+msgid "Watching"
+msgstr "在看"
+
+#: includes/rest-api.php:90 includes/rest-api.php:113
+msgid "Wish to watch"
+msgstr "想看"
+
+#: includes/rest-api.php:93 includes/rest-api.php:116
+msgid "Watched times"
+msgstr "看过多次"
+
+#: includes/rest-api.php:96 includes/rest-api.php:119
+msgid "Half watched"
+msgstr "没看完"
+
+#: includes/rest-api.php:104
+msgid "Added a TV show review"
+msgstr "添加了一个剧集评单"
+
+#: includes/rest-api.php:127
+msgid "Added a game review"
+msgstr "添加了一个游戏评单"
+
+#: includes/rest-api.php:130 includes/rest-api.php:145
+msgid "Played"
+msgstr "玩过"
+
+#: includes/rest-api.php:133
+msgid "Playing"
+msgstr "正在玩"
+
+#: includes/rest-api.php:136
+msgid "Wish to play"
+msgstr "想玩"
+
+#: includes/rest-api.php:139
+msgid "Cleared"
+msgstr "已通关"
+
+#: includes/rest-api.php:142
+msgid "Not Cleared"
+msgstr "未通关"
+
+#: includes/rest-api.php:150
+msgid "Added a book review"
+msgstr "添加了一个书评"
+
+#: includes/rest-api.php:153 includes/rest-api.php:168
+msgid "Read"
+msgstr "读过"
+
+#: includes/rest-api.php:156
+msgid "Reading"
+msgstr "在读"
+
+#: includes/rest-api.php:159
+msgid "Wish to read"
+msgstr "想读"
+
+#: includes/rest-api.php:162
+msgid "Have read"
+msgstr "已读"
+
+#: includes/rest-api.php:165
+msgid "Unfinished reading"
+msgstr "没读完"
+
+#: includes/rest-api.php:173
+msgid "Added a product review"
+msgstr "添加了一个产品评单"
+
+#: includes/rest-api.php:176 includes/rest-api.php:191
+msgid "Tried"
+msgstr "已尝试"
+
+#: includes/rest-api.php:179
+msgid "Trying"
+msgstr "在尝试"
+
+#: includes/rest-api.php:182
+msgid "Wish to buy"
+msgstr "想买"
+
+#: includes/rest-api.php:185
+msgid "Owned"
+msgstr "已拥有"
+
+#: includes/rest-api.php:188
+msgid "Unfinished Trying"
+msgstr "未尝试"
+
+#: includes/rest-api.php:196
+msgid "Added a testimonial"
+msgstr "添加了一条赠言"
+
+#: includes/rest-api.php:199
+msgid "Added a service"
+msgstr "添加了一个服务"
+
+#: includes/rest-api.php:202
+msgid "Added a video"
+msgstr "添加了一个新视频"
+
 #: includes/short-code.php:165
 msgid "Bookmarks"
 msgstr "书签"
@@ -1414,10 +1574,6 @@ msgstr "导入电影"
 #: includes/wp-movies/class.movies-admin.php:16
 msgid "Import TV Shows"
 msgstr "导入剧集"
-
-#: includes/wp-movies/class.movies-admin.php:19
-msgid "Tools"
-msgstr "工具"
 
 #: includes/wp-movies/class.movies-admin.php:28
 msgid ""
