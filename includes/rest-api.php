@@ -54,7 +54,7 @@ function all_posts_combined( $request ) {
 				'time'				=>get_post_time('U',false,$post_id,false),
 				'description'		=>get_the_excerpt($post_id)??'',
 				'cover'             =>array(
-                    's' =>get_the_post_thumbnail_url($post_id,'thumbnail'),
+                    's' =>aq_resize(get_the_post_thumbnail_url($post_id,'full'),  150,150,true,true,true),
                     'f' =>get_the_post_thumbnail_url($post_id,'full'),
                 ),
 			);
