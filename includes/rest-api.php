@@ -212,6 +212,7 @@ function all_posts_combined( $request ) {
 		$returned =  new WP_REST_Response($data, 200);
 		$returned->header( 'X-WP-Total', $total_posts );
 		$returned->header( 'X-WP-TotalPages', $max_pages );
+        $returned->header( 'Cache-Control', 'max-age=3600' );
 		return $returned;
     }
 	return false;
