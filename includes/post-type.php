@@ -544,6 +544,14 @@ function film_review_admin_menu() {
 		null,
 		8
 	);
+	add_submenu_page(
+		'edit.php?post_type=film_review',
+		null, __( 'Game platform','duke-yin-helper'),
+		'manage_options',
+		'edit-tags.php?taxonomy=game_review_platforms&post_type=film_review',
+		null,
+		8
+	);
 	
 	add_submenu_page(
 		'edit.php?post_type=film_review',
@@ -716,10 +724,40 @@ function create_game_review_taxonomies() {
 }
 add_action( 'init', 'create_game_review_taxonomies', 0 );
 
-function game_review_admin_menu() { 
+function create_game_review_platform() {
+    $labels = array(
+        'name'              => _x( 'Game platforms', 'taxonomy general name','duke-yin-helper'),
+        'singular_name'     => _x( 'Game platform', 'taxonomy singular name','duke-yin-helper'),
+        'search_items'      => __( 'Search game platforms','duke-yin-helper'),
+        'all_items'         => __( 'All game platforms' ,'duke-yin-helper'),
+        'parent_item'       => __( 'Parent game platform' ,'duke-yin-helper'),
+        'parent_item_colon' => __( 'Parent game platform:' ,'duke-yin-helper'),
+        'edit_item'         => __( 'Edit game platform' ,'duke-yin-helper'),
+        'update_item'       => __( 'Update game platform' ,'duke-yin-helper'),
+        'add_new_item'      => __( 'Add New game platform' ,'duke-yin-helper'),
+        'new_item_name'     => __( 'New game platform name' ,'duke-yin-helper'),
+        'menu_name'         => __( 'Game platforms' ,'duke-yin-helper'),
+    );
 
+    $args = array(
+        'hierarchical'      => true, // Set this to 'false' for non-hierarchical taxonomy (like tags)
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_tagcloud'		=> false,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'meta_box_cb'		=> true,
+        'rewrite'           => array( 'slug' => 'game_review_platforms' ),
+    );
+
+    register_taxonomy( 'game_review_platforms', array('game_review'), $args );
 }
-add_action('admin_menu', 'game_review_admin_menu'); 
+add_action( 'init', 'create_game_review_platform', 0 );
+
+// function game_review_admin_menu() { 
+
+// }
+// add_action('admin_menu', 'game_review_admin_menu'); 
 
 
 

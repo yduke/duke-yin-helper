@@ -16,7 +16,7 @@
  * Plugin Name:       Duke Yin Helper
  * Plugin URI:        https://www.dukeyin.com
  * Description:       For supporting the wordpress theme dukeyin, add more post types and shortcodes.
- * Version:           1.1.13.3
+ * Version:           1.1.13.4
  * Author:            Duke Yin
  * Author URI:        https://www.dukeyin.com
  * License:           GPL-2.0+
@@ -92,7 +92,7 @@ $dukeyin_options=get_site_option( 'options-page', true, false);
 $tmdb_helper = ($dukeyin_options['tmdb-helper'] ?? 'off');
 if($tmdb_helper =='on' ){
 	require plugin_dir_path( __FILE__ ) . 'includes/wp-movies/movies.php';
-	require plugin_dir_path( __FILE__ ) . 'includes/dk-games/games.php';
+	// require plugin_dir_path( __FILE__ ) . 'includes/dk-games/games.php';
 }
 /**
  * Begins execution of the plugin.

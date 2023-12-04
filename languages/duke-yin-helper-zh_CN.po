@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2023-07-24 23:43+0800\n"
-"PO-Revision-Date: 2023-07-24 23:43+0800\n"
+"POT-Creation-Date: 2023-12-04 16:36+0800\n"
+"PO-Revision-Date: 2023-12-04 16:37+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -215,28 +215,28 @@ msgstr "查看此幻灯"
 #: includes/post-type.php:21 includes/post-type.php:56
 #: includes/post-type.php:124 includes/post-type.php:189
 #: includes/post-type.php:254 includes/post-type.php:330
-#: includes/post-type.php:623 includes/post-type.php:662
-#: includes/post-type.php:737 includes/post-type.php:810
-#: includes/post-type.php:884 includes/post-type.php:924
-#: includes/post-type.php:964 includes/post-type.php:1155
-#: includes/post-type.php:1224
+#: includes/post-type.php:631 includes/post-type.php:670
+#: includes/post-type.php:775 includes/post-type.php:848
+#: includes/post-type.php:922 includes/post-type.php:962
+#: includes/post-type.php:1002 includes/post-type.php:1193
+#: includes/post-type.php:1262
 msgid "Search for"
 msgstr "搜索"
 
 #: includes/post-type.php:22 includes/post-type.php:57
-#: includes/post-type.php:255 includes/post-type.php:1156
-#: includes/post-type.php:1225
+#: includes/post-type.php:255 includes/post-type.php:1194
+#: includes/post-type.php:1263
 msgid "Not found"
 msgstr "没找到"
 
 #: includes/post-type.php:23 includes/post-type.php:58
 #: includes/post-type.php:126 includes/post-type.php:191
 #: includes/post-type.php:256 includes/post-type.php:332
-#: includes/post-type.php:625 includes/post-type.php:664
-#: includes/post-type.php:739 includes/post-type.php:812
-#: includes/post-type.php:886 includes/post-type.php:926
-#: includes/post-type.php:966 includes/post-type.php:1157
-#: includes/post-type.php:1226
+#: includes/post-type.php:633 includes/post-type.php:672
+#: includes/post-type.php:777 includes/post-type.php:850
+#: includes/post-type.php:924 includes/post-type.php:964
+#: includes/post-type.php:1004 includes/post-type.php:1195
+#: includes/post-type.php:1264
 msgid "Not found in trash"
 msgstr "回收站中未找到"
 
@@ -260,7 +260,7 @@ msgctxt "portfolio"
 msgid "Add New"
 msgstr "添加"
 
-#: includes/post-type.php:52 includes/post-type.php:1220
+#: includes/post-type.php:52 includes/post-type.php:1258
 msgid "Add new"
 msgstr "添加"
 
@@ -278,69 +278,69 @@ msgstr "查看此作品"
 
 #: includes/post-type.php:85 includes/post-type.php:150
 #: includes/post-type.php:216 includes/post-type.php:282
-#: includes/post-type.php:1184 includes/post-type.php:1252
+#: includes/post-type.php:1222 includes/post-type.php:1290
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr "分类目录"
 
 #: includes/post-type.php:86 includes/post-type.php:151
 #: includes/post-type.php:217 includes/post-type.php:283
-#: includes/post-type.php:1185 includes/post-type.php:1253
+#: includes/post-type.php:1223 includes/post-type.php:1291
 msgctxt "taxonomy singular name"
 msgid "Category"
 msgstr "分类"
 
 #: includes/post-type.php:87 includes/post-type.php:152
 #: includes/post-type.php:218 includes/post-type.php:284
-#: includes/post-type.php:1186 includes/post-type.php:1254
+#: includes/post-type.php:1224 includes/post-type.php:1292
 msgid "Search Categories"
 msgstr "搜索分类"
 
 #: includes/post-type.php:88 includes/post-type.php:153
 #: includes/post-type.php:219 includes/post-type.php:285
-#: includes/post-type.php:1187 includes/post-type.php:1255
+#: includes/post-type.php:1225 includes/post-type.php:1293
 msgid "All Categories"
 msgstr "所有分类"
 
 #: includes/post-type.php:89 includes/post-type.php:154
 #: includes/post-type.php:220 includes/post-type.php:286
-#: includes/post-type.php:1188 includes/post-type.php:1256
+#: includes/post-type.php:1226 includes/post-type.php:1294
 msgid "Parent Category"
 msgstr "父级分类"
 
 #: includes/post-type.php:90 includes/post-type.php:155
 #: includes/post-type.php:221 includes/post-type.php:287
-#: includes/post-type.php:1189 includes/post-type.php:1257
+#: includes/post-type.php:1227 includes/post-type.php:1295
 msgid "Parent Category:"
 msgstr "父级分类："
 
 #: includes/post-type.php:91 includes/post-type.php:156
 #: includes/post-type.php:222 includes/post-type.php:288
-#: includes/post-type.php:1190 includes/post-type.php:1258
+#: includes/post-type.php:1228 includes/post-type.php:1296
 msgid "Edit Category"
 msgstr "编辑分类"
 
 #: includes/post-type.php:92 includes/post-type.php:157
 #: includes/post-type.php:223 includes/post-type.php:289
-#: includes/post-type.php:1191 includes/post-type.php:1259
+#: includes/post-type.php:1229 includes/post-type.php:1297
 msgid "Update Category"
 msgstr "更新分类"
 
 #: includes/post-type.php:93 includes/post-type.php:158
 #: includes/post-type.php:224 includes/post-type.php:290
-#: includes/post-type.php:1192 includes/post-type.php:1260
+#: includes/post-type.php:1230 includes/post-type.php:1298
 msgid "Add New Category"
 msgstr "新增分类"
 
 #: includes/post-type.php:94 includes/post-type.php:159
 #: includes/post-type.php:225 includes/post-type.php:291
-#: includes/post-type.php:1193 includes/post-type.php:1261
+#: includes/post-type.php:1231 includes/post-type.php:1299
 msgid "New Category Name"
 msgstr "新分类名"
 
 #: includes/post-type.php:95 includes/post-type.php:160
 #: includes/post-type.php:226 includes/post-type.php:292
-#: includes/post-type.php:1194 includes/post-type.php:1262
+#: includes/post-type.php:1232 includes/post-type.php:1300
 msgid "Categories"
 msgstr "分类目录"
 
@@ -471,9 +471,9 @@ msgctxt "String for the submenu"
 msgid "All film reviews"
 msgstr "所有影评"
 
-#: includes/post-type.php:325 includes/post-type.php:618
-#: includes/post-type.php:657 includes/post-type.php:732
-#: includes/post-type.php:805
+#: includes/post-type.php:325 includes/post-type.php:626
+#: includes/post-type.php:665 includes/post-type.php:770
+#: includes/post-type.php:843
 msgctxt "review"
 msgid "Add New"
 msgstr "添加"
@@ -594,7 +594,7 @@ msgstr "添加或移除演员"
 msgid "Choose from popular cast"
 msgstr "从热门演员中选择"
 
-#: includes/post-type.php:400 includes/post-type.php:570
+#: includes/post-type.php:400 includes/post-type.php:578
 msgid "Cast"
 msgstr "演员"
 
@@ -702,7 +702,7 @@ msgstr "添加或移除编剧"
 msgid "Choose from popular screenplay"
 msgstr "从热门编剧中选择"
 
-#: includes/post-type.php:464 includes/post-type.php:590
+#: includes/post-type.php:464 includes/post-type.php:598
 msgid "Screenplay"
 msgstr "编剧"
 
@@ -756,7 +756,7 @@ msgstr "添加或移除语言"
 msgid "Choose from popular Language"
 msgstr "从热门语言中选择"
 
-#: includes/post-type.php:497 includes/post-type.php:600
+#: includes/post-type.php:497 includes/post-type.php:608
 msgid "Languages"
 msgstr "语言"
 
@@ -772,786 +772,836 @@ msgstr "影视评单分类"
 msgid "Game categories"
 msgstr "游戏评单分类"
 
-#: includes/post-type.php:551
+#: includes/post-type.php:549
+msgid "Game platform"
+msgstr "游戏平台"
+
+#: includes/post-type.php:559
 msgid "Book categories"
 msgstr "书评分类"
 
-#: includes/post-type.php:560
+#: includes/post-type.php:568
 msgid "Product categories"
 msgstr "产品评单分类"
 
-#: includes/post-type.php:580
+#: includes/post-type.php:588
 msgid "Directors"
 msgstr "导演"
 
-#: includes/post-type.php:615
+#: includes/post-type.php:623
 msgctxt "post type general name"
 msgid "TVshow Reviews"
 msgstr "剧集评单"
 
-#: includes/post-type.php:616
+#: includes/post-type.php:624
 msgctxt "post type singular name"
 msgid "TVshow Review Post"
 msgstr "剧集评单文章"
 
-#: includes/post-type.php:617
+#: includes/post-type.php:625
 msgctxt "String for the submenu"
 msgid "All TVshow reviews"
 msgstr "所有剧集评单"
 
-#: includes/post-type.php:619
+#: includes/post-type.php:627
 msgid "Add TVshow review"
 msgstr "添加剧集评单"
 
-#: includes/post-type.php:620
+#: includes/post-type.php:628
 msgid "Edit TVshow review"
 msgstr "编辑剧集评单"
 
-#: includes/post-type.php:621
+#: includes/post-type.php:629
 msgid "New TVshow review"
 msgstr "新增剧集评单"
 
-#: includes/post-type.php:622
+#: includes/post-type.php:630
 msgid "View this TVshow review"
 msgstr "查看剧集评单"
 
-#: includes/post-type.php:624
+#: includes/post-type.php:632
 msgid "No TVshow review found"
 msgstr "未找到剧集评单"
 
-#: includes/post-type.php:654
+#: includes/post-type.php:662
 msgctxt "post type general name"
 msgid "Game Reviews"
 msgstr "游戏评单"
 
-#: includes/post-type.php:655
+#: includes/post-type.php:663
 msgctxt "post type singular name"
 msgid "Game Review Post"
 msgstr "游戏评单文章"
 
-#: includes/post-type.php:656
+#: includes/post-type.php:664
 msgctxt "String for the submenu"
 msgid "All game reviews"
 msgstr "所有游戏评单"
 
-#: includes/post-type.php:658
+#: includes/post-type.php:666
 msgid "Add game review"
 msgstr "添加游戏评单"
 
-#: includes/post-type.php:659
+#: includes/post-type.php:667
 msgid "Edit game review"
 msgstr "编辑游戏评单"
 
-#: includes/post-type.php:660
+#: includes/post-type.php:668
 msgid "New game review"
 msgstr "新增游戏评单"
 
-#: includes/post-type.php:661
+#: includes/post-type.php:669
 msgid "View this game review"
 msgstr "查看游戏评单"
 
-#: includes/post-type.php:663
+#: includes/post-type.php:671
 msgid "No game review found"
 msgstr "未找到游戏评单"
 
-#: includes/post-type.php:691
+#: includes/post-type.php:699
 msgctxt "taxonomy general name"
 msgid "Game review categories"
 msgstr "游戏评单分类"
 
-#: includes/post-type.php:692
+#: includes/post-type.php:700
 msgctxt "taxonomy singular name"
 msgid "Game review category"
 msgstr "游戏评单分类"
 
-#: includes/post-type.php:693
+#: includes/post-type.php:701
 msgid "Search game review categories"
 msgstr "搜索游戏评单分类"
 
-#: includes/post-type.php:694
+#: includes/post-type.php:702
 msgid "All game review categories"
 msgstr "所有游戏评单分类"
 
-#: includes/post-type.php:695
+#: includes/post-type.php:703
 msgid "Parent game review category"
 msgstr "父级游戏评单分类"
 
-#: includes/post-type.php:696
+#: includes/post-type.php:704
 msgid "Parent game review category:"
 msgstr "父级游戏评单分类："
 
-#: includes/post-type.php:697
+#: includes/post-type.php:705
 msgid "Edit game review category"
 msgstr "编辑游戏评单分类"
 
-#: includes/post-type.php:698
+#: includes/post-type.php:706
 msgid "Update game review category"
 msgstr "更新游戏评单分类"
 
-#: includes/post-type.php:699
+#: includes/post-type.php:707
 msgid "Add New game review category"
 msgstr "新增游戏评单分类"
 
-#: includes/post-type.php:700
+#: includes/post-type.php:708
 msgid "New game review category name"
 msgstr "新游戏评单分类名"
 
-#: includes/post-type.php:701
+#: includes/post-type.php:709
 msgid "Game review categories"
 msgstr "游戏评单分类"
 
 #: includes/post-type.php:729
+msgctxt "taxonomy general name"
+msgid "Game platforms"
+msgstr "游戏平台"
+
+#: includes/post-type.php:730
+msgctxt "taxonomy singular name"
+msgid "Game platform"
+msgstr "游戏平台"
+
+#: includes/post-type.php:731
+msgid "Search game platforms"
+msgstr "搜索游戏平台"
+
+#: includes/post-type.php:732
+msgid "All game platforms"
+msgstr "所有游戏平台"
+
+#: includes/post-type.php:733
+msgid "Parent game platform"
+msgstr "父级游戏平台"
+
+#: includes/post-type.php:734
+msgid "Parent game platform:"
+msgstr "父级游戏平台："
+
+#: includes/post-type.php:735
+msgid "Edit game platform"
+msgstr "编辑游戏平台"
+
+#: includes/post-type.php:736
+msgid "Update game platform"
+msgstr "更新游戏平台"
+
+#: includes/post-type.php:737
+msgid "Add New game platform"
+msgstr "新增游戏平台"
+
+#: includes/post-type.php:738
+msgid "New game platform name"
+msgstr "新游戏平台名"
+
+#: includes/post-type.php:739
+msgid "Game platforms"
+msgstr "游戏平台"
+
+#: includes/post-type.php:767
 msgctxt "post type general name"
 msgid "Book Reviews"
 msgstr "书评"
 
-#: includes/post-type.php:730
+#: includes/post-type.php:768
 msgctxt "post type singular name"
 msgid "Book Review Post"
 msgstr "书评文章"
 
-#: includes/post-type.php:731
+#: includes/post-type.php:769
 msgctxt "String for the submenu"
 msgid "All book reviews"
 msgstr "所有书评"
 
-#: includes/post-type.php:733
+#: includes/post-type.php:771
 msgid "Add book review"
 msgstr "添加书评"
 
-#: includes/post-type.php:734
+#: includes/post-type.php:772
 msgid "Edit book review"
 msgstr "编辑书评"
 
-#: includes/post-type.php:735
+#: includes/post-type.php:773
 msgid "New book review"
 msgstr "新增书评"
 
-#: includes/post-type.php:736
+#: includes/post-type.php:774
 msgid "View this book review"
 msgstr "查看书评"
 
-#: includes/post-type.php:738
+#: includes/post-type.php:776
 msgid "No book review found"
 msgstr "未找到书评"
 
-#: includes/post-type.php:766
+#: includes/post-type.php:804
 msgctxt "taxonomy general name"
 msgid "Book review categories"
 msgstr "书评分类"
 
-#: includes/post-type.php:767
+#: includes/post-type.php:805
 msgctxt "taxonomy singular name"
 msgid "Book review category"
 msgstr "书评分类"
 
-#: includes/post-type.php:768
+#: includes/post-type.php:806
 msgid "Search book review categories"
 msgstr "搜索书评分类"
 
-#: includes/post-type.php:769
+#: includes/post-type.php:807
 msgid "All book review categories"
 msgstr "所有书评分类"
 
-#: includes/post-type.php:770
+#: includes/post-type.php:808
 msgid "Parent book review category"
 msgstr "父级书评分类"
 
-#: includes/post-type.php:771
+#: includes/post-type.php:809
 msgid "Parent book review category:"
 msgstr "父级书评分类："
 
-#: includes/post-type.php:772
+#: includes/post-type.php:810
 msgid "Edit book review category"
 msgstr "编辑书评分类"
 
-#: includes/post-type.php:773
+#: includes/post-type.php:811
 msgid "Update book review category"
 msgstr "更新书评分类"
 
-#: includes/post-type.php:774
+#: includes/post-type.php:812
 msgid "Add New book review category"
 msgstr "新增书评分类"
 
-#: includes/post-type.php:775
+#: includes/post-type.php:813
 msgid "New book review category name"
 msgstr "新书评分类名"
 
-#: includes/post-type.php:776
+#: includes/post-type.php:814
 msgid "Book review categories"
 msgstr "书评分类"
 
-#: includes/post-type.php:802
+#: includes/post-type.php:840
 msgctxt "post type general name"
 msgid "Product Reviews"
 msgstr "产品评单"
 
-#: includes/post-type.php:803
+#: includes/post-type.php:841
 msgctxt "post type singular name"
 msgid "Product Review Post"
 msgstr "产品评单文章"
 
-#: includes/post-type.php:804
+#: includes/post-type.php:842
 msgctxt "String for the submenu"
 msgid "All product reviews"
 msgstr "所有产品评单"
 
-#: includes/post-type.php:806
+#: includes/post-type.php:844
 msgid "Add product review"
 msgstr "添加产品评单"
 
-#: includes/post-type.php:807
+#: includes/post-type.php:845
 msgid "Edit product review"
 msgstr "编辑产品评单"
 
-#: includes/post-type.php:808
+#: includes/post-type.php:846
 msgid "New product review"
 msgstr "新增产品评单"
 
-#: includes/post-type.php:809
+#: includes/post-type.php:847
 msgid "View this product review"
 msgstr "查看此产品评单"
 
-#: includes/post-type.php:811
+#: includes/post-type.php:849
 msgid "No product review found"
 msgstr "未找到产品评单"
 
-#: includes/post-type.php:839
+#: includes/post-type.php:877
 msgctxt "taxonomy general name"
 msgid "Product review categories"
 msgstr "产品评单分类"
 
-#: includes/post-type.php:840
+#: includes/post-type.php:878
 msgctxt "taxonomy singular name"
 msgid "Product review category"
 msgstr "产品评单分类"
 
-#: includes/post-type.php:841
+#: includes/post-type.php:879
 msgid "Search product review categories"
 msgstr "搜索产品评单分类"
 
-#: includes/post-type.php:842
+#: includes/post-type.php:880
 msgid "All product review categories"
 msgstr "所有产品评单分类"
 
-#: includes/post-type.php:843
+#: includes/post-type.php:881
 msgid "Parent product review category"
 msgstr "父级产品评单分类"
 
-#: includes/post-type.php:844
+#: includes/post-type.php:882
 msgid "Parent product review category:"
 msgstr "父级产品评单分类："
 
-#: includes/post-type.php:845
+#: includes/post-type.php:883
 msgid "Edit product review category"
 msgstr "编辑产品评单分类"
 
-#: includes/post-type.php:846
+#: includes/post-type.php:884
 msgid "Update product review category"
 msgstr "更新产品评单分类"
 
-#: includes/post-type.php:847
+#: includes/post-type.php:885
 msgid "Add New product review category"
 msgstr "新增产品评单分类"
 
-#: includes/post-type.php:848
+#: includes/post-type.php:886
 msgid "New product review category name"
 msgstr "新产品评单分类名"
 
-#: includes/post-type.php:849
+#: includes/post-type.php:887
 msgid "Product review categories"
 msgstr "产品评单分类"
 
-#: includes/post-type.php:876
+#: includes/post-type.php:914
 msgctxt "post type general name"
 msgid "Testimonials"
 msgstr "赠言"
 
-#: includes/post-type.php:877
+#: includes/post-type.php:915
 msgctxt "post type singular name"
 msgid "Testimonial post"
 msgstr "赠言"
 
-#: includes/post-type.php:878
+#: includes/post-type.php:916
 msgctxt "String for the submenu"
 msgid "All testimonials"
 msgstr "所有赠言"
 
-#: includes/post-type.php:879
+#: includes/post-type.php:917
 msgctxt "testimonial"
 msgid "Add New"
 msgstr "添加"
 
-#: includes/post-type.php:880
+#: includes/post-type.php:918
 msgid "Add Testimonial"
 msgstr "添加赠言"
 
-#: includes/post-type.php:881
+#: includes/post-type.php:919
 msgid "Edit Testimonial"
 msgstr "编辑赠言"
 
-#: includes/post-type.php:882
+#: includes/post-type.php:920
 msgid "New Testimonial"
 msgstr "新赠言"
 
-#: includes/post-type.php:883
+#: includes/post-type.php:921
 msgid "View this Testimonials"
 msgstr "查看此赠言"
 
-#: includes/post-type.php:885
+#: includes/post-type.php:923
 msgid "No testimonial found"
 msgstr "未找到"
 
-#: includes/post-type.php:916
+#: includes/post-type.php:954
 msgctxt "post type general name"
 msgid "Service type"
 msgstr "服务"
 
-#: includes/post-type.php:917
+#: includes/post-type.php:955
 msgctxt "post type singular name"
 msgid "Service type post"
 msgstr "服务文章"
 
-#: includes/post-type.php:918
+#: includes/post-type.php:956
 msgctxt "String for the submenu"
 msgid "All service type"
 msgstr "所有服务"
 
-#: includes/post-type.php:919
+#: includes/post-type.php:957
 msgctxt "service-type"
 msgid "Add New"
 msgstr "添加"
 
-#: includes/post-type.php:920
+#: includes/post-type.php:958
 msgid "Add Service type"
 msgstr "添加服务"
 
-#: includes/post-type.php:921
+#: includes/post-type.php:959
 msgid "Edit Service type"
 msgstr "编辑服务"
 
-#: includes/post-type.php:922
+#: includes/post-type.php:960
 msgid "New Service type"
 msgstr "新增服务"
 
-#: includes/post-type.php:923
+#: includes/post-type.php:961
 msgid "View this service type"
 msgstr "查看服务"
 
-#: includes/post-type.php:925
+#: includes/post-type.php:963
 msgid "No service type found"
 msgstr "未找到"
 
-#: includes/post-type.php:956
+#: includes/post-type.php:994
 msgctxt "post type general name"
 msgid "Music"
 msgstr "音乐"
 
-#: includes/post-type.php:957
+#: includes/post-type.php:995
 msgctxt "post type singular name"
 msgid "Music post"
 msgstr "音乐条目"
 
-#: includes/post-type.php:958
+#: includes/post-type.php:996
 msgctxt "String for the submenu"
 msgid "All music"
 msgstr "所有音乐"
 
-#: includes/post-type.php:959
+#: includes/post-type.php:997
 msgctxt "music"
 msgid "Add New"
 msgstr "添加"
 
-#: includes/post-type.php:960
+#: includes/post-type.php:998
 msgid "Add Music"
 msgstr "添加音乐"
 
-#: includes/post-type.php:961
+#: includes/post-type.php:999
 msgid "Edit Music"
 msgstr "编辑音乐"
 
-#: includes/post-type.php:962
+#: includes/post-type.php:1000
 msgid "New Music"
 msgstr "新增音乐"
 
-#: includes/post-type.php:963
+#: includes/post-type.php:1001
 msgid "View this music type"
 msgstr "查看音乐"
 
-#: includes/post-type.php:965
+#: includes/post-type.php:1003
 msgid "No music found"
 msgstr "音乐未找到"
 
-#: includes/post-type.php:993
+#: includes/post-type.php:1031
 msgctxt "taxonomy general name"
 msgid "Artists"
 msgstr "艺术家"
 
-#: includes/post-type.php:994
+#: includes/post-type.php:1032
 msgctxt "taxonomy singular name"
 msgid "Artist"
 msgstr "艺术家"
 
-#: includes/post-type.php:995
+#: includes/post-type.php:1033
 msgid "Search Artists"
 msgstr "搜索艺术家"
 
-#: includes/post-type.php:996
+#: includes/post-type.php:1034
 msgid "All Artists"
 msgstr "所有艺术家"
 
-#: includes/post-type.php:997
+#: includes/post-type.php:1035
 msgid "Popular Artists"
 msgstr "热门艺术家"
 
-#: includes/post-type.php:1000
+#: includes/post-type.php:1038
 msgid "Edit Artist"
 msgstr "编辑艺术家"
 
-#: includes/post-type.php:1001
+#: includes/post-type.php:1039
 msgid "Update Artist"
 msgstr "更新艺术家"
 
-#: includes/post-type.php:1002
+#: includes/post-type.php:1040
 msgid "Add New Artist"
 msgstr "添加艺术家"
 
-#: includes/post-type.php:1003
+#: includes/post-type.php:1041
 msgid "New Artist Name"
 msgstr "新艺术家名称"
 
-#: includes/post-type.php:1004
+#: includes/post-type.php:1042
 msgid "Separate artists with commas."
 msgstr "用英文逗号隔开艺术家。"
 
-#: includes/post-type.php:1005
+#: includes/post-type.php:1043
 msgid "Add or remove artists"
 msgstr "添加或移除艺术家"
 
-#: includes/post-type.php:1006
+#: includes/post-type.php:1044
 msgid "Choose from popular artists"
 msgstr "从常出现的艺术家中选择"
 
-#: includes/post-type.php:1007
+#: includes/post-type.php:1045
 msgid "Artists"
 msgstr "艺术家"
 
-#: includes/post-type.php:1024
+#: includes/post-type.php:1062
 msgctxt "taxonomy general name"
 msgid "Genres"
 msgstr "风格"
 
-#: includes/post-type.php:1025
+#: includes/post-type.php:1063
 msgctxt "taxonomy singular name"
 msgid "Genre"
 msgstr "风格"
 
-#: includes/post-type.php:1026
+#: includes/post-type.php:1064
 msgid "Search Genres"
 msgstr "搜索风格"
 
-#: includes/post-type.php:1027
+#: includes/post-type.php:1065
 msgid "All Genres"
 msgstr "所有风格"
 
-#: includes/post-type.php:1028
+#: includes/post-type.php:1066
 msgid "Popular Genres"
 msgstr "热门风格"
 
-#: includes/post-type.php:1031
+#: includes/post-type.php:1069
 msgid "Edit Genre"
 msgstr "编辑风格"
 
-#: includes/post-type.php:1032
+#: includes/post-type.php:1070
 msgid "Update Genre"
 msgstr "更新风格"
 
-#: includes/post-type.php:1033
+#: includes/post-type.php:1071
 msgid "Add New Genre"
 msgstr "添加新风格"
 
-#: includes/post-type.php:1034
+#: includes/post-type.php:1072
 msgid "New Genre Name"
 msgstr "新风格名称"
 
-#: includes/post-type.php:1035
+#: includes/post-type.php:1073
 msgid "Separate genres with commas."
 msgstr "用英文逗号隔开不同风格。"
 
-#: includes/post-type.php:1036
+#: includes/post-type.php:1074
 msgid "Add or remove genres"
 msgstr "添加或移除风格"
 
-#: includes/post-type.php:1037
+#: includes/post-type.php:1075
 msgid "Choose from popular genres"
 msgstr "从热门风格中选择"
 
-#: includes/post-type.php:1038
+#: includes/post-type.php:1076
 msgid "Genres"
 msgstr "风格"
 
-#: includes/post-type.php:1055
+#: includes/post-type.php:1093
 msgctxt "taxonomy general name"
 msgid "Music lists"
 msgstr "歌单"
 
-#: includes/post-type.php:1056
+#: includes/post-type.php:1094
 msgctxt "taxonomy singular name"
 msgid "Music list"
 msgstr "歌单"
 
-#: includes/post-type.php:1057
+#: includes/post-type.php:1095
 msgid "Search Music lists"
 msgstr "搜索歌单"
 
-#: includes/post-type.php:1058
+#: includes/post-type.php:1096
 msgid "All Music lists"
 msgstr "所有歌单"
 
-#: includes/post-type.php:1059
+#: includes/post-type.php:1097
 msgid "Parent Music List"
 msgstr "父级歌单"
 
-#: includes/post-type.php:1060
+#: includes/post-type.php:1098
 msgid "Parent Music List:"
 msgstr "父级歌单："
 
-#: includes/post-type.php:1061
+#: includes/post-type.php:1099
 msgid "Edit Music List"
 msgstr "编辑歌单"
 
-#: includes/post-type.php:1062
+#: includes/post-type.php:1100
 msgid "Update Music List"
 msgstr "更新歌单"
 
-#: includes/post-type.php:1063
+#: includes/post-type.php:1101
 msgid "Add New Music List"
 msgstr "添加歌单"
 
-#: includes/post-type.php:1064
+#: includes/post-type.php:1102
 msgid "New Music List Name"
 msgstr "新歌单名"
 
-#: includes/post-type.php:1065
+#: includes/post-type.php:1103
 msgid "Music lists"
 msgstr "歌单"
 
-#: includes/post-type.php:1096 includes/post-type.php:1122
+#: includes/post-type.php:1134 includes/post-type.php:1160
 msgid "Cover Image"
 msgstr "封面图像"
 
-#: includes/post-type.php:1098 includes/post-type.php:1126
+#: includes/post-type.php:1136 includes/post-type.php:1164
 msgid "Upload an Image"
 msgstr "上传图片"
 
-#: includes/post-type.php:1099 includes/post-type.php:1127
+#: includes/post-type.php:1137 includes/post-type.php:1165
 msgid ""
 "The cover image similar as \"featured image\" but for a music list, a genre "
 "or an artist."
 msgstr "类似“特色图像”，将作为歌单、风格或者艺术家页面的封面图片。"
 
-#: includes/post-type.php:1147
+#: includes/post-type.php:1185
 msgctxt "post type general name"
 msgid "Videos"
 msgstr "视频"
 
-#: includes/post-type.php:1148
+#: includes/post-type.php:1186
 msgctxt "post type singular name"
 msgid "Video Post"
 msgstr "视频文章"
 
-#: includes/post-type.php:1149
+#: includes/post-type.php:1187
 msgctxt "String for the submenu"
 msgid "All Videos"
 msgstr "所有视频"
 
-#: includes/post-type.php:1150
+#: includes/post-type.php:1188
 msgctxt "video"
 msgid "Add New"
 msgstr "添加"
 
-#: includes/post-type.php:1151
+#: includes/post-type.php:1189
 msgid "Add new Video"
 msgstr "添加新视频"
 
-#: includes/post-type.php:1152
+#: includes/post-type.php:1190
 msgid "Edit video"
 msgstr "编辑视频"
 
-#: includes/post-type.php:1153
+#: includes/post-type.php:1191
 msgid "New video"
 msgstr "新增视频"
 
-#: includes/post-type.php:1154
+#: includes/post-type.php:1192
 msgid "View this video"
 msgstr "查看此视频"
 
-#: includes/post-type.php:1216
+#: includes/post-type.php:1254
 msgctxt "post type general name"
 msgid "Magnet Links"
 msgstr "磁力链接"
 
-#: includes/post-type.php:1217
+#: includes/post-type.php:1255
 msgctxt "post type singular name"
 msgid "Link"
 msgstr "链接"
 
-#: includes/post-type.php:1218
+#: includes/post-type.php:1256
 msgctxt "String for the submenu"
 msgid "All Magnet Links"
 msgstr "所有磁链"
 
-#: includes/post-type.php:1219
+#: includes/post-type.php:1257
 msgctxt "links"
 msgid "Add New"
 msgstr "添加"
 
-#: includes/post-type.php:1221
+#: includes/post-type.php:1259
 msgid "Edit Magnet link"
 msgstr "编辑磁接"
 
-#: includes/post-type.php:1222
+#: includes/post-type.php:1260
 msgid "New link"
 msgstr "新增链接"
 
-#: includes/post-type.php:1223
+#: includes/post-type.php:1261
 msgid "View this link"
 msgstr "查看链接"
 
-#: includes/rest-api.php:63
+#: includes/rest-api.php:65
 msgid "Added a poem"
 msgstr "写了一首诗"
 
-#: includes/rest-api.php:65
+#: includes/rest-api.php:67
 msgid "Added a blog post"
 msgstr "写了一篇博客"
 
-#: includes/rest-api.php:69
+#: includes/rest-api.php:71
 msgid "Added a cover post"
 msgstr "添加了一张封面"
 
-#: includes/rest-api.php:72
+#: includes/rest-api.php:74
 msgid "Added a portfolio"
 msgstr "添加了一个作品"
 
-#: includes/rest-api.php:75
+#: includes/rest-api.php:77
 msgid "Added a selfie"
 msgstr "添加了一张自拍"
 
-#: includes/rest-api.php:78
+#: includes/rest-api.php:80
 msgid "Added a product"
 msgstr "添加了一个商品"
 
-#: includes/rest-api.php:81
+#: includes/rest-api.php:83
 msgid "Added a film review"
 msgstr "添加了一个影评"
 
-#: includes/rest-api.php:84 includes/rest-api.php:99 includes/rest-api.php:107
-#: includes/rest-api.php:122
+#: includes/rest-api.php:86 includes/rest-api.php:101 includes/rest-api.php:109
+#: includes/rest-api.php:124
 msgid "Watched"
 msgstr "看过"
 
-#: includes/rest-api.php:87 includes/rest-api.php:110
+#: includes/rest-api.php:89 includes/rest-api.php:112
 msgid "Watching"
 msgstr "在看"
 
-#: includes/rest-api.php:90 includes/rest-api.php:113
+#: includes/rest-api.php:92 includes/rest-api.php:115
 msgid "Wish to watch"
 msgstr "想看"
 
-#: includes/rest-api.php:93 includes/rest-api.php:116
+#: includes/rest-api.php:95 includes/rest-api.php:118
 msgid "Watched times"
 msgstr "看过多次"
 
-#: includes/rest-api.php:96 includes/rest-api.php:119
+#: includes/rest-api.php:98 includes/rest-api.php:121
 msgid "Half watched"
 msgstr "没看完"
 
-#: includes/rest-api.php:104
+#: includes/rest-api.php:106
 msgid "Added a TV show review"
 msgstr "添加了一个剧集评单"
 
-#: includes/rest-api.php:127
+#: includes/rest-api.php:129
 msgid "Added a game review"
 msgstr "添加了一个游戏评单"
 
-#: includes/rest-api.php:130 includes/rest-api.php:145
+#: includes/rest-api.php:132 includes/rest-api.php:147
 msgid "Played"
 msgstr "玩过"
 
-#: includes/rest-api.php:133
+#: includes/rest-api.php:135
 msgid "Playing"
 msgstr "正在玩"
 
-#: includes/rest-api.php:136
+#: includes/rest-api.php:138
 msgid "Wish to play"
 msgstr "想玩"
 
-#: includes/rest-api.php:139
+#: includes/rest-api.php:141
 msgid "Cleared"
 msgstr "已通关"
 
-#: includes/rest-api.php:142
+#: includes/rest-api.php:144
 msgid "Not Cleared"
 msgstr "未通关"
 
-#: includes/rest-api.php:150
+#: includes/rest-api.php:152
 msgid "Added a book review"
 msgstr "添加了一个书评"
 
-#: includes/rest-api.php:153 includes/rest-api.php:168
+#: includes/rest-api.php:155 includes/rest-api.php:170
 msgid "Read"
 msgstr "读过"
 
-#: includes/rest-api.php:156
+#: includes/rest-api.php:158
 msgid "Reading"
 msgstr "在读"
 
-#: includes/rest-api.php:159
+#: includes/rest-api.php:161
 msgid "Wish to read"
 msgstr "想读"
 
-#: includes/rest-api.php:162
+#: includes/rest-api.php:164
 msgid "Have read"
 msgstr "已读"
 
-#: includes/rest-api.php:165
+#: includes/rest-api.php:167
 msgid "Unfinished reading"
 msgstr "没读完"
 
-#: includes/rest-api.php:173
+#: includes/rest-api.php:175
 msgid "Added a product review"
 msgstr "添加了一个产品评单"
 
-#: includes/rest-api.php:176 includes/rest-api.php:191
+#: includes/rest-api.php:178 includes/rest-api.php:193
 msgid "Tried"
 msgstr "已尝试"
 
-#: includes/rest-api.php:179
+#: includes/rest-api.php:181
 msgid "Trying"
 msgstr "在尝试"
 
-#: includes/rest-api.php:182
+#: includes/rest-api.php:184
 msgid "Wish to buy"
 msgstr "想买"
 
-#: includes/rest-api.php:185
+#: includes/rest-api.php:187
 msgid "Owned"
 msgstr "已拥有"
 
-#: includes/rest-api.php:188
+#: includes/rest-api.php:190
 msgid "Unfinished Trying"
 msgstr "未尝试"
 
-#: includes/rest-api.php:196
+#: includes/rest-api.php:198
 msgid "Added a testimonial"
 msgstr "添加了一条赠言"
 
-#: includes/rest-api.php:199
+#: includes/rest-api.php:201
 msgid "Added a service"
 msgstr "添加了一个服务"
 
-#: includes/rest-api.php:202
+#: includes/rest-api.php:204
 msgid "Added a video"
 msgstr "添加了一个新视频"
 
