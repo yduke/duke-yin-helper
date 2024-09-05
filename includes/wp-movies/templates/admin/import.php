@@ -103,7 +103,7 @@ function update_preview_links(post_id) {
     </thead>
     <tbody>
 <?php $c = true; foreach($posts as $post){ ?>
-        <tr<?php if($c = !$c) { ?> class="alternate"<?php } ?>>
+        <tr <?php if($c = !$c ) { ?> class="alternate"<?php } ?>>
             <td class="title"><?php echo $post->post_title ?></td>
             <td class="tmdb">
                 <select name="posts[]" id="tmdb_<?php echo $post->ID ?>"

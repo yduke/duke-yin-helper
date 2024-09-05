@@ -63,7 +63,7 @@ if( isset($_POST['posts']) ) { ?>
         // $language = $movie-> languages[0];
         // update_post_meta( $post_id, '_r_f_language', $language );
 
-        $runtime = $movie-> runtime[0];
+        $runtime = $movie-> runtime[0]??null;
         update_post_meta($post_id,'_r_f_runtime',$runtime);
 
         $overview = $movie-> overview;

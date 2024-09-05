@@ -131,9 +131,9 @@ class Movies {
                 'backdrop_path' => $result->get($item = 'backdrop_path'),
                 'poster_path' => $result->get($item = 'poster_path'),
                 'logo_path' => false,
-                'poster_path_alt' => $result->get($item = 'images')['posters'][0]['file_path'],
+                'poster_path_alt' => $result->get($item = 'images')['posters'][0]['file_path'] ?? null,
                 'title' => $result->get($item = 'title'),
-                'original_title' => $result->get($item = 'original_title'),
+                'original_title' => $result->get($item = 'original_title') ?? null,
                 'genres' => array(),
                 'imdb_id' => false,
                 'runtime' => false,
@@ -153,7 +153,7 @@ class Movies {
                         $data['languages'][] = $language['name'];
                     }
                 }
-            $logo = $result->get($item = 'images')['logos'][0]['file_path'];
+            $logo = $result->get($item = 'images')['logos'][0]['file_path']??null;
             if($logo) {
                 $data['logo_path'] = $logo;
             }
