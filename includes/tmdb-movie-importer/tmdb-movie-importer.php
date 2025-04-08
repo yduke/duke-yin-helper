@@ -9,7 +9,7 @@ Author: ChatGPT
 // 加载 JS 和样式
 add_action('admin_enqueue_scripts', function ($hook) {
     if (strpos($hook, 'tmdb-movie-importer') !== false) {
-        wp_enqueue_script('tmdb-importer-js', plugin_dir_url(__FILE__) . 'assets/movie-importer.js', ['jquery'], null, true);
+        wp_enqueue_script('tmdb-importer-js', plugin_dir_url(__FILE__) . 'assets/movie-importer.js?ver='.DUKE_YIN_HELPER_VERSION, ['jquery'], null, true);
         wp_localize_script('tmdb-importer-js', 'tmdb_ajax', [
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('tmdb_nonce')
@@ -19,28 +19,34 @@ add_action('admin_enqueue_scripts', function ($hook) {
 
 // 添加后台菜单和设置页面
 add_action('admin_menu', function () {
-    add_menu_page('电影导入器', '电影导入器', 'manage_options', 'tmdb-movie-importer', 'tmdb_movie_importer_page');
-    add_submenu_page('tmdb-movie-importer', '设置', '设置', 'manage_options', 'tmdb-movie-importer-settings', 'tmdb_movie_importer_settings_page');
+    add_menu_page(__('Movies Import Tool','duke-yin-helper'), __('Movies Import Tool','duke-yin-helper'), 'manage_options', 'tmdb-movie-importer', 'tmdb_movie_importer_page','dashicons-editor-video',9);
+    add_submenu_page('tmdb-movie-importer', __('Tools','duke-yin-helper'), __('Tools','duke-yin-helper'), 'manage_options', 'tmdb-movie-importer-settings', 'tmdb_movie_importer_settings_page');
 });
 
 
 function tmdb_movie_importer_settings_page() {
-    ?>
-
-    <?php
+    require plugin_dir_path( __FILE__ ) . 'tools.php';
 }
 
 // 插件主页面内容
 function tmdb_movie_importer_page() {
     ?>
     <div class="wrap">
-        <h1>TMDB 电影 / 电视剧 导入器</h1>
-        <input type="text" id="tmdb-movie-name" placeholder="输入电影或电视剧名称" style="width: 300px;">
+        <h1><?php _e('TMDB Movie and TV importer','duke-yin-helper');?></h1>
+        <input type="text" id="tmdb-movie-name" placeholder="<?php _e('Movie or TV title here','duke-yin-helper');?>" style="width: 300px;">
         <select id="tmdb-content-type">
-            <option value="movie">电影</option>
-            <option value="tv">电视剧</option>
+            <option value="movie"><?php _e('Movie','duke-yin-helper');?></option>
+            <option value="tv"><?php _e('TV','duke-yin-helper');?></option>
         </select>
-        <button id="tmdb-search-btn" class="button">搜索</button>
+        <select id="tmdb-status">
+            <option value="0"><?php _e('Watched','duke-yin-helper');?></option>
+            <option value="1"><?php _e('Watching','duke-yin-helper');?></option>
+            <option value="2"><?php _e('Want to watch','duke-yin-helper');?></option>
+            <option value="3"><?php _e('Watched many times','duke-yin-helper');?></option>
+            <option value="4"><?php _e('Partly watched','duke-yin-helper');?></option>
+        </select>
+        <input type="number" min="0" max="10" id="score" placeholder="<?php _e('Score','duke-yin-helper');?>" style="width: 100px;">
+        <button id="tmdb-search-btn" class="button"><?php _e('Search','duke-yin-helper');?></button>
         <div id="tmdb-results" style="margin-top: 20px;"></div>
     </div>
     <?php
@@ -66,6 +72,8 @@ add_action('wp_ajax_tmdb_select', function () {
     $dukeyin_options=get_site_option( 'options-page', true, false);
     check_ajax_referer('tmdb_nonce', 'nonce');
     $id = intval($_POST['id']);
+    $status = intval($_POST['status'])??0;
+    $score = number_format($_POST['score'], 1) ?? 5;
     $type = $_POST['type'] === 'tv' ? 'tv' : 'movie';
     $api_key = $dukeyin_options['tmdb-key'];
     $lang_info = $dukeyin_options['tmdb-lang'];
@@ -75,7 +83,7 @@ add_action('wp_ajax_tmdb_select', function () {
     $info_res = wp_remote_get($info_url);
     if (is_wp_error($info_res)) wp_send_json_error();
     $info = json_decode(wp_remote_retrieve_body($info_res), true);
-    $img_url = "https://api.themoviedb.org/3/{$type}/{$id}/images?api_key={$api_key}";
+    $img_url = "https://api.themoviedb.org/3/{$type}/{$id}/images?api_key={$api_key}&include_image_language={$lang_img}";
     $img_res = wp_remote_get($img_url);
 
     $poster_path = '';
@@ -102,6 +110,8 @@ add_action('wp_ajax_tmdb_select', function () {
     ]);
 
     update_post_meta( $post_id, '_r_f_overview', $overview );
+    update_post_meta( $post_id, 'ranking-score', $score );
+    update_post_meta( $post_id, '_r_now', $status );
 
     $release_date = $type === 'tv' ? $info['first_air_date'] : $info['release_date'];
     $date = strtotime($release_date);
@@ -126,43 +136,75 @@ add_action('wp_ajax_tmdb_select', function () {
     update_post_meta($post_id,'_r_f_runtime',$runtime);
 
 
-    function download_and_attach_image($img_url, $post_id) {
+    function download_and_attach_image($img_url, $post_id, $tmdb_id) {
         require_once(ABSPATH . 'wp-admin/includes/file.php');
         require_once(ABSPATH . 'wp-admin/includes/media.php');
         require_once(ABSPATH . 'wp-admin/includes/image.php');
+    
         $tmp = download_url($img_url);
-        if(is_wp_error($tmp)){
-            @unlink($tmp);
-        }else{
-            $file = [
-                'name' => basename($img_url),
-                'type' => mime_content_type( $tmp ),
-                'tmp_name' => $tmp,
-                'error' => 0,
-                'size' => filesize($tmp),
-            ];
-            return media_handle_sideload($file, $post_id);
+        if (is_wp_error($tmp)) return false;
+    
+        $image = imagecreatefromstring(file_get_contents($tmp));
+        if (!$image) return false;
+    
+        $upload_dir = wp_upload_dir();
+        $target_dir = trailingslashit($upload_dir['basedir']) . 'tmdb/' . $tmdb_id;
+        if (!file_exists($target_dir)) {
+            wp_mkdir_p($target_dir);
         }
-        return false;
+    
+        $ext = pathinfo(parse_url($img_url, PHP_URL_PATH), PATHINFO_EXTENSION);
+        $filename_base = basename($img_url, ".{$ext}");
+        $filename = $filename_base . '.webp';
+        $webp_path = trailingslashit($target_dir) . $filename;
+    
+        imagewebp($image, $webp_path, 85);
+        imagedestroy($image);
+        unlink($tmp);
+    
+        // 构建 WordPress 所需的文件数组，并修正 uploads 目录路径以保持 tmdb/{id} 结构
+        $file = [
+            'name' => $filename,
+            'type' => 'image/webp',
+            'tmp_name' => $webp_path,
+            'error' => 0,
+            'size' => filesize($webp_path),
+        ];
+    
+        // 过滤器强制 WordPress 使用我们提供的路径
+        add_filter('upload_dir', function ($dirs) use ($tmdb_id) {
+            $custom_subdir = '/tmdb/' . $tmdb_id;
+            $dirs['subdir'] = $custom_subdir;
+            $dirs['path'] = $dirs['basedir'] . $custom_subdir;
+            $dirs['url'] = $dirs['baseurl'] . $custom_subdir;
+            return $dirs;
+        });
+    
+        $attachment_id = media_handle_sideload($file, $post_id);
+    
+        // 移除过滤器，避免影响其他上传
+        remove_all_filters('upload_dir');
+    
+        return $attachment_id;
     }
 
     if ($poster_path) {
-        $poster_url = 'https://image.tmdb.org/t/p/original' . $poster_path;
-        $poster_id = download_and_attach_image($poster_url, $post_id);
+        $poster_url = 'https://image.tmdb.org/t/p/w500' . $poster_path;
+        $poster_id = download_and_attach_image($poster_url, $post_id, $id);
         $poster_url = wp_get_attachment_image_src( $poster_id, 'full' )[0];
         if ($poster_id) update_post_meta($post_id, '_r_f_poster', $poster_url);
         
     }
     if ($logo_path) {
-        $logo_url = 'https://image.tmdb.org/t/p/original' . $logo_path;
-        $logo_id = download_and_attach_image($logo_url, $post_id);
+        $logo_url = 'https://image.tmdb.org/t/p/w500' . $logo_path;
+        $logo_id = download_and_attach_image($logo_url, $post_id, $id);
         $lgo_url = wp_get_attachment_image_src( $logo_id, 'full' )[0];
         if ($logo_id) update_post_meta($post_id, '_r_f_logo', $lgo_url);
         
     }
     if ($backdrop_path) {
-        $backdrop_url = 'https://image.tmdb.org/t/p/original' . $backdrop_path;
-        $backdrop_id = download_and_attach_image($backdrop_url, $post_id);
+        $backdrop_url = 'https://image.tmdb.org/t/p/w1280' . $backdrop_path;
+        $backdrop_id = download_and_attach_image($backdrop_url, $post_id, $id);
         if(!has_post_thumbnail($post_id) && $backdrop_id){
             set_post_thumbnail($post_id, $backdrop_id);
         }

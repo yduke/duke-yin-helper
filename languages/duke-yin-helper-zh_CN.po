@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2023-12-04 16:36+0800\n"
-"PO-Revision-Date: 2023-12-04 16:37+0800\n"
+"POT-Creation-Date: 2025-04-08 22:58+0800\n"
+"PO-Revision-Date: 2025-04-08 22:58+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -34,6 +34,7 @@ msgid "Import Games"
 msgstr "导入游戏"
 
 #: includes/dk-games/class.games-admin.php:28
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:23
 #: includes/wp-movies/class.movies-admin.php:19
 msgid "Tools"
 msgstr "工具"
@@ -1498,10 +1499,12 @@ msgstr "添加了一个影评"
 
 #: includes/rest-api.php:86 includes/rest-api.php:101 includes/rest-api.php:109
 #: includes/rest-api.php:124
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:42
 msgid "Watched"
 msgstr "看过"
 
 #: includes/rest-api.php:89 includes/rest-api.php:112
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:43
 msgid "Watching"
 msgstr "在看"
 
@@ -1609,9 +1612,102 @@ msgstr "添加了一个新视频"
 msgid "Bookmarks"
 msgstr "书签"
 
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:22
 #: includes/wp-movies/class.movies-admin.php:14
 msgid "Movies Import Tool"
 msgstr "电影导入工具"
+
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:35
+msgid "TMDB Movie and TV importer"
+msgstr "TMDB电影和电视导入"
+
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:36
+msgid "Movie or TV title here"
+msgstr "电影或电视标题"
+
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:38
+msgid "Movie"
+msgstr "电影"
+
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:39
+msgid "TV"
+msgstr "电视"
+
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:44
+msgid "Want to watch"
+msgstr "想看"
+
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:45
+msgid "Watched many times"
+msgstr "看过多次"
+
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:46
+msgid "Partly watched"
+msgstr "没看完"
+
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:48
+msgid "Score"
+msgstr "评分"
+
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:49
+msgid "Search"
+msgstr "搜索"
+
+#: includes/tmdb-movie-importer/tools.php:6
+#: includes/wp-movies/templates/admin/settings.php:6
+#: includes/wp-movies/templates/admin/tools.php:6
+msgid "You do not have sufficient permissions to access this page."
+msgstr "你没有访问此页面的权限。"
+
+#: includes/tmdb-movie-importer/tools.php:41
+#: includes/wp-movies/templates/admin/tools.php:41
+msgid "The operation was completed."
+msgstr "行动已完成。"
+
+#: includes/tmdb-movie-importer/tools.php:46
+#: includes/wp-movies/templates/admin/tools.php:46
+msgid "Movies Plugin Tools"
+msgstr "电影插件工具"
+
+#: includes/tmdb-movie-importer/tools.php:51
+#: includes/wp-movies/templates/admin/tools.php:51
+msgid "Operation:"
+msgstr "行动："
+
+#: includes/tmdb-movie-importer/tools.php:54
+#: includes/wp-movies/templates/admin/tools.php:54
+msgid "Clear movie or tv-show data for a specific post ID"
+msgstr "指定Post ID清除电影或剧集数据"
+
+#: includes/tmdb-movie-importer/tools.php:55
+#: includes/wp-movies/templates/admin/tools.php:55
+msgid "Clear movie or tv-show  data for a specific TMDb ID"
+msgstr "指定TMDb ID清除电影或剧集数据"
+
+#: includes/tmdb-movie-importer/tools.php:56
+#: includes/wp-movies/templates/admin/tools.php:56
+msgid "Clear cast crew languages and categories with zero posts."
+msgstr "清除0附加文章的演员、导演、语言和分类。"
+
+#: includes/tmdb-movie-importer/tools.php:57
+#: includes/wp-movies/templates/admin/tools.php:57
+msgid "Clear all movies and tv-shows data for all posts"
+msgstr "清除本站所有电影和剧集数据"
+
+#: includes/tmdb-movie-importer/tools.php:61
+#: includes/wp-movies/templates/admin/tools.php:61
+msgid "ID:"
+msgstr "ID："
+
+#: includes/tmdb-movie-importer/tools.php:63
+#: includes/wp-movies/templates/admin/tools.php:63
+msgid "enter an ID when applicable; if not, leave blank"
+msgstr "在需要时输入ID，否则请留空"
+
+#: includes/tmdb-movie-importer/tools.php:69
+#: includes/wp-movies/templates/admin/tools.php:69
+msgid "Proceed"
+msgstr "执行"
 
 #: includes/wp-movies/class.movies-admin.php:14
 msgid "Movies Tool"
@@ -1695,11 +1791,6 @@ msgstr "剧集导入工具"
 msgid "TV show Title"
 msgstr "剧集标题"
 
-#: includes/wp-movies/templates/admin/settings.php:6
-#: includes/wp-movies/templates/admin/tools.php:6
-msgid "You do not have sufficient permissions to access this page."
-msgstr "你没有访问此页面的权限。"
-
 #: includes/wp-movies/templates/admin/settings.php:30
 msgid "Your settings have been saved."
 msgstr "设置已保存。"
@@ -1715,46 +1806,6 @@ msgstr ""
 #: includes/wp-movies/templates/admin/settings.php:47
 msgid "Save Changes"
 msgstr "保存更改"
-
-#: includes/wp-movies/templates/admin/tools.php:41
-msgid "The operation was completed."
-msgstr "行动已完成。"
-
-#: includes/wp-movies/templates/admin/tools.php:46
-msgid "Movies Plugin Tools"
-msgstr "电影插件工具"
-
-#: includes/wp-movies/templates/admin/tools.php:51
-msgid "Operation:"
-msgstr "行动："
-
-#: includes/wp-movies/templates/admin/tools.php:54
-msgid "Clear movie or tv-show data for a specific post ID"
-msgstr "指定Post ID清除电影或剧集数据"
-
-#: includes/wp-movies/templates/admin/tools.php:55
-msgid "Clear movie or tv-show  data for a specific TMDb ID"
-msgstr "指定TMDb ID清除电影或剧集数据"
-
-#: includes/wp-movies/templates/admin/tools.php:56
-msgid "Clear cast crew languages and categories with zero posts."
-msgstr "清除0附加文章的演员、导演、语言和分类。"
-
-#: includes/wp-movies/templates/admin/tools.php:57
-msgid "Clear all movies and tv-shows data for all posts"
-msgstr "清除本站所有电影和剧集数据"
-
-#: includes/wp-movies/templates/admin/tools.php:61
-msgid "ID:"
-msgstr "ID："
-
-#: includes/wp-movies/templates/admin/tools.php:63
-msgid "enter an ID when applicable; if not, leave blank"
-msgstr "在需要时输入ID，否则请留空"
-
-#: includes/wp-movies/templates/admin/tools.php:69
-msgid "Proceed"
-msgstr "执行"
 
 #: includes/wp-movies/tmdb-api.php:145
 #: includes/wp-movies/tmdb.v3_backup.php:105
@@ -1795,9 +1846,6 @@ msgstr "Duke Yin"
 
 #~ msgid "The Movies plugin has not been configured."
 #~ msgstr "电影插件未设置。"
-
-#~ msgid "Movie or Event Title"
-#~ msgstr "影片标题"
 
 #~ msgid "Restore plugin settings to default (except for TMDB API key)"
 #~ msgstr "重置电影设置到初始值（TMDB API密钥不会清除）"
