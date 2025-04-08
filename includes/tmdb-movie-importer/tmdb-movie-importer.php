@@ -170,7 +170,7 @@ add_action('wp_ajax_tmdb_select', function () {
     $runtime = $type === 'tv' ? $info['episode_run_time'][0] : $info['runtime'];
     update_post_meta($post_id,'_r_f_runtime',$runtime);
 
-    $tagline = $type === 'tv' ? $info['tagline'] : $info['tagline'];
+    $tagline = $info['tagline'];
     update_post_meta($post_id,'_r_f_tagline',$tagline);
 
 
