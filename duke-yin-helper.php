@@ -91,7 +91,7 @@ if( function_exists('amts_checkMobile') AND amts_checkMobile()['amts_mobile_brow
 $dukeyin_options=get_site_option( 'options-page', true, false);
 $tmdb_helper = ($dukeyin_options['tmdb-helper'] ?? 'off');
 if($tmdb_helper =='on' ){
-	require plugin_dir_path( __FILE__ ) . 'includes/wp-movies/movies.php';
+	require plugin_dir_path( __FILE__ ) . 'includes/tmdb-movie-importer/tmdb-movie-importer.php';
 	// require plugin_dir_path( __FILE__ ) . 'includes/dk-games/games.php';
 }
 /**
