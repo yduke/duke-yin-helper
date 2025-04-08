@@ -10,6 +10,7 @@ jQuery(document).ready(function ($) {
             type: type
         }, function (res) {
             $('#tmdb-results').empty();
+            $('.notice').remove();
             if (res.success) {
                 if (res.data.length === 0) {
                     $('#tmdb-results').html('<p>没有找到相关内容</p>');
@@ -20,7 +21,7 @@ jQuery(document).ready(function ($) {
                 res.data.forEach(function (item) {
                     let title = item.title || item.name;
                     html += `<tr><td><a href="https://media.themoviedb.org/t/p/w220_and_h330_face${item.poster_path}" target="_blank">[海报]</a> <strong>${title}</strong> (${item.first_air_date || item.release_date}) </td>
-                                 <td><button class="select-item" data-id="${item.id}" data-type="${type}">选择并导入</button></td></tr>`;
+                                 <td><button class="button select-item" data-id="${item.id}" data-type="${type}">选择并导入</button></td></tr>`;
                 });
                 html += '</tbody></table>';
                 $('#tmdb-results').html(html);
@@ -37,6 +38,7 @@ jQuery(document).ready(function ($) {
         let score = (inputVal && inputVal.trim() !== 0) ? inputVal.trim() : 5;
         let status = $('#tmdb-status').val();
         $(this).text('正在导入...');
+        $(this).addClass('clicked');
         $.post(tmdb_ajax.ajax_url, {
             action: 'tmdb_select',
             nonce: tmdb_ajax.nonce,
@@ -45,9 +47,9 @@ jQuery(document).ready(function ($) {
             score: score,
             status: status,
         }, function (res) {
-            $(this).text('完成导入');
+            $('.clicked').text('完成导入');
             if (res.success) {
-                jQuery('#wpbody-content').prepend('<div class="notice notice-success is-dismissible"><p>'+'import success'+'</p></div>');
+                jQuery('#wpbody-content').prepend('<div class="notice notice-success is-dismissible"><p>'+'Import success, the post is <a target="_blank" href="'+ res.data.link +'">here</a>.</p></div>');
             } else {
                 $(this).text('导入失败！');
                 jQuery('#wpbody-content').prepend('<div class="notice notice-error is-dismissible"><p>'+'Failed to import'+'</p></div>');

@@ -79,12 +79,41 @@ add_action('wp_ajax_tmdb_select', function () {
     $lang_info = $dukeyin_options['tmdb-lang'];
     $lang_img = $dukeyin_options['tmdb-lang-poster']??'en';
 
+    // check if the post already exists
+    function movie_post_exist($type, $meta_key, $meta_value) {
+        $post_type = $type === 'tv' ? 'tvshow_review' : 'film_review';
+        $args = array(
+            'post_type'  => $post_type, // e.g. 'post', 'page', or a custom post type
+            'meta_query' => array(
+                array(
+                    'key'   => $meta_key,   // The meta key you're searching for
+                    'value' => $meta_value, // The value you're matching
+                )
+            ),
+            'posts_per_page' => 1, // Only need to know if one exists
+            'fields' => 'ids'      // Return only post IDs for performance
+        );
+        $query = new WP_Query($args);
+        if ( $query->have_posts() ) {
+            $existing_post_id = $query->posts[0];
+            return $existing_post_id; // Return the ID of the existing post
+        } else {
+            return false; // No post found
+        }
+        return false;
+    }
+
+
+
     $info_url = "https://api.themoviedb.org/3/{$type}/{$id}?api_key={$api_key}&language={$lang_info}&append_to_response=credits";
     $info_res = wp_remote_get($info_url);
     if (is_wp_error($info_res)) wp_send_json_error();
     $info = json_decode(wp_remote_retrieve_body($info_res), true);
+
     $img_url = "https://api.themoviedb.org/3/{$type}/{$id}/images?api_key={$api_key}&include_image_language={$lang_img}";
     $img_res = wp_remote_get($img_url);
+
+ 
 
     $poster_path = '';
     $logo_path = '';
@@ -93,25 +122,31 @@ add_action('wp_ajax_tmdb_select', function () {
         $img_data = json_decode(wp_remote_retrieve_body($img_res), true);
         if (!empty($img_data['posters'][0]['file_path'])) $poster_path = $img_data['posters'][0]['file_path'];
         if (!empty($img_data['logos'][0]['file_path'])) $logo_path = $img_data['logos'][0]['file_path'];
-        if (!empty($img_data['backdrops'][0]['file_path'])) $backdrop_path = $img_data['backdrops'][0]['file_path'];
     }
 
     $title = $type === 'tv' ? $info['name'] : $info['title'];
     $original_title = $type === 'tv' ? $info['original_name'] : $info['original_title'];
     $slug = sanitize_title($original_title);
 
-    $post_type = $type === 'tv' ? 'tvshow_review' : 'film_review';
+    
     $overview = $info['overview'];
-    $post_id = wp_insert_post([
-        'post_title' => $original_title,
-        'post_name' => $slug,
-        'post_status' => 'publish',
-        'post_type' => $post_type
-    ]);
+
+    $post_id = movie_post_exist($type, 'tmdb_id', $id);
+    
+    if($post_id===false || $post_id==='' || $post_id===null ){
+        $post_type = $type === 'tv' ? 'tvshow_review' : 'film_review';
+        $post_id = wp_insert_post([
+            'post_title' => $original_title,
+            'post_name' => $slug,
+            'post_status' => 'publish',
+            'post_type' => $post_type
+        ]);
+    }
 
     update_post_meta( $post_id, '_r_f_overview', $overview );
     update_post_meta( $post_id, 'ranking-score', $score );
     update_post_meta( $post_id, '_r_now', $status );
+    update_post_meta( $post_id, 'tmdb_id', $id );
 
     $release_date = $type === 'tv' ? $info['first_air_date'] : $info['release_date'];
     $date = strtotime($release_date);
@@ -135,7 +170,11 @@ add_action('wp_ajax_tmdb_select', function () {
     $runtime = $type === 'tv' ? $info['episode_run_time'][0] : $info['runtime'];
     update_post_meta($post_id,'_r_f_runtime',$runtime);
 
+    $tagline = $type === 'tv' ? $info['tagline'] : $info['tagline'];
+    update_post_meta($post_id,'_r_f_tagline',$tagline);
 
+
+    // download images
     function download_and_attach_image($img_url, $post_id, $tmdb_id) {
         require_once(ABSPATH . 'wp-admin/includes/file.php');
         require_once(ABSPATH . 'wp-admin/includes/media.php');
@@ -202,6 +241,16 @@ add_action('wp_ajax_tmdb_select', function () {
         if ($logo_id) update_post_meta($post_id, '_r_f_logo', $lgo_url);
         
     }
+
+// needs clean backdrop
+    $backdrop_url ="https://api.themoviedb.org/3/{$type}/{$id}/images?api_key={$api_key}";
+    $backdrop_res = wp_remote_get($backdrop_url);
+    if (!is_wp_error($backdrop_res)) {
+        $backdrop_data = json_decode(wp_remote_retrieve_body($backdrop_res), true);
+        if (!empty($backdrop_data['backdrops'][0]['file_path'])) $backdrop_path = $backdrop_data['backdrops'][0]['file_path'];
+        
+    }
+
     if ($backdrop_path) {
         $backdrop_url = 'https://image.tmdb.org/t/p/w1280' . $backdrop_path;
         $backdrop_id = download_and_attach_image($backdrop_url, $post_id, $id);
@@ -209,8 +258,6 @@ add_action('wp_ajax_tmdb_select', function () {
             set_post_thumbnail($post_id, $backdrop_id);
         }
     }
-
-
 
     $directors = []; $writers = []; $actors = [];
     if (!empty($info['credits'])) {
@@ -222,9 +269,7 @@ add_action('wp_ajax_tmdb_select', function () {
             $actors[] = $actor['name'];
         }
     }
-    // update_post_meta($post_id, '导演', implode(', ', $directors));
-    // update_post_meta($post_id, '编剧', implode(', ', $writers));
-    // update_post_meta($post_id, '演员', implode(', ', $actors));
+
 
     // directors
     foreach($directors as $director){
@@ -354,6 +399,6 @@ add_action('wp_ajax_tmdb_select', function () {
        
         update_post_meta($post_id, '_r_t_seasons', $season_info);
     }
-
-    wp_send_json_success(['post_id' => $post_id]);
+    $link = get_permalink( $post_id );
+    wp_send_json_success(['link' => $link]);
 });
