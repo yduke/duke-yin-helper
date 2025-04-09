@@ -3,7 +3,7 @@
 Plugin Name: TMDB 电影与电视剧导入器
 Description: 通过 TMDB API 搜索并导入电影或电视剧为文章。
 Version: 1.0
-Author: ChatGPT
+Author: Duke Yin
 */
 
 // 加载 JS 和样式

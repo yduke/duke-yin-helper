@@ -94,6 +94,13 @@ if($tmdb_helper =='on' ){
 	require plugin_dir_path( __FILE__ ) . 'includes/tmdb-movie-importer/tmdb-movie-importer.php';
 	// require plugin_dir_path( __FILE__ ) . 'includes/dk-games/games.php';
 }
+
+$sgdb = ($dukeyin_options['sgdb-key']);
+if($sgdb!= ''){
+	require plugin_dir_path( __FILE__ ) . 'includes/steamgriddb-game-importer/steamgriddb-game-importer.php';
+}
+
+
 /**
  * Begins execution of the plugin.
  *

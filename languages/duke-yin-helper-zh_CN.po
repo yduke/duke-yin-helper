@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2025-04-09 03:04+0800\n"
-"PO-Revision-Date: 2025-04-09 03:04+0800\n"
+"POT-Creation-Date: 2025-04-09 13:43+0800\n"
+"PO-Revision-Date: 2025-04-09 13:43+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -22,6 +22,8 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: includes/dk-games/class.games-admin.php:26
+#: includes/steamgriddb-game-importer/steamgriddb-game-importer.php:16
+#: includes/steamgriddb-game-importer/steamgriddb-game-importer.php:31
 msgid "Games Import Tool"
 msgstr "游戏导入工具"
 
@@ -1612,6 +1614,15 @@ msgstr "添加了一个新视频"
 msgid "Bookmarks"
 msgstr "书签"
 
+#: includes/steamgriddb-game-importer/steamgriddb-game-importer.php:32
+msgid "Games title here"
+msgstr "游戏标题"
+
+#: includes/steamgriddb-game-importer/steamgriddb-game-importer.php:33
+#: includes/tmdb-movie-importer/tmdb-movie-importer.php:49
+msgid "Search"
+msgstr "搜索"
+
 #: includes/tmdb-movie-importer/tmdb-movie-importer.php:22
 #: includes/wp-movies/class.movies-admin.php:14
 msgid "Movies Import Tool"
@@ -1648,10 +1659,6 @@ msgstr "没看完"
 #: includes/tmdb-movie-importer/tmdb-movie-importer.php:48
 msgid "Score"
 msgstr "评分"
-
-#: includes/tmdb-movie-importer/tmdb-movie-importer.php:49
-msgid "Search"
-msgstr "搜索"
 
 #: includes/tmdb-movie-importer/tools.php:6
 #: includes/wp-movies/templates/admin/settings.php:6
