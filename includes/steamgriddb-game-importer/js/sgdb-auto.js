@@ -8,7 +8,7 @@ jQuery(document).ready(function ($) {
             nonce: sgdb_ajax.nonce,
             term: term
         }, function (response) {
-            console.log(response);
+            // console.log(response);
             if (response.success) {
                 let html = '<table class="widefat importers striped"><tbody>';
                 response.data.forEach(game => {
@@ -29,10 +29,10 @@ jQuery(document).ready(function ($) {
     });
 
     $('#sgdb-results').on('click', '.sgdb-create', function () {
-        const id = $(this).data('id');
-        const name = $(this).data('name');
-        const release_date = $(this).data('release_date');
-        const platform = $(this).data('types');
+        let id = $(this).data('id');
+        let name = $(this).data('name');
+        let release_date = $(this).data('release_date');
+        let platform = $(this).data('types');
         let status = $('#game-status').val();
         $(this).text('导入中...').attr('disabled', true);
         $(this).addClass('clicked');

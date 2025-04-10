@@ -197,7 +197,7 @@ add_action('wp_ajax_tmdb_select', function () {
         $filename = $filename_base . '.webp';
         $webp_path = trailingslashit($target_dir) . $filename;
     
-        imagewebp($image, $webp_path, 85);
+        @imagewebp($image, $webp_path, 85);
         imagedestroy($image);
         unlink($tmp);
     
@@ -221,20 +221,25 @@ add_action('wp_ajax_tmdb_select', function () {
     
         $attachment_id = media_handle_sideload($file, $post_id);
     
+
         // 移除过滤器，避免影响其他上传
         remove_all_filters('upload_dir');
-    
+        if (is_wp_error($attachment_id)) return false;
         return $attachment_id;
     }
 
-    if ($poster_path) {
+    $poster_meta= get_post_meta($post_id, '_r_f_poster', true);
+    $logo_meta= get_post_meta($post_id, '_r_f_logo', true);
+    $backdrop_meta= get_post_meta($post_id, '_r_f_backdrop', true);
+
+    if ($poster_path && empty($poster_meta)) {
         $poster_url = 'https://image.tmdb.org/t/p/w500' . $poster_path;
         $poster_id = download_and_attach_image($poster_url, $post_id, $id);
         $poster_url = wp_get_attachment_image_src( $poster_id, 'full' )[0];
         if ($poster_id) update_post_meta($post_id, '_r_f_poster', $poster_url);
-        
     }
-    if ($logo_path) {
+
+    if ($logo_path && empty($logo_meta)) {
         $logo_url = 'https://image.tmdb.org/t/p/w500' . $logo_path;
         $logo_id = download_and_attach_image($logo_url, $post_id, $id);
         $lgo_url = wp_get_attachment_image_src( $logo_id, 'full' )[0];
@@ -251,12 +256,10 @@ add_action('wp_ajax_tmdb_select', function () {
         
     }
 
-    if ($backdrop_path) {
+    if ($backdrop_path && !has_post_thumbnail($post_id) ) {
         $backdrop_url = 'https://image.tmdb.org/t/p/w1280' . $backdrop_path;
         $backdrop_id = download_and_attach_image($backdrop_url, $post_id, $id);
-        if(!has_post_thumbnail($post_id) && $backdrop_id){
             set_post_thumbnail($post_id, $backdrop_id);
-        }
     }
 
     $directors = []; $writers = []; $actors = [];
@@ -369,7 +372,6 @@ add_action('wp_ajax_tmdb_select', function () {
     }
 
     // tv show seasons
-
     if ($type === 'tv' && !empty($info['number_of_seasons'])) {
         $season_info = [];
         for ($s = 1; $s <= $info['number_of_seasons']; $s++) {

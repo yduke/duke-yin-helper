@@ -43,7 +43,7 @@ function sgdb_import_page() {
     <?php
 }
 
-function game_post_exist($type, $meta_key, $meta_value) {
+function game_post_exist($meta_key, $meta_value) {
     $args = array(
         'post_type'  => 'game_review', // e.g. 'post', 'page', or a custom post type
         'meta_query' => array(
@@ -116,7 +116,7 @@ add_action('wp_ajax_sgdb_fetch_and_create', function () {
     }
 
     // logo
-    $logo_response = wp_remote_get("https://www.steamgriddb.com/api/v2/logos/game/{$game_id}?limit=1&styles=official&type=static&mimes=image/webp,image/png", [
+    $logo_response = wp_remote_get("https://www.steamgriddb.com/api/v2/logos/game/{$game_id}?limit=1&styles=official&type=static&mimes=image/png", [
         'headers' => ['Authorization' => 'Bearer '.$api_key]
     ]);
     if (!is_wp_error($logo_response)) {
@@ -136,7 +136,7 @@ add_action('wp_ajax_sgdb_fetch_and_create', function () {
             $image_urls['icon'] = $icon_data['data'][0]['url'];
         }
     }
-    $post_id = game_post_exist($type, 'game_id', $id);
+    $post_id = game_post_exist('game_id', $game_id);
     if(!$post_id){
         $post_id = wp_insert_post([
             'post_title' => $game_name,
@@ -152,95 +152,91 @@ add_action('wp_ajax_sgdb_fetch_and_create', function () {
         update_post_meta( $post_id, 'narrative-score', '5.0' );
         update_post_meta( $post_id, 'audios-score', '5.0' );
         update_post_meta( $post_id, 'graphic-score', '5.0' );
-    }
 
-
-
-
-    $platforms;
-    foreach($platforms as $platform){
-        $term_id = term_exists( $platform, 'game_review_platforms' );
-        if($term_id){
-            wp_set_object_terms( $post_id, $platform, 'game_review_platforms', true );
-        }else{
-            wp_insert_term(
-                $platform,
-            'game_review_platforms',
-            array(
-                'description' => '',
-                'slug'        => $platform,
-                'parent'      => '',
-            ));
+        foreach($platforms as $platform){
             $term_id = term_exists( $platform, 'game_review_platforms' );
-            wp_set_object_terms( $post_id, $platform, 'game_review_platforms', true );
+            if($term_id){
+                wp_set_object_terms( $post_id, $platform, 'game_review_platforms', true );
+            }else{
+                wp_insert_term(
+                    $platform,
+                'game_review_platforms',
+                array(
+                    'description' => '',
+                    'slug'        => $platform,
+                    'parent'      => '',
+                ));
+                $term_id = term_exists( $platform, 'game_review_platforms' );
+                wp_set_object_terms( $post_id, $platform, 'game_review_platforms', true );
+            }
         }
     }
 
-	    function download_and_attach_game_image($img_url, $post_id, $game_id) {
-			require_once(ABSPATH . 'wp-admin/includes/file.php');
-			require_once(ABSPATH . 'wp-admin/includes/media.php');
-			require_once(ABSPATH . 'wp-admin/includes/image.php');
-		
-			$tmp = download_url($img_url);
-			if (is_wp_error($tmp)) return false;
-		
-			$image = imagecreatefromstring(file_get_contents($tmp));
-			if (!$image) return false;
-		
-			$upload_dir = wp_upload_dir();
-			$target_dir = trailingslashit($upload_dir['basedir']) . 'stemgriddb/' . $game_id;
-			if (!file_exists($target_dir)) {
-				wp_mkdir_p($target_dir);
-			}
-		
-			$ext = pathinfo(parse_url($img_url, PHP_URL_PATH), PATHINFO_EXTENSION);
-			$filename_base = basename($img_url, ".{$ext}");
-			$filename = $filename_base . '.webp';
-			$webp_path = trailingslashit($target_dir) . $filename;
-		
-			imagewebp($image, $webp_path, 85);
-			imagedestroy($image);
-			unlink($tmp);
-		
-			// 构建 WordPress 所需的文件数组，并修正 uploads 目录路径以保持 stemgriddb/{id} 结构
-			$file = [
-				'name' => $filename,
-				'type' => 'image/webp',
-				'tmp_name' => $webp_path,
-				'error' => 0,
-				'size' => filesize($webp_path),
-			];
-		
-			// 过滤器强制 WordPress 使用我们提供的路径
-			add_filter('upload_dir', function ($dirs) use ($game_id) {
-				$custom_subdir = '/stemgriddb/' . $game_id;
-				$dirs['subdir'] = $custom_subdir;
-				$dirs['path'] = $dirs['basedir'] . $custom_subdir;
-				$dirs['url'] = $dirs['baseurl'] . $custom_subdir;
-				return $dirs;
-			});
-		
-			$attachment_id = media_handle_sideload($file, $post_id);
-		
-			// 移除过滤器，避免影响其他上传
-			remove_all_filters('upload_dir');
-		
-			return $attachment_id;
-		}
+
+    function download_and_attach_game_image($img_url, $post_id, $game_id) {
+        require_once(ABSPATH . 'wp-admin/includes/file.php');
+        require_once(ABSPATH . 'wp-admin/includes/media.php');
+        require_once(ABSPATH . 'wp-admin/includes/image.php');
+    
+        $tmp = download_url($img_url);
+        if (is_wp_error($tmp)) return false;
+    
+        $image = imagecreatefromstring(file_get_contents($tmp));
+        if (!$image) return false;
+    
+        $upload_dir = wp_upload_dir();
+        $target_dir = trailingslashit($upload_dir['basedir']) . 'stemgriddb/' . $game_id;
+        if (!file_exists($target_dir)) {
+            wp_mkdir_p($target_dir);
+        }
+    
+        $ext = pathinfo(parse_url($img_url, PHP_URL_PATH), PATHINFO_EXTENSION);
+        $filename_base = basename($img_url, ".{$ext}");
+        $filename = $filename_base . '.webp';
+        $webp_path = trailingslashit($target_dir) . $filename;
+    
+        @imagewebp($image, $webp_path, 85);
+        imagedestroy($image);
+        unlink($tmp);
+    
+        // 构建 WordPress 所需的文件数组，并修正 uploads 目录路径以保持 stemgriddb/{id} 结构
+        $file = [
+            'name' => $filename,
+            'type' => 'image/webp',
+            'tmp_name' => $webp_path,
+            'error' => 0,
+            'size' => filesize($webp_path),
+        ];
+    
+        // 过滤器强制 WordPress 使用我们提供的路径
+        add_filter('upload_dir', function ($dirs) use ($game_id) {
+            $custom_subdir = '/stemgriddb/' . $game_id;
+            $dirs['subdir'] = $custom_subdir;
+            $dirs['path'] = $dirs['basedir'] . $custom_subdir;
+            $dirs['url'] = $dirs['baseurl'] . $custom_subdir;
+            return $dirs;
+        });
+    
+        $attachment_id = media_handle_sideload($file, $post_id);
+    
+        // 移除过滤器，避免影响其他上传
+        remove_all_filters('upload_dir');
+        if (is_wp_error($attachment_id)) return false;
+        return $attachment_id;
+    }
 	
     // 下载并附加图片
     foreach ($image_urls as $type => $url) {
-		
-		
-        // $attachment_id = media_sideload_image(esc_url_raw($url), $post_id, null, 'id');
-        $attachment_id = download_and_attach_game_image($url, $post_id, $game_id);
-		
-        if (!is_wp_error($attachment_id)) {
-            update_post_meta($post_id, $type, wp_get_attachment_url($attachment_id));
-        }
-        if($type === 'hero'){
-            if(!has_post_thumbnail($post_id) && $attachment_id){
-                set_post_thumbnail($post_id, $attachment_id);
+        if (empty($url)) continue;
+        $meta= get_post_meta($post_id, $type, true);
+        if(empty($meta)){
+            $attachment_id = @download_and_attach_game_image($url, $post_id, $game_id);
+            if($attachment_id){
+                update_post_meta($post_id, $type, wp_get_attachment_url($attachment_id));
+                if($type==='hero' && !has_post_thumbnail($post_id)){
+                    set_post_thumbnail($post_id, $attachment_id);
+
+                }
             }
         }
     }
