@@ -33,11 +33,11 @@ function tmdb_movie_importer_page() {
     ?>
     <div class="wrap">
         <h1><?php _e('TMDB Movie and TV importer','duke-yin-helper');?></h1>
-        <input type="text" id="tmdb-movie-name" placeholder="<?php _e('Movie or TV title here','duke-yin-helper');?>" style="width: 300px;">
         <select id="tmdb-content-type">
             <option value="movie"><?php _e('Movie','duke-yin-helper');?></option>
             <option value="tv"><?php _e('TV','duke-yin-helper');?></option>
         </select>
+        <input type="text" id="tmdb-movie-name" placeholder="<?php _e('Movie or TV title here','duke-yin-helper');?>" style="width: 300px;">
         <select id="tmdb-status">
             <option value="0"><?php _e('Watched','duke-yin-helper');?></option>
             <option value="1"><?php _e('Watching','duke-yin-helper');?></option>
@@ -400,5 +400,5 @@ add_action('wp_ajax_tmdb_select', function () {
         update_post_meta($post_id, '_r_t_seasons', $season_info);
     }
     $link = get_permalink( $post_id );
-    wp_send_json_success(['link' => $link]);
+    wp_send_json_success(['title'=>$original_title,'link' => $link]);
 });

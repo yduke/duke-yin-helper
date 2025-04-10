@@ -37,7 +37,7 @@ jQuery(document).ready(function ($) {
         let inputVal = $('#score').val();
         let score = (inputVal && inputVal.trim() !== 0) ? inputVal.trim() : 5;
         let status = $('#tmdb-status').val();
-        $(this).text('正在导入...');
+        $(this).text('正在导入...').attr('disabled', true);
         $(this).addClass('clicked');
         $.post(tmdb_ajax.ajax_url, {
             action: 'tmdb_select',
@@ -49,9 +49,8 @@ jQuery(document).ready(function ($) {
         }, function (res) {
             $('.clicked').text('完成导入');
             if (res.success) {
-                jQuery('#wpbody-content').prepend('<div class="notice notice-success is-dismissible"><p>'+'Import success, the post is <a target="_blank" href="'+ res.data.link +'">here</a>.</p></div>');
+                jQuery('#wpbody-content').prepend('<div class="notice notice-success is-dismissible"><p>'+'Import success, the post is <a target="_blank" href="'+ res.data.link +'">'+ res.data.title +'</a>.</p></div>');
             } else {
-                $(this).text('导入失败！');
                 jQuery('#wpbody-content').prepend('<div class="notice notice-error is-dismissible"><p>'+'Failed to import'+'</p></div>');
             }
         });

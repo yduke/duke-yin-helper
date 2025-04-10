@@ -16,7 +16,7 @@
  * Plugin Name:       Duke Yin Helper
  * Plugin URI:        https://www.dukeyin.com
  * Description:       For supporting the wordpress theme dukeyin, add more post types and shortcodes.
- * Version:           1.1.15
+ * Version:           1.1.17
  * Author:            Duke Yin
  * Author URI:        https://www.dukeyin.com
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'DUKE_YIN_HELPER_VERSION', '1.1.15' );
+define( 'DUKE_YIN_HELPER_VERSION', '1.1.17' );
 
 /**
  * The code that runs during plugin activation.
@@ -95,7 +95,7 @@ if($tmdb_helper =='on' ){
 	// require plugin_dir_path( __FILE__ ) . 'includes/dk-games/games.php';
 }
 
-$sgdb = ($dukeyin_options['sgdb-key']);
+$sgdb = ($dukeyin_options['sgdb-key']?? '');
 if($sgdb!= ''){
 	require plugin_dir_path( __FILE__ ) . 'includes/steamgriddb-game-importer/steamgriddb-game-importer.php';
 }
