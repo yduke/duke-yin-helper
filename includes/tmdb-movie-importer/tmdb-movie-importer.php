@@ -8,7 +8,7 @@ Author: Duke Yin
 
 // 加载 JS 和样式
 add_action('admin_enqueue_scripts', function ($hook) {
-    if (strpos($hook, 'tmdb-movie-importer') !== false) {
+    if (strpos($hook, 'dk-movie-importer') !== false) {
         wp_enqueue_script('tmdb-importer-js', plugin_dir_url(__FILE__) . 'assets/movie-importer.js?ver='.DUKE_YIN_HELPER_VERSION, ['jquery'], null, true);
         wp_localize_script('tmdb-importer-js', 'tmdb_ajax', [
             'ajax_url' => admin_url('admin-ajax.php'),
@@ -17,22 +17,12 @@ add_action('admin_enqueue_scripts', function ($hook) {
     }
 });
 
-// 添加后台菜单和设置页面
-add_action('admin_menu', function () {
-    add_menu_page(__('Movies Import Tool','duke-yin-helper'), __('Movies Import Tool','duke-yin-helper'), 'manage_options', 'tmdb-movie-importer', 'tmdb_movie_importer_page','dashicons-editor-video',9);
-    add_submenu_page('tmdb-movie-importer', __('Tools','duke-yin-helper'), __('Tools','duke-yin-helper'), 'manage_options', 'tmdb-movie-importer-settings', 'tmdb_movie_importer_settings_page');
-});
-
-
-function tmdb_movie_importer_settings_page() {
-    require plugin_dir_path( __FILE__ ) . 'tools.php';
-}
 
 // 插件主页面内容
-function tmdb_movie_importer_page() {
+function dk_movie_importer_page() {
     ?>
     <div class="wrap">
-        <h1><?php _e('TMDB Movie and TV importer','duke-yin-helper');?></h1>
+        <h1><?php _e('Movie and TV import tool','duke-yin-helper');?></h1>
         <select id="tmdb-content-type">
             <option value="movie"><?php _e('Movie','duke-yin-helper');?></option>
             <option value="tv"><?php _e('TV','duke-yin-helper');?></option>
@@ -234,14 +224,14 @@ add_action('wp_ajax_tmdb_select', function () {
 
     if ($poster_path && empty($poster_meta)) {
         $poster_url = 'https://image.tmdb.org/t/p/w500' . $poster_path;
-        $poster_id = download_and_attach_image($poster_url, $post_id, $id);
+        $poster_id = @download_and_attach_image($poster_url, $post_id, $id);
         $poster_url = wp_get_attachment_image_src( $poster_id, 'full' )[0];
         if ($poster_id) update_post_meta($post_id, '_r_f_poster', $poster_url);
     }
 
     if ($logo_path && empty($logo_meta)) {
         $logo_url = 'https://image.tmdb.org/t/p/w500' . $logo_path;
-        $logo_id = download_and_attach_image($logo_url, $post_id, $id);
+        $logo_id = @download_and_attach_image($logo_url, $post_id, $id);
         $lgo_url = wp_get_attachment_image_src( $logo_id, 'full' )[0];
         if ($logo_id) update_post_meta($post_id, '_r_f_logo', $lgo_url);
         
@@ -258,7 +248,7 @@ add_action('wp_ajax_tmdb_select', function () {
 
     if ($backdrop_path && !has_post_thumbnail($post_id) ) {
         $backdrop_url = 'https://image.tmdb.org/t/p/w1280' . $backdrop_path;
-        $backdrop_id = download_and_attach_image($backdrop_url, $post_id, $id);
+        $backdrop_id = @download_and_attach_image($backdrop_url, $post_id, $id);
             set_post_thumbnail($post_id, $backdrop_id);
     }
 

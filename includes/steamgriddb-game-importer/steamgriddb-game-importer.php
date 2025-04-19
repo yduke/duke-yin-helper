@@ -10,22 +10,17 @@
 if (!defined('ABSPATH')) exit;
 
 
-
-
-add_action('admin_menu', function () {
-    add_menu_page(__('Games Import Tool','duke-yin-helper'), __('Games Import Tool','duke-yin-helper'), 'manage_options', 'steamgriddb-import', 'sgdb_import_page','dashicons-games',9);
-});
-
 add_action('admin_enqueue_scripts', function ($hook) {
-    if ($hook != 'toplevel_page_steamgriddb-import') return;
-    wp_enqueue_script('sgdb-script', plugin_dir_url(__FILE__) . 'js/sgdb-auto.js?ver='.DUKE_YIN_HELPER_VERSION, ['jquery'], null, true);
-    wp_localize_script('sgdb-script', 'sgdb_ajax', [
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('sgdb_nonce'),
-    ]);
+    if (strpos($hook, 'dk-game-importer') !== false) {
+        wp_enqueue_script('sgdb-script', plugin_dir_url(__FILE__) . 'js/sgdb-auto.js?ver='.DUKE_YIN_HELPER_VERSION, ['jquery'], null, true);
+        wp_localize_script('sgdb-script', 'sgdb_ajax', [
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('sgdb_nonce'),
+        ]);
+    }
 });
 
-function sgdb_import_page() {
+function dk_game_importer_page() {
    ?>
    <div class="wrap">
         <h1><?php _e('Games Import Tool','duke-yin-helper'); ?></h1>
@@ -75,7 +70,8 @@ add_action('wp_ajax_sgdb_search_game', function () {
     $response = wp_remote_get("https://www.steamgriddb.com/api/v2/search/autocomplete/" . urlencode($term), [
         'headers' => ['Authorization' => 'Bearer '.$api_key]
     ]);
-    if (is_wp_error($response)) wp_send_json_error(['message' => '查询失败']);
+    // var_dump($response);
+    if (is_wp_error($response)) wp_send_json_error(['message' => '查询失败','response'=>$response,'code' => $response->get_error_code()]);
     $body = json_decode(wp_remote_retrieve_body($response), true);
     wp_send_json_success($body['data']);
 });
@@ -185,6 +181,9 @@ add_action('wp_ajax_sgdb_fetch_and_create', function () {
         if (!$image) return false;
     
         $upload_dir = wp_upload_dir();
+        if (!file_exists($upload_dir['basedir'].'/stemgriddb')) { //create stemgriddb folder if not exists
+            mkdir($upload_dir['basedir'].'/stemgriddb', 0777, true);
+        }
         $target_dir = trailingslashit($upload_dir['basedir']) . 'stemgriddb/' . $game_id;
         if (!file_exists($target_dir)) {
             wp_mkdir_p($target_dir);

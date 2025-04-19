@@ -89,16 +89,60 @@ if( function_exists('amts_checkMobile') AND amts_checkMobile()['amts_mobile_brow
 }
 
 $dukeyin_options=get_site_option( 'options-page', true, false);
+
 $tmdb_helper = ($dukeyin_options['tmdb-helper'] ?? 'off');
-if($tmdb_helper =='on' ){
-	require plugin_dir_path( __FILE__ ) . 'includes/tmdb-movie-importer/tmdb-movie-importer.php';
-	// require plugin_dir_path( __FILE__ ) . 'includes/dk-games/games.php';
+$sgdb = ($dukeyin_options['sgdb-key']?? '');
+
+
+if($sgdb!= '' || $tmdb_helper =='on'){
+
+
+	add_action('admin_menu', function () {
+		add_menu_page(
+			__('Movies & Games','duke-yin-helper'),
+			__('Movies & Games','duke-yin-helper'),
+			'manage_options', 
+			'movie-and-game-importer',
+			'movie_and_game_importer_page',
+			'dashicons-games',
+			9
+		);
+	});
+
+	function movie_and_game_importer_page() {
+		require plugin_dir_path( __FILE__ ) . 'includes/tmdb-movie-importer/tools.php';
+	}
 }
 
-$sgdb = ($dukeyin_options['sgdb-key']?? '');
+if($tmdb_helper =='on' ){
+	require plugin_dir_path( __FILE__ ) . 'includes/tmdb-movie-importer/tmdb-movie-importer.php';
+	add_action('admin_menu',function(){
+		add_submenu_page(
+			'movie-and-game-importer',
+			 __('Movie Import Tool','duke-yin-helper'), 
+			 __('Movie Import Tool','duke-yin-helper'), 
+			 'manage_options', 
+			 'dk-movie-importer', 
+			 'dk_movie_importer_page');
+	});
+}
+
+
 if($sgdb!= ''){
 	require plugin_dir_path( __FILE__ ) . 'includes/steamgriddb-game-importer/steamgriddb-game-importer.php';
+	add_action('admin_menu',function(){
+		add_submenu_page(
+			'movie-and-game-importer',
+			__('Game Import Tool','duke-yin-helper'),
+			__('Game Import Tool','duke-yin-helper'),
+			'manage_options',
+			'dk-game-importer',
+			'dk_game_importer_page');
+	});
 }
+
+
+
 
 
 /**
