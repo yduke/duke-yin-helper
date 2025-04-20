@@ -68,6 +68,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/helpers.php';
 require plugin_dir_path( __FILE__ ) . 'includes/meta-field.php';
 require plugin_dir_path( __FILE__ ) . 'includes/meta-block.php';
 require plugin_dir_path( __FILE__ ) . 'includes/rest-api.php';
+// require plugin_dir_path( __FILE__ ) . 'includes/movie-and-game/image_download.php';
 
 /**
 * updater
@@ -95,27 +96,12 @@ $sgdb = ($dukeyin_options['sgdb-key']?? '');
 
 
 if($sgdb!= '' || $tmdb_helper =='on'){
-
-
-	add_action('admin_menu', function () {
-		add_menu_page(
-			__('Movies & Games','duke-yin-helper'),
-			__('Movies & Games','duke-yin-helper'),
-			'manage_options', 
-			'movie-and-game-importer',
-			'movie_and_game_importer_page',
-			'dashicons-games',
-			9
-		);
-	});
-
-	function movie_and_game_importer_page() {
-		require plugin_dir_path( __FILE__ ) . 'includes/tmdb-movie-importer/tools.php';
-	}
+		require plugin_dir_path( __FILE__ ) . 'includes/movie-and-game/tools.php';
+		require plugin_dir_path( __FILE__ ) . 'includes/movie-and-game/functions.php';
 }
 
 if($tmdb_helper =='on' ){
-	require plugin_dir_path( __FILE__ ) . 'includes/tmdb-movie-importer/tmdb-movie-importer.php';
+	require plugin_dir_path( __FILE__ ) . 'includes/movie-and-game/movie-importer.php';
 	add_action('admin_menu',function(){
 		add_submenu_page(
 			'movie-and-game-importer',
@@ -129,7 +115,7 @@ if($tmdb_helper =='on' ){
 
 
 if($sgdb!= ''){
-	require plugin_dir_path( __FILE__ ) . 'includes/steamgriddb-game-importer/steamgriddb-game-importer.php';
+	require plugin_dir_path( __FILE__ ) . 'includes/movie-and-game/game-importer.php';
 	add_action('admin_menu',function(){
 		add_submenu_page(
 			'movie-and-game-importer',

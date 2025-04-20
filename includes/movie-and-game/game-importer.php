@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) exit;
 
 add_action('admin_enqueue_scripts', function ($hook) {
     if (strpos($hook, 'dk-game-importer') !== false) {
-        wp_enqueue_script('sgdb-script', plugin_dir_url(__FILE__) . 'js/sgdb-auto.js?ver='.DUKE_YIN_HELPER_VERSION, ['jquery'], null, true);
+        wp_enqueue_script('sgdb-script', plugin_dir_url(__FILE__) . 'assets/game-importer.js?ver='.DUKE_YIN_HELPER_VERSION, ['jquery'], null, true);
         wp_localize_script('sgdb-script', 'sgdb_ajax', [
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('sgdb_nonce'),

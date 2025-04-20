@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2025-04-20 01:40+0800\n"
-"PO-Revision-Date: 2025-04-20 01:40+0800\n"
+"POT-Creation-Date: 2025-04-21 00:40+0800\n"
+"PO-Revision-Date: 2025-04-21 00:43+0800\n"
 "Last-Translator: Duke Yin <duke@dukeyin.com>\n"
 "Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "Language: zh_CN\n"
@@ -21,16 +21,12 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: duke-yin-helper.php:102 duke-yin-helper.php:103
-msgid "Movies & Games"
-msgstr "电影和游戏"
-
-#: duke-yin-helper.php:122 duke-yin-helper.php:123
+#: duke-yin-helper.php:108 duke-yin-helper.php:109
 #: includes/wp-movies/templates/admin/import.php:43
 msgid "Movie Import Tool"
 msgstr "电影导入工具"
 
-#: duke-yin-helper.php:136 duke-yin-helper.php:137
+#: duke-yin-helper.php:122 duke-yin-helper.php:123
 msgid "Game Import Tool"
 msgstr "游戏导入工具"
 
@@ -125,6 +121,236 @@ msgstr "歌词文件的地址，接受.lrc格式文件。"
 #: includes/meta-field.php:67
 msgid "Add file"
 msgstr "添加文件"
+
+#: includes/movie-and-game/functions.php:7
+msgid "Post ID is empty."
+msgstr "文章ID为空。"
+
+#: includes/movie-and-game/game-importer.php:26
+msgid "Games Import Tool"
+msgstr "游戏导入工具"
+
+#: includes/movie-and-game/game-importer.php:27
+msgid "Games title here"
+msgstr "游戏标题"
+
+#: includes/movie-and-game/game-importer.php:29 includes/rest-api.php:132
+#: includes/rest-api.php:147
+msgid "Played"
+msgstr "玩过"
+
+#: includes/movie-and-game/game-importer.php:30 includes/rest-api.php:135
+msgid "Playing"
+msgstr "正在玩"
+
+#: includes/movie-and-game/game-importer.php:31 includes/rest-api.php:138
+msgid "Wish to play"
+msgstr "想玩"
+
+#: includes/movie-and-game/game-importer.php:32 includes/rest-api.php:141
+msgid "Cleared"
+msgstr "已通关"
+
+#: includes/movie-and-game/game-importer.php:33 includes/rest-api.php:144
+msgid "Not Cleared"
+msgstr "未通关"
+
+#: includes/movie-and-game/game-importer.php:35
+#: includes/movie-and-game/movie-importer.php:39
+msgid "Search"
+msgstr "搜索"
+
+#: includes/movie-and-game/image_download.php:45
+#: includes/movie-and-game/tools.php:44
+#: includes/wp-movies/templates/admin/tools.php:54
+msgid "Clear movie or tv-show data for a specific post ID"
+msgstr "指定Post ID清除电影或剧集数据"
+
+#: includes/movie-and-game/image_download.php:46
+#: includes/movie-and-game/tools.php:45
+msgid "Clear movie or tv-show data for a specific TMDb ID"
+msgstr "指定TMDb ID清除电影或剧集数据"
+
+#: includes/movie-and-game/image_download.php:47
+#: includes/movie-and-game/tools.php:46
+#: includes/wp-movies/templates/admin/tools.php:56
+msgid "Clear cast crew languages and categories with zero posts."
+msgstr "清除0附加文章的演员、导演、语言和分类。"
+
+#: includes/movie-and-game/image_download.php:48
+#: includes/movie-and-game/tools.php:47
+#: includes/wp-movies/templates/admin/tools.php:57
+msgid "Clear all movies and tv-shows data for all posts"
+msgstr "清除本站所有电影和剧集数据"
+
+#: includes/movie-and-game/movie-importer.php:25
+msgid "Movie and TV import tool"
+msgstr "电影和电视导入"
+
+#: includes/movie-and-game/movie-importer.php:27
+msgid "Movie"
+msgstr "电影"
+
+#: includes/movie-and-game/movie-importer.php:28
+msgid "TV"
+msgstr "电视"
+
+#: includes/movie-and-game/movie-importer.php:30
+msgid "Movie or TV title here"
+msgstr "电影或电视标题"
+
+#: includes/movie-and-game/movie-importer.php:32 includes/rest-api.php:86
+#: includes/rest-api.php:101 includes/rest-api.php:109
+#: includes/rest-api.php:124
+msgid "Watched"
+msgstr "看过"
+
+#: includes/movie-and-game/movie-importer.php:33 includes/rest-api.php:89
+#: includes/rest-api.php:112
+msgid "Watching"
+msgstr "在看"
+
+#: includes/movie-and-game/movie-importer.php:34
+msgid "Want to watch"
+msgstr "想看"
+
+#: includes/movie-and-game/movie-importer.php:35
+msgid "Watched many times"
+msgstr "看过多次"
+
+#: includes/movie-and-game/movie-importer.php:36
+msgid "Partly watched"
+msgstr "没看完"
+
+#: includes/movie-and-game/movie-importer.php:38
+msgid "Score"
+msgstr "评分"
+
+#: includes/movie-and-game/tools.php:7 includes/movie-and-game/tools.php:8
+msgid "Movies & Games"
+msgstr "电影和游戏"
+
+#: includes/movie-and-game/tools.php:29
+msgid "Movies and Games"
+msgstr "电影和游戏"
+
+#: includes/movie-and-game/tools.php:30
+msgid ""
+"Import movies, tv-shows or games from the movie database or Steam grid "
+"database."
+msgstr "从The movie database或Steam grid database导入电影、剧集或游戏。"
+
+#: includes/movie-and-game/tools.php:31
+msgid "Import a movie or tv-show"
+msgstr "导入电影或剧集"
+
+#: includes/movie-and-game/tools.php:32
+msgid "Import a game"
+msgstr "导入游戏"
+
+#: includes/movie-and-game/tools.php:33
+msgid "Movies and TV shows Tools"
+msgstr "电影和剧集工具"
+
+#: includes/movie-and-game/tools.php:34 includes/movie-and-game/tools.php:65
+msgid "Are you sure you want to do this?"
+msgstr "是否确认执行此操作？"
+
+#: includes/movie-and-game/tools.php:40 includes/movie-and-game/tools.php:69
+#: includes/wp-movies/templates/admin/tools.php:51
+msgid "Operation:"
+msgstr "行动："
+
+#: includes/movie-and-game/tools.php:43 includes/movie-and-game/tools.php:72
+msgid "Select Action"
+msgstr "选择行动"
+
+#: includes/movie-and-game/tools.php:52 includes/movie-and-game/tools.php:80
+#: includes/wp-movies/templates/admin/tools.php:61
+msgid "ID:"
+msgstr "ID："
+
+#: includes/movie-and-game/tools.php:54 includes/movie-and-game/tools.php:82
+#: includes/wp-movies/templates/admin/tools.php:63
+msgid "enter an ID when applicable; if not, leave blank"
+msgstr "在需要时输入ID，否则请留空"
+
+#: includes/movie-and-game/tools.php:60 includes/movie-and-game/tools.php:88
+#: includes/wp-movies/templates/admin/tools.php:69
+msgid "Proceed"
+msgstr "执行"
+
+#: includes/movie-and-game/tools.php:64
+msgid "Game Tools"
+msgstr "游戏工具"
+
+#: includes/movie-and-game/tools.php:73
+msgid "Clear game data for a specific post ID"
+msgstr "指定Post ID清除游戏数据"
+
+#: includes/movie-and-game/tools.php:74
+msgid "Clear game data for a specific SteamGridDb ID"
+msgstr "指定SteamGridDb ID清除游戏数据"
+
+#: includes/movie-and-game/tools.php:75
+msgid "Clear all game data for all posts"
+msgstr "清除本站所有游戏数据"
+
+#: includes/movie-and-game/tools.php:92
+msgid "Image download"
+msgstr "图像下载"
+
+#: includes/movie-and-game/tools.php:99
+msgid "External Image URL"
+msgstr "外部图像地址"
+
+#: includes/movie-and-game/tools.php:107
+msgid "Post ID"
+msgstr "文章ID"
+
+#: includes/movie-and-game/tools.php:115
+msgid "Meta key"
+msgstr "自定义字段"
+
+#: includes/movie-and-game/tools.php:123
+msgid "Set as post thumbnail"
+msgstr "设为特色图像"
+
+#: includes/movie-and-game/tools.php:131
+msgid "Download Image"
+msgstr "下载图片"
+
+#: includes/movie-and-game/tools.php:147
+msgid "All required fields must be filled."
+msgstr "必须填写所有必填项。"
+
+#: includes/movie-and-game/tools.php:152
+msgid "Invalid Post ID."
+msgstr "无效的文章ID。"
+
+#: includes/movie-and-game/tools.php:167
+msgid "Unsupported post type."
+msgstr "文章类型不支持。"
+
+#: includes/movie-and-game/tools.php:174
+msgid "Failed to download image."
+msgstr "下载图片失败。"
+
+#: includes/movie-and-game/tools.php:183
+msgid "Unsupported Image format."
+msgstr "图片格式不支持。"
+
+#: includes/movie-and-game/tools.php:202
+msgid "Image downloaded successfully."
+msgstr "成功下载图像。"
+
+#: includes/movie-and-game/tools.php:217
+msgid "Operations completed."
+msgstr "操作已完成。"
+
+#: includes/movie-and-game/tools.php:219
+msgid "Invalid function or function does not exist."
+msgstr "无效的操作，或操作函数不存在。"
 
 #: includes/plugin-update-checker/Puc/v5p0/Plugin/Ui.php:56
 msgid "View details"
@@ -1486,17 +1712,6 @@ msgstr "添加了一个商品"
 msgid "Added a film review"
 msgstr "添加了一个影评"
 
-#: includes/rest-api.php:86 includes/rest-api.php:101 includes/rest-api.php:109
-#: includes/rest-api.php:124
-#: includes/tmdb-movie-importer/tmdb-movie-importer.php:32
-msgid "Watched"
-msgstr "看过"
-
-#: includes/rest-api.php:89 includes/rest-api.php:112
-#: includes/tmdb-movie-importer/tmdb-movie-importer.php:33
-msgid "Watching"
-msgstr "在看"
-
 #: includes/rest-api.php:92 includes/rest-api.php:115
 msgid "Wish to watch"
 msgstr "想看"
@@ -1516,31 +1731,6 @@ msgstr "添加了一个剧集评单"
 #: includes/rest-api.php:129
 msgid "Added a game review"
 msgstr "添加了一个游戏评单"
-
-#: includes/rest-api.php:132 includes/rest-api.php:147
-#: includes/steamgriddb-game-importer/steamgriddb-game-importer.php:29
-msgid "Played"
-msgstr "玩过"
-
-#: includes/rest-api.php:135
-#: includes/steamgriddb-game-importer/steamgriddb-game-importer.php:30
-msgid "Playing"
-msgstr "正在玩"
-
-#: includes/rest-api.php:138
-#: includes/steamgriddb-game-importer/steamgriddb-game-importer.php:31
-msgid "Wish to play"
-msgstr "想玩"
-
-#: includes/rest-api.php:141
-#: includes/steamgriddb-game-importer/steamgriddb-game-importer.php:32
-msgid "Cleared"
-msgstr "已通关"
-
-#: includes/rest-api.php:144
-#: includes/steamgriddb-game-importer/steamgriddb-game-importer.php:33
-msgid "Not Cleared"
-msgstr "未通关"
 
 #: includes/rest-api.php:152
 msgid "Added a book review"
@@ -1605,148 +1795,6 @@ msgstr "添加了一个新视频"
 #: includes/short-code.php:165
 msgid "Bookmarks"
 msgstr "书签"
-
-#: includes/steamgriddb-game-importer/steamgriddb-game-importer.php:26
-msgid "Games Import Tool"
-msgstr "游戏导入工具"
-
-#: includes/steamgriddb-game-importer/steamgriddb-game-importer.php:27
-msgid "Games title here"
-msgstr "游戏标题"
-
-#: includes/steamgriddb-game-importer/steamgriddb-game-importer.php:35
-#: includes/tmdb-movie-importer/tmdb-movie-importer.php:39
-msgid "Search"
-msgstr "搜索"
-
-#: includes/tmdb-movie-importer/tmdb-movie-importer.php:25
-msgid "Movie and TV import tool"
-msgstr "电影和电视导入"
-
-#: includes/tmdb-movie-importer/tmdb-movie-importer.php:27
-msgid "Movie"
-msgstr "电影"
-
-#: includes/tmdb-movie-importer/tmdb-movie-importer.php:28
-msgid "TV"
-msgstr "电视"
-
-#: includes/tmdb-movie-importer/tmdb-movie-importer.php:30
-msgid "Movie or TV title here"
-msgstr "电影或电视标题"
-
-#: includes/tmdb-movie-importer/tmdb-movie-importer.php:34
-msgid "Want to watch"
-msgstr "想看"
-
-#: includes/tmdb-movie-importer/tmdb-movie-importer.php:35
-msgid "Watched many times"
-msgstr "看过多次"
-
-#: includes/tmdb-movie-importer/tmdb-movie-importer.php:36
-msgid "Partly watched"
-msgstr "没看完"
-
-#: includes/tmdb-movie-importer/tmdb-movie-importer.php:38
-msgid "Score"
-msgstr "评分"
-
-#: includes/tmdb-movie-importer/tools.php:6
-#: includes/wp-movies/templates/admin/settings.php:6
-#: includes/wp-movies/templates/admin/tools.php:6
-msgid "You do not have sufficient permissions to access this page."
-msgstr "你没有访问此页面的权限。"
-
-#: includes/tmdb-movie-importer/tools.php:42
-#: includes/wp-movies/templates/admin/tools.php:41
-msgid "The operation was completed."
-msgstr "行动已完成。"
-
-#: includes/tmdb-movie-importer/tools.php:47
-msgid "Movies and Games"
-msgstr "电影和游戏"
-
-#: includes/tmdb-movie-importer/tools.php:48
-msgid ""
-"Import movies, tv-shows or games from the movie database or Steam grid "
-"database."
-msgstr "从The movie database或Steam grid database导入电影、剧集或游戏。"
-
-#: includes/tmdb-movie-importer/tools.php:49
-msgid "Import a movie or tv-show"
-msgstr "导入电影或剧集"
-
-#: includes/tmdb-movie-importer/tools.php:50
-msgid "Import a game"
-msgstr "导入游戏"
-
-#: includes/tmdb-movie-importer/tools.php:51
-msgid "Movies and TV shows Tools"
-msgstr "电影和剧集工具"
-
-#: includes/tmdb-movie-importer/tools.php:56
-#: includes/tmdb-movie-importer/tools.php:85
-#: includes/wp-movies/templates/admin/tools.php:51
-msgid "Operation:"
-msgstr "行动："
-
-#: includes/tmdb-movie-importer/tools.php:59
-#: includes/tmdb-movie-importer/tools.php:88
-msgid "Select Action"
-msgstr "选择行动"
-
-#: includes/tmdb-movie-importer/tools.php:60
-#: includes/wp-movies/templates/admin/tools.php:54
-msgid "Clear movie or tv-show data for a specific post ID"
-msgstr "指定Post ID清除电影或剧集数据"
-
-#: includes/tmdb-movie-importer/tools.php:61
-msgid "Clear movie or tv-show data for a specific TMDb ID"
-msgstr "指定TMDb ID清除电影或剧集数据"
-
-#: includes/tmdb-movie-importer/tools.php:62
-#: includes/wp-movies/templates/admin/tools.php:56
-msgid "Clear cast crew languages and categories with zero posts."
-msgstr "清除0附加文章的演员、导演、语言和分类。"
-
-#: includes/tmdb-movie-importer/tools.php:63
-#: includes/wp-movies/templates/admin/tools.php:57
-msgid "Clear all movies and tv-shows data for all posts"
-msgstr "清除本站所有电影和剧集数据"
-
-#: includes/tmdb-movie-importer/tools.php:68
-#: includes/tmdb-movie-importer/tools.php:96
-#: includes/wp-movies/templates/admin/tools.php:61
-msgid "ID:"
-msgstr "ID："
-
-#: includes/tmdb-movie-importer/tools.php:70
-#: includes/tmdb-movie-importer/tools.php:98
-#: includes/wp-movies/templates/admin/tools.php:63
-msgid "enter an ID when applicable; if not, leave blank"
-msgstr "在需要时输入ID，否则请留空"
-
-#: includes/tmdb-movie-importer/tools.php:76
-#: includes/tmdb-movie-importer/tools.php:104
-#: includes/wp-movies/templates/admin/tools.php:69
-msgid "Proceed"
-msgstr "执行"
-
-#: includes/tmdb-movie-importer/tools.php:80
-msgid "Game Tools"
-msgstr "游戏工具"
-
-#: includes/tmdb-movie-importer/tools.php:89
-msgid "Clear game data for a specific post ID"
-msgstr "指定Post ID清除游戏数据"
-
-#: includes/tmdb-movie-importer/tools.php:90
-msgid "Clear game data for a specific SteamGridDb ID"
-msgstr "指定SteamGridDb ID清除游戏数据"
-
-#: includes/tmdb-movie-importer/tools.php:91
-msgid "Clear all game data for all posts"
-msgstr "清除本站所有游戏数据"
 
 #: includes/wp-movies/class.movies-admin.php:14
 msgid "Movies Import Tool"
@@ -1834,6 +1882,11 @@ msgstr "剧集导入工具"
 msgid "TV show Title"
 msgstr "剧集标题"
 
+#: includes/wp-movies/templates/admin/settings.php:6
+#: includes/wp-movies/templates/admin/tools.php:6
+msgid "You do not have sufficient permissions to access this page."
+msgstr "你没有访问此页面的权限。"
+
 #: includes/wp-movies/templates/admin/settings.php:30
 msgid "Your settings have been saved."
 msgstr "设置已保存。"
@@ -1849,6 +1902,10 @@ msgstr ""
 #: includes/wp-movies/templates/admin/settings.php:47
 msgid "Save Changes"
 msgstr "保存更改"
+
+#: includes/wp-movies/templates/admin/tools.php:41
+msgid "The operation was completed."
+msgstr "行动已完成。"
 
 #: includes/wp-movies/templates/admin/tools.php:46
 msgid "Movies Plugin Tools"
