@@ -68,6 +68,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/helpers.php';
 require plugin_dir_path( __FILE__ ) . 'includes/meta-field.php';
 require plugin_dir_path( __FILE__ ) . 'includes/meta-block.php';
 require plugin_dir_path( __FILE__ ) . 'includes/rest-api.php';
+
 // require plugin_dir_path( __FILE__ ) . 'includes/movie-and-game/image_download.php';
 
 /**
@@ -91,9 +92,14 @@ if( function_exists('amts_checkMobile') AND amts_checkMobile()['amts_mobile_brow
 
 $dukeyin_options=get_site_option( 'options-page', true, false);
 
+$avif_convert = ($dukeyin_options['avif-converter'] ?? 'off');
 $tmdb_helper = ($dukeyin_options['tmdb-helper'] ?? 'off');
 $sgdb = ($dukeyin_options['sgdb-key']?? '');
 
+
+if($avif_convert){
+	require plugin_dir_path( __FILE__ ) . 'includes/avif-webp-converter.php';
+}
 
 if($sgdb!= '' || $tmdb_helper =='on'){
 		require plugin_dir_path( __FILE__ ) . 'includes/movie-and-game/tools.php';

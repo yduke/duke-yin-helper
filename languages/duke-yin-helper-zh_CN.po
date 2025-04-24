@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2025-04-21 00:40+0800\n"
-"PO-Revision-Date: 2025-04-21 00:43+0800\n"
-"Last-Translator: Duke Yin <duke@dukeyin.com>\n"
-"Language-Team: Duke Yin <duke@dukeyin.com>\n"
+"POT-Creation-Date: 2025-04-23 15:47+0800\n"
+"PO-Revision-Date: 2025-04-23 15:49+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,14 +21,54 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: duke-yin-helper.php:108 duke-yin-helper.php:109
+#: duke-yin-helper.php:114 duke-yin-helper.php:115
 #: includes/wp-movies/templates/admin/import.php:43
 msgid "Movie Import Tool"
 msgstr "电影导入工具"
 
-#: duke-yin-helper.php:122 duke-yin-helper.php:123
+#: duke-yin-helper.php:128 duke-yin-helper.php:129
 msgid "Game Import Tool"
 msgstr "游戏导入工具"
+
+#: includes/avif-webp-converter.php:51 includes/avif-webp-converter.php:64
+msgid "PHP image format support"
+msgstr "PHP图片文件格式支持"
+
+#: includes/avif-webp-converter.php:52
+msgid "Image format support"
+msgstr "图片格式支持"
+
+#: includes/avif-webp-converter.php:71 includes/avif-webp-converter.php:86
+msgid "Installed"
+msgstr "已安装 "
+
+#: includes/avif-webp-converter.php:75 includes/avif-webp-converter.php:90
+msgid "AVIF support"
+msgstr "AVIF支持"
+
+#: includes/avif-webp-converter.php:79 includes/avif-webp-converter.php:94
+msgid "WebP support"
+msgstr "WebP支持"
+
+#: includes/avif-webp-converter.php:98
+msgid "Conversion policy"
+msgstr "转格式策略"
+
+#: includes/avif-webp-converter.php:103
+msgid "to avif by GD"
+msgstr "使用GD转avif"
+
+#: includes/avif-webp-converter.php:105
+msgid "to WebP by GD"
+msgstr "使用GD转WebP"
+
+#: includes/avif-webp-converter.php:107
+msgid "to avif by Imagick"
+msgstr "使用Imagick转avif"
+
+#: includes/avif-webp-converter.php:109
+msgid "to WebP by Imagick"
+msgstr "使用Imagick转WebP"
 
 #: includes/helpers.php:53
 msgid "Duke Yin Theme Support"
@@ -160,29 +200,6 @@ msgstr "未通关"
 msgid "Search"
 msgstr "搜索"
 
-#: includes/movie-and-game/image_download.php:45
-#: includes/movie-and-game/tools.php:44
-#: includes/wp-movies/templates/admin/tools.php:54
-msgid "Clear movie or tv-show data for a specific post ID"
-msgstr "指定Post ID清除电影或剧集数据"
-
-#: includes/movie-and-game/image_download.php:46
-#: includes/movie-and-game/tools.php:45
-msgid "Clear movie or tv-show data for a specific TMDb ID"
-msgstr "指定TMDb ID清除电影或剧集数据"
-
-#: includes/movie-and-game/image_download.php:47
-#: includes/movie-and-game/tools.php:46
-#: includes/wp-movies/templates/admin/tools.php:56
-msgid "Clear cast crew languages and categories with zero posts."
-msgstr "清除0附加文章的演员、导演、语言和分类。"
-
-#: includes/movie-and-game/image_download.php:48
-#: includes/movie-and-game/tools.php:47
-#: includes/wp-movies/templates/admin/tools.php:57
-msgid "Clear all movies and tv-shows data for all posts"
-msgstr "清除本站所有电影和剧集数据"
-
 #: includes/movie-and-game/movie-importer.php:25
 msgid "Movie and TV import tool"
 msgstr "电影和电视导入"
@@ -265,6 +282,25 @@ msgstr "行动："
 msgid "Select Action"
 msgstr "选择行动"
 
+#: includes/movie-and-game/tools.php:44
+#: includes/wp-movies/templates/admin/tools.php:54
+msgid "Clear movie or tv-show data for a specific post ID"
+msgstr "指定Post ID清除电影或剧集数据"
+
+#: includes/movie-and-game/tools.php:45
+msgid "Clear movie or tv-show data for a specific TMDb ID"
+msgstr "指定TMDb ID清除电影或剧集数据"
+
+#: includes/movie-and-game/tools.php:46
+#: includes/wp-movies/templates/admin/tools.php:56
+msgid "Clear cast crew languages and categories with zero posts."
+msgstr "清除0附加文章的演员、导演、语言和分类。"
+
+#: includes/movie-and-game/tools.php:47
+#: includes/wp-movies/templates/admin/tools.php:57
+msgid "Clear all movies and tv-shows data for all posts"
+msgstr "清除本站所有电影和剧集数据"
+
 #: includes/movie-and-game/tools.php:52 includes/movie-and-game/tools.php:80
 #: includes/wp-movies/templates/admin/tools.php:61
 msgid "ID:"
@@ -300,55 +336,55 @@ msgstr "清除本站所有游戏数据"
 msgid "Image download"
 msgstr "图像下载"
 
-#: includes/movie-and-game/tools.php:99
+#: includes/movie-and-game/tools.php:101
 msgid "External Image URL"
 msgstr "外部图像地址"
 
-#: includes/movie-and-game/tools.php:107
+#: includes/movie-and-game/tools.php:109
 msgid "Post ID"
 msgstr "文章ID"
 
-#: includes/movie-and-game/tools.php:115
+#: includes/movie-and-game/tools.php:117
 msgid "Meta key"
 msgstr "自定义字段"
 
-#: includes/movie-and-game/tools.php:123
+#: includes/movie-and-game/tools.php:125
 msgid "Set as post thumbnail"
 msgstr "设为特色图像"
 
-#: includes/movie-and-game/tools.php:131
+#: includes/movie-and-game/tools.php:133
 msgid "Download Image"
 msgstr "下载图片"
 
-#: includes/movie-and-game/tools.php:147
+#: includes/movie-and-game/tools.php:149
 msgid "All required fields must be filled."
 msgstr "必须填写所有必填项。"
 
-#: includes/movie-and-game/tools.php:152
+#: includes/movie-and-game/tools.php:154
 msgid "Invalid Post ID."
 msgstr "无效的文章ID。"
 
-#: includes/movie-and-game/tools.php:167
+#: includes/movie-and-game/tools.php:169
 msgid "Unsupported post type."
 msgstr "文章类型不支持。"
 
-#: includes/movie-and-game/tools.php:174
+#: includes/movie-and-game/tools.php:176
 msgid "Failed to download image."
 msgstr "下载图片失败。"
 
-#: includes/movie-and-game/tools.php:183
+#: includes/movie-and-game/tools.php:185
 msgid "Unsupported Image format."
 msgstr "图片格式不支持。"
 
-#: includes/movie-and-game/tools.php:202
+#: includes/movie-and-game/tools.php:204
 msgid "Image downloaded successfully."
 msgstr "成功下载图像。"
 
-#: includes/movie-and-game/tools.php:217
+#: includes/movie-and-game/tools.php:219
 msgid "Operations completed."
 msgstr "操作已完成。"
 
-#: includes/movie-and-game/tools.php:219
+#: includes/movie-and-game/tools.php:221
 msgid "Invalid function or function does not exist."
 msgstr "无效的操作，或操作函数不存在。"
 
