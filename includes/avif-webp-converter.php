@@ -48,8 +48,8 @@ function awc_check_support() {
 function awc_add_admin_page() {
     add_submenu_page(
         'upload.php',
-        __('PHP image format support','duke-yin-helper'),
-        __('Image format support','duke-yin-helper'),
+        __('AVIF WebP Image Converter','duke-yin-helper'),
+        __('AVIF WebP Image Converter','duke-yin-helper'),
         'manage_options',
         'image-format-support',
         'awc_display_support_page'
@@ -61,27 +61,12 @@ function awc_display_support_page() {
     $support = awc_check_support();
     ?>
     <div class="wrap">
-        <h1><?php _e('PHP image format support','duke-yin-helper'); ?></h1>
-        <table class="form-table">
+        <h1><?php _e('AVIF WebP Image Converter','duke-yin-helper'); ?></h1>
+        <h2><?php _e('Features','duke-yin-helper'); ?></h2>
+        <p><?php _e('This plug-in will convert all images upload to media library to AVIF or WebP format depending on your PHP situation. Preferentially it uses Imagick to convert uploaded images to AVIF format. If the server does not support, it will try to convert images to AVIF with GD, if not support, it will try to convert images to WebP with Imagick, lastly try to convert images to WebP with GD. If none of them are supported, the original image will be uploaded. If the uploaded image format is AVIF or WebP, no conversion will be performed.','duke-yin-helper');?></p>
+        <h2>Imagick</h2>
+        <table class="widefat striped">
             <tbody>
-                <tr>
-                    <th colspan="2"><h2>GD</h2></th>
-                </tr>
-                <tr>
-                    <th scope="row"><?php _e('Installed','duke-yin-helper'); ?></th>
-                    <td><?php echo $support['gd']['installed'] ? '✅' : '❌'; ?></td>
-                </tr>
-                <tr>
-                    <th scope="row"><?php _e('AVIF support','duke-yin-helper'); ?></th>
-                    <td><?php echo $support['gd']['avif'] ? '✅' : '❌'; ?></td>
-                </tr>
-                <tr>
-                    <th scope="row"><?php _e('WebP support','duke-yin-helper'); ?></th>
-                    <td><?php echo $support['gd']['webp'] ? '✅' : '❌'; ?></td>
-                </tr>
-                <tr>
-                    <th colspan="2"><h2>Imagick</h2></th>
-                </tr>
                 <tr>
                     <th scope="row"><?php _e('Installed','duke-yin-helper'); ?></th>
                     <td><?php echo $support['imagick']['installed'] ? '✅' : '❌'; ?></td>
@@ -94,24 +79,50 @@ function awc_display_support_page() {
                     <th scope="row"><?php _e('WebP support','duke-yin-helper'); ?></th>
                     <td><?php echo $support['imagick']['webp'] ? '✅' : '❌'; ?></td>
                 </tr>
+            </tbody>
+        </table>
+        
+        <h2>GD</h2>
+        <table class="widefat striped">
+            <tbody>
                 <tr>
-                    <th colspan="2"><h2><?php _e('Conversion policy','duke-yin-helper'); ?></h2></th>
+                    <th scope="row"><?php _e('Installed','duke-yin-helper'); ?></th>
+                    <td><?php echo $support['gd']['installed'] ? '✅' : '❌'; ?></td>
                 </tr>
                 <tr>
-                    <th colspan="2"><?php
-                if($support['gd']['avif']){
-                    echo __('to avif by GD','duke-yin-helper');
-                }elseif($support['gd']['webp']){
-                    echo __('to WebP by GD','duke-yin-helper');
-                }elseif($support['imagick']['avif']){
-                    echo __('to avif by Imagick','duke-yin-helper');
-                }elseif($support['imagick']['webp']){
-                    echo __('to WebP by Imagick','duke-yin-helper');
-                }
-                ?></th>
+                    <th scope="row"><?php _e('AVIF support','duke-yin-helper'); ?></th>
+                    <td><?php echo $support['gd']['avif'] ? '✅' : '❌'; ?></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php _e('WebP support','duke-yin-helper'); ?></th>
+                    <td><?php echo $support['gd']['webp'] ? '✅' : '❌'; ?></td>
                 </tr>
             </tbody>
         </table>
+
+        <h2><?php _e('Conversion policy','duke-yin-helper'); ?></h2>
+        <table class="widefat striped">
+            <tbody>
+                <tr>
+                    <th scope="row"><?php _e('Current policy','duke-yin-helper'); ?></th>
+                    <td><strong><?php
+                    if($support['imagick']['avif']){
+                        echo __('to avif by Imagick','duke-yin-helper');
+                    }elseif($support['gd']['avif']){
+                        echo __('to avif by GD','duke-yin-helper');
+                    }elseif($support['imagick']['webp']){
+                        echo __('to WebP by Imagick','duke-yin-helper');
+                    }elseif($support['gd']['webp']){
+                        echo __('to WebP by GD','duke-yin-helper');
+                    }
+                    ?></strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><?php _e('More to read','duke-yin-helper'); ?></h2>
+        <p><?php _e('Both AVIF and WebP are modern image formats designed to reduce file sizes while maintaining quality. AVIF is newer and offers more efficient compression, often resulting in smaller file sizes than WebP. It means you can get faster download speed at the same image quality for images on web page by using AVIF images.','duke-yin-helper');?></p>
+        <p><?php _e('Imagick and GD are both PHP extension, they both capable of converting traditional image format to AVIF or WebP on latest versions. Imagick is not limited by PHP memory, and the converted image quality is better than GD, but it usually needs to be installed separately, and the converted image size is slightly larger than GD. GD is more popular, and the conversion speed is faster than Imagick, the result image size is slightly smaller, but the result image quality is usually slightly worse than Imagick.','duke-yin-helper');?></p>
     </div>
     <?php
 }
@@ -139,21 +150,21 @@ function awc_convert_image($file) {
 
     if (!$target_format) return $file;
 
-    // 优先使用GD库
-    if ($target_format === 'avif' && $support['gd']['avif']) {
-        $converted = awc_convert_with_gd($tmp_path, 'avif');
-    } elseif ($target_format === 'avif' && $support['imagick']['avif']) {
+    // 优先使用Imagick库
+    if ($target_format === 'avif' && $support['imagick']['avif']) {
         $converted = awc_convert_with_imagick($tmp_path, 'avif');
-    }
+    }elseif ($target_format === 'avif' && $support['gd']['avif']) {
+        $converted = awc_convert_with_gd($tmp_path, 'avif');
+    } 
 
     if (!$converted && $target_format === 'webp') {
-        if ($support['gd']['webp']) {
-            $target_format = 'webp';
-            $converted = awc_convert_with_gd($tmp_path, 'webp');
-        } elseif ($support['imagick']['webp']) {
+        if ($support['imagick']['webp']) {
             $target_format = 'webp';
             $converted = awc_convert_with_imagick($tmp_path, 'webp');
-        }
+        }elseif ($support['gd']['webp']) {
+            $target_format = 'webp';
+            $converted = awc_convert_with_gd($tmp_path, 'webp');
+        } 
     }
 
     if ($converted) {

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2025-04-23 15:47+0800\n"
-"PO-Revision-Date: 2025-04-23 15:49+0800\n"
+"POT-Creation-Date: 2025-04-28 01:44+0800\n"
+"PO-Revision-Date: 2025-04-28 01:45+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -30,45 +30,97 @@ msgstr "电影导入工具"
 msgid "Game Import Tool"
 msgstr "游戏导入工具"
 
-#: includes/avif-webp-converter.php:51 includes/avif-webp-converter.php:64
-msgid "PHP image format support"
-msgstr "PHP图片文件格式支持"
+#: includes/avif-webp-converter.php:51 includes/avif-webp-converter.php:52
+#: includes/avif-webp-converter.php:64
+msgid "AVIF WebP Image Converter"
+msgstr "AVIF WebP图像转换器"
 
-#: includes/avif-webp-converter.php:52
-msgid "Image format support"
-msgstr "图片格式支持"
+#: includes/avif-webp-converter.php:65
+msgid "Features"
+msgstr "功能"
 
-#: includes/avif-webp-converter.php:71 includes/avif-webp-converter.php:86
+#: includes/avif-webp-converter.php:66
+msgid ""
+"This plug-in will convert all images upload to media library to AVIF or WebP "
+"format depending on your PHP situation. Preferentially it uses Imagick to "
+"convert uploaded images to AVIF format. If the server does not support, it "
+"will try to convert images to AVIF with GD, if not support, it will try to "
+"convert images to WebP with Imagick, lastly try to convert images to WebP "
+"with GD. If none of them are supported, the original image will be uploaded. "
+"If the uploaded image format is AVIF or WebP, no conversion will be "
+"performed."
+msgstr ""
+"本插件将根据你的PHP状况将所有上传的图片转换为AVIF或WebP格式，优先采用Imagick"
+"将图像转换为AVIF格式，如果服务器不支持，依次尝试GD转换图像为AVIF，Imagick转换"
+"图像为WebP，GD转换图像为WebP。如果都不支持，则原图上传。如果上传的图片为AVIF"
+"或WebP，则不进行转换。"
+
+#: includes/avif-webp-converter.php:71 includes/avif-webp-converter.php:89
 msgid "Installed"
-msgstr "已安装 "
+msgstr "已安装"
 
-#: includes/avif-webp-converter.php:75 includes/avif-webp-converter.php:90
+#: includes/avif-webp-converter.php:75 includes/avif-webp-converter.php:93
 msgid "AVIF support"
 msgstr "AVIF支持"
 
-#: includes/avif-webp-converter.php:79 includes/avif-webp-converter.php:94
+#: includes/avif-webp-converter.php:79 includes/avif-webp-converter.php:97
 msgid "WebP support"
 msgstr "WebP支持"
 
-#: includes/avif-webp-converter.php:98
+#: includes/avif-webp-converter.php:103
 msgid "Conversion policy"
 msgstr "转格式策略"
 
-#: includes/avif-webp-converter.php:103
-msgid "to avif by GD"
-msgstr "使用GD转avif"
-
-#: includes/avif-webp-converter.php:105
-msgid "to WebP by GD"
-msgstr "使用GD转WebP"
-
 #: includes/avif-webp-converter.php:107
+msgid "Current policy"
+msgstr "目前策略"
+
+#: includes/avif-webp-converter.php:110
 msgid "to avif by Imagick"
 msgstr "使用Imagick转avif"
 
-#: includes/avif-webp-converter.php:109
+#: includes/avif-webp-converter.php:112
+msgid "to avif by GD"
+msgstr "使用GD转avif"
+
+#: includes/avif-webp-converter.php:114
 msgid "to WebP by Imagick"
 msgstr "使用Imagick转WebP"
+
+#: includes/avif-webp-converter.php:116
+msgid "to WebP by GD"
+msgstr "使用GD转WebP"
+
+#: includes/avif-webp-converter.php:123
+msgid "More to read"
+msgstr "阅读更多"
+
+#: includes/avif-webp-converter.php:124
+msgid ""
+"Both AVIF and WebP are modern image formats designed to reduce file sizes "
+"while maintaining quality. AVIF is newer and offers more efficient "
+"compression, often resulting in smaller file sizes than WebP. It means you "
+"can get faster download speed at the same image quality for images on web "
+"page by using AVIF images."
+msgstr ""
+"AVIF 和 WebP 都是现代图像格式，旨在在保持质量的同时减小文件大小。AVIF 格式较"
+"新，压缩效率更高，通常比 WebP 格式的文件大小更小。这意味着使用 AVIF 格式，网"
+"页上的图像在保持相同画质的情况下，可以获得更快的加载速度。"
+
+#: includes/avif-webp-converter.php:125
+msgid ""
+"Imagick and GD are both PHP extension, they both capable of converting "
+"traditional image format to AVIF or WebP on latest versions. Imagick is not "
+"limited by PHP memory, and the converted image quality is better than GD, "
+"but it usually needs to be installed separately, and the converted image "
+"size is slightly larger than GD. GD is more popular, and the conversion "
+"speed is faster than Imagick, the result image size is slightly smaller, but "
+"the result image quality is usually slightly worse than Imagick."
+msgstr ""
+"Imagick和GD都是PHP扩展，最新版都可以将传统图像格式转换为AVIF或WebP格式。"
+"Imagick不受PHP内存设置限制，转换后的图像质量优于GD，但通常需要单独安装，且转"
+"换后的图像尺寸略大于 GD。GD普及度较广，转换速度比Imagick略快，转换后的图像尺"
+"寸略小，但转换后的图像质量通常略差于Imagick。"
 
 #: includes/helpers.php:53
 msgid "Duke Yin Theme Support"
@@ -1977,6 +2029,12 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "Duke Yin"
 msgstr "Duke Yin"
+
+#~ msgid "PHP image format support"
+#~ msgstr "PHP图片文件格式支持"
+
+#~ msgid "Image format support"
+#~ msgstr "图片格式支持"
 
 #~ msgid "Clear movie or tv-show  data for a specific SteamGridDb ID"
 #~ msgstr "指定SteamGridDb ID清除电影或剧集数据"
