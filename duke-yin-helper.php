@@ -97,7 +97,7 @@ $tmdb_helper = ($dukeyin_options['tmdb-helper'] ?? 'off');
 $sgdb = ($dukeyin_options['sgdb-key']?? '');
 
 
-if($avif_convert){
+if($avif_convert=='on'){
 	require plugin_dir_path( __FILE__ ) . 'includes/avif-webp-converter.php';
 }
 
