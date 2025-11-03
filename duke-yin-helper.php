@@ -16,7 +16,7 @@
  * Plugin Name:       Duke Yin Helper
  * Plugin URI:        https://www.dukeyin.com
  * Description:       For supporting the wordpress theme dukeyin, add more post types and shortcodes.
- * Version: 1.1.18
+ * Version:1.1.18
  * Author:            Duke Yin
  * Author URI:        https://www.dukeyin.com
  * License:           GPL-2.0+
