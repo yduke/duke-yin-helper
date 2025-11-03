@@ -42,6 +42,48 @@ add_action('init', 'slideshow_register');
     	register_post_type( 'slideshow' , $args );
 	}
 
+
+/**  Poems */
+	function poem_register() {
+		  $labels = array(
+		    'name' => _x('Poems', 'post type general name','duke-yin-helper'),
+		    'singular_name' => _x('Poem', 'post type singular name','duke-yin-helper'),
+			'all_items'=> _x('All Poems', 'String for the submenu','duke-yin-helper'),
+		    'add_new' => _x('Add new', 'poem','duke-yin-helper'),
+		    'add_new_item' => __('Add a poem','duke-yin-helper'),
+		    'edit_item' => __('Edit','duke-yin-helper'),
+		    'new_item' => __('New poem','duke-yin-helper'),
+		    'view_item' => __('View this poem','duke-yin-helper'),
+		    'search_items' => __('Search for','duke-yin-helper'),
+		    'not_found' =>  __('Not found','duke-yin-helper'),
+		    'not_found_in_trash' => __('Not found in trash','duke-yin-helper'), 
+		    'parent_item_colon' => ''
+		  );
+
+		$slugRule = 'poem';
+		
+    	$args = array(
+        	'labels' => $labels,
+        	'public' => true,
+        	'show_ui' => true,
+			'show_in_rest'=> true,
+        	'capability_type' => 'post',
+        	'hierarchical' => false,
+        	'rewrite' => true,
+        	'query_var' => true,
+        	'show_in_nav_menus'=> false,
+        	'menu_position' => 7,
+			'menu_icon' => 'ddashicons-text-page',
+        	'supports' => array('title','author','excerpt','editor','comments'),
+			'taxonomies' => array('post_tag')
+        );
+
+    	register_post_type( 'poem' , $args );
+	}
+
+add_action('init', 'poem_register');
+
+
 /** portfolio */
 	function portfolio_register() {
 		  $labels = array(
