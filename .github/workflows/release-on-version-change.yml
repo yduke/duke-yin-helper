@@ -1,4 +1,4 @@
-name: Release on plugin version change
+name: Release on Plugin Version Change
 
 on:
   push:
@@ -7,77 +7,64 @@ on:
       - master
 
 permissions:
-  contents: write  # ✅ 允许创建 tag/release
+  contents: write
 
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
-
-    env:
-      PLUGIN_MAIN_FILE: duke-yin-helper.php  # 👈 请改成你插件的主文件名
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # 保留完整 commit 历史
 
-      - name: Get previous commit hash
-        id: prev
+      - name: Get plugin main file
+        id: find_plugin_file
         run: |
-          echo "prev_commit=$(git rev-parse HEAD^)" >> $GITHUB_ENV
-
-      - name: Extract current version from plugin main file
-        id: current_version
-        run: |
-          version=$(grep -E '^(Version:|版本：)' "${{ env.PLUGIN_MAIN_FILE }}" | sed 's/.*[:：] *//')
-          if [ -z "$version" ]; then
-            echo "❌ 未能在插件主文件中找到版本号"
+          # 查找插件主文件（假设插件主文件在仓库根目录下且带有 Plugin Name）
+          PLUGIN_FILE=$(grep -rl "Plugin Name:" . | head -n 1)
+          if [ -z "$PLUGIN_FILE" ]; then
+            echo "❌ 未找到插件主文件（包含 Plugin Name: 的PHP文件）。"
             exit 1
           fi
-          echo "current_version=$version" >> $GITHUB_ENV
-          echo "当前版本: $version"
+          echo "plugin_file=$PLUGIN_FILE" >> $GITHUB_OUTPUT
+          echo "✅ 找到插件文件: $PLUGIN_FILE"
 
-      - name: Extract previous version from last commit
-        id: prev_version
+      - name: Get current version from plugin header
+        id: get_version
         run: |
-          git show ${{ env.prev_commit }}:${{ env.PLUGIN_MAIN_FILE }} > old_plugin.php || true
-          version=$(grep -E '^(Version:|版本：)' old_plugin.php | sed 's/.*[:：] *//')
-          echo "prev_version=$version" >> $GITHUB_ENV
-          echo "上一个版本: $version"
+          FILE="${{ steps.find_plugin_file.outputs.plugin_file }}"
 
-      - name: Compare versions
-        id: compare
-        run: |
-          if [ "${{ env.current_version }}" != "${{ env.prev_version }}" ]; then
-            echo "version_changed=true" >> $GITHUB_ENV
-            echo "🔄 版本变化: ${{ env.prev_version }} → ${{ env.current_version }}"
-          else
-            echo "version_changed=false" >> $GITHUB_ENV
-            echo "ℹ️ 版本未变化，无需发布"
+          # 使用兼容 WordPress 格式的正则提取 Version 字段
+          VERSION=$(grep -Eim1 "^[[:space:]]*(\*|#|//)?[[:space:]]*Version:[[:space:]]*[0-9]+\.[0-9]+(\.[0-9]+)?" "$FILE" | sed -E 's/.*Version:[[:space:]]*([0-9.]+).*/\1/')
+
+          if [ -z "$VERSION" ]; then
+            echo "❌ 未能从插件文件中提取版本号。"
+            echo "文件内容示例："
+            head -n 20 "$FILE"
+            exit 1
           fi
 
-      - name: Stop if version not changed
-        if: env.version_changed == 'false'
-        run: exit 0
+          echo "current_version=$VERSION" >> $GITHUB_OUTPUT
+          echo "✅ 当前版本号：$VERSION"
 
-      - name: Check if tag already exists
-        id: tag_check
+      - name: Check if version already released
+        id: check_release
         run: |
-          if git rev-parse "v${{ env.current_version }}" >/dev/null 2>&1; then
-            echo "tag_exists=true" >> $GITHUB_ENV
-            echo "⚠️ Tag v${{ env.current_version }} 已存在，跳过发布"
+          VERSION=${{ steps.get_version.outputs.current_version }}
+          EXISTING=$(gh release list --limit 100 | grep -F "v$VERSION" || true)
+          if [ -n "$EXISTING" ]; then
+            echo "⚠️ 版本 v$VERSION 已存在，跳过发布。"
+            echo "skip_release=true" >> $GITHUB_OUTPUT
           else
-            echo "tag_exists=false" >> $GITHUB_ENV
+            echo "skip_release=false" >> $GITHUB_OUTPUT
           fi
-
-      - name: Stop if tag already exists
-        if: env.tag_exists == 'true'
-        run: exit 0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create ZIP package (with .releaseignore)
+        if: steps.check_release.outputs.skip_release == 'false'
         run: |
-          ZIP_FILE="${{ github.event.repository.name }}-${{ env.current_version }}.zip"
+          VERSION=${{ steps.get_version.outputs.current_version }}
+          ZIP_FILE="${{ github.event.repository.name }}-${VERSION}.zip"
           EXCLUDE_ARGS="-x '*.git*' '.github/*'"
 
           if [ -f ".releaseignore" ]; then
@@ -88,21 +75,19 @@ jobs:
                 EXCLUDE_ARGS="$EXCLUDE_ARGS '$line'"
               fi
             done < .releaseignore
-          else
-            echo "⚠️ 未找到 .releaseignore，使用默认排除规则。"
           fi
 
           eval zip -r "$ZIP_FILE" . $EXCLUDE_ARGS
           echo "✅ 打包完成：$ZIP_FILE"
 
       - name: Create GitHub Release
+        if: steps.check_release.outputs.skip_release == 'false'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ env.current_version }}
-          name: "Plugin Release v${{ env.current_version }}"
-          body: |
-            🎉 WordPress 插件自动发布版本 v${{ env.current_version }}
-            🔖 Commit: ${{ github.sha }}
-          files: ${{ github.event.repository.name }}-${{ env.current_version }}.zip
+          tag_name: v${{ steps.get_version.outputs.current_version }}
+          name: "v${{ steps.get_version.outputs.current_version }}"
+          body: "🔖 自动发布插件版本 v${{ steps.get_version.outputs.current_version }}"
+          files: |
+            ${{ github.event.repository.name }}-${{ steps.get_version.outputs.current_version }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
