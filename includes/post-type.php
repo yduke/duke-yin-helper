@@ -73,7 +73,7 @@ add_action('init', 'slideshow_register');
         	'query_var' => true,
         	'show_in_nav_menus'=> false,
         	'menu_position' => 7,
-			'menu_icon' => 'ddashicons-text-page',
+			'menu_icon' => 'dashicons-text-page',
         	'supports' => array('title','author','excerpt','editor','comments'),
 			'taxonomies' => array('post_tag')
         );

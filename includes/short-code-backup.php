@@ -8,7 +8,7 @@ function remove_tags($str, $tags)
 
     return $str;
 }
-function remove_invalid_tags($str, $tags) 
+function remove_invalid_tags($str, $tags)
 {
     foreach($tags as $tag)
     {	
@@ -17,89 +17,48 @@ function remove_invalid_tags($str, $tags)
 
     return $str;
 }
+add_shortcode('one_third', 'dukeyin_sc_one_third');
+add_shortcode('two_third', 'dukeyin_sc_two_third');
+add_shortcode('one_fourth', 'dukeyin_sc_one_fourth');
+add_shortcode('three_fourth', 'dukeyin_sc_three_fourth');
+add_shortcode('one_half', 'dukeyin_sc_one_half');
 
-// add_shortcode('one_third', 'dukeyin_sc_one_third');
-// add_shortcode('two_third', 'dukeyin_sc_two_third');
-// add_shortcode('one_fourth', 'dukeyin_sc_one_fourth');
-// add_shortcode('three_fourth', 'dukeyin_sc_three_fourth');
-// add_shortcode('one_half', 'dukeyin_sc_one_half');
-
-// function dukeyin_sc_one_third($atts, $content=null, $shortcodename ="")
-// {
-// 	$return = '<div class="col-md-4 col-sm-6">';
-// 	$return .= do_shortcode($content);
-// 	$return .= '</div>';
-// 	return $return;
-// }
-// function dukeyin_sc_two_third($atts, $content=null, $shortcodename ="")
-// {
-// 	$return = '<div class="col-md-8 col-sm-6">';
-// 	$return .= do_shortcode($content);
-// 	$return .= '</div>';
-// 	return $return;
-// }
-// function dukeyin_sc_one_fourth($atts, $content=null, $shortcodename ="")
-// {
-// 	$return = '<div class="col-md-3 col-sm-6">';
-// 	$return .= do_shortcode($content);
-// 	$return .= '</div>';
-// 	return $return;
-// }
-// function dukeyin_sc_three_fourth($atts, $content=null, $shortcodename ="")
-// {
-// 	$return = '<div class="col-md-9 col-sm-6">';
-// 	$return .= do_shortcode($content);
-// 	$return .= '</div>';
-// 	return $return;
-// }
-// function dukeyin_sc_one_half($atts, $content=null, $shortcodename ="")
-// {
-// 	$return = '<div class="col-sm-6">';
-// 	$return .= do_shortcode($content);
-// 	$return .= '</div>';
-// 	return $return;
-// }
-
-/**
- * Column shortcodes.	
- */
-
-///
-function theme_shortcode_column( $atts, $content = null, $tag = '' ) {
-
-    $map = [
-        'one_third'     => 'col-12 col-md-4 col-sm-6',
-        'two_third'     => 'col-12 col-md-8 col-sm-6',
-        'one_half'      => 'col-12 col-md-6 col-sm-6',
-        'one_fourth'    => 'col-12 col-md-3 col-sm-6',
-        'three_fourth'  => 'col-12 col-md-9 col-sm-6',
-    ];
-
-    if ( ! isset( $map[ $tag ] ) ) {
-        return '';
-    }
-
-    return sprintf(
-        '<div class="%s">%s</div>',
-        esc_attr( $map[ $tag ] ),
-        do_shortcode( $content )
-    );
+function dukeyin_sc_one_third($atts, $content=null, $shortcodename ="")
+{
+	$return = '<div class="col-md-4 col-sm-6">';
+	$return .= do_shortcode($content);
+	$return .= '</div>';
+	return $return;
 }
-foreach ( [
-    'one_third',
-    'two_third',
-    'one_half',
-    'one_fourth',
-    'three_fourth',
-] as $shortcode ) {
-    add_shortcode( $shortcode, 'theme_shortcode_column' );
+function dukeyin_sc_two_third($atts, $content=null, $shortcodename ="")
+{
+	$return = '<div class="col-md-8 col-sm-6">';
+	$return .= do_shortcode($content);
+	$return .= '</div>';
+	return $return;
 }
-///
-add_shortcode( 'row', 'dukeyin_shortcode_row' );
-function dukeyin_shortcode_row( $atts, $content = null ) {
-	$content = remove_tags($content, array('p'));
-    return '<div class="row">' . do_shortcode( $content ) . '</div>';
+function dukeyin_sc_one_fourth($atts, $content=null, $shortcodename ="")
+{
+	$return = '<div class="col-md-3 col-sm-6">';
+	$return .= do_shortcode($content);
+	$return .= '</div>';
+	return $return;
 }
+function dukeyin_sc_three_fourth($atts, $content=null, $shortcodename ="")
+{
+	$return = '<div class="col-md-9 col-sm-6">';
+	$return .= do_shortcode($content);
+	$return .= '</div>';
+	return $return;
+}
+function dukeyin_sc_one_half($atts, $content=null, $shortcodename ="")
+{
+	$return = '<div class="col-sm-6">';
+	$return .= do_shortcode($content);
+	$return .= '</div>';
+	return $return;
+}
+
 
 add_shortcode('hr', 'dukeyin_delimiter');
 function dukeyin_delimiter($atts, $content=null, $shortcodename ="")
@@ -234,15 +193,15 @@ add_shortcode('pil', 'post_inner_link');
 function alert_func($atts, $content){
 
 	extract(shortcode_atts(array(
-	   'type' => 'danger',
+	   'type' => '',
 	   'close' => '1',
 	), $atts)); 
 
 	if ($close == '1') {
-		$close = '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+		$close = '<a href="#" class="close"><i class="iconfont closebt ico-cross"></i></a>';
 	}
 
-	return do_shortcode("<div data-alert=\"\" class=\"alert alert-dismissible fade show alert-{$type}\">{$content}{$close}</div>");
+	return do_shortcode("<div data-alert=\"\" class=\"alert-box text-center {$type}\">{$content}{$close}</div>");
 
 }
 
@@ -261,72 +220,39 @@ add_shortcode("alert", "alert_func");
 * 'title'      => '',	Optional progress title
 * 'percentage' => '',	Percentage of the progress fill bar (50 => progress is on 50%)
 * 
-* @call [progress title="Progress" percentage="50"] [progress title="Download" percentage="75" color="success"]  [progress title="Uploading" percentage="40" striped="true" animated="true"]
+* @call [progress title="Progress" percentage="50"]
 * 
 **/
 
-function dukeyin_shortcode_progress( $atts ) {
+function progress_func($atts, $content = null){
 
-    $atts = shortcode_atts( [
-        'title'      => '',
-        'percentage' => 0,
-        'height'     => '',
-        'color'      => '',   // primary, success, warning...
-        'striped'    => false,
-        'animated'   => false,
-    ], $atts, 'progress' );
+	extract(shortcode_atts(array(
+	   'color'      => '',
+	   'background' => '',
+	   'shape'      => '',
+	   'title'      => '',
+	   'percentage' => '0',
+	), $atts));
 
-    // 数值安全
-    $percentage = intval( $atts['percentage'] );
-    $percentage = max( 0, min( 100, $percentage ) );
 
-    // Progress bar class
-    $bar_classes = [ 'progress-bar' ];
+	/* Percentage */
+	if ($percentage != '0') {
+		$percentage = $percentage;
+	}
 
-    if ( $atts['color'] ) {
-        $bar_classes[] = 'bg-' . sanitize_html_class( $atts['color'] );
-    }
 
-    if ( filter_var( $atts['striped'], FILTER_VALIDATE_BOOLEAN ) ) {
-        $bar_classes[] = 'progress-bar-striped';
-    }
-
-    if ( filter_var( $atts['animated'], FILTER_VALIDATE_BOOLEAN ) ) {
-        $bar_classes[] = 'progress-bar-animated';
-    }
-
-    // Inline style
-    $style = 'width: ' . $percentage . '%;';
-    if ( $atts['height'] ) {
-        $style .= ' height: ' . esc_attr( $atts['height'] ) . ';';
-    }
-
-    ob_start();
-    ?>
-
-    <div class="mb-3">
-        <?php if ( $atts['title'] ) : ?>
-            <div class="mb-1 small fw-semibold">
-                <?php echo esc_html( $atts['title'] ); ?>
-            </div>
-        <?php endif; ?>
-
-        <div class="progress" role="progressbar"
-             aria-valuenow="<?php echo esc_attr( $percentage ); ?>"
-             aria-valuemin="0"
-             aria-valuemax="100">
-            <div
-                class="<?php echo esc_attr( implode( ' ', $bar_classes ) ); ?>"
-                style="<?php echo esc_attr( $style ); ?>">
-                <?php echo esc_html( $percentage ); ?>%
-            </div>
-        </div>
-    </div>
-
-    <?php
-    return ob_get_clean();
+	/* Custom Color */
+	if (preg_match("#^\##", $color)) {
+		$background = 'background: ' . $background . ';';
+		$color = 'background: ' . $color . ';';
+		return "<div class=\"barchart barchart-1\" data-value=\"{$percentage}\"><div class=\"barchart__description\"><span class=\"h6\">{$title}</span></div><div class=\"barchart__bar\"><div class=\"barchart__progress\"></div></div></div>";
+	} else {
+		$background = 'background: ' . $background . ';';
+		return "<div class=\"barchart barchart-1\" data-value=\"{$percentage}\"><div class=\"barchart__description\"><span class=\"h6\">{$title}</span></div><div class=\"barchart__bar\"><div class=\"barchart__progress\"></div></div></div>";
+	}
 }
-add_shortcode( 'progress', 'dukeyin_shortcode_progress' );
+
+add_shortcode("progress", "progress_func");
 
 
 /**
@@ -350,9 +276,9 @@ function panel_func($atts, $content){
 	), $atts)); 
 
 	if (preg_match("#^\##", $color)) {
-		return do_shortcode("<div style=\"background: {$color}; box-shadow: none; -webkit-box-shadow: none;\" class=\"card {$shape}\"><div class=\"card-body\">{$content}</div></div>");
+		return do_shortcode("<div style=\"background: {$color}; box-shadow: none; -webkit-box-shadow: none;\" class=\"panel {$shape}\">{$content}</div>");
 	} else {
-		return do_shortcode("<div class=\"card {$color} {$shape}\"><div class=\"card-body\">{$content}</div></div>");
+		return do_shortcode("<div class=\"panel {$color} {$shape}\">{$content}</div>");
 	}
 
 }
@@ -378,9 +304,9 @@ function highlight_func($atts, $content){
 	), $atts)); 
 
 	if (preg_match("#^\##", $color)) {
-		return "<mark style=\"color: {$color}\">{$content}</mark>";
+		return "<span style=\"color: {$color}\" class=\"mark-text\">{$content}</span>";
 	} else {
-		return "<mark class=\"{$color}\">{$content}</mark>";
+		return "<span class=\"mark-text {$color}\">{$content}</span>";
 	}
 
 }
@@ -426,7 +352,7 @@ add_shortcode("marktext", "marktext_func");
 **/
 
 function subheader_func($atts, $content){
-	return do_shortcode("<span class=\"text-body-secondary\">{$content}</span>");
+	return do_shortcode("<span class=\"subheader\">{$content}</span>");
 }
 
 add_shortcode("subheader", "subheader_func");
@@ -462,7 +388,7 @@ function button_func($atts, $content = null){
 	   'title' => '',
 	   'url'  => '',
 	), $atts)); 
-return do_shortcode("<a class=\"btn btn-primary mb--1\" href=\"{$url}\"><span class=\"btn__text\">{$title}</span></a>");
+return do_shortcode("<a class=\"btn btn--primary mb--1\" href=\"{$url}\"><span class=\"btn__text\">{$title}</span></a>");
 }
 add_shortcode("button", "button_func");
 
