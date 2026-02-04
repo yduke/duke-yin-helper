@@ -18,48 +18,6 @@ function remove_invalid_tags($str, $tags)
     return $str;
 }
 
-// add_shortcode('one_third', 'dukeyin_sc_one_third');
-// add_shortcode('two_third', 'dukeyin_sc_two_third');
-// add_shortcode('one_fourth', 'dukeyin_sc_one_fourth');
-// add_shortcode('three_fourth', 'dukeyin_sc_three_fourth');
-// add_shortcode('one_half', 'dukeyin_sc_one_half');
-
-// function dukeyin_sc_one_third($atts, $content=null, $shortcodename ="")
-// {
-// 	$return = '<div class="col-md-4 col-sm-6">';
-// 	$return .= do_shortcode($content);
-// 	$return .= '</div>';
-// 	return $return;
-// }
-// function dukeyin_sc_two_third($atts, $content=null, $shortcodename ="")
-// {
-// 	$return = '<div class="col-md-8 col-sm-6">';
-// 	$return .= do_shortcode($content);
-// 	$return .= '</div>';
-// 	return $return;
-// }
-// function dukeyin_sc_one_fourth($atts, $content=null, $shortcodename ="")
-// {
-// 	$return = '<div class="col-md-3 col-sm-6">';
-// 	$return .= do_shortcode($content);
-// 	$return .= '</div>';
-// 	return $return;
-// }
-// function dukeyin_sc_three_fourth($atts, $content=null, $shortcodename ="")
-// {
-// 	$return = '<div class="col-md-9 col-sm-6">';
-// 	$return .= do_shortcode($content);
-// 	$return .= '</div>';
-// 	return $return;
-// }
-// function dukeyin_sc_one_half($atts, $content=null, $shortcodename ="")
-// {
-// 	$return = '<div class="col-sm-6">';
-// 	$return .= do_shortcode($content);
-// 	$return .= '</div>';
-// 	return $return;
-// }
-
 /**
  * Column shortcodes.	
  */
@@ -108,53 +66,192 @@ function dukeyin_delimiter($atts, $content=null, $shortcodename ="")
 	return $return;
 }
 
-add_shortcode('slideshow', 'dukeyin_sc_slideshow');
-add_shortcode('slide', 'dukeyin_sc_slide');
-function dukeyin_sc_slideshow($atts, $content=null, $shortcodename ="")
-{	
-	$return  = '<div class="row"><div class="slider" data-animation="fade" data-arrows="true" data-paging="true" data-timing="3000">';
-	$return .= '<ul class="slides owl-carousel">';
-	$return .= do_shortcode(strip_tags($content));
-	$return .= '</ul>';
-	$return .= '</div></div>';
-	return $return;
+// [slideshow]
+// [slide src='图片URL地址']
+// [slide src='图片URL地址']
+// [slide src='图片URL地址']
+// [/slideshow]
+
+// 定义全局变量用于传递 ID 和计数
+global $dukeyin_carousel_id;
+global $dukeyin_carousel_count;
+
+// 1. 父容器 Shortcode: [slideshow]
+function dukeyin_sc_slideshow($atts, $content = null) {
+    global $dukeyin_carousel_id, $dukeyin_carousel_count;
+
+    // 生成唯一的 Carousel ID
+    $dukeyin_carousel_id = 'carousel-' . uniqid();
+    
+    // 初始化计数器
+    $dukeyin_carousel_count = 0;
+
+    // 关键步骤：先执行 do_shortcode 解析内部的 [slide]
+    // 这样子元素会执行并增加 $dukeyin_carousel_count 计数，同时生成图片 HTML
+    $slides_html = do_shortcode($content);
+
+    // 此时 $dukeyin_carousel_count 已经是图片的总数了
+    $total_slides = $dukeyin_carousel_count;
+
+    // --- 开始构建 HTML ---
+    
+    $output = '<div id="' . esc_attr($dukeyin_carousel_id) . '" class="carousel slide" data-bs-ride="carousel">';
+
+    // A. 生成 Indicators (底部的指示器/小圆点)
+    if ($total_slides > 1) {
+        $output .= '<div class="carousel-indicators">';
+        for ($i = 0; $i < $total_slides; $i++) {
+            $active_class = ($i === 0) ? 'active' : '';
+            $aria_current = ($i === 0) ? 'true' : 'false';
+            $output .= '<button type="button" data-bs-target="#' . esc_attr($dukeyin_carousel_id) . '" data-bs-slide-to="' . $i . '" class="' . $active_class . '" aria-current="' . $aria_current . '" aria-label="Slide ' . ($i + 1) . '"></button>';
+        }
+        $output .= '</div>';
+    }
+
+    // B. 输出 Slides (由子短代码生成的 HTML)
+    $output .= '<div class="carousel-inner">';
+    $output .= $slides_html;
+    $output .= '</div>';
+
+    // C. 生成 Controls (左右切换箭头) - 只有多于1张图时才显示
+    if ($total_slides > 1) {
+        $output .= '<button class="carousel-control-prev" type="button" data-bs-target="#' . esc_attr($dukeyin_carousel_id) . '" data-bs-slide="prev">';
+        $output .= '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+        $output .= '<span class="visually-hidden">Previous</span>';
+        $output .= '</button>';
+        
+        $output .= '<button class="carousel-control-next" type="button" data-bs-target="#' . esc_attr($dukeyin_carousel_id) . '" data-bs-slide="next">';
+        $output .= '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+        $output .= '<span class="visually-hidden">Next</span>';
+        $output .= '</button>';
+    }
+
+    $output .= '</div>'; // End carousel
+
+    return $output;
 }
-function dukeyin_sc_slide($atts, $content=null, $shortcodename ="")
-{	
-	$return  = '<li>';
-	if(isset($atts['link'])  && $atts['link'] != "") $return .= '<a href="'.$atts['link'].'">';
-	$return .= '<img alt="" src="'.$atts['src'].'" />';
-	if(isset($atts['link']) && $atts['link'] != "") $return .= '</a>';
-	$return .= '</li>';
-	return $return;
+add_shortcode('slideshow', 'dukeyin_sc_slideshow');
+
+
+// 2. 子元素 Shortcode: [slide]
+function dukeyin_sc_slide($atts) {
+    global $dukeyin_carousel_count;
+
+    // 提取属性
+    $atts = shortcode_atts(
+        array(
+            'src' => '', // 图片地址
+            'alt' => 'Slide Image', // 图片描述
+        ), 
+        $atts
+    );
+
+    // 如果没有图片地址，直接返回空
+    if (empty($atts['src'])) {
+        return '';
+    }
+
+    // 判断是否是第一张幻灯片（如果是，添加 active 类）
+    $active_class = ($dukeyin_carousel_count === 0) ? 'active' : '';
+
+    // 构建 HTML
+    // d-block w-100 是 Bootstrap 建议的类，防止图片尺寸塌陷
+    $output  = '<div class="carousel-item ' . $active_class . '">';
+    $output .= '<img src="' . esc_url($atts['src']) . '" class="d-block w-100" alt="' . esc_attr($atts['alt']) . '">';
+    $output .= '</div>';
+
+    // 计数器加 1，为下一张图做准备
+    $dukeyin_carousel_count++;
+
+    return $output;
+}
+add_shortcode('slide', 'dukeyin_sc_slide');
+
+
+///Accordion
+///[toggle_container]
+// [toggle title='标题1']内容1[/toggle]
+// [toggle title='标题2']内容2[/toggle]
+// [toggle title='标题3']内容3[/toggle]
+// [/toggle_container]
+
+// 定义全局变量以在父子短代码间传递 ID
+global $dukeyin_accordion_id;
+global $dukeyin_accordion_count;
+
+// 1. 父容器 Shortcode: [toggle_container]
+function dukeyin_sc_toggles($atts, $content = null) {
+    global $dukeyin_accordion_id, $dukeyin_accordion_count;
+
+    // 生成当前 Accordion 组的唯一 ID (防止页面有多个 Accordion 时冲突)
+    $dukeyin_accordion_id = 'accordion-' . uniqid();
+    
+    // 重置计数器
+    $dukeyin_accordion_count = 0;
+
+    // 解析内部的 [toggle] 短代码
+    // 注意：这里先处理 content，子短代码会使用上面的全局变量
+	$content = remove_tags($content, array('p'));
+    $items = do_shortcode($content);
+
+    // 输出 Bootstrap 5.3 外层容器结构
+    return '<div class="accordion" id="' . esc_attr($dukeyin_accordion_id) . '">' . $items . '</div>';
 }
 add_shortcode('toggle_container', 'dukeyin_sc_toggles');
+
+
+// 2. 子元素 Shortcode: [toggle]
+function dukeyin_sc_toggle($atts, $content = null) {
+    global $dukeyin_accordion_id, $dukeyin_accordion_count;
+
+    // 提取属性，默认标题为 'Title'
+    $atts = shortcode_atts(
+        array(
+            'title' => 'Title',
+        ), 
+        $atts
+    );
+
+    // 增加计数，生成当前 Item 的唯一 ID
+    $dukeyin_accordion_count++;
+    $item_id = $dukeyin_accordion_id . '-item-' . $dukeyin_accordion_count;
+    $heading_id = $item_id . '-heading';
+
+    // 逻辑：默认展开第一个选项 (Bootstrap 标准行为)
+    // 如果你想全部默认关闭，可以将下面的 $is_first 设置为 false
+    $is_first = ($dukeyin_accordion_count === 1);
+
+    $collapse_class = $is_first ? 'accordion-collapse collapse show' : 'accordion-collapse collapse';
+    $button_class   = $is_first ? 'accordion-button' : 'accordion-button collapsed';
+    $aria_expanded  = $is_first ? 'true' : 'false';
+
+    // 构建 HTML
+    $output  = '<div class="accordion-item">';
+    
+    // Header & Button
+    $output .= '<h2 class="accordion-header" id="' . esc_attr($heading_id) . '">';
+    $output .= '<button class="' . $button_class . '" type="button" data-bs-toggle="collapse" data-bs-target="#' . esc_attr($item_id) . '" aria-expanded="' . $aria_expanded . '" aria-controls="' . esc_attr($item_id) . '">';
+    $output .= esc_html($atts['title']);
+    $output .= '</button>';
+    $output .= '</h2>';
+
+    // Body (注意 data-bs-parent 指向父级 ID)
+    $output .= '<div id="' . esc_attr($item_id) . '" class="' . $collapse_class . '" aria-labelledby="' . esc_attr($heading_id) . '" data-bs-parent="#' . esc_attr($dukeyin_accordion_id) . '">';
+    $output .= '<div class="accordion-body">';
+    // 支持内容中嵌套其他短代码，并移除多余的 P 标签
+    $output .= do_shortcode(wpautop(trim($content))); 
+    $output .= '</div>';
+    $output .= '</div>'; // End collapse
+    
+    $output .= '</div>'; // End item
+
+    return $output;
+}
 add_shortcode('toggle', 'dukeyin_sc_toggle');
+
+
 add_shortcode('tab_container', 'dukeyin_sc_tabs');
 add_shortcode('tab', 'dukeyin_sc_tab_single');
-
-function dukeyin_sc_toggles($atts, $content=null, $shortcodename =""){
-	$content = remove_tags($content, array('p'));
-	$one='';
-	if(isset($atts['one'])) {$one = "accordion--oneopen";} 
-	$return  = '<ul class="accordion '.$one.'">';
- 	$return .= do_shortcode($content);
-	$return .= '</ul>';
-	return $return;
-}
-
-function dukeyin_sc_toggle($atts, $content=null, $shortcodename ="")
-{
-	$content = remove_tags($content, array('p'));
-	$active[0] = $active[1] = '';
-	if(isset($atts[0]) && $atts[0] == 'active') {$active[0] = 'active'; $active[1] = 'activetoggle open';}
-	$return  = '<li class="'.$active[0].'"><div class="accordion__title"><span class="h5">'.$atts['title'].'</span></div>';
-	$return .= '<div class="accordion__content">';
-	$return .= do_shortcode(wpautop($content));
-	$return .= '</div></li>';
-	return $return;
-}
-
 
 function dukeyin_sc_tabs($atts, $content=null, $shortcodename ="")
 {	
