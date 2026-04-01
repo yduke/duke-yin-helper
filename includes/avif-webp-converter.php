@@ -131,49 +131,156 @@ function awc_display_support_page() {
 add_filter('wp_handle_upload_prefilter', 'awc_convert_image');
 
 function awc_convert_image($file) {
-    // 仅处理图片文件
     if (!str_starts_with($file['type'], 'image/')) {
         return $file;
     }
 
-    $support = awc_check_support();
-    $tmp_path = $file['tmp_name'];
-    $converted = false;
-    $target_format = null;
+    // AVIF/WebP 已是最优格式，无需转换
+    if (in_array($file['type'], ['image/avif', 'image/webp'])) {
+        return $file;
+    }
 
-    // 确定目标格式和转换方式
-    if (($support['gd']['avif'] || $support['imagick']['avif'])) {
-        $target_format = 'avif';
-    } elseif (($support['gd']['webp'] || $support['imagick']['webp'])) {
-        $target_format = 'webp';
+    $support  = awc_check_support();
+    $tmp_path = $file['tmp_name'];
+
+    // 提前检测源图片是否含有 Alpha 通道
+    $has_alpha = awc_image_has_alpha($tmp_path, $file['type']);
+
+    $target_format = null;
+    $use_imagick   = false;
+
+    if ($has_alpha) {
+        // 含 Alpha 的图片：先验证 Imagick 的 AVIF 编码器是否真正支持 Alpha
+        // 当前服务器 ImageMagick 6.9.11 的 AVIF 编码器不支持 Alpha，会回退到 WebP
+        if ($support['imagick']['avif'] && awc_imagick_supports_avif_alpha()) {
+            $target_format = 'avif';
+            $use_imagick   = true;
+        } elseif ($support['gd']['avif']) {
+            $target_format = 'avif';
+            $use_imagick   = false;
+        } elseif ($support['imagick']['webp']) {
+            $target_format = 'webp';
+            $use_imagick   = true;
+        } elseif ($support['gd']['webp']) {
+            $target_format = 'webp';
+            $use_imagick   = false;
+        }
+    } else {
+        // 不含 Alpha 的图片（如 JPEG）：按原有优先级 AVIF → WebP
+        if ($support['imagick']['avif']) {
+            $target_format = 'avif';
+            $use_imagick   = true;
+        } elseif ($support['gd']['avif']) {
+            $target_format = 'avif';
+            $use_imagick   = false;
+        } elseif ($support['imagick']['webp']) {
+            $target_format = 'webp';
+            $use_imagick   = true;
+        } elseif ($support['gd']['webp']) {
+            $target_format = 'webp';
+            $use_imagick   = false;
+        }
     }
 
     if (!$target_format) return $file;
 
-    // 优先使用Imagick库
-    if ($target_format === 'avif' && $support['imagick']['avif']) {
-        $converted = awc_convert_with_imagick($tmp_path, 'avif');
-    }elseif ($target_format === 'avif' && $support['gd']['avif']) {
-        $converted = awc_convert_with_gd($tmp_path, 'avif');
-    } 
-
-    if (!$converted && $target_format === 'webp') {
-        if ($support['imagick']['webp']) {
-            $target_format = 'webp';
-            $converted = awc_convert_with_imagick($tmp_path, 'webp');
-        }elseif ($support['gd']['webp']) {
-            $target_format = 'webp';
-            $converted = awc_convert_with_gd($tmp_path, 'webp');
-        } 
-    }
+    $converted = $use_imagick
+        ? awc_convert_with_imagick($tmp_path, $target_format)
+        : awc_convert_with_gd($tmp_path, $target_format);
 
     if ($converted) {
-        // 更新文件信息
         $file['name'] = preg_replace('/\.(jpe?g|png|gif)$/i', '.' . $target_format, $file['name']);
         $file['type'] = ($target_format === 'avif') ? 'image/avif' : 'image/webp';
     }
 
     return $file;
+}
+
+// 检测图片是否含有 Alpha 通道
+function awc_image_has_alpha($path, $mime_type) {
+    // JPEG 没有 Alpha，直接返回
+    if ($mime_type === 'image/jpeg') return false;
+
+    if (extension_loaded('imagick')) {
+        try {
+            $im  = new Imagick($path);
+            $has = (bool) $im->getImageAlphaChannel();
+            $im->destroy();
+            return $has;
+        } catch (Exception $e) {}
+    }
+
+    if (extension_loaded('gd')) {
+        $img = null;
+        if ($mime_type === 'image/png') $img = @imagecreatefrompng($path);
+        if ($mime_type === 'image/gif') $img = @imagecreatefromgif($path);
+        if ($img) {
+            $w      = imagesx($img);
+            $h      = imagesy($img);
+            $points = [
+                [$w/4, $h/4], [$w/2, $h/2], [$w*3/4, $h/4],
+                [$w/4, $h*3/4], [$w*3/4, $h*3/4],
+            ];
+            foreach ($points as [$x, $y]) {
+                $alpha = (imagecolorat($img, (int)$x, (int)$y) >> 24) & 0x7F;
+                if ($alpha > 0) {
+                    imagedestroy($img);
+                    return true;
+                }
+            }
+            imagedestroy($img);
+        }
+    }
+
+    // PNG/GIF 大概率有 Alpha，保守返回 true
+    return in_array($mime_type, ['image/png', 'image/gif']);
+}
+
+// 实际转换一张小图来验证当前服务器的 Imagick AVIF 编码器是否支持 Alpha
+// 使用 static 缓存，每次请求只执行一次
+function awc_imagick_supports_avif_alpha() {
+    static $result = null;
+    if ($result !== null) return $result;
+
+    try {
+        $gd = imagecreatetruecolor(2, 2);
+        imagealphablending($gd, false);
+        imagesavealpha($gd, true);
+        $transparent = imagecolorallocatealpha($gd, 0, 0, 0, 127);
+        imagefilledrectangle($gd, 0, 0, 1, 1, $transparent);
+
+        $tmp_png  = sys_get_temp_dir() . '/awc_alpha_test.png';
+        $tmp_avif = sys_get_temp_dir() . '/awc_alpha_test.avif';
+        imagepng($gd, $tmp_png);
+        imagedestroy($gd);
+
+        $im = new Imagick($tmp_png);
+        $im->stripImage();
+        $im->setImageAlphaChannel(Imagick::ALPHACHANNEL_ACTIVATE);
+        $im->setImageBackgroundColor(new ImagickPixel('transparent'));
+        $im->setFormat('AVIF');
+        $im->setImageFormat('AVIF');
+        $im->writeImage($tmp_avif);
+        $im->clear();
+        $im->destroy();
+
+        // 文件大于 500 字节且 Alpha 标志为真，才算真正支持
+        if (file_exists($tmp_avif) && filesize($tmp_avif) > 500) {
+            $verify = new Imagick($tmp_avif);
+            $result = (bool) $verify->getImageAlphaChannel();
+            $verify->destroy();
+        } else {
+            $result = false;
+        }
+
+        @unlink($tmp_png);
+        @unlink($tmp_avif);
+
+    } catch (Exception $e) {
+        $result = false;
+    }
+
+    return $result;
 }
 
 // GD库转换函数
@@ -222,18 +329,41 @@ function awc_convert_with_gd($path, $format) {
 function awc_convert_with_imagick($path, $format) {
     try {
         $imagick = new Imagick($path);
-        $format = strtoupper($format);
+        $imagick_format = strtoupper($format);
 
-        // 保留透明度
-        $imagick->setImageAlphaChannel(Imagick::ALPHACHANNEL_ACTIVATE);
-        $imagick->setFormat($format);
+        // 判断源文件是否含有 Alpha 通道
+        // getImageAlphaChannel() 返回 true/false 或通道常量，统一用布尔判断
+        $has_alpha = (bool) $imagick->getImageAlphaChannel();
+
+        if ($has_alpha) {
+            // ① 先 strip 掉 EXIF（strip 会清除 Alpha 信息，所以必须在它之后重新激活）
+            $imagick->stripImage();
+
+            // ② strip 之后立即重新激活 Alpha 通道，防止被清零
+            $imagick->setImageAlphaChannel(Imagick::ALPHACHANNEL_ACTIVATE);
+
+            // ③ 设置背景为完全透明，避免 Imagick 内部合成时用黑/白填充空白区域
+            $imagick->setImageBackgroundColor(new ImagickPixel('transparent'));
+        } else {
+            // 不含透明通道的图片（如 JPEG）：strip 后压平到白色背景，防止伪 Alpha 干扰
+            $imagick->stripImage();
+            $imagick->setImageBackgroundColor(new ImagickPixel('white'));
+            $imagick->setImageAlphaChannel(Imagick::ALPHACHANNEL_REMOVE);
+        }
+
+        // 统一转换到 sRGB 色彩空间（AVIF/WebP 均要求 sRGB 或 Display P3）
+        // 若源文件已是 sRGB 则无开销
+        if ($imagick->getImageColorspace() !== Imagick::COLORSPACE_SRGB) {
+            $imagick->transformImageColorspace(Imagick::COLORSPACE_SRGB);
+        }
+
+        $imagick->setFormat($imagick_format);
+        $imagick->setImageFormat($imagick_format);
         $imagick->setImageCompressionQuality(80);
-
-        // 删除EXIF数据
-        $imagick->stripImage();
 
         $success = $imagick->writeImage($path);
         $imagick->clear();
+        $imagick->destroy();
         return $success;
     } catch (Exception $e) {
         error_log('Imagick转换错误: ' . $e->getMessage());
