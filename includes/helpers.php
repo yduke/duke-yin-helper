@@ -45,18 +45,18 @@ return (is_tax('review_categories')) ? 1 : $value;
 
 //Indicator
 
-if (!function_exists('dukeyin_theme_dashboard_widgets')) {
-add_action('wp_dashboard_setup', 'dukeyin_theme_dashboard_widgets');
-function dukeyin_theme_dashboard_widgets() {
+if (!function_exists('duke_theme_dashboard_widgets')) {
+add_action('wp_dashboard_setup', 'duke_theme_dashboard_widgets');
+function duke_theme_dashboard_widgets() {
 global $wp_meta_boxes;
  
-wp_add_dashboard_widget('dukeyin_help_widget', __('Duke Yin Theme Support','duke-yin-helper'), 'dukeyin_dashboard_help');
+wp_add_dashboard_widget('duke_help_widget', __('Duke Theme Support','duke-yin-helper'), 'duke_dashboard_help');
 }
 }
 
-if (!function_exists('dukeyin_dashboard_help')) {
-function dukeyin_dashboard_help() {
-$theme = wp_get_theme('dukeyin');
+if (!function_exists('duke_dashboard_help')) {
+function duke_dashboard_help() {
+$theme = wp_get_theme('duke');
 echo '<div><p><span>';
 echo __('Theme Name: ','duke-yin-helper');
 echo '</span><span id="dk_theme_name"><b>';
@@ -79,7 +79,7 @@ echo '</div>';
 echo <<<ETO
 <script>
 jQuery.ajax({
-  url: "https://update.dukeyin.com/?action=get_metadata&slug=dukeyin",
+  url: "https://update.dukeyin.com/?action=get_metadata&slug=duke",
   type: "GET",
   dataType: "json",
   success: function (data) {

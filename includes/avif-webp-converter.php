@@ -144,7 +144,7 @@ function awc_convert_image($file) {
     $tmp_path = $file['tmp_name'];
 
     // 提前检测源图片是否含有 Alpha 通道
-    $has_alpha = awc_image_has_alpha($tmp_path, $file['type']);
+    $has_alpha = awc_image_has_alpha($tmp_path);
 
     $target_format = null;
     $use_imagick   = false;
@@ -197,43 +197,216 @@ function awc_convert_image($file) {
 }
 
 // 检测图片是否含有 Alpha 通道
-function awc_image_has_alpha($path, $mime_type) {
-    // JPEG 没有 Alpha，直接返回
-    if ($mime_type === 'image/jpeg') return false;
-
-    if (extension_loaded('imagick')) {
-        try {
-            $im  = new Imagick($path);
-            $has = (bool) $im->getImageAlphaChannel();
-            $im->destroy();
-            return $has;
-        } catch (Exception $e) {}
+/**
+ * 检测图片是否包含透明部分
+ *
+ * @param string $imagePath 图片路径
+ * @return bool true = 有透明部分，false = 无透明部分
+ */
+function awc_image_has_alpha(string $imagePath): bool
+{
+    // -------------------------------------------------------------------------
+    // 1. 基础校验
+    // -------------------------------------------------------------------------
+    if (!file_exists($imagePath) || !is_readable($imagePath)) {
+        return false;
     }
 
-    if (extension_loaded('gd')) {
-        $img = null;
-        if ($mime_type === 'image/png') $img = @imagecreatefrompng($path);
-        if ($mime_type === 'image/gif') $img = @imagecreatefromgif($path);
-        if ($img) {
-            $w      = imagesx($img);
-            $h      = imagesy($img);
-            $points = [
-                [$w/4, $h/4], [$w/2, $h/2], [$w*3/4, $h/4],
-                [$w/4, $h*3/4], [$w*3/4, $h*3/4],
-            ];
-            foreach ($points as [$x, $y]) {
-                $alpha = (imagecolorat($img, (int)$x, (int)$y) >> 24) & 0x7F;
-                if ($alpha > 0) {
-                    imagedestroy($img);
-                    return true;
-                }
+    // -------------------------------------------------------------------------
+    // 2. 快速排除：不可能携带 Alpha 通道的格式 → 直接返回 false
+    //    使用 finfo（魔数检测）而非扩展名，防止扩展名被篡改
+    // -------------------------------------------------------------------------
+    $noAlphaFormats = [
+        'image/jpeg',
+        'image/jpg',
+        'image/bmp',
+        'image/x-bmp',
+        'image/x-ms-bmp',
+        'image/x-windows-bmp',
+        'image/vnd.ms-bmp',
+        'image/x-tga',          // TGA 理论上支持 alpha，但实际极少使用且 PHP 扩展均不支持
+        'image/x-xcf',
+        'image/jp2',
+        'image/jpx',
+    ];
+
+    $mime = '';
+    if (function_exists('finfo_open')) {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mime  = (string) finfo_file($finfo, $imagePath);
+        finfo_close($finfo);
+    } elseif (function_exists('mime_content_type')) {
+        $mime = (string) mime_content_type($imagePath);
+    }
+
+    $mime = strtolower(trim($mime));
+    if ($mime !== '' && in_array($mime, $noAlphaFormats, true)) {
+        return false;
+    }
+
+    // -------------------------------------------------------------------------
+    // 3. Imagick 检测（优先）
+    // -------------------------------------------------------------------------
+    if (extension_loaded('imagick') && class_exists('Imagick')) {
+        return _hasTransparencyImagick($imagePath);
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. GD 检测（备选）
+    // -------------------------------------------------------------------------
+    if (extension_loaded('gd') && function_exists('imagecreatefromstring')) {
+        return _hasTransparencyGD($imagePath);
+    }
+
+    // -------------------------------------------------------------------------
+    // 5. 两种扩展都不可用 → 保守地返回 true（假设有透明）
+    // -------------------------------------------------------------------------
+    return true;
+}
+
+
+// =============================================================================
+// 内部辅助函数
+// =============================================================================
+
+/**
+ * 使用 Imagick 检测透明度
+ */
+function _hasTransparencyImagick(string $imagePath): bool
+{
+    try {
+        $imagick = new Imagick();
+
+        // 只读第一帧（GIF / APNG / WebP 动图），避免遍历所有帧浪费资源
+        $imagick->pingImage($imagePath . '[0]');
+
+        // 先用通道信息快速判断：是否存在 Alpha 通道
+        $hasAlphaChannel = $imagick->getImageAlphaChannel();
+        if (!$hasAlphaChannel) {
+            $imagick->destroy();
+            return false;
+        }
+
+        // 有 Alpha 通道 → 进一步验证是否真的有像素是半透明/全透明
+        // 重新完整读取图像（pingImage 不解码像素数据）
+        $imagick->destroy();
+        $imagick = new Imagick($imagePath . '[0]');
+
+        // 获取 Alpha 通道的统计信息（最小值）
+        // Alpha 在 Imagick 中：0.0 = 完全透明，1.0 = 完全不透明（归一化后）
+        $channelStats = $imagick->getImageChannelStatistics();
+        $imagick->destroy();
+
+        if (isset($channelStats[Imagick::CHANNEL_ALPHA])) {
+            $alphaMin = $channelStats[Imagick::CHANNEL_ALPHA]['minima'] ?? 1.0;
+            $alphaMax = $channelStats[Imagick::CHANNEL_ALPHA]['maxima'] ?? 1.0;
+
+            // Imagick 内部量子值范围为 0 ~ QUANTUM（通常 65535）
+            $quantum = defined('Imagick::QUANTUM') ? Imagick::QUANTUM : 65535;
+
+            // 最小值 < QUANTUM 说明至少有一个像素不完全不透明
+            // 全部像素最大值也 < QUANTUM 说明整图都是透明/半透明
+            // 只要 minima < quantum，就存在透明像素
+            return $alphaMin < $quantum;
+        }
+
+        return false;
+
+    } catch (ImagickException $e) {
+        // Imagick 处理失败，降级到 GD
+        if (extension_loaded('gd') && function_exists('imagecreatefromstring')) {
+            return _hasTransparencyGD($imagePath);
+        }
+        return true; // 无法判断，保守返回 true
+    }
+}
+
+
+/**
+ * 使用 GD 检测透明度
+ */
+function _hasTransparencyGD(string $imagePath): bool
+{
+    try {
+        $imageData = file_get_contents($imagePath);
+        if ($imageData === false) {
+            return true;
+        }
+
+        $image = @imagecreatefromstring($imageData);
+        if ($image === false) {
+            return true; // GD 无法解析，保守返回 true
+        }
+
+        // 检查是否为真彩色图像（含 Alpha）
+        if (imageistruecolor($image)) {
+            $result = _gdScanAlphaPixels($image);
+            imagedestroy($image);
+            return $result;
+        }
+
+        // 调色板图像：检查是否有透明色索引
+        $transparentIndex = imagecolortransparent($image);
+        if ($transparentIndex >= 0) {
+            imagedestroy($image);
+            return true;
+        }
+
+        imagedestroy($image);
+        return false;
+
+    } catch (Throwable $e) {
+        return true; // 异常时保守返回 true
+    }
+}
+
+
+/**
+ * 扫描 GD 真彩色图像的像素，寻找非完全不透明的像素
+ * GD Alpha：0 = 完全不透明，127 = 完全透明
+ *
+ * 为了性能，采用网格采样：先粗粒度扫描，发现候选后精扫描
+ */
+function _gdScanAlphaPixels($image): bool
+{
+    $width  = imagesx($image);
+    $height = imagesy($image);
+
+    if ($width <= 0 || $height <= 0) {
+        return false;
+    }
+
+    // 第一轮：步长16粗扫，快速排除大多数无透明的图像
+    $step = max(1, (int) min(16, min($width, $height) / 4));
+    for ($y = 0; $y < $height; $y += $step) {
+        for ($x = 0; $x < $width; $x += $step) {
+            $color = imagecolorat($image, $x, $y);
+            $alpha = ($color >> 24) & 0x7F; // 提取 alpha 分量
+            if ($alpha > 0) {
+                return true; // 粗扫命中，直接返回
             }
-            imagedestroy($img);
         }
     }
 
-    // PNG/GIF 大概率有 Alpha，保守返回 true
-    return in_array($mime_type, ['image/png', 'image/gif']);
+    // 第二轮：如果步长 > 1，对剩余未采样像素做补充扫描
+    // （确保不遗漏小面积的透明区域）
+    if ($step > 1) {
+        for ($y = 0; $y < $height; $y++) {
+            for ($x = 0; $x < $width; $x++) {
+                // 跳过第一轮已扫描的格点
+                if ($x % $step === 0 && $y % $step === 0) {
+                    continue;
+                }
+                $color = imagecolorat($image, $x, $y);
+                $alpha = ($color >> 24) & 0x7F;
+                if ($alpha > 0) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
 }
 
 // 实际转换一张小图来验证当前服务器的 Imagick AVIF 编码器是否支持 Alpha
