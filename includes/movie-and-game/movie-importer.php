@@ -5,6 +5,14 @@ Description: 通过 TMDB API 搜索并导入电影或电视剧为文章。
 Version: 1.0
 Author: Duke Yin
 */
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+// Define constants
+define('TMDB_IMAGE_BASE_URL', 'https://image.tmdb.org/t/p/');
+define('TMDB_API_BASE_URL', 'https://api.themoviedb.org/3/');
 
 // 加载 JS 和样式
 add_action('admin_enqueue_scripts', function ($hook) {
@@ -50,7 +58,7 @@ add_action('wp_ajax_tmdb_search', function () {
     $name = sanitize_text_field($_POST['name']);
     $api_key = $dukeyin_options['tmdb-key'];
     $lang_info = $dukeyin_options['tmdb-lang'];
-    $url = "https://api.themoviedb.org/3/search/{$type}?api_key={$api_key}&language={$lang_info}&query=" . urlencode($name);
+    $url = TMDB_API_BASE_URL . "search/{$type}?api_key={$api_key}&language={$lang_info}&query=" . urlencode($name);
     $response = wp_remote_get($url);
     if (is_wp_error($response)) wp_send_json_error();
     $data = json_decode(wp_remote_retrieve_body($response), true);
@@ -61,7 +69,7 @@ add_action('wp_ajax_tmdb_search', function () {
 add_action('wp_ajax_tmdb_select', function () {
     $dukeyin_options=get_site_option( 'options-page', true, false);
     check_ajax_referer('tmdb_nonce', 'nonce');
-    $id = intval($_POST['id']);
+    $id = intval($_POST['id']);  //the tmdb id
     $status = intval($_POST['status'])??0;
     $score = number_format($_POST['score'], 1) ?? 5;
     $type = $_POST['type'] === 'tv' ? 'tv' : 'movie';
@@ -73,7 +81,7 @@ add_action('wp_ajax_tmdb_select', function () {
     function movie_post_exist($type, $meta_key, $meta_value) {
         $post_type = $type === 'tv' ? 'tvshow_review' : 'film_review';
         $args = array(
-            'post_type'  => $post_type, // e.g. 'post', 'page', or a custom post type
+            'post_type'  => $post_type, // tv or movie post type
             'meta_query' => array(
                 array(
                     'key'   => $meta_key,   // The meta key you're searching for
@@ -94,13 +102,14 @@ add_action('wp_ajax_tmdb_select', function () {
     }
 
 
-
-    $info_url = "https://api.themoviedb.org/3/{$type}/{$id}?api_key={$api_key}&language={$lang_info}&append_to_response=credits";
+    // Movie or TV show details
+    $info_url = TMDB_API_BASE_URL . "{$type}/{$id}?api_key={$api_key}&language={$lang_info}&append_to_response=credits";
     $info_res = wp_remote_get($info_url);
     if (is_wp_error($info_res)) wp_send_json_error();
     $info = json_decode(wp_remote_retrieve_body($info_res), true);
 
-    $img_url = "https://api.themoviedb.org/3/{$type}/{$id}/images?api_key={$api_key}&include_image_language={$lang_img}";
+    //poster images
+    $img_url = TMDB_API_BASE_URL . "{$type}/{$id}/images?api_key={$api_key}&include_image_language={$lang_img}";
     $img_res = wp_remote_get($img_url);
 
  
@@ -121,6 +130,7 @@ add_action('wp_ajax_tmdb_select', function () {
     
     $overview = $info['overview'];
 
+    //check if the post already exists, if not create a new one
     $post_id = movie_post_exist($type, 'tmdb_id', $id);
     
     if($post_id===false || $post_id==='' || $post_id===null ){
@@ -163,21 +173,62 @@ add_action('wp_ajax_tmdb_select', function () {
     $tagline = $info['tagline'];
     update_post_meta($post_id,'_r_f_tagline',$tagline);
 
+    //only for tv shows
+    if($type === 'tv'){
+        $status = $info['status'];
+        update_post_meta($post_id,'_r_f_status',$status);
+
+        $type_tv = $info['type'];
+        update_post_meta($post_id,'_r_f_type',$type_tv);
+
+        $number_of_episodes = $info['number_of_episodes'];
+        update_post_meta($post_id,'_r_f_episode_count',$number_of_episodes);
+
+        $number_of_seasons = $info['number_of_seasons'];
+        update_post_meta($post_id,'_r_f_season_count',$number_of_seasons);
+
+
+
+    }
 
     // download images
-    function download_and_attach_image($img_url, $post_id, $tmdb_id) {
+    function download_and_attach_image($img_url, $post_id, $tmdb_id, $type = 'movie') {
         require_once(ABSPATH . 'wp-admin/includes/file.php');
         require_once(ABSPATH . 'wp-admin/includes/media.php');
         require_once(ABSPATH . 'wp-admin/includes/image.php');
-    
+
+        $upload_dir = wp_upload_dir();
+        $filename = pathinfo($img_url, PATHINFO_FILENAME);
+        $file_to_search = $upload_dir['basedir'] . '/tmdb/' . $type . '/' . $tmdb_id. '/' . $filename . '.webp';
+        if(file_exists($file_to_search) ){
+            $attachment_id = attachment_url_to_postid($upload_dir['baseurl'] . '/tmdb/' . $type . '/' . $tmdb_id. '/' . $filename . '.webp');
+            if ($attachment_id){
+                return $attachment_id;
+            }else{
+                // If the file exists but no attachment found, delete the file to allow re-download
+                unlink($file_to_search);
+            }
+        }
+        // Check for the -1.webp version as well, which might be created if the original filename had an extension that was stripped
+        $file_to_search_op = $upload_dir['basedir'] . '/tmdb/' . $type . '/' . $tmdb_id. '/' . $filename . '-1.webp';
+        if(file_exists($file_to_search_op) ){
+            $attachment_id = attachment_url_to_postid($upload_dir['baseurl'] . '/tmdb/' . $type . '/' . $tmdb_id. '/' . $filename . '-1.webp');
+            if ($attachment_id){
+                return $attachment_id;
+            }else{
+                // If the file exists but no attachment found, delete the file to allow re-download
+                unlink($file_to_search_op);
+            }
+        }
+        // If the file doesn't exist, proceed to download and convert
         $tmp = download_url($img_url);
         if (is_wp_error($tmp)) return false;
     
         $image = imagecreatefromstring(file_get_contents($tmp));
         if (!$image) return false;
     
-        $upload_dir = wp_upload_dir();
-        $target_dir = trailingslashit($upload_dir['basedir']) . 'tmdb/' . $tmdb_id;
+        
+        $target_dir = trailingslashit($upload_dir['basedir']) . 'tmdb/' . $type . '/' . $tmdb_id;
         if (!file_exists($target_dir)) {
             wp_mkdir_p($target_dir);
         }
@@ -191,7 +242,7 @@ add_action('wp_ajax_tmdb_select', function () {
         imagedestroy($image);
         unlink($tmp);
     
-        // 构建 WordPress 所需的文件数组，并修正 uploads 目录路径以保持 tmdb/{id} 结构
+        // 构建 WordPress 所需的文件数组，并修正 uploads 目录路径以保持 tmdb/tv or movie/{id} 结构
         $file = [
             'name' => $filename,
             'type' => 'image/webp',
@@ -201,8 +252,8 @@ add_action('wp_ajax_tmdb_select', function () {
         ];
     
         // 过滤器强制 WordPress 使用我们提供的路径
-        add_filter('upload_dir', function ($dirs) use ($tmdb_id) {
-            $custom_subdir = '/tmdb/' . $tmdb_id;
+        add_filter('upload_dir', function ($dirs) use ($tmdb_id, $type) {
+            $custom_subdir = '/tmdb/' . $type . '/' . $tmdb_id;
             $dirs['subdir'] = $custom_subdir;
             $dirs['path'] = $dirs['basedir'] . $custom_subdir;
             $dirs['url'] = $dirs['baseurl'] . $custom_subdir;
@@ -223,22 +274,22 @@ add_action('wp_ajax_tmdb_select', function () {
     $backdrop_meta= get_post_meta($post_id, '_r_f_backdrop', true);
 
     if ($poster_path && empty($poster_meta)) {
-        $poster_url = 'https://image.tmdb.org/t/p/w500' . $poster_path;
-        $poster_id = @download_and_attach_image($poster_url, $post_id, $id);
+        $poster_url = TMDB_IMAGE_BASE_URL . 'w500' . $poster_path;
+        $poster_id = @download_and_attach_image($poster_url, $post_id, $id, $type);
         $poster_url = wp_get_attachment_image_src( $poster_id, 'full' )[0];
         if ($poster_id) update_post_meta($post_id, '_r_f_poster', $poster_url);
     }
 
     if ($logo_path && empty($logo_meta)) {
-        $logo_url = 'https://image.tmdb.org/t/p/w500' . $logo_path;
-        $logo_id = @download_and_attach_image($logo_url, $post_id, $id);
+        $logo_url = TMDB_IMAGE_BASE_URL . 'w500' . $logo_path;
+        $logo_id = @download_and_attach_image($logo_url, $post_id, $id, $type);
         $lgo_url = wp_get_attachment_image_src( $logo_id, 'full' )[0];
         if ($logo_id) update_post_meta($post_id, '_r_f_logo', $lgo_url);
         
     }
 
-// needs clean backdrop
-    $backdrop_url ="https://api.themoviedb.org/3/{$type}/{$id}/images?api_key={$api_key}";
+    // needs clean backdrop
+    $backdrop_url =TMDB_API_BASE_URL . "{$type}/{$id}/images?api_key={$api_key}";
     $backdrop_res = wp_remote_get($backdrop_url);
     if (!is_wp_error($backdrop_res)) {
         $backdrop_data = json_decode(wp_remote_retrieve_body($backdrop_res), true);
@@ -247,8 +298,8 @@ add_action('wp_ajax_tmdb_select', function () {
     }
 
     if ($backdrop_path && !has_post_thumbnail($post_id) ) {
-        $backdrop_url = 'https://image.tmdb.org/t/p/w1280' . $backdrop_path;
-        $backdrop_id = @download_and_attach_image($backdrop_url, $post_id, $id);
+        $backdrop_url = TMDB_IMAGE_BASE_URL . 'w1280' . $backdrop_path;
+        $backdrop_id = @download_and_attach_image($backdrop_url, $post_id, $id, $type);
             set_post_thumbnail($post_id, $backdrop_id);
     }
 
@@ -365,30 +416,57 @@ add_action('wp_ajax_tmdb_select', function () {
     if ($type === 'tv' && !empty($info['number_of_seasons'])) {
         $season_info = [];
         for ($s = 1; $s <= $info['number_of_seasons']; $s++) {
-            $season_url = "https://api.themoviedb.org/3/tv/{$id}/season/{$s}?api_key={$api_key}&language={$lang_info}";
+            $episode_info = [];
+            $season_url = TMDB_API_BASE_URL . "tv/{$id}/season/{$s}?api_key={$api_key}&language={$lang_info}";
             $season_res = wp_remote_get($season_url);
             
             if (!is_wp_error($season_res)) {
                 $season_data = json_decode(wp_remote_retrieve_body($season_res), true);
+                if (empty($season_data)) continue;
                 $season_number = $season_data['season_number'];
                 $season_id = $season_data['id'];
                 $air_date = $season_data['air_date'];
                 $season_overview = $season_data['overview'];
                 $season_name = $season_data['name'];
-                $episode_count = count($season_data['episodes']);
+                $episodes = $season_data['episodes'] ?? [];
+                $episode_count = count($episodes);
+                foreach($episodes as $index => $episode){
+                    $episode_number = $episode['episode_number'];
+                    $ep_still_path = $episode['still_path'] ?? '';
+                    $ep_poster_id = '';
+                    if($ep_still_path){
+                        $ep_poster_id = download_and_attach_image(TMDB_IMAGE_BASE_URL . 'w500' . $ep_still_path, $post_id, $id, 'tv');
+                    }
+                    $episode_info[$episode_number] = [
+                        'season_number' => $season_number,
+                        'episode_number' => $episode_number,
+                        'air_date' => $episode['air_date'],
+                        'overview' => $episode['overview'],
+                        'name' => $episode['name'],
+                        'episode_type' => $episode['episode_type'] ?? '',
+                        'runtime' => $episode['runtime'] ?? '',
+                        'still_path' => $ep_still_path,
+                        'poster_id' => $ep_poster_id,
+                    ];
+                }
                 $poster = $season_data['poster_path'] ?? '';
-                $season_info[] = [
+                $poster_id = '';
+                if ($poster) {
+                    $poster_id = download_and_attach_image(TMDB_IMAGE_BASE_URL . 'w500' . $poster, $post_id, $id, 'tv');
+                }
+                $season_info[$season_number] = [
                     'season_number' => $season_number,
                     'air_date' => $air_date,
                     'name' => $season_name,
                     'id' => $season_id,
                     'overview' => $season_overview,
                     'poster_path' => $poster,
-                    'episode_count' => $episode_count
+                    'poster_id' => $poster_id,
+                    'episode_count' => $episode_count,
+                    'episodes' => $episode_info
                 ];
             }
         }
-       
         update_post_meta($post_id, '_r_t_seasons', $season_info);
     }
     $link = get_permalink( $post_id );
