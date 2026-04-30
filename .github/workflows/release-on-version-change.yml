@@ -28,6 +28,11 @@ on:
 permissions:
   contents: write
 
+# 提前启用 Node.js 24 运行时，消除 Node 20 弃用警告
+# （GitHub 将于 2026-06-02 强制切换，2026-09-16 移除 Node 20）
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   release:
     name: Detect Version & Publish Release
