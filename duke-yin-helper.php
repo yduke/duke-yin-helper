@@ -1,26 +1,18 @@
 <?php
 
 /**
- * The plugin bootstrap file
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
- *
- * @link              https://www.dukeyin.com
+ * @link              https://dukeyin.com
  * @since             1.0.0
  * @package           Duke_Yin_Helper
  *
- * @wordpress-plugin
  * Plugin Name:       Duke Yin Helper
- * Plugin URI:        https://www.dukeyin.com
+ * Plugin URI:        https://dukeyin.com
  * Description:       For supporting the wordpress theme dukeyin, add more post types and shortcodes.
- * Version:           1.1.20
+ * Version:           1.1.21
  * Author:            Duke Yin
- * Author URI:        https://www.dukeyin.com
+ * Author URI:        https://dukeyin.com
  * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * License URI:       http://dukeyin.com/license
  * Text Domain:       duke-yin-helper
  * Domain Path:       /languages
  */
@@ -35,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'DUKE_YIN_HELPER_VERSION', '1.1.20' );
+define( 'DUKE_YIN_HELPER_VERSION', '1.1.21' );
 
 /**
  * The code that runs during plugin activation.
@@ -132,9 +124,6 @@ if($sgdb!= ''){
 			'dk_game_importer_page');
 	});
 }
-
-
-
 
 
 /**

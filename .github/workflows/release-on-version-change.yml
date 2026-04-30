@@ -1,4 +1,22 @@
-name: Release on Plugin Version Change
+# ============================================================
+#  WordPress Plugin — Auto Release on Version Change
+#  File: .github/workflows/release-on-version-change.yaml
+#
+#  工作原理：
+#    1. 每次推送到主分支时，自动扫描根目录下含有标准插件
+#       头部信息的 PHP 文件，提取 Version / Text Domain 字段。
+#    2. 与上一次提交对比，若版本号有变动则继续后续步骤。
+#    3. 使用根目录的 .releaseignore 过滤不需要发布的文件，
+#       打包为 <slug>.zip（不含版本号，符合 WordPress 规范）。
+#    4. 在 GitHub 上创建对应的 Release 并上传 ZIP 附件。
+#
+#  依赖：
+#    - 根目录存在符合 WordPress 标准的插件主文件（含 Plugin Name:）
+#    - 根目录可选存在 .releaseignore（格式同 .gitignore）
+#    - Repository Settings → Actions → 允许写入权限（默认已开启）
+# ============================================================
+
+name: Release on Version Change
 
 on:
   push:
@@ -6,88 +24,203 @@ on:
       - main
       - master
 
+# 允许 workflow 创建 Release 和 Tag
 permissions:
   contents: write
 
 jobs:
-  build:
+  release:
+    name: Detect Version & Publish Release
     runs-on: ubuntu-latest
+
     steps:
+      # ----------------------------------------------------------
+      # 1. 检出代码（需要最近两次提交以便对比版本号变化）
+      # ----------------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2   # HEAD 与 HEAD~1 用于版本对比
 
-      - name: Get plugin main file
-        id: find_plugin_file
+      # ----------------------------------------------------------
+      # 2. 从插件主文件中提取元数据
+      #    - 扫描根目录所有 .php 文件，找到含 "Plugin Name:" 的主文件
+      #    - 提取 Version 和 Text Domain（作为 slug）
+      # ----------------------------------------------------------
+      - name: Extract plugin metadata
+        id: meta
+        shell: bash
         run: |
-          # 查找插件主文件（假设插件主文件在仓库根目录下且带有 Plugin Name）
-          PLUGIN_FILE=$(grep -rl "Plugin Name:" . | head -n 1)
+          set -euo pipefail
+
+          echo "::group::Scanning for plugin main file"
+
+          # 仅在根目录 PHP 文件中查找（排除子目录，避免误匹配）
+          PLUGIN_FILE=""
+          for f in *.php; do
+            [ -f "$f" ] || continue
+            if grep -qiE "^\s*\*?\s*Plugin Name\s*:" "$f"; then
+              PLUGIN_FILE="$f"
+              break
+            fi
+          done
+
           if [ -z "$PLUGIN_FILE" ]; then
-            echo "❌ 未找到插件主文件（包含 Plugin Name: 的PHP文件）。"
+            echo "::error::No WordPress plugin main file found in repository root."
             exit 1
           fi
-          echo "plugin_file=$PLUGIN_FILE" >> $GITHUB_OUTPUT
-          echo "✅ 找到插件文件: $PLUGIN_FILE"
+          echo "Main plugin file : $PLUGIN_FILE"
 
-      - name: Get current version from plugin header
-        id: get_version
-        run: |
-          FILE="${{ steps.find_plugin_file.outputs.plugin_file }}"
-
-          # 使用兼容 WordPress 格式的正则提取 Version 字段
-          VERSION=$(grep -Eim1 "^[[:space:]]*(\*|#|//)?[[:space:]]*Version:[[:space:]]*[0-9]+\.[0-9]+(\.[0-9]+)?" "$FILE" | sed -E 's/.*Version:[[:space:]]*([0-9.]+).*/\1/')
-
+          # 提取 Version（兼容带/不带前导空格的写法）
+          VERSION=$(grep -iE "^\s*\*?\s*Version\s*:" "$PLUGIN_FILE" \
+                    | sed -E 's/.*Version\s*:\s*//' \
+                    | tr -d '[:space:]')
           if [ -z "$VERSION" ]; then
-            echo "❌ 未能从插件文件中提取版本号。"
-            echo "文件内容示例："
-            head -n 20 "$FILE"
+            echo "::error::Could not extract Version from $PLUGIN_FILE."
             exit 1
           fi
+          echo "Current version  : $VERSION"
 
-          echo "current_version=$VERSION" >> $GITHUB_OUTPUT
-          echo "✅ 当前版本号：$VERSION"
+          # 提取 Text Domain 作为 slug；若缺失则用文件名（去掉 .php）
+          SLUG=$(grep -iE "^\s*\*?\s*Text Domain\s*:" "$PLUGIN_FILE" \
+                 | sed -E 's/.*Text Domain\s*:\s*//' \
+                 | tr -d '[:space:]')
+          if [ -z "$SLUG" ]; then
+            SLUG="${PLUGIN_FILE%.php}"
+          fi
+          echo "Plugin slug      : $SLUG"
 
-      - name: Check if version already released
-        id: check_release
+          echo "::endgroup::"
+
+          # 输出供后续 steps 使用
+          echo "plugin_file=$PLUGIN_FILE" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION"         >> "$GITHUB_OUTPUT"
+          echo "slug=$SLUG"               >> "$GITHUB_OUTPUT"
+
+      # ----------------------------------------------------------
+      # 3. 对比版本号：当前提交 vs 上一次提交
+      #    - 首次提交（无 HEAD~1）视为版本变更，直接发布
+      # ----------------------------------------------------------
+      - name: Detect version change
+        id: version_check
+        shell: bash
         run: |
-          VERSION=${{ steps.get_version.outputs.current_version }}
-          EXISTING=$(gh release list --limit 100 | grep -F "v$VERSION" || true)
-          if [ -n "$EXISTING" ]; then
-            echo "⚠️ 版本 v$VERSION 已存在，跳过发布。"
-            echo "skip_release=true" >> $GITHUB_OUTPUT
+          PLUGIN_FILE="${{ steps.meta.outputs.plugin_file }}"
+          CURRENT="${{ steps.meta.outputs.version }}"
+
+          # 尝试从上一次提交中读取版本；首次提交时为空
+          PREVIOUS=$(git show HEAD~1:"$PLUGIN_FILE" 2>/dev/null \
+                     | grep -iE "^\s*\*?\s*Version\s*:" \
+                     | sed -E 's/.*Version\s*:\s*//' \
+                     | tr -d '[:space:]' \
+                     || true)
+
+          echo "Previous version : ${PREVIOUS:-<none>}"
+          echo "Current version  : $CURRENT"
+
+          if [ "$CURRENT" != "$PREVIOUS" ]; then
+            echo "changed=true"  >> "$GITHUB_OUTPUT"
+            echo "✅ Version changed — will create release."
           else
-            echo "skip_release=false" >> $GITHUB_OUTPUT
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "⏭️  Version unchanged — skipping release."
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create ZIP package (with .releaseignore)
-        if: steps.check_release.outputs.skip_release == 'false'
+      # ----------------------------------------------------------
+      # 4. 防重复：确认 Tag 不存在
+      # ----------------------------------------------------------
+      - name: Check for duplicate tag
+        id: tag_check
+        if: steps.version_check.outputs.changed == 'true'
+        shell: bash
         run: |
-          VERSION=${{ steps.get_version.outputs.current_version }}
-          ZIP_FILE="${{ github.event.repository.name }}-${VERSION}.zip"
-          EXCLUDE_ARGS="-x '*.git*' '.github/*'"
-
-          if [ -f ".releaseignore" ]; then
-            echo "🧾 使用 .releaseignore 过滤以下内容："
-            while IFS= read -r line; do
-              if [ -n "$line" ] && [[ ! "$line" =~ ^# ]]; then
-                echo "  - $line"
-                EXCLUDE_ARGS="$EXCLUDE_ARGS '$line'"
-              fi
-            done < .releaseignore
+          TAG="v${{ steps.meta.outputs.version }}"
+          if git ls-remote --tags origin "$TAG" | grep -q "$TAG"; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "⚠️  Tag $TAG already exists — skipping to avoid duplicate release."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "✅ Tag $TAG is new."
           fi
 
-          eval zip -r "$ZIP_FILE" . $EXCLUDE_ARGS
-          echo "✅ 打包完成：$ZIP_FILE"
+      # ----------------------------------------------------------
+      # 5. 打包：将插件文件复制到临时目录后压缩
+      #    - 始终排除 .git / .github / .releaseignore 本身
+      #    - 若存在 .releaseignore，额外按其规则过滤文件
+      #    - ZIP 内层目录名 = slug（WordPress 要求）
+      #    - 最终文件名 = <slug>.zip（不含版本号）
+      # ----------------------------------------------------------
+      - name: Build release package
+        if: >
+          steps.version_check.outputs.changed == 'true' &&
+          steps.tag_check.outputs.exists == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
 
+          SLUG="${{ steps.meta.outputs.slug }}"
+          BUILD_ROOT="/tmp/wp-plugin-build"
+          BUILD_DIR="$BUILD_ROOT/$SLUG"
+
+          mkdir -p "$BUILD_DIR"
+
+          echo "::group::Copying plugin files"
+
+          # 构建基础排除参数
+          RSYNC_EXCLUDES=(
+            "--exclude=.git/"
+            "--exclude=.github/"
+            "--exclude=.releaseignore"
+          )
+
+          # 若存在 .releaseignore，追加用户自定义排除规则
+          if [ -f ".releaseignore" ]; then
+            echo "Using .releaseignore for exclusions:"
+            cat .releaseignore
+            RSYNC_EXCLUDES+=("--exclude-from=.releaseignore")
+          else
+            echo "No .releaseignore found — only default excludes applied."
+          fi
+
+          rsync -av --prune-empty-dirs \
+            "${RSYNC_EXCLUDES[@]}" \
+            ./ "$BUILD_DIR/"
+
+          echo "::endgroup::"
+
+          # 打包（ZIP 根目录即 slug/，符合 WordPress 插件规范）
+          echo "::group::Creating ZIP archive"
+          cd "$BUILD_ROOT"
+          zip -r "$GITHUB_WORKSPACE/${SLUG}.zip" "$SLUG/"
+          echo "✅ Package: ${SLUG}.zip"
+          echo "::endgroup::"
+
+          # 记录 ZIP 路径供下一步使用
+          echo "zip_path=${SLUG}.zip" >> "$GITHUB_OUTPUT"
+        id: build
+
+      # ----------------------------------------------------------
+      # 6. 创建 GitHub Release 并上传 ZIP
+      # ----------------------------------------------------------
       - name: Create GitHub Release
-        if: steps.check_release.outputs.skip_release == 'false'
+        if: >
+          steps.version_check.outputs.changed == 'true' &&
+          steps.tag_check.outputs.exists == 'false'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.get_version.outputs.current_version }}
-          name: "v${{ steps.get_version.outputs.current_version }}"
-          body: "🔖 自动发布插件版本 v${{ steps.get_version.outputs.current_version }}"
-          files: |
-            ${{ github.event.repository.name }}-${{ steps.get_version.outputs.current_version }}.zip
+          tag_name: v${{ steps.meta.outputs.version }}
+          name: v${{ steps.meta.outputs.version }}
+          body: |
+            ## ${{ steps.meta.outputs.slug }} v${{ steps.meta.outputs.version }}
+
+            **自动发布** — 由版本号变更触发。
+
+            ### 安装方式
+            1. 下载下方的 `${{ steps.meta.outputs.slug }}.zip`
+            2. 进入 WordPress 后台 → 插件 → 上传插件
+            3. 选择 ZIP 文件并安装
+          files: ${{ steps.meta.outputs.slug }}.zip
+          generate_release_notes: true
+          fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -144,7 +144,10 @@ add_action('wp_ajax_tmdb_select', function () {
     }
 
     update_post_meta( $post_id, '_r_f_overview', $overview );
-    update_post_meta( $post_id, 'ranking-score', $score );
+    $existing_score = get_post_meta( $post_id, 'ranking-score', true );
+    if($existing_score === '' || $existing_score === null){
+        update_post_meta( $post_id, 'ranking-score', $score );
+    }
     update_post_meta( $post_id, '_r_now', $status );
     update_post_meta( $post_id, 'tmdb_id', $id );
 
@@ -435,7 +438,7 @@ add_action('wp_ajax_tmdb_select', function () {
                     $ep_still_path = $episode['still_path'] ?? '';
                     $ep_poster_id = '';
                     if($ep_still_path){
-                        $ep_poster_id = download_and_attach_image(TMDB_IMAGE_BASE_URL . 'w500' . $ep_still_path, $post_id, $id, 'tv');
+                        $ep_poster_id = @download_and_attach_image(TMDB_IMAGE_BASE_URL . 'w500' . $ep_still_path, $post_id, $id, 'tv');
                     }
                     $episode_info[$episode_number] = [
                         'season_number' => $season_number,
@@ -452,7 +455,7 @@ add_action('wp_ajax_tmdb_select', function () {
                 $poster = $season_data['poster_path'] ?? '';
                 $poster_id = '';
                 if ($poster) {
-                    $poster_id = download_and_attach_image(TMDB_IMAGE_BASE_URL . 'w500' . $poster, $post_id, $id, 'tv');
+                    $poster_id = @download_and_attach_image(TMDB_IMAGE_BASE_URL . 'w500' . $poster, $post_id, $id, 'tv');
                 }
                 $season_info[$season_number] = [
                     'season_number' => $season_number,

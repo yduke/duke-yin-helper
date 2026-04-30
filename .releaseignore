@@ -1,19 +1,68 @@
-# 开发文件
+# ============================================================
+#  .releaseignore — WordPress 插件发布时排除的文件/目录
+#  格式与 .gitignore 完全一致（rsync --exclude-from 兼容）
+#  放置于插件根目录
+# ============================================================
+
+# --- 版本控制 ---
+.git/
+.gitignore
+.gitattributes
+
+# --- CI / GitHub Actions ---
+.github/
+
+# --- 本文件自身 ---
+.releaseignore
+
+# --- 开发依赖 ---
+node_modules/
+vendor/          # 若 vendor 已内置到发布包则注释此行
+
+# --- 包管理配置 ---
+package.json
+package-lock.json
+yarn.lock
+composer.json
+composer.lock
+
+# --- 构建工具 ---
+webpack.config.js
+vite.config.js
+babel.config.js
+.babelrc
+Gruntfile.js
+Makefile
+
+# --- 测试 ---
+tests/
+test/
+phpunit.xml
+phpunit.xml.dist
+.phpunit.result.cache
+
+# --- 代码质量 ---
+.phpcs.xml
+.phpcs.xml.dist
+phpcs.xml
+.eslintrc*
+.eslintignore
+.stylelintrc*
+
+# --- 编辑器 / IDE ---
 .vscode/
 .idea/
-node_modules/
+*.sublime-project
+*.sublime-workspace
 
-# 文档
-README.md
-screenshot.png
-docs/
-tests/
+# --- 源码（若有独立 src 目录，发布时只需编译产物）---
+# src/
 
-# GitHub Actions
-.github/
-.gitlab-ci.yml
+# --- 文档（按需取消注释）---
+# docs/
+# CHANGELOG.md
+# CONTRIBUTING.md
 
-# 系统文件
+# --- 系统文件 ---
 .DS_Store
 Thumbs.db
-*.log
