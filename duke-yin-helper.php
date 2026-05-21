@@ -60,6 +60,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/helpers.php';
 require plugin_dir_path( __FILE__ ) . 'includes/meta-field.php';
 require plugin_dir_path( __FILE__ ) . 'includes/meta-block.php';
 require plugin_dir_path( __FILE__ ) . 'includes/rest-api.php';
+require plugin_dir_path( __FILE__ ) . 'includes/blog-to-microblog-sync.php';
 
 // require plugin_dir_path( __FILE__ ) . 'includes/movie-and-game/image_download.php';
 
