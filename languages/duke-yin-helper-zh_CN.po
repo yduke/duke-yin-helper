@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Duke Yin Helper\n"
-"POT-Creation-Date: 2026-03-04 21:26+0800\n"
-"PO-Revision-Date: 2026-03-04 21:27+0800\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2026-05-23 03:59+0800\n"
+"PO-Revision-Date: 2026-05-23 04:00+0800\n"
+"Last-Translator: Duke Yin <duke@dukeyin.com>\n"
+"Language-Team: Duke Yin <duke@dukeyin.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,12 +21,11 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: duke-yin-helper.php:114 duke-yin-helper.php:115
-#: includes/wp-movies/templates/admin/import.php:43
+#: duke-yin-helper.php:107 duke-yin-helper.php:108
 msgid "Movie Import Tool"
 msgstr "电影导入工具"
 
-#: duke-yin-helper.php:128 duke-yin-helper.php:129
+#: duke-yin-helper.php:121 duke-yin-helper.php:122
 msgid "Game Import Tool"
 msgstr "游戏导入工具"
 
@@ -123,8 +122,8 @@ msgstr ""
 "寸略小，但转换后的图像质量通常略差于Imagick。"
 
 #: includes/helpers.php:53
-msgid "Duke Yin Theme Support"
-msgstr "Duke Yin 辅助"
+msgid "Duke Theme Support"
+msgstr "Duke 主题辅助"
 
 #: includes/helpers.php:61
 msgid "Theme Name: "
@@ -248,50 +247,50 @@ msgid "Not Cleared"
 msgstr "未通关"
 
 #: includes/movie-and-game/game-importer.php:35
-#: includes/movie-and-game/movie-importer.php:39
+#: includes/movie-and-game/movie-importer.php:47
 msgid "Search"
 msgstr "搜索"
 
-#: includes/movie-and-game/movie-importer.php:25
+#: includes/movie-and-game/movie-importer.php:33
 msgid "Movie and TV import tool"
 msgstr "电影和电视导入"
 
-#: includes/movie-and-game/movie-importer.php:27
+#: includes/movie-and-game/movie-importer.php:35
 msgid "Movie"
 msgstr "电影"
 
-#: includes/movie-and-game/movie-importer.php:28
+#: includes/movie-and-game/movie-importer.php:36
 msgid "TV"
 msgstr "电视"
 
-#: includes/movie-and-game/movie-importer.php:30
+#: includes/movie-and-game/movie-importer.php:38
 msgid "Movie or TV title here"
 msgstr "电影或电视标题"
 
-#: includes/movie-and-game/movie-importer.php:32 includes/rest-api.php:86
+#: includes/movie-and-game/movie-importer.php:40 includes/rest-api.php:86
 #: includes/rest-api.php:101 includes/rest-api.php:109
 #: includes/rest-api.php:124
 msgid "Watched"
 msgstr "看过"
 
-#: includes/movie-and-game/movie-importer.php:33 includes/rest-api.php:89
+#: includes/movie-and-game/movie-importer.php:41 includes/rest-api.php:89
 #: includes/rest-api.php:112
 msgid "Watching"
 msgstr "在看"
 
-#: includes/movie-and-game/movie-importer.php:34
+#: includes/movie-and-game/movie-importer.php:42
 msgid "Want to watch"
 msgstr "想看"
 
-#: includes/movie-and-game/movie-importer.php:35
+#: includes/movie-and-game/movie-importer.php:43
 msgid "Watched many times"
 msgstr "看过多次"
 
-#: includes/movie-and-game/movie-importer.php:36
+#: includes/movie-and-game/movie-importer.php:44
 msgid "Partly watched"
 msgstr "没看完"
 
-#: includes/movie-and-game/movie-importer.php:38
+#: includes/movie-and-game/movie-importer.php:46
 msgid "Score"
 msgstr "评分"
 
@@ -326,7 +325,6 @@ msgid "Are you sure you want to do this?"
 msgstr "是否确认执行此操作？"
 
 #: includes/movie-and-game/tools.php:40 includes/movie-and-game/tools.php:69
-#: includes/wp-movies/templates/admin/tools.php:51
 msgid "Operation:"
 msgstr "行动："
 
@@ -335,7 +333,6 @@ msgid "Select Action"
 msgstr "选择行动"
 
 #: includes/movie-and-game/tools.php:44
-#: includes/wp-movies/templates/admin/tools.php:54
 msgid "Clear movie or tv-show data for a specific post ID"
 msgstr "指定Post ID清除电影或剧集数据"
 
@@ -344,27 +341,22 @@ msgid "Clear movie or tv-show data for a specific TMDb ID"
 msgstr "指定TMDb ID清除电影或剧集数据"
 
 #: includes/movie-and-game/tools.php:46
-#: includes/wp-movies/templates/admin/tools.php:56
 msgid "Clear cast crew languages and categories with zero posts."
 msgstr "清除0附加文章的演员、导演、语言和分类。"
 
 #: includes/movie-and-game/tools.php:47
-#: includes/wp-movies/templates/admin/tools.php:57
 msgid "Clear all movies and tv-shows data for all posts"
 msgstr "清除本站所有电影和剧集数据"
 
 #: includes/movie-and-game/tools.php:52 includes/movie-and-game/tools.php:80
-#: includes/wp-movies/templates/admin/tools.php:61
 msgid "ID:"
 msgstr "ID："
 
 #: includes/movie-and-game/tools.php:54 includes/movie-and-game/tools.php:82
-#: includes/wp-movies/templates/admin/tools.php:63
 msgid "enter an ID when applicable; if not, leave blank"
 msgstr "在需要时输入ID，否则请留空"
 
 #: includes/movie-and-game/tools.php:60 includes/movie-and-game/tools.php:88
-#: includes/wp-movies/templates/admin/tools.php:69
 msgid "Proceed"
 msgstr "执行"
 
@@ -1913,135 +1905,9 @@ msgstr "添加了一个服务"
 msgid "Added a video"
 msgstr "添加了一个新视频"
 
-#: includes/short-code.php:303
+#: includes/short-code-backup.php:165 includes/short-code.php:303
 msgid "Bookmarks"
 msgstr "书签"
-
-#: includes/wp-movies/class.movies-admin.php:14
-msgid "Movies Import Tool"
-msgstr "电影导入工具"
-
-#: includes/wp-movies/class.movies-admin.php:14
-msgid "Movies Tool"
-msgstr "电影工具"
-
-#: includes/wp-movies/class.movies-admin.php:15
-msgid "Import Movies"
-msgstr "导入电影"
-
-#: includes/wp-movies/class.movies-admin.php:16
-msgid "Import TV Shows"
-msgstr "导入剧集"
-
-#: includes/wp-movies/class.movies-admin.php:19
-msgid "Tools"
-msgstr "工具"
-
-#: includes/wp-movies/class.movies-admin.php:28
-msgid ""
-"The Movies plugin has not been configured, enter your API key in Appearance, "
-"DukeYin theme options."
-msgstr "电影工具未正确设置，请在外观，DukeYin主题选项中输入你的API密钥。"
-
-#: includes/wp-movies/templates/admin/import.php:39
-#: includes/wp-movies/templates/admin/import_tv.php:39
-msgid "Your import was completed."
-msgstr "导入已完成。"
-
-#: includes/wp-movies/templates/admin/import.php:45
-#: includes/wp-movies/templates/admin/import_tv.php:45
-msgid ""
-"You cannot use the import tool without an API key. Please go to Functions in "
-"the DukeYin Options and enter your TMDB API key."
-msgstr ""
-"需要完成设置以使用电影导入工具。请在DukeYin选项，功能中输入你的TMDB API密钥。"
-
-#: includes/wp-movies/templates/admin/import.php:47
-#: includes/wp-movies/templates/admin/import_tv.php:47
-msgid "There were no posts found without movie data attached to them."
-msgstr "未找到缺失电影信息的文章。"
-
-#: includes/wp-movies/templates/admin/import.php:99
-msgid "Movie Title"
-msgstr "电影标题"
-
-#: includes/wp-movies/templates/admin/import.php:100
-#: includes/wp-movies/templates/admin/import_tv.php:100
-msgid "Best TMDb Match(es)"
-msgstr "最佳匹配"
-
-#: includes/wp-movies/templates/admin/import.php:101
-#: includes/wp-movies/templates/admin/import_tv.php:101
-msgid "Images"
-msgstr "图像"
-
-#: includes/wp-movies/templates/admin/import.php:138
-#: includes/wp-movies/templates/admin/import_tv.php:138
-msgid "Enter a TMDb ID"
-msgstr "输入TMDb ID"
-
-#: includes/wp-movies/templates/admin/import.php:139
-#: includes/wp-movies/templates/admin/import_tv.php:139
-msgid "None (Leave Blank)"
-msgstr "无（不处理）"
-
-#: includes/wp-movies/templates/admin/import.php:156
-#: includes/wp-movies/templates/admin/import_tv.php:156
-msgid "Import Data"
-msgstr "导入数据"
-
-#: includes/wp-movies/templates/admin/import.save.php:31
-#: includes/wp-movies/templates/admin/import.save.tv.php:9
-msgid "Importing... Please do not navigate away from this page."
-msgstr "正在导入……请不要关闭或离开刺页面。"
-
-#: includes/wp-movies/templates/admin/import_tv.php:43
-msgid "TV Show Import Tool"
-msgstr "剧集导入工具"
-
-#: includes/wp-movies/templates/admin/import_tv.php:99
-msgid "TV show Title"
-msgstr "剧集标题"
-
-#: includes/wp-movies/templates/admin/settings.php:6
-#: includes/wp-movies/templates/admin/tools.php:6
-msgid "You do not have sufficient permissions to access this page."
-msgstr "你没有访问此页面的权限。"
-
-#: includes/wp-movies/templates/admin/settings.php:30
-msgid "Your settings have been saved."
-msgstr "设置已保存。"
-
-#: includes/wp-movies/templates/admin/settings.php:35
-msgid "Movies Plugin Settings"
-msgstr "电影插件设置"
-
-#: includes/wp-movies/templates/admin/settings.php:40
-msgid ":"
-msgstr ""
-
-#: includes/wp-movies/templates/admin/settings.php:47
-msgid "Save Changes"
-msgstr "保存更改"
-
-#: includes/wp-movies/templates/admin/tools.php:41
-msgid "The operation was completed."
-msgstr "行动已完成。"
-
-#: includes/wp-movies/templates/admin/tools.php:46
-msgid "Movies Plugin Tools"
-msgstr "电影插件工具"
-
-#: includes/wp-movies/templates/admin/tools.php:55
-msgid "Clear movie or tv-show  data for a specific TMDb ID"
-msgstr "指定TMDb ID清除电影或剧集数据"
-
-#: includes/wp-movies/tmdb-api.php:145
-#: includes/wp-movies/tmdb.v3_backup.php:105
-msgid ""
-"<h4>Warning</h4>Unable to read configuration, verify that the API key is "
-"valid"
-msgstr "<h4>警告</h4>未能读取设置，请验证API密钥的正确性以及网络链接"
 
 #. Plugin Name of the plugin/theme
 msgid "Duke Yin Helper"
@@ -2049,8 +1915,8 @@ msgstr "Duke Yin 辅助"
 
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
-msgid "https://www.dukeyin.com"
-msgstr "https://www.dukeyin.com"
+msgid "https://dukeyin.com"
+msgstr "https://dukeyin.com"
 
 #. Description of the plugin/theme
 msgid ""
@@ -2062,6 +1928,92 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "Duke Yin"
 msgstr "Duke Yin"
+
+#~ msgid "Movies Import Tool"
+#~ msgstr "电影导入工具"
+
+#~ msgid "Movies Tool"
+#~ msgstr "电影工具"
+
+#~ msgid "Import Movies"
+#~ msgstr "导入电影"
+
+#~ msgid "Import TV Shows"
+#~ msgstr "导入剧集"
+
+#~ msgid "Tools"
+#~ msgstr "工具"
+
+#~ msgid ""
+#~ "The Movies plugin has not been configured, enter your API key in "
+#~ "Appearance, DukeYin theme options."
+#~ msgstr "电影工具未正确设置，请在外观，DukeYin主题选项中输入你的API密钥。"
+
+#~ msgid "Your import was completed."
+#~ msgstr "导入已完成。"
+
+#~ msgid ""
+#~ "You cannot use the import tool without an API key. Please go to Functions "
+#~ "in the DukeYin Options and enter your TMDB API key."
+#~ msgstr ""
+#~ "需要完成设置以使用电影导入工具。请在DukeYin选项，功能中输入你的TMDB API密"
+#~ "钥。"
+
+#~ msgid "There were no posts found without movie data attached to them."
+#~ msgstr "未找到缺失电影信息的文章。"
+
+#~ msgid "Movie Title"
+#~ msgstr "电影标题"
+
+#~ msgid "Best TMDb Match(es)"
+#~ msgstr "最佳匹配"
+
+#~ msgid "Images"
+#~ msgstr "图像"
+
+#~ msgid "Enter a TMDb ID"
+#~ msgstr "输入TMDb ID"
+
+#~ msgid "None (Leave Blank)"
+#~ msgstr "无（不处理）"
+
+#~ msgid "Import Data"
+#~ msgstr "导入数据"
+
+#~ msgid "Importing... Please do not navigate away from this page."
+#~ msgstr "正在导入……请不要关闭或离开刺页面。"
+
+#~ msgid "TV Show Import Tool"
+#~ msgstr "剧集导入工具"
+
+#~ msgid "TV show Title"
+#~ msgstr "剧集标题"
+
+#~ msgid "You do not have sufficient permissions to access this page."
+#~ msgstr "你没有访问此页面的权限。"
+
+#~ msgid "Your settings have been saved."
+#~ msgstr "设置已保存。"
+
+#~ msgid "Movies Plugin Settings"
+#~ msgstr "电影插件设置"
+
+#~ msgid "Save Changes"
+#~ msgstr "保存更改"
+
+#~ msgid "The operation was completed."
+#~ msgstr "行动已完成。"
+
+#~ msgid "Movies Plugin Tools"
+#~ msgstr "电影插件工具"
+
+#~ msgid "Clear movie or tv-show  data for a specific TMDb ID"
+#~ msgstr "指定TMDb ID清除电影或剧集数据"
+
+#~ msgid ""
+#~ "<h4>Warning</h4>Unable to read configuration, verify that the API key is "
+#~ "valid"
+#~ msgstr "<h4>警告</h4>未能读取设置，请验证API密钥的正确性以及网络链接"
 
 #~ msgid "PHP image format support"
 #~ msgstr "PHP图片文件格式支持"

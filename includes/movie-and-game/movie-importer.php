@@ -279,15 +279,15 @@ add_action('wp_ajax_tmdb_select', function () {
     if ($poster_path && empty($poster_meta)) {
         $poster_url = TMDB_IMAGE_BASE_URL . 'w500' . $poster_path;
         $poster_id = @download_and_attach_image($poster_url, $post_id, $id, $type);
-        $poster_url = wp_get_attachment_image_src( $poster_id, 'full' )[0];
+        $poster_url = isset(wp_get_attachment_image_src( $poster_id, 'full' )[0]) ? wp_get_attachment_image_src( $poster_id, 'full' )[0]:'';
         if ($poster_id) update_post_meta($post_id, '_r_f_poster', $poster_url);
     }
 
     if ($logo_path && empty($logo_meta)) {
         $logo_url = TMDB_IMAGE_BASE_URL . 'w500' . $logo_path;
         $logo_id = @download_and_attach_image($logo_url, $post_id, $id, $type);
-        $lgo_url = wp_get_attachment_image_src( $logo_id, 'full' )[0];
-        if ($logo_id) update_post_meta($post_id, '_r_f_logo', $lgo_url);
+        $logo_url = isset(wp_get_attachment_image_src( $logo_id, 'full' )[0]) ? wp_get_attachment_image_src( $logo_id, 'full' )[0]:'';
+        if ($logo_id) update_post_meta($post_id, '_r_f_logo', $logo_url);
         
     }
 
