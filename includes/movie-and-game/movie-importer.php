@@ -52,7 +52,9 @@ function dk_movie_importer_page() {
                             <option value="3"><?php _e('Watched many times','duke-yin-helper');?></option>
                             <option value="4"><?php _e('Partly watched','duke-yin-helper');?></option>
                         </select>
-                        <input type="number" min="0" max="10" step="0.1" id="score" placeholder="<?php _e('Score','duke-yin-helper');?>" style="width: 100px;">
+
+                        <input type="range" id="score-range" min="0" max="10" step="0.1" value="<?php echo esc_attr( $graphic_value ?? '5' ); ?>" oninput="document.getElementById('score').value = this.value">
+                        <input type="number" id="score" name="score" min="0" max="10" step="0.1" placeholder="<?php _e('Score','duke-yin-helper');?>" value="<?php echo esc_attr( $graphic_value ?? '5' ); ?>" oninput="document.getElementById('score-range').value = this.value" style="width: 80px;">
                     </td>
                 </tr>
                 <tr>
@@ -487,5 +489,6 @@ add_action('wp_ajax_tmdb_select', function () {
         update_post_meta($post_id, '_r_t_seasons', $season_info);
     }
     $link = get_permalink( $post_id );
-    wp_send_json_success(['title'=>$original_title,'link' => $link]);
+    $edit_link = get_edit_post_link( $post_id );
+    wp_send_json_success(['title'=>$original_title,'link' => $link, 'edit_link' => $edit_link]);
 });

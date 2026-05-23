@@ -24,18 +24,70 @@ function dk_game_importer_page() {
    ?>
    <div class="wrap">
         <h1><?php _e('Games Import Tool','duke-yin-helper'); ?></h1>
-        <input type="text" id="sgdb-game-name" placeholder="<?php _e('Games title here','duke-yin-helper'); ?>">
+        <table class="form-table" role="presentation">
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="text" id="sgdb-game-name" placeholder="<?php _e('Games title here','duke-yin-helper'); ?>">
+                        <button id="sgdb-search-btn" class="button"><?php _e('Search','duke-yin-helper'); ?></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="game-status">
+                            <option value="0"><?php _e('Played','duke-yin-helper');?></option>
+                            <option value="1"><?php _e('Playing','duke-yin-helper');?></option>
+                            <option value="2"><?php _e('Wish to play','duke-yin-helper');?></option>
+                            <option value="3"><?php _e('Cleared','duke-yin-helper');?></option>
+                            <option value="4"><?php _e('Not Cleared','duke-yin-helper');?></option>
+                        </select>
+                        <input type="number" min="0" max="10" step="0.1" id="score" placeholder="<?php _e('Score','duke-yin-helper');?>" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="description"><?php _e('Graphic Scores','duke-yin-helper'); ?></p>
+                        <input type="range" id="graphic" min="0" max="10" value="<?php echo esc_attr( $graphic_value ?? '5' ); ?>" oninput="document.getElementById('graphic-score').value = this.value">
+                        <input type="number" id="graphic-score" name="graphic-score" min="0" max="10"  value="<?php echo esc_attr( $graphic_value ?? '5' ); ?>" oninput="document.getElementById('graphic').value = this.value" style="width: 80px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="description"><?php _e('Audio Scores','duke-yin-helper'); ?></p>
+                        <input type="range" id="audio" min="0" max="10" value="<?php echo esc_attr( $audio_value ?? '5' ); ?>" oninput="document.getElementById('audios-score').value = this.value">
+                        <input type="number" id="audios-score" name="audios-score" min="0" max="10" value="<?php echo esc_attr( $audio_value ?? '5' ); ?>" oninput="document.getElementById('audio').value = this.value" style="width: 80px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="description"><?php _e('Narrative Scores','duke-yin-helper'); ?></p>
+                        <input type="range" id="narrative" min="0" max="10" value="<?php echo esc_attr( $narrative_value ?? '5' ); ?>" oninput="document.getElementById('narrative-score').value = this.value">
+                        <input type="number" id="narrative-score" name="narrative-score" min="0" max="10"  value="<?php echo esc_attr( $narrative_value ?? '5' ); ?>" oninput="document.getElementById('narrative').value = this.value" style="width: 80px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="description"><?php _e('Technical Scores','duke-yin-helper'); ?></p>
+                        <input type="range" id="technical" min="0" max="10" value="<?php echo esc_attr( $technical_value ?? '5' ); ?>" oninput="document.getElementById('technical-score').value = this.value">
+                        <input type="number" id="technical-score" name="technical-score" min="0" max="10" value="<?php echo esc_attr( $technical_value ?? '5' ); ?>" oninput="document.getElementById('technical').value = this.value" style="width: 80px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="description"><?php _e('Gameplay Scores','duke-yin-helper'); ?></p>
+                        <input type="range" id="gameplay" min="0" max="10" value="<?php echo esc_attr( $gameplay_value ?? '5' ); ?>" oninput="document.getElementById('gameplay-score').value = this.value">
+                        <input type="number" id="gameplay-score" name="gameplay-score" min="0" max="10" value="<?php echo esc_attr( $gameplay_value ?? '5' ); ?>" oninput="document.getElementById('gameplay').value = this.value" style="width: 80px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="description"><?php _e('Enter a brief review for the game.','duke-yin-helper');?></p>
+                        <textarea cols="50" rows="5" id="short-review" name="short-review"></textarea>
+                    </td>
+                </tr>
 
-        <button id="sgdb-search-btn" class="button"><?php _e('Search','duke-yin-helper'); ?></button>
-        <select id="game-status">
-            <option value="0"><?php _e('Played','duke-yin-helper');?></option>
-            <option value="1"><?php _e('Playing','duke-yin-helper');?></option>
-            <option value="2"><?php _e('Wish to play','duke-yin-helper');?></option>
-            <option value="3"><?php _e('Cleared','duke-yin-helper');?></option>
-            <option value="4"><?php _e('Not Cleared','duke-yin-helper');?></option>
-        </select>
-        <p class="description"><?php _e('Enter a brief review for the movie or TV show.','duke-yin-helper');?></p>
-        <textarea cols="50" rows="5" id="short-review" name="short-review"></textarea>
+            </tbody>
+        </table>
         <div id="sgdb-results"></div>
     </div>
     <?php
@@ -85,6 +137,12 @@ add_action('wp_ajax_sgdb_fetch_and_create', function () {
     $game_name = sanitize_text_field($_POST['game_name']);
     $status = intval($_POST['status'])??0;
     $short_review = sanitize_textarea_field($_POST['short_review']);
+    $score = floatval($_POST['score']) ?? 5.0;
+    $graphic = floatval($_POST['graphic']) ?? 0;
+    $audio = floatval($_POST['audio']) ?? 0;
+    $narrative = floatval($_POST['narrative']) ?? 0;
+    $technical = floatval($_POST['technical']) ?? 0;
+    $gameplay = floatval($_POST['gameplay']) ?? 0;
     $platforms = [];
     $types = sanitize_text_field($_POST['platform']);
     $platforms = explode(',', $types);
@@ -147,12 +205,12 @@ add_action('wp_ajax_sgdb_fetch_and_create', function () {
         update_post_meta( $post_id, 'game_id', $game_id);
         update_post_meta( $post_id, '_r_now', $status );
         update_post_meta( $post_id, '_r_rdate', $release_date );
-        update_post_meta( $post_id, 'ranking-score', '5.0' );
-        update_post_meta( $post_id, 'gameplay-score', '5.0' );
-        update_post_meta( $post_id, 'technical-score', '5.0' );
-        update_post_meta( $post_id, 'narrative-score', '5.0' );
-        update_post_meta( $post_id, 'audios-score', '5.0' );
-        update_post_meta( $post_id, 'graphic-score', '5.0' );
+        update_post_meta( $post_id, 'ranking-score', $score );
+        update_post_meta( $post_id, 'gameplay-score', $gameplay );
+        update_post_meta( $post_id, 'technical-score', $technical );
+        update_post_meta( $post_id, 'narrative-score', $narrative );
+        update_post_meta( $post_id, 'audios-score', $audio );
+        update_post_meta( $post_id, 'graphic-score', $graphic );
 
         foreach($platforms as $platform){
             $term_id = term_exists( $platform, 'game_review_platforms' );
@@ -245,6 +303,7 @@ add_action('wp_ajax_sgdb_fetch_and_create', function () {
         }
     }
     $link = get_permalink( $post_id );
+    $edit_link = get_edit_post_link( $post_id );
 
-    wp_send_json_success(['post_id' => $post_id, 'title' => $game_name,'link' => $link]);
+    wp_send_json_success(['post_id' => $post_id, 'title' => $game_name,'link' => $link, 'edit_link' => $edit_link]);
 });

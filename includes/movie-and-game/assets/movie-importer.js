@@ -57,7 +57,7 @@ jQuery(document).ready(function ($) {
         }, function (res) {
             $('.clicked').text('完成导入');
             if (res.success) {
-                jQuery('#wpbody-content').prepend('<div class="notice notice-success is-dismissible"><p>'+'Import success, the post is <a target="_blank" href="'+ res.data.link +'">'+ res.data.title +'</a>.</p></div>');
+                jQuery('#wpbody-content').prepend('<div class="notice notice-success is-dismissible"><p>'+'Import success, the post is <a target="_blank" href="'+ res.data.link +'">'+ res.data.title +'</a>, edit it <a target="_blank" href="'+ res.data.edit_link +'">here</a>.</p></div>');
             } else {
                 jQuery('#wpbody-content').prepend('<div class="notice notice-error is-dismissible"><p>'+'Failed to import'+'</p></div>');
             }
