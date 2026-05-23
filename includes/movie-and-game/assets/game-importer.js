@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
     $('#sgdb-search-btn').click(function () {
-        const term = $('#sgdb-game-name').val();
+        const term = $('#sgdb-game-name').val().trim();
         if (!term) return;
         $('#sgdb-results').html('搜索中...');
         $.post(sgdb_ajax.ajax_url, {
@@ -34,6 +34,7 @@ jQuery(document).ready(function ($) {
         let release_date = $(this).data('release_date');
         let platform = $(this).data('types');
         let status = $('#game-status').val();
+        let short_review = $('#short-review').val().trim();
         $(this).text('导入中...').attr('disabled', true);
         $(this).addClass('clicked');
         $.post(sgdb_ajax.ajax_url, {
@@ -44,6 +45,7 @@ jQuery(document).ready(function ($) {
             release_date: release_date,
             platform: platform,
             status: status,
+            short_review: short_review
         }, function (response) {
             $('.clicked').text('完成导入');
             if (response.success) {

@@ -25,6 +25,8 @@ function dk_game_importer_page() {
    <div class="wrap">
         <h1><?php _e('Games Import Tool','duke-yin-helper'); ?></h1>
         <input type="text" id="sgdb-game-name" placeholder="<?php _e('Games title here','duke-yin-helper'); ?>">
+
+        <button id="sgdb-search-btn" class="button"><?php _e('Search','duke-yin-helper'); ?></button>
         <select id="game-status">
             <option value="0"><?php _e('Played','duke-yin-helper');?></option>
             <option value="1"><?php _e('Playing','duke-yin-helper');?></option>
@@ -32,7 +34,8 @@ function dk_game_importer_page() {
             <option value="3"><?php _e('Cleared','duke-yin-helper');?></option>
             <option value="4"><?php _e('Not Cleared','duke-yin-helper');?></option>
         </select>
-        <button id="sgdb-search-btn" class="button"><?php _e('Search','duke-yin-helper'); ?></button>
+        <p class="description"><?php _e('Enter a brief review for the movie or TV show.','duke-yin-helper');?></p>
+        <textarea cols="50" rows="5" id="short-review" name="short-review"></textarea>
         <div id="sgdb-results"></div>
     </div>
     <?php
@@ -81,6 +84,7 @@ add_action('wp_ajax_sgdb_fetch_and_create', function () {
     $game_id = intval($_POST['game_id']);
     $game_name = sanitize_text_field($_POST['game_name']);
     $status = intval($_POST['status'])??0;
+    $short_review = sanitize_textarea_field($_POST['short_review']);
     $platforms = [];
     $types = sanitize_text_field($_POST['platform']);
     $platforms = explode(',', $types);
@@ -138,6 +142,7 @@ add_action('wp_ajax_sgdb_fetch_and_create', function () {
             'post_title' => $game_name,
             'post_status' => 'publish',
             'post_type' => 'game_review',
+            'post_excerpt' => $short_review,
         ]);
         update_post_meta( $post_id, 'game_id', $game_id);
         update_post_meta( $post_id, '_r_now', $status );

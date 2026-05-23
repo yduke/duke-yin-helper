@@ -1,7 +1,13 @@
 jQuery(document).ready(function ($) {
     $('#tmdb-search-btn').on('click', function () {
-        let name = $('#tmdb-movie-name').val();
+        let name = $('#tmdb-movie-name').val().trim();
         let type = $('#tmdb-content-type').val();
+        if (name === '') {
+            $('#tmdb-results').html('<p style="color: orange;">请输入电影名称！</p>');
+            $('#tmdb-movie-name').focus(); 
+            return false; 
+        }
+
         $('#tmdb-results').html('<p>正在搜索...</p>');
         $.post(tmdb_ajax.ajax_url, {
             action: 'tmdb_search',
@@ -37,6 +43,7 @@ jQuery(document).ready(function ($) {
         let inputVal = $('#score').val();
         let score = (inputVal && inputVal.trim() !== 0) ? inputVal.trim() : 5;
         let status = $('#tmdb-status').val();
+        let short_review = $('#short-review').val().trim();
         $(this).text('正在导入...').attr('disabled', true);
         $(this).addClass('clicked');
         $.post(tmdb_ajax.ajax_url, {
@@ -46,6 +53,7 @@ jQuery(document).ready(function ($) {
             type: type,
             score: score,
             status: status,
+            short_review: short_review
         }, function (res) {
             $('.clicked').text('完成导入');
             if (res.success) {

@@ -31,21 +31,39 @@ function dk_movie_importer_page() {
     ?>
     <div class="wrap">
         <h1><?php _e('Movie and TV import tool','duke-yin-helper');?></h1>
-        <select id="tmdb-content-type">
-            <option value="movie"><?php _e('Movie','duke-yin-helper');?></option>
-            <option value="tv"><?php _e('TV','duke-yin-helper');?></option>
-        </select>
-        <input type="text" id="tmdb-movie-name" placeholder="<?php _e('Movie or TV title here','duke-yin-helper');?>" style="width: 300px;">
-        <select id="tmdb-status">
-            <option value="0"><?php _e('Watched','duke-yin-helper');?></option>
-            <option value="1"><?php _e('Watching','duke-yin-helper');?></option>
-            <option value="2"><?php _e('Want to watch','duke-yin-helper');?></option>
-            <option value="3"><?php _e('Watched many times','duke-yin-helper');?></option>
-            <option value="4"><?php _e('Partly watched','duke-yin-helper');?></option>
-        </select>
-        <input type="number" min="0" max="10" id="score" placeholder="<?php _e('Score','duke-yin-helper');?>" style="width: 100px;">
-        <button id="tmdb-search-btn" class="button"><?php _e('Search','duke-yin-helper');?></button>
-        <div id="tmdb-results" style="margin-top: 20px;"></div>
+        <table class="form-table" role="presentation">
+            <tbody>
+                <tr>
+                    <td>
+                        <select id="tmdb-content-type">
+                            <option value="movie"><?php _e('Movie','duke-yin-helper');?></option>
+                            <option value="tv"><?php _e('TV','duke-yin-helper');?></option>
+                        </select>
+                        <input class="regular-text" type="text" id="tmdb-movie-name" placeholder="<?php _e('Movie or TV title here','duke-yin-helper');?>" style="width: 300px;">
+                        <button id="tmdb-search-btn" class="button"><?php _e('Search','duke-yin-helper');?></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="tmdb-status">
+                            <option value="0"><?php _e('Watched','duke-yin-helper');?></option>
+                            <option value="1"><?php _e('Watching','duke-yin-helper');?></option>
+                            <option value="2"><?php _e('Want to watch','duke-yin-helper');?></option>
+                            <option value="3"><?php _e('Watched many times','duke-yin-helper');?></option>
+                            <option value="4"><?php _e('Partly watched','duke-yin-helper');?></option>
+                        </select>
+                        <input type="number" min="0" max="10" step="0.1" id="score" placeholder="<?php _e('Score','duke-yin-helper');?>" style="width: 100px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="description"><?php _e('Enter a brief review for the movie or TV show.','duke-yin-helper');?></p>
+                        <textarea cols="50" rows="5" id="short-review" name="short-review"></textarea>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+            <div id="tmdb-results" style="margin-top: 20px;"></div>
     </div>
     <?php
 }
@@ -72,6 +90,7 @@ add_action('wp_ajax_tmdb_select', function () {
     $id = intval($_POST['id']);  //the tmdb id
     $status = intval($_POST['status'])??0;
     $score = number_format($_POST['score'], 1) ?? 5;
+    $short_review = sanitize_textarea_field($_POST['short_review'] ?? '');
     $type = $_POST['type'] === 'tv' ? 'tv' : 'movie';
     $api_key = $dukeyin_options['tmdb-key'];
     $lang_info = $dukeyin_options['tmdb-lang'];
@@ -112,8 +131,6 @@ add_action('wp_ajax_tmdb_select', function () {
     $img_url = TMDB_API_BASE_URL . "{$type}/{$id}/images?api_key={$api_key}&include_image_language={$lang_img}";
     $img_res = wp_remote_get($img_url);
 
- 
-
     $poster_path = '';
     $logo_path = '';
     $backdrop_path = '';
@@ -126,7 +143,6 @@ add_action('wp_ajax_tmdb_select', function () {
     $title = $type === 'tv' ? $info['name'] : $info['title'];
     $original_title = $type === 'tv' ? $info['original_name'] : $info['original_title'];
     $slug = sanitize_title($original_title);
-
     
     $overview = $info['overview'];
 
@@ -139,7 +155,8 @@ add_action('wp_ajax_tmdb_select', function () {
             'post_title' => $original_title,
             'post_name' => $slug,
             'post_status' => 'publish',
-            'post_type' => $post_type
+            'post_type' => $post_type,
+            'post_excerpt' => $short_review,
         ]);
     }
 
@@ -189,9 +206,6 @@ add_action('wp_ajax_tmdb_select', function () {
 
         $number_of_seasons = $info['number_of_seasons'];
         update_post_meta($post_id,'_r_f_season_count',$number_of_seasons);
-
-
-
     }
 
     // download images
