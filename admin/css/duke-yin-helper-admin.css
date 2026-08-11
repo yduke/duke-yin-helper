@@ -4,3 +4,82 @@
  */
 #menu-links{margin-bottom: 10px!important;}
 #toplevel_page_edit-post_type-film_review ul.wp-submenu-wrap li:nth-of-type(6){border-bottom:3px solid #1d2327}
+
+body.wp-admin.dark-mode button.accordion {
+background-color: var(--dm-bg-surface);
+color: var(--dm-text-primary);
+border:none;
+}
+body.wp-admin.dark-mode div.dukeyinpanel,
+body.wp-admin.dark-mode div.dukeyinpanel.show,
+body.wp-admin.dark-mode .cmb2-options-page .cmb2-metabox>.cmb-row{
+background-color: var(--dm-bg-surface);
+border-color: var(--dm-border);
+border-top: 0;
+}
+body.wp-admin.dark-mode span.cmb2-metabox-description{
+color: var(--dm-text-primary);
+}
+
+body.wp-admin.dark-mode .cmb2-media-status .embed-status, 
+body.wp-admin.dark-mode .cmb2-media-status .img-status img{
+    background: var(--dm-bg-active);
+    border: 5px solid var(--dm-border);;
+    outline: 1px solid var(--dm-border);;
+}
+body.wp-admin.dark-mode .health-check-accordion-heading, 
+body.wp-admin.dark-mode .privacy-settings-accordion-heading,
+hr{
+border-color: var(--dm-border);
+}
+
+body.wp-admin.dark-mode #llar-dashboard-page .dashboard-section-1 > [class^=info-box-],
+body.wp-admin.dark-mode #llar-dashboard-page .dashboard-section-2 > [class^=info-box-],
+body.wp-admin.dark-mode #llar-dashboard-page .dashboard-section-3 > [class^=info-box-],
+body.wp-admin.dark-mode #llar-dashboard-page .dashboard-section-4 > [class^=info-box-],
+body.wp-admin.dark-mode #llar-dashboard-page .section-title__new .llar-label,
+body.wp-admin.dark-mode #llar-dashboard-page .dashboard-section-1 .info-box-3 .title,
+body.wp-admin.dark-mode #llar-dashboard-page .dashboard-section-4 .info-box-2 .section-title__new .title,
+body.wp-admin.dark-mode #llar-setting-page .llar-accordion .ui-accordion-content, 
+body.wp-admin.dark-mode #llar-setting-page-logs .llar-accordion .ui-accordion-content, 
+body.wp-admin.dark-mode #llar-setting-page-logs__active .llar-accordion .ui-accordion-content, 
+body.wp-admin.dark-mode #llar-setting-page-debug .llar-accordion .ui-accordion-content, 
+body.wp-admin.dark-mode #llar-setting-page-premium .llar-accordion .ui-accordion-content, 
+body.wp-admin.dark-mode #llar-setting-page-help .llar-accordion .ui-accordion-content,
+body.wp-admin.dark-mode #llar-setting-page .llar-settings-wrap .llar-form-table tr, 
+body.wp-admin.dark-mode #llar-setting-page-logs .llar-settings-wrap .llar-form-table tr, 
+body.wp-admin.dark-mode #llar-setting-page-logs__active .llar-settings-wrap .llar-form-table tr, 
+body.wp-admin.dark-mode #llar-setting-page-debug .llar-settings-wrap .llar-form-table tr, 
+body.wp-admin.dark-mode #llar-setting-page-premium .llar-settings-wrap .llar-form-table tr, 
+body.wp-admin.dark-mode #llar-setting-page-help .llar-settings-wrap .llar-form-table tr,
+#llar-setting-page .llar-accordion .ui-accordion-header.ui-accordion-header-active, 
+#llar-setting-page-logs .llar-accordion .ui-accordion-header.ui-accordion-header-active, 
+#llar-setting-page-logs__active .llar-accordion .ui-accordion-header.ui-accordion-header-active, 
+#llar-setting-page-debug .llar-accordion .ui-accordion-header.ui-accordion-header-active, 
+#llar-setting-page-premium .llar-accordion .ui-accordion-header.ui-accordion-header-active, 
+#llar-setting-page-help .llar-accordion .ui-accordion-header.ui-accordion-header-active,
+#llar-setting-page .llar-settings-wrap .llar-form-table tr td .textarea_border textarea, #llar-setting-page-logs .llar-settings-wrap .llar-form-table tr td .textarea_border textarea, #llar-setting-page-logs__active .llar-settings-wrap .llar-form-table tr td .textarea_border textarea, #llar-setting-page-debug .llar-settings-wrap .llar-form-table tr td .textarea_border textarea, #llar-setting-page-premium .llar-settings-wrap .llar-form-table tr td .textarea_border textarea, #llar-setting-page-help .llar-settings-wrap .llar-form-table tr td .textarea_border textarea, #llar-setting-page .llar-settings-wrap .llar-form-table tr td .input_border textarea, #llar-setting-page-logs .llar-settings-wrap .llar-form-table tr td .input_border textarea, #llar-setting-page-logs__active .llar-settings-wrap .llar-form-table tr td .input_border textarea, #llar-setting-page-debug .llar-settings-wrap .llar-form-table tr td .input_border textarea, #llar-setting-page-premium .llar-settings-wrap .llar-form-table tr td .input_border textarea, #llar-setting-page-help .llar-settings-wrap .llar-form-table tr td .input_border textarea,
+#llar-setting-page .llar-accordion, 
+#llar-setting-page-logs .llar-accordion, #llar-setting-page-logs__active .llar-accordion, #llar-setting-page-debug .llar-accordion, #llar-setting-page-premium .llar-accordion, #llar-setting-page-help .llar-accordion
+{
+    background-color:var(--dm-bg-surface)!important;
+    color: var(--dm-text-primary)!important;
+}
+
+#llar-setting-page .title_page, #llar-setting-page-logs .title_page, #llar-setting-page-logs__active .title_page, #llar-setting-page-debug .title_page, #llar-setting-page-premium .title_page, #llar-setting-page-help .title_page{
+    color:var(--dm-text-primary)!important
+}
+
+#llar-admin-dashboard-widgets .llar-widget,
+.llar-table-app-login tbody.login-attempts tr:nth-child(4n+1), 
+#llar-setting-page-logs__active .llar-table-scroll-wrap tbody.login-attempts tr:nth-child(4n+1), .llar-table-no_app-login tbody.login-attempts tr:nth-child(4n+1),
+#llar-setting-page .llar-settings-wrap .llar-form-table tr td select, #llar-setting-page-logs .llar-settings-wrap .llar-form-table tr td select, #llar-setting-page-logs__active .llar-settings-wrap .llar-form-table tr td select, #llar-setting-page-debug .llar-settings-wrap .llar-form-table tr td select, #llar-setting-page-premium .llar-settings-wrap .llar-form-table tr td select, #llar-setting-page-help .llar-settings-wrap .llar-form-table tr td select,
+#llar-setting-page .add_block__under_table, #llar-setting-page-logs .add_block__under_table, #llar-setting-page-logs__active .add_block__under_table, #llar-setting-page-debug .add_block__under_table, #llar-setting-page-premium .add_block__under_table, #llar-setting-page-help .add_block__under_table
+{
+    background:unset;
+    background-color:unset!important;
+}
+
+.header_massage #llar-header-upgrade-mc-message, .header_massage #llar-header-upgrade-premium-message{
+    display:none;
+}
