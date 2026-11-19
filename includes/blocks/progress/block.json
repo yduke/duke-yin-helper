@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "dukeyin/progress",
+	"title": "Progress Bar",
+	"category": "dukeyin",
+	"icon": "chart-bar",
+	"description": "A Bootstrap progress bar. Renders the same markup as the [progress] shortcode.",
+	"keywords": [ "progress", "bar", "percentage", "bootstrap" ],
+	"textdomain": "duke-yin-helper",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"percentage": {
+			"type": "number",
+			"default": 50
+		},
+		"height": {
+			"type": "string",
+			"default": ""
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"striped": {
+			"type": "boolean",
+			"default": false
+		},
+		"animated": {
+			"type": "boolean",
+			"default": false
+		},
+		"showLabel": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"example": {
+		"attributes": {
+			"title": "Download",
+			"percentage": 75,
+			"color": "success"
+		}
+	},
+	"editorScript": "dukeyin-blocks-editor",
+	"editorStyle": "dukeyin-blocks-editor"
+}

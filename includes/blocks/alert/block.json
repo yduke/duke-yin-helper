@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "dukeyin/alert",
+	"title": "Alert Box",
+	"category": "dukeyin",
+	"icon": "warning",
+	"description": "A dismissible Bootstrap alert box. Renders the same markup as the [alert] shortcode.",
+	"keywords": [ "alert", "notice", "warning", "bootstrap" ],
+	"textdomain": "duke-yin-helper",
+	"attributes": {
+		"type": {
+			"type": "string",
+			"default": "danger"
+		},
+		"close": {
+			"type": "boolean",
+			"default": true
+		},
+		"content": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"example": {
+		"attributes": {
+			"type": "success",
+			"content": "Saved as a draft."
+		}
+	},
+	"editorScript": "dukeyin-blocks-editor",
+	"editorStyle": "dukeyin-blocks-editor"
+}

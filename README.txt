@@ -4,7 +4,7 @@ Donate link: https://www.dukeyin.com/donate/
 Tags: shortcode, post-type
 Requires at least: 3.0.1
 Tested up to: 6.3
-Stable tag: 1.1.20
+Stable tag: 1.2.3
 License: End-User License Agreement (EULA) of duke yin helper Wordpress Plugin
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ This plugin powers up DukeYin Wordpress theme.
 
 This plugin can only work with dukeyin theme, if you don't own DukeYin theme, please don't install this plugin.
 
-This plugin adds a lot of useful functions to theme, it also adds post types, settings and more informations to theme.
+This plugin adds a lot of useful functions to theme, it also adds post types, settings and more information to theme.
 
 == Installation ==
 
@@ -27,7 +27,7 @@ This section describes how to install the plugin and get it working.
 
 = Is this plugin free to use =
 
-Yes and no. Yes this plugin is free to donload, but DukeYin theme is not free, and this plugin can work only with DukeYin theme.
+Yes and no. Yes this plugin is free to download, but DukeYin theme is not free, and this plugin can work only with DukeYin theme.
 
 
 

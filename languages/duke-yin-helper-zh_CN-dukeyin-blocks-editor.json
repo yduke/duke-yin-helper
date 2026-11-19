@@ -1,0 +1,96 @@
+{
+    "translation-revision-date": "2026-11-19T07:58:11+00:00",
+    "generator": "Duke Yin Helper",
+    "domain": "duke-yin-helper",
+    "source": "includes/blocks/assets/blocks.js",
+    "locale_data": {
+        "duke-yin-helper": {
+            "": {
+                "domain": "duke-yin-helper",
+                "lang": "zh_CN",
+                "plural-forms": "nplurals=1; plural=0;"
+            },
+            "Alert message": [
+                "提示内容"
+            ],
+            "Alert settings": [
+                "提示框设置"
+            ],
+            "Animated": [
+                "动画"
+            ],
+            "Animated stripes are only visible on striped bars.": [
+                "只有开启条纹时才看得到动画效果。"
+            ],
+            "Close": [
+                "关闭"
+            ],
+            "Color": [
+                "颜色"
+            ],
+            "Danger": [
+                "危险"
+            ],
+            "Dark": [
+                "深色"
+            ],
+            "Default": [
+                "默认"
+            ],
+            "For example 1rem or 24px. Empty keeps the Bootstrap default.": [
+                "例如 1rem 或 24px，留空则使用 Bootstrap 默认值。"
+            ],
+            "Height": [
+                "高度"
+            ],
+            "Info": [
+                "信息"
+            ],
+            "Light": [
+                "浅色"
+            ],
+            "Percentage": [
+                "百分比"
+            ],
+            "Primary": [
+                "主要"
+            ],
+            "Progress settings": [
+                "进度条设置"
+            ],
+            "Secondary": [
+                "次要"
+            ],
+            "Show close button": [
+                "显示关闭按钮"
+            ],
+            "Show percentage label": [
+                "显示百分比文字"
+            ],
+            "Shown under the post title. Stored in post meta, not in the post content.": [
+                "显示在文章标题下方。保存在自定义字段中，而不是文章正文里。"
+            ],
+            "Striped": [
+                "条纹"
+            ],
+            "Subtitle": [
+                "副标题"
+            ],
+            "Success": [
+                "成功"
+            ],
+            "Title": [
+                "标题"
+            ],
+            "Type": [
+                "类型"
+            ],
+            "Warning": [
+                "警告"
+            ],
+            "Write the alert message…": [
+                "输入提示内容…"
+            ]
+        }
+    }
+}

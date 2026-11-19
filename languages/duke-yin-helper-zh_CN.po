@@ -2098,3 +2098,261 @@ msgstr "Duke Yin"
 
 #~ msgid "Subtitle."
 #~ msgstr "副标题。"
+
+#: includes/blocks/render.php
+msgid "Close"
+msgstr "关闭"
+
+#: includes/blocks/assets/blocks.js
+msgid "Alert settings"
+msgstr "提示框设置"
+
+#: includes/blocks/assets/blocks.js
+msgid "Type"
+msgstr "类型"
+
+#: includes/blocks/assets/blocks.js
+msgid "Show close button"
+msgstr "显示关闭按钮"
+
+#: includes/blocks/assets/blocks.js
+msgid "Write the alert message…"
+msgstr "输入提示内容…"
+
+#: includes/blocks/assets/blocks.js
+msgid "Progress settings"
+msgstr "进度条设置"
+
+#: includes/blocks/assets/blocks.js
+msgid "Percentage"
+msgstr "百分比"
+
+#: includes/blocks/assets/blocks.js
+msgid "Title"
+msgstr "标题"
+
+#: includes/blocks/assets/blocks.js
+msgid "Color"
+msgstr "颜色"
+
+#: includes/blocks/assets/blocks.js
+msgid "Default"
+msgstr "默认"
+
+#: includes/blocks/assets/blocks.js
+msgid "Height"
+msgstr "高度"
+
+#: includes/blocks/assets/blocks.js
+msgid "For example 1rem or 24px. Empty keeps the Bootstrap default."
+msgstr "例如 1rem 或 24px，留空则使用 Bootstrap 默认值。"
+
+#: includes/blocks/assets/blocks.js
+msgid "Striped"
+msgstr "条纹"
+
+#: includes/blocks/assets/blocks.js
+msgid "Animated"
+msgstr "动画"
+
+#: includes/blocks/assets/blocks.js
+msgid "Animated stripes are only visible on striped bars."
+msgstr "只有开启条纹时才看得到动画效果。"
+
+#: includes/blocks/assets/blocks.js
+msgid "Show percentage label"
+msgstr "显示百分比文字"
+
+#: includes/blocks/assets/blocks.js
+msgid "Primary"
+msgstr "主要"
+
+#: includes/blocks/assets/blocks.js
+msgid "Secondary"
+msgstr "次要"
+
+#: includes/blocks/assets/blocks.js
+msgid "Success"
+msgstr "成功"
+
+#: includes/blocks/assets/blocks.js
+msgid "Danger"
+msgstr "危险"
+
+#: includes/blocks/assets/blocks.js
+msgid "Warning"
+msgstr "警告"
+
+#: includes/blocks/assets/blocks.js
+msgid "Info"
+msgstr "信息"
+
+#: includes/blocks/assets/blocks.js
+msgid "Light"
+msgstr "浅色"
+
+#: includes/blocks/assets/blocks.js
+msgid "Dark"
+msgstr "深色"
+
+#: includes/blocks/alert/block.json
+msgctxt "block title"
+msgid "Alert Box"
+msgstr "提示框"
+
+#: includes/blocks/alert/block.json
+msgctxt "block description"
+msgid "A dismissible Bootstrap alert box. Renders the same markup as the [alert] shortcode."
+msgstr "可关闭的 Bootstrap 提示框，与短代码 [alert] 输出相同的结构。"
+
+#: includes/blocks/progress/block.json
+msgctxt "block title"
+msgid "Progress Bar"
+msgstr "进度条"
+
+#: includes/blocks/progress/block.json
+msgctxt "block description"
+msgid "A Bootstrap progress bar. Renders the same markup as the [progress] shortcode."
+msgstr "Bootstrap 进度条，与短代码 [progress] 输出相同的结构。"
+
+#: includes/blocks/subtitle/block.json
+msgctxt "block title"
+msgid "Subtitle"
+msgstr "副标题"
+
+#: includes/blocks/subtitle/block.json
+msgctxt "block description"
+msgid "Post subtitle. Stored in post meta and printed by the theme under the post title."
+msgstr "文章副标题。保存在自定义字段中，由主题显示在文章标题下方。"
+
+#: includes/blocks/assets/blocks.js
+msgid "Shown under the post title. Stored in post meta, not in the post content."
+msgstr "显示在文章标题下方。保存在自定义字段中，而不是文章正文里。"
+
+#: includes/blocks/assets/blocks.js
+msgid "Alert message"
+msgstr "提示内容"
+
+#: includes/blocks/assets/blocks.js
+msgid "Subtitle"
+msgstr "副标题"
+
+#: includes/subtitle-migration.php
+msgid "Subtitle Block Migration"
+msgstr "副标题区块迁移"
+
+#: includes/subtitle-migration.php
+msgid "You are not allowed to run this migration."
+msgstr "你没有权限执行这个迁移。"
+
+#: includes/subtitle-migration.php
+msgid "Unknown action."
+msgstr "未知操作。"
+
+#: includes/subtitle-migration.php
+msgid "Current state"
+msgstr "当前状态"
+
+#: includes/subtitle-migration.php
+msgid "Post type"
+msgstr "文章类型"
+
+#: includes/subtitle-migration.php
+msgid "Posts"
+msgstr "文章数"
+
+#: includes/subtitle-migration.php
+msgid "With the block"
+msgstr "已有区块"
+
+#: includes/subtitle-migration.php
+msgid "Need migration"
+msgstr "需要迁移"
+
+#: includes/subtitle-migration.php
+msgid "Total"
+msgstr "合计"
+
+#: includes/subtitle-migration.php
+msgid "Actions"
+msgstr "操作"
+
+#: includes/subtitle-migration.php
+msgid "Check"
+msgstr "检查"
+
+#: includes/subtitle-migration.php
+msgid "Run migration"
+msgstr "执行迁移"
+
+#: includes/subtitle-migration.php
+msgid "Revert migration"
+msgstr "撤销迁移"
+
+#: includes/subtitle-migration.php
+msgid "Continue"
+msgstr "继续"
+
+#: includes/subtitle-migration.php
+msgid "Checking…"
+msgstr "正在检查…"
+
+#: includes/subtitle-migration.php
+msgid "Migrating…"
+msgstr "正在迁移…"
+
+#: includes/subtitle-migration.php
+msgid "Reverting…"
+msgstr "正在撤销…"
+
+#: includes/subtitle-migration.php
+msgid "Last run"
+msgstr "上次执行"
+
+#: includes/subtitle-migration.php
+msgid "%1$s on %2$s at %3$s."
+msgstr "%2$s %3$s 执行了 %1$s。"
+
+#: includes/subtitle-migration.php
+msgid "%1$d of %2$d posts processed."
+msgstr "已处理 %1$d / %2$d 篇文章。"
+
+#: includes/subtitle-migration.php
+msgid "Check finished: %1$d posts inspected, %2$d would render differently."
+msgstr "检查完成：共检查 %1$d 篇文章，其中 %2$d 篇的显示会发生变化。"
+
+#: includes/subtitle-migration.php
+msgid "Migration finished: %1$d posts updated, %2$d skipped."
+msgstr "迁移完成：更新了 %1$d 篇文章，跳过 %2$d 篇。"
+
+#: includes/subtitle-migration.php
+msgid "Revert finished: the block was removed from %d posts."
+msgstr "撤销完成：已从 %d 篇文章中移除区块。"
+
+#: includes/subtitle-migration.php
+msgid "Remove the block from every post that has it?"
+msgstr "要从所有包含该区块的文章中移除它吗？"
+
+#: includes/subtitle-migration.php
+msgid "These posts would render differently, so they were left alone. Check them by hand before migrating:"
+msgstr "以下文章的显示会发生变化，因此未做改动。请在迁移前手动检查："
+
+#: includes/subtitle-migration.php
+msgid "New posts get the subtitle block automatically. Posts written before the block existed need it added to their content, and this tool does that. Nothing is written until you run the migration."
+msgstr "新文章会自动带上副标题区块。在区块出现之前撰写的文章需要把它加入正文，这个工具负责这件事。在你执行迁移之前，不会写入任何数据。"
+
+#: includes/subtitle-migration.php
+msgid "Check first: inspects every post that still lacks the block and confirms that adding it cannot change what the front end renders."
+msgstr "建议先检查：逐篇检查尚未包含区块的文章，确认加入区块不会改变前台显示效果。"
+
+#: includes/subtitle-migration.php
+msgid "Add the subtitle block to the posts that need it. Runs in batches and can be stopped by closing the page."
+msgstr "为需要迁移的文章加入副标题区块。分批执行，关闭页面即可中断。"
+
+#: includes/subtitle-migration.php
+msgid "Undo: removes the block again. The subtitle text itself lives in post meta and is never deleted, so this only takes the block out of the editor."
+msgstr "撤销：把区块再移除。副标题文字本身保存在自定义字段中，永远不会被删除，所以这一步只是把区块从编辑器中拿掉。"
+
+#: includes/subtitle-migration.php
+msgid "This page continues automatically. Leave it open until it finishes."
+msgstr "本页会自动继续，请保持打开直到完成。"

@@ -1166,3 +1166,141 @@ msgstr ""
 #: includes/meta-block.js:34
 msgid "Subtitle."
 msgstr ""
+
+#: includes/blocks/render.php
+msgid "Close"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Alert settings"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Type"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Show close button"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Write the alert message…"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Progress settings"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Percentage"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Title"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Color"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Default"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Height"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "For example 1rem or 24px. Empty keeps the Bootstrap default."
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Striped"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Animated"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Animated stripes are only visible on striped bars."
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Show percentage label"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Primary"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Secondary"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Success"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Danger"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Warning"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Info"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Light"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Dark"
+msgstr ""
+
+#: includes/blocks/alert/block.json
+msgctxt "block title"
+msgid "Alert Box"
+msgstr ""
+
+#: includes/blocks/alert/block.json
+msgctxt "block description"
+msgid "A dismissible Bootstrap alert box. Renders the same markup as the [alert] shortcode."
+msgstr ""
+
+#: includes/blocks/progress/block.json
+msgctxt "block title"
+msgid "Progress Bar"
+msgstr ""
+
+#: includes/blocks/progress/block.json
+msgctxt "block description"
+msgid "A Bootstrap progress bar. Renders the same markup as the [progress] shortcode."
+msgstr ""
+
+#: includes/blocks/subtitle/block.json
+msgctxt "block title"
+msgid "Subtitle"
+msgstr ""
+
+#: includes/blocks/subtitle/block.json
+msgctxt "block description"
+msgid "Post subtitle. Stored in post meta and printed by the theme under the post title."
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Shown under the post title. Stored in post meta, not in the post content."
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Subtitle"
+msgstr ""
+
+#: includes/blocks/assets/blocks.js
+msgid "Alert message"
+msgstr ""

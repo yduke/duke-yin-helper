@@ -8,7 +8,7 @@
  * Plugin Name:       Duke Yin Helper
  * Plugin URI:        https://dukeyin.com
  * Description:       For supporting the wordpress theme dukeyin, add more post types and shortcodes.
- * Version:           1.2.2
+ * Version:           1.2.3
  * Author:            Duke Yin
  * Author URI:        https://dukeyin.com
  * License:           GPL-2.0+
@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'DUKE_YIN_HELPER_VERSION', '1.2.2' );
+define( 'DUKE_YIN_HELPER_VERSION', '1.2.3' );
 
 /**
  * The code that runs during plugin activation.
@@ -59,6 +59,8 @@ require plugin_dir_path( __FILE__ ) . 'includes/post-type.php';
 require plugin_dir_path( __FILE__ ) . 'includes/helpers.php';
 require plugin_dir_path( __FILE__ ) . 'includes/meta-field.php';
 require plugin_dir_path( __FILE__ ) . 'includes/meta-block.php';
+require plugin_dir_path( __FILE__ ) . 'includes/subtitle-migration.php';
+require plugin_dir_path( __FILE__ ) . 'includes/blocks/blocks.php';
 require plugin_dir_path( __FILE__ ) . 'includes/rest-api.php';
 require plugin_dir_path( __FILE__ ) . 'includes/blog-to-microblog-sync.php';
 

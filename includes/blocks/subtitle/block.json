@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "dukeyin/headline",
+	"title": "Subtitle",
+	"category": "dukeyin",
+	"icon": "editor-paragraph",
+	"description": "Post subtitle. Stored in post meta and printed by the theme under the post title.",
+	"keywords": [ "subtitle", "headline", "lead", "subheading" ],
+	"textdomain": "duke-yin-helper",
+	"attributes": {
+		"blockValue": {
+			"type": "string",
+			"source": "meta",
+			"meta": "_headline"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "dukeyin-blocks-editor",
+	"editorStyle": "dukeyin-blocks-editor"
+}
